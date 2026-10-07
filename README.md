@@ -28,13 +28,15 @@ Failures handled: game cancelled, out of money, deadline missed.
 
 ## Team Vibe Engineers
 
-| Member | Student no. | Role |
-| --- | --- | --- |
-| Jamie King (leader) | u24916031 | Design patterns |
-| Louwrens Johansen | u25607414 | Class diagram |
-| Brett Pitts | u24682251 | Activity diagrams |
-| Francois Venter | u25555202 | Research |
-| Rudolph Botha | u25387023 | Runtime diagrams |
+| Member | Student no. |
+| --- | --- |
+| Jamie King (leader) | u24916031 |
+| Louwrens Johansen | u25607414 |
+| Brett Pitts | u24682251 |
+| Francois Venter | u25555202 |
+| Rudolph Botha | u25387023 |
+
+[Current tasks](docs/Current%20Tasks.docx)
 
 ## Meeting
 
@@ -58,13 +60,13 @@ Failures handled: game cancelled, out of money, deadline missed.
 | Composite (x2) | Work tree; company structure |
 | Decorator | Employee profession and competency |
 | Factory Method | Creating employees |
-| Facade | `ApplicationInterface` |
+| Facade | ApplicationInterface |
 | Chain of Responsibility | Finding an eligible employee |
-| State | `WorkNode` lifecycle |
+| State | WorkNode lifecycle |
 | Observer | Prerequisites and parent/child completion |
-| Mediator | `Team` broadcasts |
+| Mediator | Team broadcasts |
 | Template Method | prepare, perform, finish |
-| Iterator | `WorkIterator`: next Ready `WorkUnit` |
+| Iterator | WorkIterator: next Ready WorkUnit |
 
 ## Repository layout
 
