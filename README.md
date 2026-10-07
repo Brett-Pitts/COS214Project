@@ -72,7 +72,13 @@ Failures handled: game cancelled, out of money, deadline missed.
 
 ```
 README.md
+.gitignore
 docs/
+  COS 214 Project PDF.docx
+  COS214_Practical6_TIVIDY.pdf
+  Current Tasks.docx
+  Task 2 Define the Scenario and System.docx
+  Task 4 Design Patterns.docx
   Design Decisions and Revision History/
   Research Material and References/
   UML Diagrams/
@@ -87,6 +93,10 @@ build/
 
 ## Docs
 
+- [Practical 6 brief](docs/COS214_Practical6_TIVIDY.pdf)
+- [Project PDF](docs/COS%20214%20Project%20PDF.docx)
+- [Task 2: Define the scenario and system](docs/Task%202%20Define%20the%20Scenario%20and%20System.docx)
+- [Task 4: Design patterns](docs/Task%204%20Design%20Patterns.docx)
 - [Research](docs/Research%20Material%20and%20References/)
 - [Design decisions](docs/Design%20Decisions%20and%20Revision%20History/Design%20Decisions%20and%20Revision%20History.docx)
 
