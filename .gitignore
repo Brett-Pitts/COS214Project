@@ -24,3 +24,5 @@ ehthumbs.db
 .~lock.*#
 .vscode/
 *.code-workspace
+.vpprefdata
+.lock
