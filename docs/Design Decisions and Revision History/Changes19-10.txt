@@ -1,0 +1,3 @@
+Changed project prerequisites to use mediator instead of observer
+Changed creating employee to builder instead of abstract factory
+Added memento to save company and project structures
