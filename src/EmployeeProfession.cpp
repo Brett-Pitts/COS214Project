@@ -28,3 +28,8 @@ void EmployeeProfession::finish(WorkUnit workUnit) {
 	// TODO - implement EmployeeProfession::finish
 	throw "Not yet implemented";
 }
+
+EmployeeComponent* EmployeeProfession::clone() {
+	// TODO - implement EmployeeProfession::clone
+	throw "Not yet implemented";
+}

@@ -19,6 +19,8 @@ public:
 	void perform(WorkUnit workUnit);
 
 	void finish(WorkUnit workUnit);
+
+	EmployeeComponent* clone();
 };
 
 #endif

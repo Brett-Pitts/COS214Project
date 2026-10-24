@@ -9,6 +9,8 @@ public:
 	void doWork(WorkUnit workUnit);
 
 	void wrap(EmployeeComponent component);
+
+	EmployeeComponent* clone();
 };
 
 #endif

@@ -14,3 +14,8 @@ WorkNode Project::getChild(int arg0) {
 	// TODO - implement Project::getChild
 	throw "Not yet implemented";
 }
+
+WorkNode* Project::clone() {
+	// TODO - implement Project::clone
+	throw "Not yet implemented";
+}

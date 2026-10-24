@@ -72,3 +72,8 @@ void WorkNode::update() {
 	// TODO - implement WorkNode::update
 	throw "Not yet implemented";
 }
+
+WorkNode* WorkNode::clone() {
+	// TODO - implement WorkNode::clone
+	throw "Not yet implemented";
+}

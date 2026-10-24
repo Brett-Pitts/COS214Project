@@ -29,6 +29,8 @@ public:
 	void setSuccessor(EmployeeComponent employeeComponent);
 
 	virtual void wrap(EmployeeComponent component) = 0;
+
+	EmployeeComponent* clone();
 };
 
 #endif

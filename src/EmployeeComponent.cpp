@@ -38,3 +38,8 @@ void EmployeeComponent::receive(string arg0) {
 void EmployeeComponent::setSuccessor(EmployeeComponent employeeComponent) {
 	this->successor = employeeComponent;
 }
+
+EmployeeComponent* EmployeeComponent::clone() {
+	// TODO - implement EmployeeComponent::clone
+	throw "Not yet implemented";
+}

@@ -11,6 +11,8 @@ public:
 	void remove(WorkNode workNode);
 
 	WorkNode getChild(int arg0);
+
+	WorkNode* clone();
 };
 
 #endif

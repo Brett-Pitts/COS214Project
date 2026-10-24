@@ -8,6 +8,8 @@ public:
 	void handleEscalation(WorkUnit workUnit);
 
 	void cancelProject(Project project);
+
+	EmployeeComponent* clone();
 };
 
 #endif

@@ -9,3 +9,8 @@ void EmployeeDetail::wrap(EmployeeComponent component) {
 	// TODO - implement EmployeeDetail::wrap
 	throw "Not yet implemented";
 }
+
+EmployeeComponent* EmployeeDetail::clone() {
+	// TODO - implement EmployeeDetail::clone
+	throw "Not yet implemented";
+}

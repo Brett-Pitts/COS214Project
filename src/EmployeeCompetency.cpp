@@ -28,3 +28,8 @@ void EmployeeCompetency::finish(WorkUnit workUnit) {
 	// TODO - implement EmployeeCompetency::finish
 	throw "Not yet implemented";
 }
+
+EmployeeComponent* EmployeeCompetency::clone() {
+	// TODO - implement EmployeeCompetency::clone
+	throw "Not yet implemented";
+}

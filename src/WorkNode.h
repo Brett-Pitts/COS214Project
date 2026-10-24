@@ -42,6 +42,8 @@ public:
 	void setState(WorkState workState);
 
 	void update();
+
+	WorkNode* clone();
 };
 
 #endif
