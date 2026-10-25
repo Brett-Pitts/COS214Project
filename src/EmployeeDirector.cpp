@@ -28,3 +28,13 @@ void EmployeeDirector::reset() {
 	// TODO - implement EmployeeDirector::reset
 	throw "Not yet implemented";
 }
+
+boolean EmployeeDirector::addProfession(string id) {
+	// TODO - implement EmployeeDirector::addProfession
+	throw "Not yet implemented";
+}
+
+boolean EmployeeDirector::addCompetency(string name) {
+	// TODO - implement EmployeeDirector::addCompetency
+	throw "Not yet implemented";
+}

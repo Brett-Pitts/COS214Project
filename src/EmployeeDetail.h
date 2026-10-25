@@ -17,6 +17,8 @@ public:
 	virtual static boolean hasDetail(string name) = 0;
 
 	virtual static boolean deleteDetail(string name) = 0;
+
+	virtual static std::vector<std::string>& getDetails() = 0;
 };
 
 #endif

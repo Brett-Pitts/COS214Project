@@ -20,6 +20,10 @@ public:
 	void setBuilder(EmployeeBuilder* builder);
 
 	void reset();
+
+	boolean addProfession(string id);
+
+	boolean addCompetency(string name);
 private:
 
 	EmployeeBuilder* builder;

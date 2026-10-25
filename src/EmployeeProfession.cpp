@@ -34,3 +34,8 @@ static boolean EmployeeProfession::deleteDetail(string name) {
 	// TODO - implement EmployeeProfession::deleteDetail
 	throw "Not yet implemented";
 }
+
+static std::vector<std::string>& EmployeeProfession::getDetails() {
+	// TODO - implement EmployeeProfession::getDetails
+	throw "Not yet implemented";
+}

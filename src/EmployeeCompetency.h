@@ -22,6 +22,8 @@ public:
 	static boolean hasDetail(string name);
 
 	static boolean deleteDetail(string name);
+
+	static std::vector<std::string>& getDetails();
 };
 
 #endif
