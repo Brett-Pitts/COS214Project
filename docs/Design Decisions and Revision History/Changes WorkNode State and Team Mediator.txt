@@ -1,0 +1,8 @@
+WorkNode: made abstract, uses pointers instead of copies, removed clone()
+WorkNode: added isCompleted(), prerequisitesCompleted(), setParent()
+WorkNode: setMediator() takes WorkMediator*
+WorkState and states: handle() takes WorkNode*
+Project: added allChildrenCompleted()
+Mediator: made abstract, uses pointers instead of copies
+Team: uses pointers, addMember() sets the member's mediator and successor
+EmployeeComponent: mediator is Mediator*, added setMediator(), uses pointers

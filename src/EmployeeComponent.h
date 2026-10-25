@@ -1,36 +1,42 @@
 #ifndef EMPLOYEECOMPONENT_H
 #define EMPLOYEECOMPONENT_H
 
-class EmployeeComponent {
+#include <string>
+
+class Mediator;
+class WorkUnit;
+
+class EmployeeComponent{
 
 private:
-	Mediator mediator;
-	EmployeeComponent successor;
+    Mediator* mediator = NULL;
+    EmployeeComponent* successor = NULL;
 
 public:
-	bool compareProfession(int arg0);
+    virtual ~EmployeeComponent();
 
-	void doWork(WorkUnit workUnit);
+    virtual bool compareProfession(int id);
+
+    virtual void doWork(WorkUnit* workUnit);
+
+    void handleWork(WorkUnit* workUnit);
+
+    void receive(std::string message);
+
+    void setMediator(Mediator* mediator);
+
+    void setSuccessor(EmployeeComponent* employeeComponent);
+
+    virtual void wrap(EmployeeComponent* component) = 0;
+
+    virtual EmployeeComponent* clone() = 0;
 
 protected:
-	void finish(WorkUnit workUnit);
+    virtual void finish(WorkUnit* workUnit);
 
-public:
-	void handleWork(WorkUnit workUnit);
+    virtual void perform(WorkUnit* workUnit);
 
-protected:
-	void perform(WorkUnit workUnit);
-
-	void prepare(WorkUnit workUnit);
-
-public:
-	void receive(std::string arg0);
-
-	void setSuccessor(EmployeeComponent employeeComponent);
-
-	virtual void wrap(EmployeeComponent component) = 0;
-
-	EmployeeComponent* clone();
+    virtual void prepare(WorkUnit* workUnit);
 };
 
 #endif

@@ -1,5 +1,0 @@
-WorkNode: made abstract, uses pointers instead of copies, removed clone()
-WorkNode: added isCompleted(), prerequisitesCompleted(), setParent()
-WorkNode: setMediator() takes WorkMediator*
-WorkState and states: handle() takes WorkNode*
-Project: added allChildrenCompleted()
