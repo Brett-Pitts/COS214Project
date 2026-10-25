@@ -1,19 +1,20 @@
 #ifndef CONCRETEEMPLOYEEBUILDER_H
 #define CONCRETEEMPLOYEEBUILDER_H
 
-class ConcreteEmployeeBuilder : EmployeeDirector, EmployeeBuilder {
+class ConcreteEmployeeBuilder : EmployeeBuilder {
 
 
 public:
-	void addCompetency(int id);
-
-	void addProfession(int id);
-
-	EmployeeComponent* constructEmployee();
 
 	void build(string name, bool isManager = false);
 
-	void build(string name, boolean isManager = false);
+	EmployeeComponent* finish(string name, boolean isManager = false);
+
+	void reset();
+
+	boolean addCompetency(string name);
+
+	boolean addProfession(string name);
 };
 
 #endif

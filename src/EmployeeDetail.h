@@ -11,6 +11,12 @@ public:
 	void wrap(EmployeeComponent component);
 
 	EmployeeComponent* clone();
+
+	virtual static boolean addDetail(string name) = 0;
+
+	virtual static boolean hasDetail(string name) = 0;
+
+	virtual static boolean deleteDetail(string name) = 0;
 };
 
 #endif

@@ -1,18 +1,4 @@
-#include "EmployeeProfession.h"
 
-static int EmployeeProfession::registerProfession(string name) {
-	// TODO - implement EmployeeProfession::registerProfession
-	throw "Not yet implemented";
-}
-
-static bool EmployeeProfession::deleteProfession(string name) {
-	// TODO - implement EmployeeProfession::deleteProfession
-	throw "Not yet implemented";
-}
-
-static int EmployeeProfession::getProfessionId(string name) {
-	return this->professionId;
-}
 
 void EmployeeProfession::prepare(WorkUnit workUnit) {
 	// TODO - implement EmployeeProfession::prepare
@@ -31,5 +17,20 @@ void EmployeeProfession::finish(WorkUnit workUnit) {
 
 EmployeeComponent* EmployeeProfession::clone() {
 	// TODO - implement EmployeeProfession::clone
+	throw "Not yet implemented";
+}
+
+static boolean EmployeeProfession::addDetail(string name) {
+	// TODO - implement EmployeeProfession::addDetail
+	throw "Not yet implemented";
+}
+
+static boolean EmployeeProfession::hasDetail(string name) {
+	// TODO - implement EmployeeProfession::hasDetail
+	throw "Not yet implemented";
+}
+
+static boolean EmployeeProfession::deleteDetail(string name) {
+	// TODO - implement EmployeeProfession::deleteDetail
 	throw "Not yet implemented";
 }

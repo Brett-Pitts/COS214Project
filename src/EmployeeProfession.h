@@ -4,15 +4,10 @@
 class EmployeeProfession : EmployeeDetail {
 
 private:
-	int professionId;
+	string professionName;
 	static vector<string> professionList;
 
 public:
-	static int registerProfession(string name);
-
-	static bool deleteProfession(string name);
-
-	static int getProfessionId(string name);
 
 	void prepare(WorkUnit workUnit);
 
@@ -21,6 +16,12 @@ public:
 	void finish(WorkUnit workUnit);
 
 	EmployeeComponent* clone();
+
+	static boolean addDetail(string name);
+
+	static boolean hasDetail(string name);
+
+	static boolean deleteDetail(string name);
 };
 
 #endif

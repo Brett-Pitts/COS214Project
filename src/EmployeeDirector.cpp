@@ -1,16 +1,11 @@
-#include "EmployeeDirector.h"
 
-EmployeeComponent* EmployeeDirector::constructEmployee() {
-	// TODO - implement EmployeeDirector::constructEmployee
-	throw "Not yet implemented";
-}
 
-bool EmployeeDirector::addProfession(int id) {
+boolean EmployeeDirector::addProfession(string id) {
 	// TODO - implement EmployeeDirector::addProfession
 	throw "Not yet implemented";
 }
 
-bool EmployeeDirector::addCompetency(int id) {
+boolean EmployeeDirector::addCompetency(string name) {
 	// TODO - implement EmployeeDirector::addCompetency
 	throw "Not yet implemented";
 }
@@ -20,7 +15,16 @@ bool EmployeeDirector::finish(string name, bool isManager) {
 	throw "Not yet implemented";
 }
 
-boolean EmployeeDirector::finish(string name, boolean isManager) {
+EmployeeComponent* EmployeeDirector::finish(string name, boolean isManager) {
 	// TODO - implement EmployeeDirector::finish
+	throw "Not yet implemented";
+}
+
+void EmployeeDirector::setBuilder(EmployeeBuilder* builder) {
+	this->builder = builder;
+}
+
+void EmployeeDirector::reset() {
+	// TODO - implement EmployeeDirector::reset
 	throw "Not yet implemented";
 }

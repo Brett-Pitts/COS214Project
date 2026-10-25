@@ -3,19 +3,19 @@
 
 class EmployeeBuilder {
 
-private:
+protected:
 	EmployeeComponent employee;
 
 public:
-	void addCompetency(int id);
+	virtual boolean addCompetency(string name) = 0;
 
-	void addProfession(int id);
-
-	EmployeeComponent* constructEmployee();
+	virtual boolean addProfession(string name) = 0;
 
 	void build(string name, bool isManager = false);
 
-	void build(string name, boolean isManager = false);
+	virtual EmployeeComponent* finish(string name, boolean isManager = false) = 0;
+
+	virtual void reset() = 0;
 };
 
 #endif

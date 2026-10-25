@@ -4,15 +4,10 @@
 class EmployeeCompetency : EmployeeDetail {
 
 private:
-	int competencyId;
+	string competencyName;
 	static vector<string> competencyList;
 
 public:
-	static int registerCompetency(string name);
-
-	static bool deleteCompetency(string name);
-
-	static int getCompetencyId(string name);
 
 	void prepare(WorkUnit workUnit);
 
@@ -21,6 +16,12 @@ public:
 	void finish(WorkUnit workUnit);
 
 	EmployeeComponent* clone();
+
+	static boolean addDetail(string name);
+
+	static boolean hasDetail(string name);
+
+	static boolean deleteDetail(string name);
 };
 
 #endif

@@ -5,18 +5,24 @@
 
 class EmployeeDirector {
 
-
 public:
-	EmployeeComponent* constructEmployee();
+	boolean addProfession(string id);
+public:
 
+	boolean addCompetency(string name);
 private:
-	bool addProfession(int id);
-
-	bool addCompetency(int id);
 
 	bool finish(string name, bool isManager = false);
+public:
 
-	boolean finish(string name, boolean isManager = false);
+	EmployeeComponent* finish(string name, boolean isManager = false);
+
+	void setBuilder(EmployeeBuilder* builder);
+
+	void reset();
+private:
+
+	EmployeeBuilder* builder;
 };
 
 #endif

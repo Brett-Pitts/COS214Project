@@ -1,18 +1,4 @@
-#include "EmployeeCompetency.h"
 
-static int EmployeeCompetency::registerCompetency(string name) {
-	// TODO - implement EmployeeCompetency::registerCompetency
-	throw "Not yet implemented";
-}
-
-static bool EmployeeCompetency::deleteCompetency(string name) {
-	// TODO - implement EmployeeCompetency::deleteCompetency
-	throw "Not yet implemented";
-}
-
-static int EmployeeCompetency::getCompetencyId(string name) {
-	return this->competencyId;
-}
 
 void EmployeeCompetency::prepare(WorkUnit workUnit) {
 	// TODO - implement EmployeeCompetency::prepare
@@ -31,5 +17,20 @@ void EmployeeCompetency::finish(WorkUnit workUnit) {
 
 EmployeeComponent* EmployeeCompetency::clone() {
 	// TODO - implement EmployeeCompetency::clone
+	throw "Not yet implemented";
+}
+
+static boolean EmployeeCompetency::addDetail(string name) {
+	// TODO - implement EmployeeCompetency::addDetail
+	throw "Not yet implemented";
+}
+
+static boolean EmployeeCompetency::hasDetail(string name) {
+	// TODO - implement EmployeeCompetency::hasDetail
+	throw "Not yet implemented";
+}
+
+static boolean EmployeeCompetency::deleteDetail(string name) {
+	// TODO - implement EmployeeCompetency::deleteDetail
 	throw "Not yet implemented";
 }
