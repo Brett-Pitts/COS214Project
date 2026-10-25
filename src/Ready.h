@@ -1,11 +1,11 @@
 #ifndef READY_H
 #define READY_H
 
-class Ready : WorkState {
+#include "WorkState.h"
 
-
+class Ready : public WorkState{
 public:
-	void handle(WorkNode workNode);
+    void handle(WorkNode* workNode) override;
 };
 
 #endif
