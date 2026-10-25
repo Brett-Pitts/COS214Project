@@ -61,6 +61,7 @@ public:
     void setState(WorkState* workState);
 
     void update();
+	virtual WorkNode* clone() = 0;
 };
 
 #endif
