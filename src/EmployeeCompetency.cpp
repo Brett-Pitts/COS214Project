@@ -1,16 +1,16 @@
 #include "EmployeeCompetency.h"
 
-static int EmployeeCompetency::registerCompetency(string name) {
+static int EmployeeCompetency::registerCompetency(std::string name) {
 	// TODO - implement EmployeeCompetency::registerCompetency
 	throw "Not yet implemented";
 }
 
-static bool EmployeeCompetency::deleteCompetency(string name) {
+static bool EmployeeCompetency::deleteCompetency(std::string name) {
 	// TODO - implement EmployeeCompetency::deleteCompetency
 	throw "Not yet implemented";
 }
 
-static int EmployeeCompetency::getCompetencyId(string name) {
+static int EmployeeCompetency::getCompetencyId(std::string name) {
 	return this->competencyId;
 }
 

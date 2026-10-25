@@ -1,0 +1,17 @@
+EmployeeDirector:
+add EmployeeBuilder* variable
+
+add setBuilder(EmployeeBuilder*) function
+
+add reset()
+
+
+EmployeeBuilder
+add reset()
+remove construct()
+change build() to return EmployeeComponent
+
+ConcreteEmployeeBuilder:
+add reset()
+remove construct()
+change build() to return EmployeeComponent

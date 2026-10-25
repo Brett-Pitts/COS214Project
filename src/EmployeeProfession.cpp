@@ -1,16 +1,16 @@
 #include "EmployeeProfession.h"
 
-static int EmployeeProfession::registerProfession(string name) {
+static int EmployeeProfession::registerProfession(std::string name) {
 	// TODO - implement EmployeeProfession::registerProfession
 	throw "Not yet implemented";
 }
 
-static bool EmployeeProfession::deleteProfession(string name) {
+static bool EmployeeProfession::deleteProfession(std::string name) {
 	// TODO - implement EmployeeProfession::deleteProfession
 	throw "Not yet implemented";
 }
 
-static int EmployeeProfession::getProfessionId(string name) {
+static int EmployeeProfession::getProfessionId(std::string name) {
 	return this->professionId;
 }
 

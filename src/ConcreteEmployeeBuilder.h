@@ -1,17 +1,21 @@
 #ifndef CONCRETEEMPLOYEEBUILDER_H
 #define CONCRETEEMPLOYEEBUILDER_H
 
-class ConcreteEmployeeBuilder : EmployeeDirector, EmployeeBuilder {
+#include "EmployeeBuilder.h"
 
+
+class ConcreteEmployeeBuilder : public EmployeeBuilder {
+private:
+	EmployeeComponent* tempEmployee;
 
 public:
+	void reset();
 	void addCompetency(int id);
 
 	void addProfession(int id);
 
-	EmployeeComponent* constructEmployee();
 
-	void build(string name, boolean isManager = false);
+	EmployeeComponent* build(std::string name, bool isManager = false);
 };
 
 #endif

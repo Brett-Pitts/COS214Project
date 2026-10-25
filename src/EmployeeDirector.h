@@ -1,18 +1,26 @@
 #ifndef EMPLOYEEDIRECTOR_H
 #define EMPLOYEEDIRECTOR_H
 
-class EmployeeDirector {
+#include <string>
+#include "EmployeeComponent.h"
+#include "EmployeeBuilder.h"
 
+
+
+class EmployeeDirector {
+private:
+	EmployeeBuilder* builder;
 
 public:
-	EmployeeComponent* constructEmployee();
+	void setBuilder(EmployeeBuilder* builder);
 
-private:
-	boolean addProfession(int id);
 
-	boolean addCompetency(int id);
+	void reset();
+	bool addProfession(int id);
 
-	boolean finish(string name, boolean isManager = false);
+	bool addCompetency(int id);
+
+	bool finish(std::string name, bool isManager = false);
 };
 
 #endif

@@ -8,7 +8,7 @@ private:
 	EmployeeComponent successor;
 
 public:
-	boolean compareProfession(int arg0);
+	bool compareProfession(int arg0);
 
 	void doWork(WorkUnit workUnit);
 
@@ -24,7 +24,7 @@ protected:
 	void prepare(WorkUnit workUnit);
 
 public:
-	void receive(string arg0);
+	void receive(std::string arg0);
 
 	void setSuccessor(EmployeeComponent employeeComponent);
 

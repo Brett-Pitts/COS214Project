@@ -10,7 +10,7 @@ void Team::assignWork(WorkUnit workUnit) {
 	throw "Not yet implemented";
 }
 
-void Team::notifyColleagues(EmployeeComponent employeeComponent, string arg1) {
+void Team::notifyColleagues(EmployeeComponent employeeComponent, std::string arg1) {
 	// TODO - implement Team::notifyColleagues
 	throw "Not yet implemented";
 }

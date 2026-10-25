@@ -5,14 +5,14 @@ class EmployeeCompetency : EmployeeDetail {
 
 private:
 	int competencyId;
-	static vector<string> competencyList;
+	static vector<std::string> competencyList;
 
 public:
-	static int registerCompetency(string name);
+	static int registerCompetency(std::string name);
 
-	static bool deleteCompetency(string name);
+	static bool deleteCompetency(std::string name);
 
-	static int getCompetencyId(string name);
+	static int getCompetencyId(std::string name);
 
 	void prepare(WorkUnit workUnit);
 

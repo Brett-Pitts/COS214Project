@@ -1,6 +1,6 @@
 #include "EmployeeComponent.h"
 
-boolean EmployeeComponent::compareProfession(int arg0) {
+bool EmployeeComponent::compareProfession(int arg0) {
 	// TODO - implement EmployeeComponent::compareProfession
 	throw "Not yet implemented";
 }
@@ -30,7 +30,7 @@ void EmployeeComponent::prepare(WorkUnit workUnit) {
 	throw "Not yet implemented";
 }
 
-void EmployeeComponent::receive(string arg0) {
+void EmployeeComponent::receive(std::string arg0) {
 	// TODO - implement EmployeeComponent::receive
 	throw "Not yet implemented";
 }

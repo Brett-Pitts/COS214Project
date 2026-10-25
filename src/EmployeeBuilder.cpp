@@ -15,7 +15,7 @@ EmployeeComponent* EmployeeBuilder::constructEmployee() {
 	throw "Not yet implemented";
 }
 
-void EmployeeBuilder::build(string name, boolean isManager) {
+void EmployeeBuilder::build(std::string name, bool isManager) {
 	// TODO - implement EmployeeBuilder::build
 	throw "Not yet implemented";
 }

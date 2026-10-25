@@ -12,7 +12,7 @@ public:
 
 	void next();
 
-	boolean isDone();
+	bool isDone();
 
 	WorkNode currentItem();
 };

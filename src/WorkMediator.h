@@ -5,7 +5,7 @@ class WorkMediator {
 
 
 public:
-	void notifyColleagues(WorkNode node, String msg);
+	void notifyColleagues(WorkNode node, std::string msg);
 };
 
 #endif

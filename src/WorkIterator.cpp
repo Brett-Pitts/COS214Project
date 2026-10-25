@@ -10,7 +10,7 @@ void WorkIterator::next() {
 	throw "Not yet implemented";
 }
 
-boolean WorkIterator::isDone() {
+bool WorkIterator::isDone() {
 	// TODO - implement WorkIterator::isDone
 	throw "Not yet implemented";
 }
