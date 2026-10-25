@@ -10,7 +10,7 @@ void Iterator::first() {
 	throw "Not yet implemented";
 }
 
-boolean Iterator::isDone() {
+bool Iterator::isDone() {
 	// TODO - implement Iterator::isDone
 	throw "Not yet implemented";
 }

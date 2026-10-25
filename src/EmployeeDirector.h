@@ -1,6 +1,8 @@
 #ifndef EMPLOYEEDIRECTOR_H
 #define EMPLOYEEDIRECTOR_H
 
+#include "EmployeeComponent.h"
+
 class EmployeeDirector {
 
 
@@ -8,11 +10,11 @@ public:
 	EmployeeComponent* constructEmployee();
 
 private:
-	boolean addProfession(int id);
+	bool addProfession(int id);
 
-	boolean addCompetency(int id);
+	bool addCompetency(int id);
 
-	boolean finish(string name, boolean isManager = false);
+	bool finish(string name, bool isManager = false);
 };
 
 #endif

@@ -5,17 +5,17 @@ EmployeeComponent* EmployeeDirector::constructEmployee() {
 	throw "Not yet implemented";
 }
 
-boolean EmployeeDirector::addProfession(int id) {
+bool EmployeeDirector::addProfession(int id) {
 	// TODO - implement EmployeeDirector::addProfession
 	throw "Not yet implemented";
 }
 
-boolean EmployeeDirector::addCompetency(int id) {
+bool EmployeeDirector::addCompetency(int id) {
 	// TODO - implement EmployeeDirector::addCompetency
 	throw "Not yet implemented";
 }
 
-boolean EmployeeDirector::finish(string name, boolean isManager) {
+bool EmployeeDirector::finish(string name, bool isManager) {
 	// TODO - implement EmployeeDirector::finish
 	throw "Not yet implemented";
 }

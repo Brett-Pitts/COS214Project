@@ -15,7 +15,7 @@ EmployeeComponent* ConcreteEmployeeBuilder::constructEmployee() {
 	throw "Not yet implemented";
 }
 
-void ConcreteEmployeeBuilder::build(string name, boolean isManager) {
+void ConcreteEmployeeBuilder::build(string name, bool isManager) {
 	// TODO - implement ConcreteEmployeeBuilder::build
 	throw "Not yet implemented";
 }

@@ -15,7 +15,7 @@ void WorkNode::advanceState() {
 	throw "Not yet implemented";
 }
 
-boolean WorkNode::allChildrenCompleted() {
+bool WorkNode::allChildrenCompleted() {
 	// TODO - implement WorkNode::allChildrenCompleted
 	throw "Not yet implemented";
 }
@@ -34,7 +34,7 @@ WorkNode WorkNode::getParent() {
 	return this->parent;
 }
 
-boolean WorkNode::hasRetriesLeft() {
+bool WorkNode::hasRetriesLeft() {
 	// TODO - implement WorkNode::hasRetriesLeft
 	throw "Not yet implemented";
 }

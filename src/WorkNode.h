@@ -19,7 +19,7 @@ public:
 
 	void advanceState();
 
-	boolean allChildrenCompleted();
+	bool allChildrenCompleted();
 
 	WorkIterator createIterator();
 
@@ -27,7 +27,7 @@ public:
 
 	WorkNode getParent();
 
-	boolean hasRetriesLeft();
+	bool hasRetriesLeft();
 
 	void modify();
 

@@ -9,7 +9,7 @@ public:
 
 	void first();
 
-	boolean isDone();
+	bool isDone();
 
 	void next();
 };

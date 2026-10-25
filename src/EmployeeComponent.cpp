@@ -1,6 +1,6 @@
 #include "EmployeeComponent.h"
 
-boolean EmployeeComponent::compareProfession(int arg0) {
+bool EmployeeComponent::compareProfession(int arg0) {
 	// TODO - implement EmployeeComponent::compareProfession
 	throw "Not yet implemented";
 }

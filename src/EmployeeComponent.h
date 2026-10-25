@@ -8,7 +8,7 @@ private:
 	EmployeeComponent successor;
 
 public:
-	boolean compareProfession(int arg0);
+	bool compareProfession(int arg0);
 
 	void doWork(WorkUnit workUnit);
 

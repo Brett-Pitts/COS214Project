@@ -13,7 +13,7 @@ public:
 
 	EmployeeComponent* constructEmployee();
 
-	void build(string name, boolean isManager = false);
+	void build(string name, bool isManager = false);
 };
 
 #endif
