@@ -1,11 +1,13 @@
 #ifndef WORKSTATE_H
 #define WORKSTATE_H
 
-class WorkState {
+class WorkNode;
 
-
+class WorkState{
 public:
-	void handle(WorkNode workNode);
+    virtual ~WorkState();
+
+    virtual void handle(WorkNode* workNode) = 0;
 };
 
 #endif

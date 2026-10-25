@@ -1,11 +1,11 @@
 #ifndef CANCELLED_H
 #define CANCELLED_H
 
-class Cancelled : WorkState {
+#include "WorkState.h"
 
-
+class Cancelled : public WorkState{
 public:
-	void handle(WorkNode workNode);
+    void handle(WorkNode* workNode) override;
 };
 
 #endif

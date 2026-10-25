@@ -1,11 +1,11 @@
 #ifndef WAITINGFORPREREQUISITES_H
 #define WAITINGFORPREREQUISITES_H
 
-class WaitingForPrerequisites : WorkState {
+#include "WorkState.h"
 
-
+class WaitingForPrerequisites : public WorkState{
 public:
-	void handle(WorkNode workNode);
+    void handle(WorkNode* workNode) override;
 };
 
 #endif

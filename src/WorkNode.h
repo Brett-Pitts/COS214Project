@@ -1,49 +1,66 @@
 #ifndef WORKNODE_H
 #define WORKNODE_H
 
-class WorkNode : Aggregate {
+#include <vector>
+#include "Aggregate.h"
+
+class EmployeeComponent;
+class WorkIterator;
+class WorkMediator;
+class WorkState;
+
+class WorkNode : public Aggregate{
 
 private:
-	EmployeeComponent assignee;
-	int maxRetries;
-	WorkMediator mediator;
-	WorkNode parent;
-	std::vector<WorkNode> prerequisites;
-	int retryCount;
-	WorkState state;
+    EmployeeComponent* assignee;
+    int maxRetries;
+    WorkMediator* mediator;
+    WorkNode* parent;
+    std::vector<WorkNode*> prerequisites;
+    int retryCount;
+    WorkState* state;
+
+protected:
+    WorkNode(int maxRetries);
 
 public:
-	void add(WorkNode workNode);
+    virtual ~WorkNode();
 
-	void addPrerequisite(WorkNode workNode);
+    virtual void add(WorkNode* workNode) = 0;
 
-	void advanceState();
+    void addPrerequisite(WorkNode* workNode);
 
-	bool allChildrenCompleted();
+    void advanceState();
 
-	WorkIterator createIterator();
+    virtual bool allChildrenCompleted();
 
-	WorkNode getChild(int arg0);
+    WorkIterator createIterator();
 
-	WorkNode getParent();
+    virtual WorkNode* getChild(int index);
 
-	bool hasRetriesLeft();
+    WorkNode* getParent();
 
-	void modify();
+    bool hasRetriesLeft();
 
-	void reassign(EmployeeComponent employeeComponent);
+    bool isCompleted();
 
-	void remove(WorkNode workNode);
+    void modify();
 
-	void reset();
+    bool prerequisitesCompleted();
 
-	void setMediator(int ConcreteWorkMediator);
+    void reassign(EmployeeComponent* employeeComponent);
 
-	void setState(WorkState workState);
+    virtual void remove(WorkNode* workNode);
 
-	void update();
+    void reset();
 
-	WorkNode* clone();
+    void setMediator(WorkMediator* mediator);
+
+    void setParent(WorkNode* parent);
+
+    void setState(WorkState* workState);
+
+    void update();
 };
 
 #endif

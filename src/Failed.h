@@ -1,11 +1,11 @@
 #ifndef FAILED_H
 #define FAILED_H
 
-class Failed : WorkState {
+#include "WorkState.h"
 
-
+class Failed : public WorkState{
 public:
-	void handle(WorkNode workNode);
+    void handle(WorkNode* workNode) override;
 };
 
-#endif
+#endif // FAILED_H
