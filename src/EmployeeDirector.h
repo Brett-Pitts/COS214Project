@@ -15,6 +15,8 @@ private:
 	bool addCompetency(int id);
 
 	bool finish(string name, bool isManager = false);
+
+	boolean finish(string name, boolean isManager = false);
 };
 
 #endif

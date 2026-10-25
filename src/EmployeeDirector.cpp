@@ -19,3 +19,8 @@ bool EmployeeDirector::finish(string name, bool isManager) {
 	// TODO - implement EmployeeDirector::finish
 	throw "Not yet implemented";
 }
+
+boolean EmployeeDirector::finish(string name, boolean isManager) {
+	// TODO - implement EmployeeDirector::finish
+	throw "Not yet implemented";
+}

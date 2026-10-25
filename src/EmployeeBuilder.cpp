@@ -19,3 +19,8 @@ void EmployeeBuilder::build(string name, bool isManager) {
 	// TODO - implement EmployeeBuilder::build
 	throw "Not yet implemented";
 }
+
+void EmployeeBuilder::build(string name, boolean isManager) {
+	// TODO - implement EmployeeBuilder::build
+	throw "Not yet implemented";
+}
