@@ -1,79 +1,105 @@
 #include "WorkNode.h"
+#include "WorkState.h"
+#include "WaitingForPrerequisites.h"
+#include "Ready.h"
+#include "Completed.h"
+#include "WorkIterator.h"
 
-void WorkNode::add(WorkNode workNode) {
-	// TODO - implement WorkNode::add
-	throw "Not yet implemented";
+WorkNode::WorkNode(int maxRetries){
+    this->assignee = NULL;
+    this->maxRetries = maxRetries;
+    this->mediator = NULL;
+    this->parent = NULL;
+    this->retryCount = 0;
+    this->state = NULL;
+    this->setState(new WaitingForPrerequisites());
 }
 
-void WorkNode::addPrerequisite(WorkNode workNode) {
-	// TODO - implement WorkNode::addPrerequisite
-	throw "Not yet implemented";
+WorkNode::~WorkNode(){
+    delete this->state;
 }
 
-void WorkNode::advanceState() {
-	// TODO - implement WorkNode::advanceState
-	throw "Not yet implemented";
+void WorkNode::addPrerequisite(WorkNode* workNode){
+    this->prerequisites.push_back(workNode);
 }
 
-bool WorkNode::allChildrenCompleted() {
-	// TODO - implement WorkNode::allChildrenCompleted
-	throw "Not yet implemented";
+void WorkNode::advanceState(){
+    if(this->state != NULL){
+        this->state->handle(this);
+    }
 }
 
-WorkIterator WorkNode::createIterator() {
-	// TODO - implement WorkNode::createIterator
-	throw "Not yet implemented";
+bool WorkNode::allChildrenCompleted(){
+    return true;
 }
 
-WorkNode WorkNode::getChild(int arg0) {
-	// TODO - implement WorkNode::getChild
-	throw "Not yet implemented";
+WorkIterator WorkNode::createIterator(){
+    // TODO - implement WorkNode::createIterator
+    throw "Not yet implemented";
 }
 
-WorkNode WorkNode::getParent() {
-	return this->parent;
+WorkNode* WorkNode::getChild(int index){
+    // TODO - implement WorkNode::getChild
+    throw "Not yet implemented";
 }
 
-bool WorkNode::hasRetriesLeft() {
-	// TODO - implement WorkNode::hasRetriesLeft
-	throw "Not yet implemented";
+WorkNode* WorkNode::getParent(){
+    return this->parent;
 }
 
-void WorkNode::modify() {
-	// TODO - implement WorkNode::modify
-	throw "Not yet implemented";
+bool WorkNode::hasRetriesLeft(){
+    return this->retryCount < this->maxRetries;
 }
 
-void WorkNode::reassign(EmployeeComponent employeeComponent) {
-	// TODO - implement WorkNode::reassign
-	throw "Not yet implemented";
+bool WorkNode::isCompleted(){
+    return dynamic_cast<Completed*>(this->state) != NULL;
 }
 
-void WorkNode::remove(WorkNode workNode) {
-	// TODO - implement WorkNode::remove
-	throw "Not yet implemented";
+void WorkNode::modify(){
+    // TODO - implement WorkNode::modify
+    throw "Not yet implemented";
 }
 
-void WorkNode::reset() {
-	// TODO - implement WorkNode::reset
-	throw "Not yet implemented";
+bool WorkNode::prerequisitesCompleted(){
+    int count = this->prerequisites.size();
+    for(int i = 0; i < count; i++){
+        if(!this->prerequisites[i]->isCompleted()){
+            return false;
+        }
+    }
+    return true;
 }
 
-void WorkNode::setMediator(int ConcreteWorkMediator) {
-	// TODO - implement WorkNode::setMediator
-	throw "Not yet implemented";
+void WorkNode::reassign(EmployeeComponent* employeeComponent){
+    this->assignee = employeeComponent;
 }
 
-void WorkNode::setState(WorkState workState) {
-	this->state = workState;
+void WorkNode::remove(WorkNode* workNode){
+    // TODO - implement WorkNode::remove
+    throw "Not yet implemented";
 }
 
-void WorkNode::update() {
-	// TODO - implement WorkNode::update
-	throw "Not yet implemented";
+void WorkNode::reset(){
+    this->retryCount++;
+    this->setState(new Ready());
 }
 
-WorkNode* WorkNode::clone() {
-	// TODO - implement WorkNode::clone
-	throw "Not yet implemented";
+void WorkNode::setMediator(WorkMediator* mediator){
+    this->mediator = mediator;
+}
+
+void WorkNode::setParent(WorkNode* parent){
+    this->parent = parent;
+}
+
+
+void WorkNode::setState(WorkState* workState){
+    WorkState* oldState = this->state;
+    this->state = workState;
+    delete oldState;
+}
+
+void WorkNode::update(){
+    // TODO - implement WorkNode::update
+    throw "Not yet implemented";
 }
