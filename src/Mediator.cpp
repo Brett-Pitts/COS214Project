@@ -1,6 +1,6 @@
 #include "Mediator.h"
 
-void Mediator::notifyColleagues(EmployeeComponent employeeComponent, string arg1) {
+void Mediator::notifyColleagues(EmployeeComponent employeeComponent, std::string arg1) {
 	// TODO - implement Mediator::notifyColleagues
 	throw "Not yet implemented";
 }

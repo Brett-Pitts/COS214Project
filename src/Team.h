@@ -10,7 +10,7 @@ public:
 
 	void assignWork(WorkUnit workUnit);
 
-	void notifyColleagues(EmployeeComponent employeeComponent, string arg1);
+	void notifyColleagues(EmployeeComponent employeeComponent, std::string arg1);
 };
 
 #endif

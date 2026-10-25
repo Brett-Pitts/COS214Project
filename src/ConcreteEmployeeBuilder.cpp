@@ -1,26 +1,58 @@
 
-
-void ConcreteEmployeeBuilder::build(string name, bool isManager) {
-	// TODO - implement ConcreteEmployeeBuilder::build
-	throw "Not yet implemented";
-}
-
-EmployeeComponent* ConcreteEmployeeBuilder::finish(string name, boolean isManager) {
-	// TODO - implement ConcreteEmployeeBuilder::build
-	throw "Not yet implemented";
-}
+#include "EmployeeCompetency.h"
+#include "EmployeeProfession.h"
+#include "Employee.h"
+#include "Manager.h"
 
 void ConcreteEmployeeBuilder::reset() {
-	// TODO - implement ConcreteEmployeeBuilder::reset
-	throw "Not yet implemented";
+	if (employee != nullptr) {
+		delete employee;
+		employee = nullptr;
+	}
+
 }
 
-boolean ConcreteEmployeeBuilder::addCompetency(string name) {
-	// TODO - implement ConcreteEmployeeBuilder::addCompetency
-	throw "Not yet implemented";
+bool ConcreteEmployeeBuilder::addCompetency(std::string name) {
+	if (employee == nullptr) {
+		employee = new EmployeeCompetency(name);
+	}
+	else {
+		employee->wrap(new EmployeeCompetency(name));
+	}
+	return true;
 }
 
-boolean ConcreteEmployeeBuilder::addProfession(string name) {
-	// TODO - implement ConcreteEmployeeBuilder::addProfession
-	throw "Not yet implemented";
+bool ConcreteEmployeeBuilder::addProfession(std::string name) {
+	if (employee == nullptr) {
+		employee = new EmployeeProfession(name);
+	}
+	else {
+		employee->wrap(new EmployeeProfession(name));
+	}
+	return true;
+}
+
+
+
+EmployeeComponent* ConcreteEmployeeBuilder::finish(std::string name, bool isManager) {
+	if (isManager) {
+
+		if (employee == nullptr) {
+			employee = new Manager(name);
+		}
+		else {
+			employee->wrap(new Manager(name));
+		}
+	}
+	else {
+		if (employee == nullptr) {
+			employee = new Employee(name);
+		}
+		else {
+			employee->wrap(new Employee(name));
+		}
+	}
+	EmployeeComponent* temp = employee;
+	employee = nullptr;
+	return temp;
 }

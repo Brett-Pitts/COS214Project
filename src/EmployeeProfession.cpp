@@ -1,5 +1,4 @@
 
-
 void EmployeeProfession::prepare(WorkUnit workUnit) {
 	// TODO - implement EmployeeProfession::prepare
 	throw "Not yet implemented";

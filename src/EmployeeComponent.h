@@ -24,7 +24,7 @@ protected:
 	void prepare(WorkUnit workUnit);
 
 public:
-	void receive(string arg0);
+	void receive(std::string arg0);
 
 	void setSuccessor(EmployeeComponent employeeComponent);
 

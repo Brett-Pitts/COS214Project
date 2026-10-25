@@ -6,7 +6,7 @@ class ConcreteWorkMediator : WorkMediator {
 public:
 	vector<WorkNode> colleagues;
 
-	void notifyColleagues(WorkNode node, String msg);
+	void notifyColleagues(WorkNode node, std::string msg);
 };
 
 #endif

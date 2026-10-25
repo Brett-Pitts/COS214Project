@@ -1,20 +1,20 @@
 #ifndef CONCRETEEMPLOYEEBUILDER_H
 #define CONCRETEEMPLOYEEBUILDER_H
 
-class ConcreteEmployeeBuilder : EmployeeBuilder {
+#include "EmployeeBuilder.h"
+
+
+class ConcreteEmployeeBuilder : public EmployeeBuilder {
 
 
 public:
-
-	void build(string name, bool isManager = false);
-
-	EmployeeComponent* finish(string name, boolean isManager = false);
-
 	void reset();
+	bool addCompetency(std::string name);
 
-	boolean addCompetency(string name);
+	bool addProfession(std::string name);
 
-	boolean addProfession(string name);
+
+	EmployeeComponent* finish(std::string name, bool isManager = false);
 };
 
 #endif

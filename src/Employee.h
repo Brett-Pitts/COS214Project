@@ -4,7 +4,7 @@
 class Employee : EmployeeComponent {
 
 public:
-	string name;
+	std::string name;
 
 	void doWork(WorkUnit workUnit);
 

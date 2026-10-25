@@ -5,9 +5,9 @@ class FileSystem {
 
 
 public:
-	void saveMemento(string filename, Memento* memento);
+	void saveMemento(std::string filename, Memento* memento);
 
-	Memento* loadMemento(string filename);
+	Memento* loadMemento(std::string filename);
 };
 
 #endif
