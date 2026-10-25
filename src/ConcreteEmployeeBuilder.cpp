@@ -13,22 +13,22 @@ void ConcreteEmployeeBuilder::reset() {
 
 }
 
-bool ConcreteEmployeeBuilder::addCompetency(int id) {
+bool ConcreteEmployeeBuilder::addCompetency(std::string name) {
 	if (employee == nullptr) {
-		employee = new EmployeeCompetency(id);
+		employee = new EmployeeCompetency(name);
 	}
 	else {
-		employee->wrap(new EmployeeCompetency(id));
+		employee->wrap(new EmployeeCompetency(name));
 	}
 	return true;
 }
 
-bool ConcreteEmployeeBuilder::addProfession(int id) {
+bool ConcreteEmployeeBuilder::addProfession(std::string name) {
 	if (employee == nullptr) {
-		employee = new EmployeeProfession(id);
+		employee = new EmployeeProfession(name);
 	}
 	else {
-		employee->wrap(new EmployeeProfession(id));
+		employee->wrap(new EmployeeProfession(name));
 	}
 	return true;
 }

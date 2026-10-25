@@ -6,12 +6,13 @@ add setBuilder(EmployeeBuilder*) function
 add reset()
 
 
-EmployeeBuilder
+EmployeeBuilder:
 add reset()
 remove construct()
-change build() to return EmployeeComponent
-
+change build() to return EmployeeComponent*
+added return types
 ConcreteEmployeeBuilder:
+added return types
 add reset()
 remove construct()
-change build() to return EmployeeComponent
+change build() to return EmployeeComponent*

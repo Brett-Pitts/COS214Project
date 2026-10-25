@@ -16,9 +16,9 @@ public:
 
 
 	void reset();
-	bool addProfession(int id);
+	bool addProfession(std::string name);
 
-	bool addCompetency(int id);
+	bool addCompetency(std::string name);
 
 	EmployeeComponent* finish(std::string name, bool isManager = false);
 };

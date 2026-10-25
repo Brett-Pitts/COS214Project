@@ -9,9 +9,9 @@ class ConcreteEmployeeBuilder : public EmployeeBuilder {
 
 public:
 	void reset();
-	bool addCompetency(int id);
+	bool addCompetency(std::string name);
 
-	bool addProfession(int id);
+	bool addProfession(std::string name);
 
 
 	EmployeeComponent* finish(std::string name, bool isManager = false);

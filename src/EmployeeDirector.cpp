@@ -22,20 +22,20 @@ void EmployeeDirector::reset() {
 
 
 
-bool EmployeeDirector::addProfession(int id) {
+bool EmployeeDirector::addProfession(std::string name) {
 	if (builder == nullptr) {
 		std::cerr << "Builder has not been set.\n";
 		return false;
 	}
-	return builder->addProfession(id);
+	return builder->addProfession(name);
 }
 
-bool EmployeeDirector::addCompetency(int id) {
+bool EmployeeDirector::addCompetency(std::string name) {
 	if (builder == nullptr) {
 		std::cerr << "Builder has not been set.\n";
 		return false;
 	}
-	return builder->addCompetency(id);
+	return builder->addCompetency(name);
 }
 
 EmployeeComponent* EmployeeDirector::finish(std::string name, bool isManager) {
