@@ -9,12 +9,12 @@ class ConcreteEmployeeBuilder : public EmployeeBuilder {
 
 public:
 	void reset();
-	void addCompetency(int id);
+	bool addCompetency(int id);
 
-	void addProfession(int id);
+	bool addProfession(int id);
 
 
-	EmployeeComponent* build(std::string name, bool isManager = false);
+	EmployeeComponent* finish(std::string name, bool isManager = false);
 };
 
 #endif

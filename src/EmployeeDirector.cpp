@@ -1,21 +1,47 @@
 #include "EmployeeDirector.h"
 
-EmployeeComponent* EmployeeDirector::constructEmployee() {
-	// TODO - implement EmployeeDirector::constructEmployee
-	throw "Not yet implemented";
+#include <iostream>
+
+void EmployeeDirector::setBuilder(EmployeeBuilder* builder) {
+	if (builder == nullptr) {
+		std::cerr << "Nullpointer passed to setBuilder()\n";
+		return;
+	}
+	this->builder = builder;
 }
 
+void EmployeeDirector::reset() {
+	if (builder == nullptr) {
+		std::cerr << "Builder has not been set.\n";
+		return;
+	}
+
+	builder->reset();
+
+}
+
+
+
 bool EmployeeDirector::addProfession(int id) {
-	// TODO - implement EmployeeDirector::addProfession
-	throw "Not yet implemented";
+	if (builder == nullptr) {
+		std::cerr << "Builder has not been set.\n";
+		return false;
+	}
+	return builder->addProfession(id);
 }
 
 bool EmployeeDirector::addCompetency(int id) {
-	// TODO - implement EmployeeDirector::addCompetency
-	throw "Not yet implemented";
+	if (builder == nullptr) {
+		std::cerr << "Builder has not been set.\n";
+		return false;
+	}
+	return builder->addCompetency(id);
 }
 
-bool EmployeeDirector::finish(std::string name, bool isManager) {
-	// TODO - implement EmployeeDirector::finish
-	throw "Not yet implemented";
+EmployeeComponent* EmployeeDirector::finish(std::string name, bool isManager) {
+	if (builder == nullptr) {
+		std::cerr << "Builder has not been set.\n";
+		return nullptr;
+	}
+	return builder->finish(name, isManager);
 }
