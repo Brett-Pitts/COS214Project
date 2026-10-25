@@ -20,7 +20,7 @@ public:
 
 	bool addCompetency(int id);
 
-	bool finish(std::string name, bool isManager = false);
+	EmployeeComponent* finish(std::string name, bool isManager = false);
 };
 
 #endif

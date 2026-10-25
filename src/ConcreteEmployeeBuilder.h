@@ -5,8 +5,7 @@
 
 
 class ConcreteEmployeeBuilder : public EmployeeBuilder {
-private:
-	EmployeeComponent* tempEmployee;
+
 
 public:
 	void reset();

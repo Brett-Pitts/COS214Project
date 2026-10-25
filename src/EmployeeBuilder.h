@@ -10,13 +10,13 @@ protected:
 	EmployeeComponent* employee;
 
 public:
-	void reset();
-	void addCompetency(int id);
+	virtual void reset() = 0;
+	virtual void addCompetency(int id) = 0;
 
-	void addProfession(int id);
+	virtual void addProfession(int id) = 0;
 
 
-	EmployeeComponent* build(std::string name, bool isManager = false);
+	virtual EmployeeComponent* build(std::string name, bool isManager = false) = 0;
 };
 
 #endif
