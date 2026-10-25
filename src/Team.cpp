@@ -1,16 +1,28 @@
 #include "Team.h"
+#include "EmployeeComponent.h"
 
-void Team::addMember(EmployeeComponent employeeComponent) {
-	// TODO - implement Team::addMember
-	throw "Not yet implemented";
+void Team::addMember(EmployeeComponent* employeeComponent){
+    int count = this->members.size();
+    if(count > 0){
+        this->members[count - 1]->setSuccessor(employeeComponent);
+    }
+    employeeComponent->setMediator(this);
+    this->members.push_back(employeeComponent);
 }
 
-void Team::assignWork(WorkUnit workUnit) {
-	// TODO - implement Team::assignWork
-	throw "Not yet implemented";
+void Team::assignWork(WorkUnit* workUnit){
+    if(this->members.empty()){
+        return;
+    }
+    this->members[0]->handleWork(workUnit);
 }
 
-void Team::notifyColleagues(EmployeeComponent employeeComponent, std::string arg1) {
-	// TODO - implement Team::notifyColleagues
-	throw "Not yet implemented";
+void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string message){
+    int count = this->members.size();
+
+    for(int i = 0; i < count; i++){
+        if(this->members[i] != employeeComponent){
+            this->members[i]->receive(message);
+        }
+    }
 }

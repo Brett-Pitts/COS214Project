@@ -1,16 +1,25 @@
 #ifndef TEAM_H
 #define TEAM_H
 
-class Team : CompanyNode, Mediator {
+#include <string>
+#include <vector>
+#include "CompanyNode.h"
+#include "Mediator.h"
+
+class EmployeeComponent;
+class WorkUnit;
+
+class Team : public CompanyNode, public Mediator{
+
+private:
+    std::vector<EmployeeComponent*> members;
 
 public:
-	std::vector<EmployeeComponent> members;
+    void addMember(EmployeeComponent* employeeComponent);
 
-	void addMember(EmployeeComponent employeeComponent);
+    void assignWork(WorkUnit* workUnit);
 
-	void assignWork(WorkUnit workUnit);
-
-	void notifyColleagues(EmployeeComponent employeeComponent, std::string arg1);
+    void notifyColleagues(EmployeeComponent* employeeComponent, std::string message) override;
 };
 
 #endif
