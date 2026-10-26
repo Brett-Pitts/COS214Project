@@ -1,16 +1,11 @@
 #include "WorkUnit.h"
 
 WorkNode* WorkUnit::clone() {
-	// TODO - implement WorkUnit::clone
-	throw "Not yet implemented";
+	return new WorkUnit(this->getMaxRetries());
 }
 
-void WorkUnit::add(WorkNode workNode, WorkNode workNode) {
-	// TODO - implement WorkUnit::add
-	throw "Not yet implemented";
-}
 
-void WorkUnit::add(WorkNode workNode) {
-	// TODO - implement WorkUnit::add
-	throw "Not yet implemented";
+
+void WorkUnit::add(WorkNode* workNode) {
+
 }
