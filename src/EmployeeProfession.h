@@ -1,29 +1,31 @@
 #ifndef EMPLOYEEPROFESSION_H
 #define EMPLOYEEPROFESSION_H
 
-class EmployeeProfession : EmployeeDetail {
+#include "EmployeeDetail.h"
+
+#include <vector>
+
+class EmployeeProfession : public EmployeeDetail {
 
 private:
-	string professionName;
+	int professionId;
 	static vector<string> professionList;
 
+protected:
+	void prepare(WorkUnit* workUnit);
+	void perform(WorkUnit* workUnit);
+	void finish(WorkUnit* workUnit);
+
 public:
+	EmployeeProfession(string name);
+	EmployeeProfession(const EmployeeProfession& other);
+	virtual ~EmployeeProfession();
 
-	void prepare(WorkUnit workUnit);
-
-	void perform(WorkUnit workUnit);
-
-	void finish(WorkUnit workUnit);
-
+	static int registerProfession(string name);
+	static bool deleteProfession(string name);
+	static int getProfessionId(string name);
+	bool compareProfession(int professionId);
 	EmployeeComponent* clone();
-
-	static boolean addDetail(string name);
-
-	static boolean hasDetail(string name);
-
-	static boolean deleteDetail(string name);
-
-	static std::vector<std::string>& getDetails();
 };
 
 #endif

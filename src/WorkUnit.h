@@ -2,16 +2,20 @@
 #ifndef WORKUNIT_H
 #define WORKUNIT_H
 
-#include "WorkNode.h"
+#include <string>
 
-class WorkUnit : public WorkNode {
+using namespace std;
+
+class WorkUnit {
+
+private:
+	string name;
+	int requiredProfession;
 
 public:
-    WorkUnit(int maxRetries);
-
-    WorkNode* clone();
-
-    void add(WorkNode* workNode);
+	WorkUnit(string name, int requiredProfession = -1) : name(name), requiredProfession(requiredProfession) {}
+	string getName() const { return name; }
+	int getRequiredProfession() const { return requiredProfession; }
 };
 
 #endif

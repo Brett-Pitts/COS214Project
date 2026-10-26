@@ -1,14 +1,19 @@
 #ifndef MANAGER_H
 #define MANAGER_H
 
-class Manager : Employee {
+#include "Employee.h"
 
+class Project;
+
+class Manager : public Employee {
 
 public:
-	void handleEscalation(WorkUnit workUnit);
+	Manager(string name);
+	Manager(const Manager& other);
+	virtual ~Manager();
 
-	void cancelProject(Project project);
-
+	void handleEscalation(WorkUnit* workUnit);
+	void cancelProject(Project* project);
 	EmployeeComponent* clone();
 };
 

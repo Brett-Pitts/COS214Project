@@ -3,40 +3,36 @@
 
 #include <string>
 
+using namespace std;
+
 class Mediator;
 class WorkUnit;
 
-class EmployeeComponent{
+class EmployeeComponent {
 
 private:
-    Mediator* mediator = NULL;
-    EmployeeComponent* successor = NULL;
-
-public:
-    virtual ~EmployeeComponent();
-
-    virtual bool compareProfession(int id);
-
-    virtual void doWork(WorkUnit* workUnit);
-
-    void handleWork(WorkUnit* workUnit);
-
-    void receive(std::string message);
-
-    void setMediator(Mediator* mediator);
-
-    void setSuccessor(EmployeeComponent* employeeComponent);
-
-    virtual void wrap(EmployeeComponent* component) = 0;
-
-    virtual EmployeeComponent* clone() = 0;
+	Mediator* mediator;
+	EmployeeComponent* successor;
 
 protected:
-    virtual void finish(WorkUnit* workUnit);
+	virtual void prepare(WorkUnit* workUnit);
+	virtual void perform(WorkUnit* workUnit);
+	virtual void finish(WorkUnit* workUnit);
 
-    virtual void perform(WorkUnit* workUnit);
+public:
+	EmployeeComponent();
+	EmployeeComponent(const EmployeeComponent& other);
+	virtual ~EmployeeComponent();
 
-    virtual void prepare(WorkUnit* workUnit);
+	virtual string getName() = 0;
+	virtual bool compareProfession(int professionId);
+	virtual void doWork(WorkUnit* workUnit);
+	void handleWork(WorkUnit* workUnit);
+	virtual void receive(string message);
+	void setSuccessor(EmployeeComponent* employeeComponent);
+	virtual void setMediator(Mediator* mediator);
+	virtual void wrap(EmployeeComponent* component) = 0;
+	virtual EmployeeComponent* clone() = 0;
 };
 
 #endif

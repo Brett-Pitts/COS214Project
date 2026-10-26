@@ -1,41 +1,70 @@
+#include "EmployeeCompetency.h"
+#include "WorkUnit.h"
 
+#include <iostream>
 
-void EmployeeCompetency::prepare(WorkUnit workUnit) {
-	// TODO - implement EmployeeCompetency::prepare
-	throw "Not yet implemented";
+vector<string> EmployeeCompetency::competencyList;
+
+EmployeeCompetency::EmployeeCompetency(string name) : EmployeeDetail(), competencyId(registerCompetency(name)) {
 }
 
-void EmployeeCompetency::perform(WorkUnit workUnit) {
-	// TODO - implement EmployeeCompetency::perform
-	throw "Not yet implemented";
+EmployeeCompetency::EmployeeCompetency(const EmployeeCompetency& other) : EmployeeDetail(other), competencyId(other.competencyId) {
 }
 
-void EmployeeCompetency::finish(WorkUnit workUnit) {
-	// TODO - implement EmployeeCompetency::finish
-	throw "Not yet implemented";
+EmployeeCompetency::~EmployeeCompetency() {
+}
+
+int EmployeeCompetency::registerCompetency(string name) {
+	if (name.empty()) {
+		return -1;
+	}
+	int existing = getCompetencyId(name);
+	if (existing >= 0) {
+		return existing;
+	}
+	for (size_t i = 0; i < competencyList.size(); i++) {
+		if (competencyList[i].empty()) {
+			competencyList[i] = name;
+			return (int) i;
+		}
+	}
+	competencyList.push_back(name);
+	return (int) competencyList.size() - 1;
+}
+
+bool EmployeeCompetency::deleteCompetency(string name) {
+	int id = getCompetencyId(name);
+	if (id < 0) {
+		return false;
+	}
+	competencyList[id] = "";
+	return true;
+}
+
+int EmployeeCompetency::getCompetencyId(string name) {
+	if (name.empty()) {
+		return -1;
+	}
+	for (size_t i = 0; i < competencyList.size(); i++) {
+		if (competencyList[i] == name) {
+			return (int) i;
+		}
+	}
+	return -1;
+}
+
+void EmployeeCompetency::prepare(WorkUnit* workUnit) {
+	cout << getName() << " gathers " << competencyList[competencyId] << " tools for " << workUnit->getName() << endl;
+}
+
+void EmployeeCompetency::perform(WorkUnit* workUnit) {
+	cout << getName() << " uses " << competencyList[competencyId] << " on " << workUnit->getName() << endl;
+}
+
+void EmployeeCompetency::finish(WorkUnit* workUnit) {
+	cout << getName() << " records " << competencyList[competencyId] << " outcome for " << workUnit->getName() << endl;
 }
 
 EmployeeComponent* EmployeeCompetency::clone() {
-	// TODO - implement EmployeeCompetency::clone
-	throw "Not yet implemented";
-}
-
-static boolean EmployeeCompetency::addDetail(string name) {
-	// TODO - implement EmployeeCompetency::addDetail
-	throw "Not yet implemented";
-}
-
-static boolean EmployeeCompetency::hasDetail(string name) {
-	// TODO - implement EmployeeCompetency::hasDetail
-	throw "Not yet implemented";
-}
-
-static boolean EmployeeCompetency::deleteDetail(string name) {
-	// TODO - implement EmployeeCompetency::deleteDetail
-	throw "Not yet implemented";
-}
-
-static std::vector<std::string>& EmployeeCompetency::getDetails() {
-	// TODO - implement EmployeeCompetency::getDetails
-	throw "Not yet implemented";
+	return new EmployeeCompetency(*this);
 }
