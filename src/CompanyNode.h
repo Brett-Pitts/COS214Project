@@ -9,7 +9,7 @@ public:
 
 	virtual void remove(CompanyNode* companyNode)=0;
 
-	virtual CompanyNode getChild(int arg0)=0;
+	virtual CompanyNode* getChild(int n)=0;
 
 	~CompanyNode();
 };
