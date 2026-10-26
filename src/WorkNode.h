@@ -62,6 +62,9 @@ public:
 
     void update();
 	virtual WorkNode* clone() = 0;
+
+    int getMaxRetries();
+
 };
 
 #endif

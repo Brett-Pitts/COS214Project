@@ -1,18 +1,27 @@
+
 #ifndef PROJECT_H
 #define PROJECT_H
 
-class Project : WorkNode {
+#include "WorkNode.h"
+#include <vector>
+
+class Project : public WorkNode {
 
 public:
-	std::vector<WorkNode> children;
+    std::vector<WorkNode*> children;
 
-	void add(WorkNode workNode);
+    Project(int maxRetries);
+    ~Project();
 
-	void remove(WorkNode workNode);
+    void add(WorkNode* workNode);
 
-	WorkNode getChild(int arg0);
+    void remove(WorkNode* workNode);
 
-	WorkNode* clone();
+    WorkNode* getChild(int index);
+
+    bool allChildrenCompleted();
+
+    WorkNode* clone();
 };
 
 #endif

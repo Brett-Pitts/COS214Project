@@ -39,8 +39,7 @@ WorkIterator WorkNode::createIterator(){
 }
 
 WorkNode* WorkNode::getChild(int index){
-    // TODO - implement WorkNode::getChild
-    throw "Not yet implemented";
+    return nullptr;
 }
 
 WorkNode* WorkNode::getParent(){
@@ -75,8 +74,7 @@ void WorkNode::reassign(EmployeeComponent* employeeComponent){
 }
 
 void WorkNode::remove(WorkNode* workNode){
-    // TODO - implement WorkNode::remove
-    throw "Not yet implemented";
+  return ;
 }
 
 void WorkNode::reset(){
@@ -102,4 +100,8 @@ void WorkNode::setState(WorkState* workState){
 void WorkNode::update(){
     // TODO - implement WorkNode::update
     throw "Not yet implemented";
+}
+
+int WorkNode::getMaxRetries() {
+    return maxRetries;
 }
