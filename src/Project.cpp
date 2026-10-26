@@ -1,21 +1,53 @@
 #include "Project.h"
+#include <algorithm>
 
-void Project::add(WorkNode workNode) {
-	// TODO - implement Project::add
-	throw "Not yet implemented";
+Project::Project(int maxRetries) : WorkNode(maxRetries) {}
+
+Project::~Project() {
+
+    for (WorkNode* child : children)
+        delete child;
+
 }
 
-void Project::remove(WorkNode workNode) {
-	// TODO - implement Project::remove
-	throw "Not yet implemented";
+void Project::add(WorkNode* workNode) {
+
+    if (workNode == NULL) return;
+    workNode->setParent(this);
+    children.push_back(workNode);
+
 }
 
-WorkNode Project::getChild(int arg0) {
-	// TODO - implement Project::getChild
-	throw "Not yet implemented";
+void Project::remove(WorkNode* workNode) {
+    std::vector<WorkNode*>::iterator it =std::find(children.begin(), children.end(), workNode);
+
+    if (it != children.end()) {
+        (*it)->setParent(NULL);
+        children.erase(it);
+    }
+
+}
+
+WorkNode* Project::getChild(int index) {
+
+    if (index < 0 || index >= (int)children.size()) return NULL;
+    return children[index];
+
+}
+
+bool Project::allChildrenCompleted() {
+
+    for (int i = 0; i < children.size(); i++)
+        if (!children[i]->isCompleted()) return false;
+    return true;
+
 }
 
 WorkNode* Project::clone() {
-	// TODO - implement Project::clone
-	throw "Not yet implemented";
+
+    Project* copy = new Project(this->getMaxRetries());
+    for (int i = 0; i < children.size(); i++)
+        copy->add(children[i]->clone());
+    return copy;
+
 }
