@@ -9,25 +9,26 @@
 class EmployeeComponent;
 class WorkUnit;
 
-class Team : public CompanyNode, public Mediator{
+class Team : public CompanyNode, public Mediator {
 
 private:
-    std::vector<EmployeeComponent*> members;
+	std::vector<EmployeeComponent*> members;
 
 public:
-    void addMember(EmployeeComponent* employeeComponent);
+	void addMember(EmployeeComponent* employeeComponent);
 
-    void assignWork(WorkUnit* workUnit);
+	void assignWork(WorkUnit* workUnit);
 
-    void notifyColleagues(EmployeeComponent* employeeComponent, std::string message) override;
+	void notifyColleagues(EmployeeComponent* employeeComponent, std::string message) override;
 
-    void add(CompanyNode* companyNode){};
+	void add(CompanyNode* companyNode) {};
 
-	void remove(CompanyNode* companyNode){};
+	void remove(CompanyNode* companyNode) {};
 
-	CompanyNode* getChild(int n){return nullptr; };
+	CompanyNode* getChild(int n) { return nullptr; };
+	virtual CompanyNode* clone();
 
-    ~Team();
+	~Team();
 };
 
 #endif

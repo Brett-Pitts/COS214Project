@@ -16,3 +16,7 @@ void  Memento::setRoot(void* root, MementoType type) {
 	this->root = root;
 	this->type == type;
 }
+
+Memento::~Memento() {
+	delete root;
+}

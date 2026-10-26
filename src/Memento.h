@@ -15,6 +15,7 @@ private:
 
 	void setRoot(void* root, MementoType type);
 public:
+	~Memento();
 	Memento(void* root, MementoType type);
 };
 

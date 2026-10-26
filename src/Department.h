@@ -4,9 +4,10 @@
 #include "CompanyNode.h"
 #include <vector>
 class Department : CompanyNode {
+private:
 
-public:
 	std::vector<CompanyNode*> children;
+public:
 
 	void add(CompanyNode* companyNode);
 
@@ -15,7 +16,8 @@ public:
 
 	//Returns the nth child. Returns null if out of bounds
 	CompanyNode* getChild(int n);
-	
+	virtual CompanyNode* clone();
+
 	~Department();
 };
 

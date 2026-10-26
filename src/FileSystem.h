@@ -5,8 +5,9 @@
 #include "Memento.h"
 #include <map>
 class FileSystem {
+private:
 	std::map<std::string, Memento*> storage;
-
+	~FileSystem();
 public:
 	void saveMemento(std::string filename, Memento* memento);
 
