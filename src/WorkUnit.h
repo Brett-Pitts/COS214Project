@@ -4,18 +4,21 @@
 
 #include <string>
 
-using namespace std;
+#include "WorkNode.h"
 
-class WorkUnit {
+class WorkUnit : public WorkNode {
 
 private:
-	string name;
+	std::string name;
 	int requiredProfession;
 
 public:
-	WorkUnit(string name, int requiredProfession = -1) : name(name), requiredProfession(requiredProfession) {}
-	string getName() const { return name; }
+
+	WorkUnit(std::string name, int requiredProfession = -1);
+	std::string getName() const { return name; }
 	int getRequiredProfession() const { return requiredProfession; }
+	void add(WorkNode* workNode);
+	WorkNode* clone();
 };
 
 #endif

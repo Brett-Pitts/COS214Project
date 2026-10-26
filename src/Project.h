@@ -8,20 +8,20 @@
 class Project : public WorkNode {
 
 public:
-    std::vector<WorkNode*> children;
+	std::vector<WorkNode*> children;
 
-    Project(int maxRetries);
-    ~Project();
+	Project(int maxRetries);
+	~Project();
 
-    void add(WorkNode* workNode);
+	void add(WorkNode* workNode);
 
-    void remove(WorkNode* workNode);
+	void remove(WorkNode* workNode);
 
-    WorkNode* getChild(int index);
+	WorkNode* getChild(int index);
 
-    bool allChildrenCompleted();
+	bool allChildrenCompleted();
 
-    WorkNode* clone();
+	WorkNode* clone();
 };
 
 #endif
