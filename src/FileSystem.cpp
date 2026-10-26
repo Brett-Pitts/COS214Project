@@ -1,11 +1,16 @@
 #include "FileSystem.h"
-
+#include <iostream>
 void FileSystem::saveMemento(std::string filename, Memento* memento) {
-	// TODO - implement FileSystem::saveMemento
-	throw "Not yet implemented";
+	if (storage.find(filename) != storage.end()) {
+
+	}
+	storage[filename] = memento;
 }
 
 Memento* FileSystem::loadMemento(std::string filename) {
-	// TODO - implement FileSystem::loadMemento
-	throw "Not yet implemented";
+	auto iter = storage.find(filename);
+	if (iter == storage.end()) {
+		return nullptr;
+	}
+	return storage[filename];
 }
