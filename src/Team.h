@@ -20,6 +20,14 @@ public:
     void assignWork(WorkUnit* workUnit);
 
     void notifyColleagues(EmployeeComponent* employeeComponent, std::string message) override;
+
+    void add(CompanyNode* companyNode){};
+
+	void remove(CompanyNode* companyNode){};
+
+	CompanyNode* getChild(int n){return nullptr; };
+
+    ~Team();
 };
 
 #endif

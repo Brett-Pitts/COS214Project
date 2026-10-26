@@ -5,11 +5,13 @@ class CompanyNode {
 
 
 public:
-	void add(CompanyNode companyNode);
+	virtual void add(CompanyNode* companyNode)=0;
 
-	void remove(CompanyNode companyNode);
+	virtual void remove(CompanyNode* companyNode)=0;
 
-	CompanyNode getChild(int arg0);
+	virtual CompanyNode* getChild(int n)=0;
+
+	~CompanyNode();
 };
 
 #endif
