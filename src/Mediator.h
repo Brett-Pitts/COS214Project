@@ -1,11 +1,17 @@
 #ifndef MEDIATOR_H
 #define MEDIATOR_H
 
+#include <string>
+
+using namespace std;
+
+class EmployeeComponent;
+
 class Mediator {
 
-
 public:
-	void notifyColleagues(EmployeeComponent employeeComponent, std::string arg1);
+	virtual ~Mediator() {}
+	virtual void notifyColleagues(EmployeeComponent* employeeComponent, string message) = 0;
 };
 
 #endif
