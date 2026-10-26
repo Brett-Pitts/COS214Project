@@ -1,45 +1,69 @@
 #include "EmployeeComponent.h"
+#include "Mediator.h"
+#include "WorkUnit.h"
 
-bool EmployeeComponent::compareProfession(int arg0) {
-	// TODO - implement EmployeeComponent::compareProfession
-	throw "Not yet implemented";
+#include <iostream>
+
+EmployeeComponent::EmployeeComponent() : mediator(nullptr), successor(nullptr) {
 }
 
-void EmployeeComponent::doWork(WorkUnit workUnit) {
-	// TODO - implement EmployeeComponent::doWork
-	throw "Not yet implemented";
+EmployeeComponent::EmployeeComponent(const EmployeeComponent& other) : mediator(other.mediator), successor(other.successor) {
 }
 
-void EmployeeComponent::finish(WorkUnit workUnit) {
-	// TODO - implement EmployeeComponent::finish
-	throw "Not yet implemented";
+EmployeeComponent::~EmployeeComponent() {
 }
 
-void EmployeeComponent::handleWork(WorkUnit workUnit) {
-	// TODO - implement EmployeeComponent::handleWork
-	throw "Not yet implemented";
+bool EmployeeComponent::compareProfession(int professionId) {
+	return professionId < 0;
 }
 
-void EmployeeComponent::perform(WorkUnit workUnit) {
-	// TODO - implement EmployeeComponent::perform
-	throw "Not yet implemented";
+void EmployeeComponent::prepare(WorkUnit* workUnit) {
+	cout << getName() << " prepares " << workUnit->getName() << endl;
 }
 
-void EmployeeComponent::prepare(WorkUnit workUnit) {
-	// TODO - implement EmployeeComponent::prepare
-	throw "Not yet implemented";
+void EmployeeComponent::perform(WorkUnit* workUnit) {
+	cout << getName() << " performs " << workUnit->getName() << endl;
 }
 
-void EmployeeComponent::receive(std::string arg0) {
-	// TODO - implement EmployeeComponent::receive
-	throw "Not yet implemented";
+void EmployeeComponent::finish(WorkUnit* workUnit) {
+	cout << getName() << " finishes " << workUnit->getName() << endl;
 }
 
-void EmployeeComponent::setSuccessor(EmployeeComponent employeeComponent) {
+void EmployeeComponent::doWork(WorkUnit* workUnit) {
+	if (workUnit == nullptr) {
+		return;
+	}
+	prepare(workUnit);
+	perform(workUnit);
+	finish(workUnit);
+	if (mediator != nullptr) {
+		mediator->notifyColleagues(this, getName() + " completed " + workUnit->getName());
+	}
+}
+
+void EmployeeComponent::handleWork(WorkUnit* workUnit) {
+	if (workUnit == nullptr) {
+		return;
+	}
+	if (compareProfession(workUnit->getRequiredProfession())) {
+		doWork(workUnit);
+		return;
+	}
+	if (successor != nullptr) {
+		successor->handleWork(workUnit);
+		return;
+	}
+	cout << "No employee in the chain can handle " << workUnit->getName() << endl;
+}
+
+void EmployeeComponent::receive(string message) {
+	cout << getName() << " received: " << message << endl;
+}
+
+void EmployeeComponent::setSuccessor(EmployeeComponent* employeeComponent) {
 	this->successor = employeeComponent;
 }
 
-EmployeeComponent* EmployeeComponent::clone() {
-	// TODO - implement EmployeeComponent::clone
-	throw "Not yet implemented";
+void EmployeeComponent::setMediator(Mediator* mediator) {
+	this->mediator = mediator;
 }
