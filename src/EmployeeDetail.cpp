@@ -1,16 +1,68 @@
 #include "EmployeeDetail.h"
 
-void EmployeeDetail::doWork(WorkUnit workUnit) {
-	// TODO - implement EmployeeDetail::doWork
-	throw "Not yet implemented";
+EmployeeDetail::EmployeeDetail() : EmployeeComponent(), wrapped(nullptr) {
 }
 
-void EmployeeDetail::wrap(EmployeeComponent component) {
-	// TODO - implement EmployeeDetail::wrap
-	throw "Not yet implemented";
+EmployeeDetail::EmployeeDetail(const EmployeeDetail& other) : EmployeeComponent(other), wrapped(nullptr) {
+	if (other.wrapped != nullptr) {
+		wrapped = other.wrapped->clone();
+	}
 }
 
-EmployeeComponent* EmployeeDetail::clone() {
-	// TODO - implement EmployeeDetail::clone
-	throw "Not yet implemented";
+EmployeeDetail::~EmployeeDetail() {
+	delete wrapped;
+}
+
+string EmployeeDetail::getName() {
+	if (wrapped == nullptr) {
+		return "";
+	}
+	return wrapped->getName();
+}
+
+bool EmployeeDetail::compareProfession(int professionId) {
+	if (wrapped == nullptr) {
+		return EmployeeComponent::compareProfession(professionId);
+	}
+	return wrapped->compareProfession(professionId);
+}
+
+void EmployeeDetail::prepare(WorkUnit*) {
+}
+
+void EmployeeDetail::perform(WorkUnit*) {
+}
+
+void EmployeeDetail::finish(WorkUnit*) {
+}
+
+void EmployeeDetail::doWork(WorkUnit* workUnit) {
+	if (workUnit == nullptr) {
+		return;
+	}
+	prepare(workUnit);
+	perform(workUnit);
+	if (wrapped != nullptr) {
+		wrapped->doWork(workUnit);
+	}
+	finish(workUnit);
+}
+
+void EmployeeDetail::setMediator(Mediator* mediator) {
+	EmployeeComponent::setMediator(mediator);
+	if (wrapped != nullptr) {
+		wrapped->setMediator(mediator);
+	}
+}
+
+void EmployeeDetail::wrap(EmployeeComponent* component) {
+	if (component == nullptr || component == this) {
+		return;
+	}
+	if (wrapped == nullptr) {
+		wrapped = component;
+	}
+	else {
+		wrapped->wrap(component);
+	}
 }

@@ -1,29 +1,30 @@
 #ifndef EMPLOYEECOMPETENCY_H
 #define EMPLOYEECOMPETENCY_H
 
-class EmployeeCompetency : EmployeeDetail {
+#include "EmployeeDetail.h"
+
+#include <vector>
+
+class EmployeeCompetency : public EmployeeDetail {
 
 private:
-	string competencyName;
+	int competencyId;
 	static vector<string> competencyList;
 
+protected:
+	void prepare(WorkUnit* workUnit);
+	void perform(WorkUnit* workUnit);
+	void finish(WorkUnit* workUnit);
+
 public:
+	EmployeeCompetency(string name);
+	EmployeeCompetency(const EmployeeCompetency& other);
+	virtual ~EmployeeCompetency();
 
-	void prepare(WorkUnit workUnit);
-
-	void perform(WorkUnit workUnit);
-
-	void finish(WorkUnit workUnit);
-
+	static int registerCompetency(string name);
+	static bool deleteCompetency(string name);
+	static int getCompetencyId(string name);
 	EmployeeComponent* clone();
-
-	static boolean addDetail(string name);
-
-	static boolean hasDetail(string name);
-
-	static boolean deleteDetail(string name);
-
-	static std::vector<std::string>& getDetails();
 };
 
 #endif

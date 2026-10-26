@@ -1,24 +1,28 @@
 #ifndef EMPLOYEEDETAIL_H
 #define EMPLOYEEDETAIL_H
 
-class EmployeeDetail : EmployeeComponent {
+#include "EmployeeComponent.h"
+
+class EmployeeDetail : public EmployeeComponent {
+
+private:
+	EmployeeComponent* wrapped;
+
+protected:
+	void prepare(WorkUnit* workUnit);
+	void perform(WorkUnit* workUnit);
+	void finish(WorkUnit* workUnit);
 
 public:
-	EmployeeComponent wrapped;
+	EmployeeDetail();
+	EmployeeDetail(const EmployeeDetail& other);
+	virtual ~EmployeeDetail();
 
-	void doWork(WorkUnit workUnit);
-
-	void wrap(EmployeeComponent component);
-
-	EmployeeComponent* clone();
-
-	virtual static boolean addDetail(string name) = 0;
-
-	virtual static boolean hasDetail(string name) = 0;
-
-	virtual static boolean deleteDetail(string name) = 0;
-
-	virtual static std::vector<std::string>& getDetails() = 0;
+	string getName();
+	bool compareProfession(int professionId);
+	void doWork(WorkUnit* workUnit);
+	void setMediator(Mediator* mediator);
+	void wrap(EmployeeComponent* component);
 };
 
 #endif
