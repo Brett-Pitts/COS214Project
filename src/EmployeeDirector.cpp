@@ -1,4 +1,4 @@
-
+#include "EmployeeDirector.h"
 #include <iostream>
 
 void EmployeeDirector::setBuilder(EmployeeBuilder* builder) {
@@ -43,28 +43,4 @@ EmployeeComponent* EmployeeDirector::finish(std::string name, bool isManager) {
 		return nullptr;
 	}
 	return builder->finish(name, isManager);
-}
-
-EmployeeComponent* EmployeeDirector::finish(string name, boolean isManager) {
-	// TODO - implement EmployeeDirector::finish
-	throw "Not yet implemented";
-}
-
-void EmployeeDirector::setBuilder(EmployeeBuilder* builder) {
-	this->builder = builder;
-}
-
-void EmployeeDirector::reset() {
-	// TODO - implement EmployeeDirector::reset
-	throw "Not yet implemented";
-}
-
-boolean EmployeeDirector::addProfession(string id) {
-	// TODO - implement EmployeeDirector::addProfession
-	throw "Not yet implemented";
-}
-
-boolean EmployeeDirector::addCompetency(string name) {
-	// TODO - implement EmployeeDirector::addCompetency
-	throw "Not yet implemented";
 }
