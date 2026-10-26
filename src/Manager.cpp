@@ -3,14 +3,11 @@
 
 #include <iostream>
 
-Manager::Manager(string name) : Employee(name) {
-}
+Manager::Manager(string name) : Employee(name) {}
 
-Manager::Manager(const Manager& other) : Employee(other) {
-}
+Manager::Manager(const Manager& other) : Employee(other) {}
 
-Manager::~Manager() {
-}
+Manager::~Manager() {}
 
 void Manager::handleEscalation(WorkUnit* workUnit) {
 	if (workUnit == nullptr) {
@@ -27,5 +24,7 @@ void Manager::cancelProject(Project* project) {
 }
 
 EmployeeComponent* Manager::clone() {
-	return new Manager(*this);
+	EmployeeComponent* ret = new Manager(this->getName());
+
+	return ret;
 }

@@ -1,13 +1,10 @@
 #include "Employee.h"
 
-Employee::Employee(string name) : EmployeeComponent(), name(name) {
-}
+Employee::Employee(string name) : EmployeeComponent(), name(name) {}
 
-Employee::Employee(const Employee& other) : EmployeeComponent(other), name(other.name) {
-}
+Employee::Employee(const Employee& other) : EmployeeComponent(other), name(other.name) {}
 
-Employee::~Employee() {
-}
+Employee::~Employee() {}
 
 string Employee::getName() {
 	return name;
@@ -22,5 +19,7 @@ void Employee::wrap(EmployeeComponent* component) {
 }
 
 EmployeeComponent* Employee::clone() {
-	return new Employee(*this);
+	EmployeeComponent* ret = new Employee(this->name);
+
+	return ret;
 }

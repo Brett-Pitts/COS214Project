@@ -5,14 +5,11 @@
 
 vector<string> EmployeeCompetency::competencyList;
 
-EmployeeCompetency::EmployeeCompetency(string name) : EmployeeDetail(), competencyId(registerCompetency(name)) {
-}
+EmployeeCompetency::EmployeeCompetency(string name) : EmployeeDetail(), competencyId(registerCompetency(name)) {}
 
-EmployeeCompetency::EmployeeCompetency(const EmployeeCompetency& other) : EmployeeDetail(other), competencyId(other.competencyId) {
-}
+EmployeeCompetency::EmployeeCompetency(const EmployeeCompetency& other) : EmployeeDetail(other), competencyId(other.competencyId) {}
 
-EmployeeCompetency::~EmployeeCompetency() {
-}
+EmployeeCompetency::~EmployeeCompetency() {}
 
 int EmployeeCompetency::registerCompetency(string name) {
 	if (name.empty()) {
@@ -25,11 +22,11 @@ int EmployeeCompetency::registerCompetency(string name) {
 	for (size_t i = 0; i < competencyList.size(); i++) {
 		if (competencyList[i].empty()) {
 			competencyList[i] = name;
-			return (int) i;
+			return (int)i;
 		}
 	}
 	competencyList.push_back(name);
-	return (int) competencyList.size() - 1;
+	return (int)competencyList.size() - 1;
 }
 
 bool EmployeeCompetency::deleteCompetency(string name) {
@@ -47,7 +44,7 @@ int EmployeeCompetency::getCompetencyId(string name) {
 	}
 	for (size_t i = 0; i < competencyList.size(); i++) {
 		if (competencyList[i] == name) {
-			return (int) i;
+			return (int)i;
 		}
 	}
 	return -1;
@@ -66,5 +63,7 @@ void EmployeeCompetency::finish(WorkUnit* workUnit) {
 }
 
 EmployeeComponent* EmployeeCompetency::clone() {
-	return new EmployeeCompetency(*this);
+	EmployeeComponent* ret = new EmployeeCompetency(competencyList[competencyId]);
+	ret->wrap(wrapped->clone());
+	return ret;
 }

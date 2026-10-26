@@ -5,14 +5,11 @@
 
 vector<string> EmployeeProfession::professionList;
 
-EmployeeProfession::EmployeeProfession(string name) : EmployeeDetail(), professionId(registerProfession(name)) {
-}
+EmployeeProfession::EmployeeProfession(string name) : EmployeeDetail(), professionId(registerProfession(name)) {}
 
-EmployeeProfession::EmployeeProfession(const EmployeeProfession& other) : EmployeeDetail(other), professionId(other.professionId) {
-}
+EmployeeProfession::EmployeeProfession(const EmployeeProfession& other) : EmployeeDetail(other), professionId(other.professionId) {}
 
-EmployeeProfession::~EmployeeProfession() {
-}
+EmployeeProfession::~EmployeeProfession() {}
 
 int EmployeeProfession::registerProfession(string name) {
 	if (name.empty()) {
@@ -25,11 +22,11 @@ int EmployeeProfession::registerProfession(string name) {
 	for (size_t i = 0; i < professionList.size(); i++) {
 		if (professionList[i].empty()) {
 			professionList[i] = name;
-			return (int) i;
+			return (int)i;
 		}
 	}
 	professionList.push_back(name);
-	return (int) professionList.size() - 1;
+	return (int)professionList.size() - 1;
 }
 
 bool EmployeeProfession::deleteProfession(string name) {
@@ -47,7 +44,7 @@ int EmployeeProfession::getProfessionId(string name) {
 	}
 	for (size_t i = 0; i < professionList.size(); i++) {
 		if (professionList[i] == name) {
-			return (int) i;
+			return (int)i;
 		}
 	}
 	return -1;
@@ -72,6 +69,10 @@ void EmployeeProfession::finish(WorkUnit* workUnit) {
 	cout << getName() << " signs off " << workUnit->getName() << " as " << professionList[professionId] << endl;
 }
 
+
 EmployeeComponent* EmployeeProfession::clone() {
-	return new EmployeeProfession(*this);
+	EmployeeComponent* ret = new EmployeeProfession(professionList[professionId]);
+	ret->wrap(wrapped->clone());
+	return ret;
+
 }

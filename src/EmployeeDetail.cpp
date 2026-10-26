@@ -1,7 +1,6 @@
 #include "EmployeeDetail.h"
 
-EmployeeDetail::EmployeeDetail() : EmployeeComponent(), wrapped(nullptr) {
-}
+EmployeeDetail::EmployeeDetail() : EmployeeComponent(), wrapped(nullptr) {}
 
 EmployeeDetail::EmployeeDetail(const EmployeeDetail& other) : EmployeeComponent(other), wrapped(nullptr) {
 	if (other.wrapped != nullptr) {
@@ -27,14 +26,11 @@ bool EmployeeDetail::compareProfession(int professionId) {
 	return wrapped->compareProfession(professionId);
 }
 
-void EmployeeDetail::prepare(WorkUnit*) {
-}
+void EmployeeDetail::prepare(WorkUnit*) {}
 
-void EmployeeDetail::perform(WorkUnit*) {
-}
+void EmployeeDetail::perform(WorkUnit*) {}
 
-void EmployeeDetail::finish(WorkUnit*) {
-}
+void EmployeeDetail::finish(WorkUnit*) {}
 
 void EmployeeDetail::doWork(WorkUnit* workUnit) {
 	if (workUnit == nullptr) {
@@ -66,3 +62,5 @@ void EmployeeDetail::wrap(EmployeeComponent* component) {
 		wrapped->wrap(component);
 	}
 }
+
+

@@ -16,7 +16,7 @@ public:
 	string getName();
 	void doWork(WorkUnit* workUnit);
 	void wrap(EmployeeComponent* component);
-	EmployeeComponent* clone();
+	virtual EmployeeComponent* clone();
 };
 
 #endif

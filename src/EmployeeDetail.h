@@ -6,9 +6,9 @@
 class EmployeeDetail : public EmployeeComponent {
 
 private:
-	EmployeeComponent* wrapped;
 
 protected:
+	EmployeeComponent* wrapped;
 	void prepare(WorkUnit* workUnit);
 	void perform(WorkUnit* workUnit);
 	void finish(WorkUnit* workUnit);
@@ -23,6 +23,7 @@ public:
 	void doWork(WorkUnit* workUnit);
 	void setMediator(Mediator* mediator);
 	void wrap(EmployeeComponent* component);
+	virtual EmployeeComponent* clone() = 0;
 };
 
 #endif

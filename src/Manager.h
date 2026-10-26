@@ -14,7 +14,7 @@ public:
 
 	void handleEscalation(WorkUnit* workUnit);
 	void cancelProject(Project* project);
-	EmployeeComponent* clone();
+	virtual EmployeeComponent* clone();
 };
 
 #endif
