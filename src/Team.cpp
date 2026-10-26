@@ -26,3 +26,13 @@ void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string me
         }
     }
 }
+
+Team::~Team()
+{
+    if(!members.empty()){
+        for (auto it = members.begin(); it != members.end(); ++it) {
+            
+            delete *it;
+        }
+    }
+}

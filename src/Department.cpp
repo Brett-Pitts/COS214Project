@@ -29,8 +29,10 @@ CompanyNode* Department::getChild(int n) {
 
 Department::~Department()
 {
-	for (auto it = children.begin(); it != children.end(); ++it) {
-		
-		delete *it;
+	if(!children.empty()){
+		for (auto it = children.begin(); it != children.end(); ++it) {
+			
+			delete *it;
+		}
 	}
 }
