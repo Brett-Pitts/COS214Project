@@ -1,13 +1,17 @@
+
 #ifndef WORKUNIT_H
 #define WORKUNIT_H
 
-class WorkUnit : WorkNode {
+#include "WorkNode.h"
 
+class WorkUnit : public WorkNode {
 
 public:
-	WorkNode* clone();
+    WorkUnit(int maxRetries);
 
-	void add(WorkNode workNode);
+    WorkNode* clone();
+
+    void add(WorkNode* workNode);
 };
 
 #endif
