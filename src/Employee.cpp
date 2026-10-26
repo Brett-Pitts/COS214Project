@@ -1,16 +1,26 @@
 #include "Employee.h"
 
-void Employee::doWork(WorkUnit workUnit) {
-	// TODO - implement Employee::doWork
-	throw "Not yet implemented";
+Employee::Employee(string name) : EmployeeComponent(), name(name) {
 }
 
-void Employee::wrap(EmployeeComponent component) {
-	// TODO - implement Employee::wrap
-	throw "Not yet implemented";
+Employee::Employee(const Employee& other) : EmployeeComponent(other), name(other.name) {
+}
+
+Employee::~Employee() {
+}
+
+string Employee::getName() {
+	return name;
+}
+
+void Employee::doWork(WorkUnit* workUnit) {
+	EmployeeComponent::doWork(workUnit);
+}
+
+void Employee::wrap(EmployeeComponent* component) {
+	delete component;
 }
 
 EmployeeComponent* Employee::clone() {
-	// TODO - implement Employee::clone
-	throw "Not yet implemented";
+	return new Employee(*this);
 }

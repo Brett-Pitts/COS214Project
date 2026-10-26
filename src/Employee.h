@@ -1,15 +1,21 @@
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
 
-class Employee : EmployeeComponent {
+#include "EmployeeComponent.h"
+
+class Employee : public EmployeeComponent {
+
+private:
+	string name;
 
 public:
-	std::string name;
+	Employee(string name);
+	Employee(const Employee& other);
+	virtual ~Employee();
 
-	void doWork(WorkUnit workUnit);
-
-	void wrap(EmployeeComponent component);
-
+	string getName();
+	void doWork(WorkUnit* workUnit);
+	void wrap(EmployeeComponent* component);
 	EmployeeComponent* clone();
 };
 
