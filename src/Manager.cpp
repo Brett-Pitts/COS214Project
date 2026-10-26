@@ -1,16 +1,31 @@
 #include "Manager.h"
+#include "WorkUnit.h"
 
-void Manager::handleEscalation(WorkUnit workUnit) {
-	// TODO - implement Manager::handleEscalation
-	throw "Not yet implemented";
+#include <iostream>
+
+Manager::Manager(string name) : Employee(name) {
 }
 
-void Manager::cancelProject(Project project) {
-	// TODO - implement Manager::cancelProject
-	throw "Not yet implemented";
+Manager::Manager(const Manager& other) : Employee(other) {
+}
+
+Manager::~Manager() {
+}
+
+void Manager::handleEscalation(WorkUnit* workUnit) {
+	if (workUnit == nullptr) {
+		return;
+	}
+	cout << getName() << " handles escalation of " << workUnit->getName() << endl;
+}
+
+void Manager::cancelProject(Project* project) {
+	if (project == nullptr) {
+		return;
+	}
+	cout << getName() << " cancels project" << endl;
 }
 
 EmployeeComponent* Manager::clone() {
-	// TODO - implement Manager::clone
-	throw "Not yet implemented";
+	return new Manager(*this);
 }
