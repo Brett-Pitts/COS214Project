@@ -3,9 +3,10 @@
 
 #include "WorkState.h"
 
-class Cancelled : public WorkState{
+class Cancelled : public WorkState {
 public:
-    void handle(WorkNode* workNode) override;
+	Cancelled() :WorkState("Cancelled") {};
+	void handle(WorkNode* workNode) override;
 };
 
 #endif

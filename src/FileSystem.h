@@ -9,7 +9,7 @@ private:
 	std::map<std::string, Memento*> storage;
 	~FileSystem();
 	void saveCompany(std::ofstream& file, CompanyNode* root);
-	void saveProject(std::ofstream& file, WorkNode* root);
+	void saveWorkflow(std::ofstream& file, WorkNode* root);
 public:
 	void saveMemento(std::string name, Memento* memento);
 

@@ -10,6 +10,8 @@
 #include "EmployeeCompetency.h"
 #include "Employee.h"
 #include "Manager.h"
+#include "WorkUnit.h"
+#include "WorkNode.h"
 FileSystem::~FileSystem() {
 	for (const auto& pair : storage) {
 		delete pair.second;
@@ -88,9 +90,42 @@ void FileSystem::saveCompany(std::ofstream& file, CompanyNode* root) {
 	}
 }
 
-void FileSystem::saveProject(std::ofstream& file, WorkNode* root) {
+void FileSystem::saveWorkflow(std::ofstream& file, WorkNode* root) {
+
+	if (root->getChild(0) == nullptr) {
+		// Team
+		WorkUnit* unit = (WorkUnit*)root;
+		file << "Unit\n";
+		file << unit->getName() << '\n';
+		file << unit->getRequiredProfession() << '\n';
+		file << "EndUnit\n";
+	}
+	else {
+		// Department
+		file << "Project\n";
+		file << root->getName() << '\n';
+		file << root->getStateName() << '\n';
+		file << "Prerequisites\n";
+
+		for (std::string prereq : root->prerequisites) {
+			file << prereq << '\n';
+		}
+
+		file << "EndPrerequisites\n";
+		file << "Children\n";
 
 
+		for (int i = 0;;i++) {
+			if (root->getChild(i) == nullptr) {
+				break;
+			}
+			saveWorkflow(file, root->getChild(i));
+		}
+		file << "EndChildren\n";
+
+		file << "EndProject\n";
+
+	}
 
 
 }
@@ -114,7 +149,7 @@ void FileSystem::saveToFile(std::string name, std::string filename) {
 	switch (mem->getType()) {
 	case (MementoType::company):
 	{
-		file << "company\n";
+		file << "Company\n";
 		CompanyNode* root = (CompanyNode*)mem->getRoot();
 
 		saveCompany(file, root);
@@ -125,6 +160,13 @@ void FileSystem::saveToFile(std::string name, std::string filename) {
 	}
 	case (MementoType::workflow):
 	{
+
+
+		file << "Workflow\n";
+		WorkNode* root = (WorkNode*)mem->getRoot();
+
+		saveWorkflow(file, root);
+
 
 
 		break;

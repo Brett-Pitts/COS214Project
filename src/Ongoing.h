@@ -3,9 +3,11 @@
 
 #include "WorkState.h"
 
-class Ongoing : public WorkState{
+class Ongoing : public WorkState {
 public:
-    void handle(WorkNode* workNode) override;
+	Ongoing() :WorkState("Ongoing") {};
+
+	void handle(WorkNode* workNode) override;
 };
 
 #endif

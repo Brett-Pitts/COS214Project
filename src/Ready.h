@@ -3,9 +3,11 @@
 
 #include "WorkState.h"
 
-class Ready : public WorkState{
+class Ready : public WorkState {
 public:
-    void handle(WorkNode* workNode) override;
+	Ready(std::string name) :WorkState(name) {};
+
+	void handle(WorkNode* workNode) override;
 };
 
 #endif

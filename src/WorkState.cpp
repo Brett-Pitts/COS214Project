@@ -1,4 +1,7 @@
 #include "WorkState.h"
 
-WorkState::~WorkState(){
+WorkState::~WorkState() {}
+
+std::string WorkState::getName() {
+	return name;
 }

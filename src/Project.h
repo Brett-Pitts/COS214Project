@@ -4,13 +4,14 @@
 
 #include "WorkNode.h"
 #include <vector>
+#include <string>
 
 class Project : public WorkNode {
 
 public:
 	std::vector<WorkNode*> children;
 
-	Project(int maxRetries);
+	Project(int maxRetries, std::string name);
 	~Project();
 
 	void add(WorkNode* workNode);
@@ -22,6 +23,8 @@ public:
 	bool allChildrenCompleted();
 
 	WorkNode* clone();
+
+	bool hasName(std::string name);
 };
 
 #endif

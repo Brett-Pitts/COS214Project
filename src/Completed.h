@@ -3,9 +3,11 @@
 
 #include "WorkState.h"
 
-class Completed : public WorkState{
+class Completed : public WorkState {
 public:
-    void handle(WorkNode* workNode) override;
+	Completed() :WorkState("Completed") {};
+
+	void handle(WorkNode* workNode) override;
 };
 
 #endif

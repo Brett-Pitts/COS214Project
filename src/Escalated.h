@@ -3,9 +3,11 @@
 
 #include "WorkState.h"
 
-class Escalated : public WorkState{
+class Escalated : public WorkState {
 public:
-    void handle(WorkNode* workNode) override;
+	Escalated() :WorkState("Escalated") {};
+
+	void handle(WorkNode* workNode) override;
 };
 
 #endif

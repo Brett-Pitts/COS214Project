@@ -3,9 +3,11 @@
 
 #include "WorkState.h"
 
-class WaitingForPrerequisites : public WorkState{
+class WaitingForPrerequisites : public WorkState {
 public:
-    void handle(WorkNode* workNode) override;
+	WaitingForPrerequisites() :WorkState("WaitingForPrerequisites") {};
+
+	void handle(WorkNode* workNode) override;
 };
 
 #endif
