@@ -9,9 +9,13 @@ private:
 	std::map<std::string, Memento*> storage;
 	~FileSystem();
 public:
-	void saveMemento(std::string filename, Memento* memento);
+	void saveMemento(std::string name, Memento* memento);
 
-	Memento* loadMemento(std::string filename);
+	Memento* loadMemento(std::string name);
+
+	void saveToFile(std::string name, std::string filename);
+	void loadFromFile(std::string name, std::string filename);
+
 };
 
 #endif

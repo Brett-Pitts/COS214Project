@@ -3,9 +3,11 @@
 
 #include "MementoType.h"
 #include "ApplicationInterface.h"
+#include "FileSystem.h"
 
 class Memento {
 	friend ApplicationInterface;
+	friend FileSystem;
 private:
 	void* root;
 	MementoType type;
