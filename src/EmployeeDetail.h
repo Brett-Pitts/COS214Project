@@ -2,9 +2,9 @@
 #define EMPLOYEEDETAIL_H
 
 #include "EmployeeComponent.h"
-
+class FileSystem;
 class EmployeeDetail : public EmployeeComponent {
-
+	friend class FileSystem;
 private:
 
 protected:

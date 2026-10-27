@@ -14,6 +14,7 @@ public:
 	virtual ~Employee();
 
 	string getName();
+	std::string getKind();
 	void doWork(WorkUnit* workUnit);
 	void wrap(EmployeeComponent* component);
 	virtual EmployeeComponent* clone();

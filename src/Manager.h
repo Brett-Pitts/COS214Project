@@ -12,6 +12,7 @@ public:
 	Manager(const Manager& other);
 	virtual ~Manager();
 
+	std::string getKind();
 	void handleEscalation(WorkUnit* workUnit);
 	void cancelProject(Project* project);
 	virtual EmployeeComponent* clone();

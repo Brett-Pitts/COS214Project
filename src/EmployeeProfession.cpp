@@ -11,6 +11,10 @@ EmployeeProfession::EmployeeProfession(const EmployeeProfession& other) : Employ
 
 EmployeeProfession::~EmployeeProfession() {}
 
+std::string EmployeeProfession::getKind() {
+	return "Profession";
+}
+
 int EmployeeProfession::registerProfession(string name) {
 	if (name.empty()) {
 		return -1;

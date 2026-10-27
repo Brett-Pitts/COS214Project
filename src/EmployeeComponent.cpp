@@ -10,6 +10,8 @@ EmployeeComponent::EmployeeComponent(const EmployeeComponent& other) : mediator(
 
 EmployeeComponent::~EmployeeComponent() {}
 
+
+
 bool EmployeeComponent::compareProfession(int professionId) {
 	return professionId < 0;
 }

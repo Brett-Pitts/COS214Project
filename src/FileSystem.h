@@ -8,6 +8,8 @@ class FileSystem {
 private:
 	std::map<std::string, Memento*> storage;
 	~FileSystem();
+	void saveCompany(std::ofstream& file, CompanyNode* root);
+	void saveProject(std::ofstream& file, WorkNode* root);
 public:
 	void saveMemento(std::string name, Memento* memento);
 
@@ -15,7 +17,6 @@ public:
 
 	void saveToFile(std::string name, std::string filename);
 	void loadFromFile(std::string name, std::string filename);
-
 };
 
 #endif

@@ -4,9 +4,10 @@
 #include "EmployeeDetail.h"
 
 #include <vector>
+class FileSystem;
 
 class EmployeeCompetency : public EmployeeDetail {
-
+	friend class FileSystem;
 private:
 	int competencyId;
 	static vector<string> competencyList;
@@ -20,7 +21,7 @@ public:
 	EmployeeCompetency(string name);
 	EmployeeCompetency(const EmployeeCompetency& other);
 	virtual ~EmployeeCompetency();
-
+	std::string getKind();
 	static int registerCompetency(string name);
 	static bool deleteCompetency(string name);
 	static int getCompetencyId(string name);

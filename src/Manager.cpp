@@ -9,6 +9,10 @@ Manager::Manager(const Manager& other) : Employee(other) {}
 
 Manager::~Manager() {}
 
+std::string Manager::getKind() {
+	return "Manager";
+}
+
 void Manager::handleEscalation(WorkUnit* workUnit) {
 	if (workUnit == nullptr) {
 		return;

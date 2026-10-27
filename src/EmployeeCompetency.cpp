@@ -11,6 +11,10 @@ EmployeeCompetency::EmployeeCompetency(const EmployeeCompetency& other) : Employ
 
 EmployeeCompetency::~EmployeeCompetency() {}
 
+std::string EmployeeCompetency::getKind() {
+	return "Competency";
+}
+
 int EmployeeCompetency::registerCompetency(string name) {
 	if (name.empty()) {
 		return -1;

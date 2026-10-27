@@ -7,9 +7,10 @@ using namespace std;
 
 class Mediator;
 class WorkUnit;
+class FileSystem;
 
 class EmployeeComponent {
-
+	friend class FileSystem;
 private:
 	Mediator* mediator;
 	EmployeeComponent* successor;
@@ -24,6 +25,7 @@ public:
 	EmployeeComponent(const EmployeeComponent& other);
 	virtual ~EmployeeComponent();
 
+	virtual std::string getKind() = 0;
 	virtual string getName() = 0;
 	virtual bool compareProfession(int professionId);
 	virtual void doWork(WorkUnit* workUnit);

@@ -4,9 +4,11 @@
 #include "EmployeeDetail.h"
 
 #include <vector>
+class FileSystem;
+
 
 class EmployeeProfession : public EmployeeDetail {
-
+	friend class FileSystem;
 private:
 	int professionId;
 	static vector<string> professionList;
@@ -20,7 +22,7 @@ public:
 	EmployeeProfession(string name);
 	EmployeeProfession(const EmployeeProfession& other);
 	virtual ~EmployeeProfession();
-
+	std::string getKind();
 	static int registerProfession(string name);
 	static bool deleteProfession(string name);
 	static int getProfessionId(string name);

@@ -10,6 +10,10 @@ string Employee::getName() {
 	return name;
 }
 
+std::string Employee::getKind() {
+	return "Employee";
+}
+
 void Employee::doWork(WorkUnit* workUnit) {
 	EmployeeComponent::doWork(workUnit);
 }

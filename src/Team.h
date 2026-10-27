@@ -6,11 +6,12 @@
 #include "CompanyNode.h"
 #include "Mediator.h"
 
+class FileSystem;
 class EmployeeComponent;
 class WorkUnit;
 
 class Team : public CompanyNode, public Mediator {
-
+	friend class FileSystem;
 private:
 	std::vector<EmployeeComponent*> members;
 
@@ -19,7 +20,7 @@ public:
 
 	void assignWork(WorkUnit* workUnit);
 
-	void notifyColleagues(EmployeeComponent* employeeComponent, std::string message) override;
+	void notifyColleagues(EmployeeComponent* employeeComponent, std::string message);
 
 	void add(CompanyNode* companyNode) {};
 
