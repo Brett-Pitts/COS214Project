@@ -12,6 +12,7 @@
 #include "Manager.h"
 #include "WorkUnit.h"
 #include "WorkNode.h"
+#include "Project.h"
 FileSystem::~FileSystem() {
 	for (const auto& pair : storage) {
 		delete pair.second;
