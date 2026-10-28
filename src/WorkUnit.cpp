@@ -1,8 +1,8 @@
 #include "WorkUnit.h"
 
-WorkUnit::WorkUnit(std::string name, int requiredProfession = -1) : WorkNode(3, name), requiredProfession(requiredProfession) {}
+WorkUnit::WorkUnit(std::string name, std::string requiredProfession = "") : WorkNode(3, name), requiredProfession(requiredProfession) {}
 
-int WorkUnit::getRequiredProfession() const { return requiredProfession; }
+std::string WorkUnit::getRequiredProfession() const { return requiredProfession; }
 
 
 WorkNode* WorkUnit::clone() {

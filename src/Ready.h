@@ -5,7 +5,7 @@
 
 class Ready : public WorkState {
 public:
-	Ready(std::string name) :WorkState(name) {};
+	Ready() :WorkState("Ready") {};
 
 	void handle(WorkNode* workNode) override;
 };

@@ -3,6 +3,9 @@
 #include "WaitingForPrerequisites.h"
 #include "Ready.h"
 #include "Completed.h"
+#include "Cancelled.h"
+#include "Escalated.h"
+#include "Failed.h"
 #include "WorkIterator.h"
 
 WorkNode::WorkNode(int maxRetries, std::string name) {
@@ -33,8 +36,8 @@ std::string WorkNode::getStateName() {
 	return state->getName();
 }
 
-void WorkNode::addPrerequisite(WorkNode* workNode) {
-	this->prerequisites.push_back(workNode);
+void WorkNode::addPrerequisite(std::string workName) {
+	this->prerequisites.push_back(workName);
 }
 
 void WorkNode::advanceState() {
@@ -74,13 +77,7 @@ void WorkNode::modify() {
 }
 
 bool WorkNode::prerequisitesCompleted() {
-	int count = this->prerequisites.size();
-	for (int i = 0; i < count; i++) {
-		if (!this->prerequisites[i]->isCompleted()) {
-			return false;
-		}
-	}
-	return true;
+	return this->prerequisites.size() == 0;
 }
 
 void WorkNode::reassign(EmployeeComponent* employeeComponent) {
@@ -106,9 +103,36 @@ void WorkNode::setParent(WorkNode* parent) {
 
 
 void WorkNode::setState(WorkState* workState) {
-	WorkState* oldState = this->state;
+	if (workState == nullptr){
+		return;
+	}
+	if (this->state != nullptr){
+		delete this->state;
+	}
 	this->state = workState;
-	delete oldState;
+}
+
+void WorkNode::setState(std::string stateName)
+{
+if (stateName == "WaitingForPrerequisites"){
+	setState(new WaitingForPrerequisites());
+}
+if (stateName == "Ready"){
+	setState(new Ready());
+}
+if (stateName == "Completed"){
+	setState(new Completed());
+}
+if (stateName == "Cancelled"){
+	setState(new Cancelled());
+}
+if (stateName == "Escalated"){
+	setState(new Escalated());
+}
+if (stateName == "Failed"){
+	setState(new Failed());
+}
+
 }
 
 void WorkNode::update() {

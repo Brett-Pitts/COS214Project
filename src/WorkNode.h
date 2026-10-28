@@ -30,7 +30,7 @@ public:
 	std::string getStateName();
 	virtual void add(WorkNode* workNode) = 0;
 
-	void addPrerequisite(WorkNode* workNode);
+	void addPrerequisite(std::string workName);
 
 	void advanceState();
 
@@ -61,6 +61,7 @@ public:
 	void setParent(WorkNode* parent);
 
 	void setState(WorkState* workState);
+	void setState(std::string stateName);
 
 	void update();
 	virtual WorkNode* clone() = 0;

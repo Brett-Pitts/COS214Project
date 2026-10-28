@@ -10,6 +10,8 @@ private:
 	~FileSystem();
 	void saveCompany(std::ofstream& file, CompanyNode* root);
 	void saveWorkflow(std::ofstream& file, WorkNode* root);
+	void loadCompany(std::ifstream& file, CompanyNode*& root);
+	void loadWorkflow(std::ifstream& file, WorkNode*& root);
 public:
 	void saveMemento(std::string name, Memento* memento);
 

@@ -10,13 +10,13 @@ class WorkUnit : public WorkNode {
 
 private:
 
-	int requiredProfession;
+	std::string requiredProfession;
 
 public:
 
-	WorkUnit(std::string name, int requiredProfession = -1);
+	WorkUnit(std::string name, std::string requiredProfession = "");
 
-	int getRequiredProfession() const { return requiredProfession; }
+	std::string getRequiredProfession() const { return requiredProfession; }
 	void add(WorkNode* workNode);
 	WorkNode* clone();
 	bool hasName(std::string name);
