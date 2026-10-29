@@ -2,6 +2,7 @@
 #define WORKNODE_H
 
 #include <vector>
+#include <string>
 #include "Aggregate.h"
 
 class EmployeeComponent;
@@ -45,6 +46,10 @@ public:
 	bool hasRetriesLeft();
 
 	bool isCompleted();
+
+	bool isOngoing();
+
+	bool isReady();
 
 	void modify();
 
