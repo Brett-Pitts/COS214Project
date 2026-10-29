@@ -1,6 +1,5 @@
 #include "FileSystem.h"
 #include <iostream>
-#include <fstream>
 #include "MementoType.h"
 #include "Team.h"
 #include "Department.h"
@@ -13,6 +12,7 @@
 #include "WorkUnit.h"
 #include "WorkNode.h"
 #include "Project.h"
+#include "Memento.h"
 FileSystem::~FileSystem() {
 	for (const auto& pair : storage) {
 		delete pair.second;
@@ -50,12 +50,12 @@ void FileSystem::saveCompany(std::ofstream& file, CompanyNode* root) {
 
 				if (kind == "Profession") {
 					file << "Profession\n";
-					file << ((EmployeeProfession*)emp)->professionId;
+					file << ((EmployeeProfession*)emp)->professionName;
 					file << "EndProfession\n";
 				}
 				else if (kind == "Competency") {
 					file << "Competency\n";
-					file << ((EmployeeCompetency*)emp)->competencyId;
+					file << ((EmployeeCompetency*)emp)->competencyName;
 					file << "EndCompetency\n";
 				}
 				emp = ((EmployeeCompetency*)emp)->wrapped;

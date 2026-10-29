@@ -3,7 +3,7 @@
 
 #include <string>
 
-using namespace std;
+
 
 class Mediator;
 class WorkUnit;
@@ -26,11 +26,11 @@ public:
 	virtual ~EmployeeComponent();
 
 	virtual std::string getKind() = 0;
-	virtual string getName() = 0;
-	virtual bool compareProfession(int professionId);
+	virtual std::string getName() = 0;
+	virtual bool compareProfession(std::string professionName) = 0;
 	virtual void doWork(WorkUnit* workUnit);
 	void handleWork(WorkUnit* workUnit);
-	virtual void receive(string message);
+	virtual void receive(std::string message);
 	void setSuccessor(EmployeeComponent* employeeComponent);
 	virtual void setMediator(Mediator* mediator);
 	virtual void wrap(EmployeeComponent* component) = 0;

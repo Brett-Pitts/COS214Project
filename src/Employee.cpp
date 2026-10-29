@@ -1,12 +1,12 @@
 #include "Employee.h"
 
-Employee::Employee(string name) : EmployeeComponent(), name(name) {}
+Employee::Employee(std::string name) : EmployeeComponent(), name(name) {}
 
 Employee::Employee(const Employee& other) : EmployeeComponent(other), name(other.name) {}
 
 Employee::~Employee() {}
 
-string Employee::getName() {
+std::string Employee::getName() {
 	return name;
 }
 
@@ -26,4 +26,8 @@ EmployeeComponent* Employee::clone() {
 	EmployeeComponent* ret = new Employee(this->name);
 
 	return ret;
+}
+
+bool Employee::compareProfession(std::string professionName) {
+	return false;
 }

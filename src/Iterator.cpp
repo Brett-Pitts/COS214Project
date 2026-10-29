@@ -1,6 +1,6 @@
 #include "Iterator.h"
 
-WorkNode Iterator::currentItem() {
+WorkNode* Iterator::currentItem() {
 	// TODO - implement Iterator::currentItem
 	throw "Not yet implemented";
 }

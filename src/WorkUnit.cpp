@@ -1,6 +1,6 @@
 #include "WorkUnit.h"
 
-WorkUnit::WorkUnit(std::string name, std::string requiredProfession = "") : WorkNode(3, name), requiredProfession(requiredProfession) {}
+WorkUnit::WorkUnit(std::string name, std::string requiredProfession) : WorkNode(3, name), requiredProfession(requiredProfession) {}
 
 std::string WorkUnit::getRequiredProfession() const { return requiredProfession; }
 
