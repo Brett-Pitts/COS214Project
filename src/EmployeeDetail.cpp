@@ -26,6 +26,13 @@ bool EmployeeDetail::compareProfession(int professionId) {
 	return wrapped->compareProfession(professionId);
 }
 
+bool EmployeeDetail::compareCompetency(int requiredCompetency) {
+	if (wrapped == nullptr) {
+		return EmployeeComponent::compareCompetency(requiredCompetency);
+	}
+	return wrapped->compareCompetency(requiredCompetency);
+}
+
 void EmployeeDetail::prepare(WorkUnit*) {}
 
 void EmployeeDetail::perform(WorkUnit*) {}
