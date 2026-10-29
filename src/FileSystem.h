@@ -2,17 +2,22 @@
 #define FILESYSTEM_H
 
 #include <string>
-#include "Memento.h"
 #include <map>
+#include <fstream>
+
+class Memento;
+class CompanyNode;
+class WorkNode;
+
 class FileSystem {
 private:
 	std::map<std::string, Memento*> storage;
-	~FileSystem();
 	void saveCompany(std::ofstream& file, CompanyNode* root);
 	void saveWorkflow(std::ofstream& file, WorkNode* root);
 	void loadCompany(std::ifstream& file, CompanyNode*& root);
 	void loadWorkflow(std::ifstream& file, WorkNode*& root);
 public:
+	~FileSystem();
 	void saveMemento(std::string name, Memento* memento);
 
 	Memento* loadMemento(std::string name);

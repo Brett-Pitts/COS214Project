@@ -6,17 +6,17 @@
 #include "FileSystem.h"
 
 class Memento {
-	friend ApplicationInterface;
-	friend FileSystem;
+	friend class ApplicationInterface;
+	friend class FileSystem;
 private:
 	void* root;
 	MementoType type;
 
-	MementoType getType() const;
-	void* getRoot() const;
 
 	void setRoot(void* root, MementoType type);
 public:
+	MementoType getType() const;
+	void* getRoot() const;
 	~Memento();
 	Memento(void* root, MementoType type);
 };

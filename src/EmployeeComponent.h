@@ -3,7 +3,9 @@
 
 #include <string>
 
+
 using namespace std;
+
 
 class Mediator;
 class WorkUnit;
@@ -29,7 +31,7 @@ public:
 
 	virtual std::string getKind() = 0;
 	virtual string getName() = 0;
-	virtual bool compareProfession(int professionId);
+	virtual bool compareProfession(string professionName) = 0
 	virtual bool compareCompetency(int requiredCompetency);
 	virtual void doWork(WorkUnit* workUnit);
 	bool handleWork(WorkUnit* workUnit);

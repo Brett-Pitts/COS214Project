@@ -12,18 +12,15 @@ EmployeeDetail::~EmployeeDetail() {
 	delete wrapped;
 }
 
-string EmployeeDetail::getName() {
+std::string EmployeeDetail::getName() {
 	if (wrapped == nullptr) {
 		return "";
 	}
 	return wrapped->getName();
 }
 
-bool EmployeeDetail::compareProfession(int professionId) {
-	if (wrapped == nullptr) {
-		return EmployeeComponent::compareProfession(professionId);
-	}
-	return wrapped->compareProfession(professionId);
+bool EmployeeDetail::compareProfession(std::string professionName) {
+	return wrapped->compareProfession(professionName);
 }
 
 bool EmployeeDetail::compareCompetency(int requiredCompetency) {

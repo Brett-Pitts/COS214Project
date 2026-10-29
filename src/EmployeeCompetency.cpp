@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-EmployeeCompetency::EmployeeCompetency(string name) : EmployeeDetail(), competencyId(getCompetencyLevel(name)), competencyName(name) {}
+EmployeeCompetency::EmployeeCompetency(std::string name) : EmployeeDetail(), competencyId(getCompetencyLevel(name)), competencyName(name) {}
 
 EmployeeCompetency::EmployeeCompetency(const EmployeeCompetency& other) : EmployeeDetail(other), competencyId(other.competencyId), competencyName(other.competencyName) {}
 
@@ -13,7 +13,7 @@ std::string EmployeeCompetency::getKind() {
 	return "Competency";
 }
 
-int EmployeeCompetency::getCompetencyLevel(string name) {
+int EmployeeCompetency::getCompetencyLevel(std::string name) {
 	if (name == "intern") {
 		return INTERN;
 	}
@@ -34,15 +34,15 @@ bool EmployeeCompetency::compareCompetency(int requiredCompetency) {
 }
 
 void EmployeeCompetency::prepare(WorkUnit* workUnit) {
-	cout << getName() << " gathers " << competencyName << " tools for " << workUnit->getName() << endl;
+	std::cout << getName() << " gathers " << competencyName << " tools for " << workUnit->getName() << std::endl;
 }
 
 void EmployeeCompetency::perform(WorkUnit* workUnit) {
-	cout << getName() << " uses " << competencyName << " skills on " << workUnit->getName() << endl;
+	std::cout<< getName() << " uses " << competencyName << " skills on " << workUnit->getName() << std::endl;
 }
 
 void EmployeeCompetency::finish(WorkUnit* workUnit) {
-	cout << getName() << " records " << competencyName << " outcome for " << workUnit->getName() << endl;
+	std::cout<< getName() << " records " << competencyName << " outcome for " << workUnit->getName() << std::endl;
 }
 
 EmployeeComponent* EmployeeCompetency::clone() {

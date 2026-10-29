@@ -10,8 +10,8 @@ class FileSystem;
 class EmployeeProfession : public EmployeeDetail {
 	friend class FileSystem;
 private:
-	int professionId;
-	static vector<string> professionList;
+	std::string professionName;
+	static std::vector<std::string> professionList;
 
 protected:
 	void prepare(WorkUnit* workUnit);
@@ -19,14 +19,14 @@ protected:
 	void finish(WorkUnit* workUnit);
 
 public:
-	EmployeeProfession(string name);
+	EmployeeProfession(std::string name);
 	EmployeeProfession(const EmployeeProfession& other);
 	virtual ~EmployeeProfession();
 	std::string getKind();
-	static int registerProfession(string name);
-	static bool deleteProfession(string name);
-	static int getProfessionId(string name);
-	bool compareProfession(int professionId);
+	static std::string registerProfession(std::string name);
+	static bool deleteProfession(std::string name);
+	static bool hasProfession(std::string name);
+	bool compareProfession(std::string professionName);
 	EmployeeComponent* clone();
 };
 

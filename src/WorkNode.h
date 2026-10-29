@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Aggregate.h"
+#include <string>
 
 class EmployeeComponent;
 class WorkIterator;
@@ -30,7 +31,7 @@ public:
 	virtual ~WorkNode();
 	std::string getStateName();
 	virtual void add(WorkNode* workNode) = 0;
-
+	const std::vector<std::string>& getPrerequisites() const;
 	void addPrerequisite(std::string workName);
 
 	void advanceState();

@@ -6,18 +6,19 @@
 class Employee : public EmployeeComponent {
 
 private:
-	string name;
+	std::string name;
 
 public:
-	Employee(string name);
+	Employee(std::string name);
 	Employee(const Employee& other);
 	virtual ~Employee();
 
-	string getName();
+	std::string getName();
 	std::string getKind();
 	void doWork(WorkUnit* workUnit);
 	void wrap(EmployeeComponent* component);
 	virtual EmployeeComponent* clone();
+	bool compareProfession(std::string professionName);
 };
 
 #endif
