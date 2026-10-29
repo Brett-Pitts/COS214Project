@@ -3,18 +3,18 @@
 
 class WorkNode;
 
-
 class Iterator {
 
-
 public:
-	WorkNode* currentItem();
+	virtual ~Iterator();
 
-	void first();
+	virtual WorkNode* currentItem() = 0;
 
-	bool isDone();
+	virtual void first() = 0;
 
-	void next();
+	virtual bool isDone() = 0;
+
+	virtual void next() = 0;
 };
 
 #endif
