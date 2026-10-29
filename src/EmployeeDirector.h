@@ -12,6 +12,8 @@ private:
 	EmployeeBuilder* builder;
 
 public:
+	EmployeeDirector() : builder(nullptr) {}
+
 	void setBuilder(EmployeeBuilder* builder);
 
 

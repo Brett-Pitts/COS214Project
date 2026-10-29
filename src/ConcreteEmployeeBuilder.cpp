@@ -13,6 +13,9 @@ void ConcreteEmployeeBuilder::reset() {
 }
 
 bool ConcreteEmployeeBuilder::addCompetency(std::string name) {
+	if (EmployeeCompetency::getCompetencyLevel(name) < 0) {
+		return false;
+	}
 	if (employee == nullptr) {
 		employee = new EmployeeCompetency(name);
 	}

@@ -1,6 +1,7 @@
 #include "EmployeeComponent.h"
 #include "Mediator.h"
 #include "WorkUnit.h"
+#include "EmployeeCompetency.h"
 
 #include <iostream>
 
@@ -13,6 +14,10 @@ EmployeeComponent::~EmployeeComponent() {}
 
 
 
+
+bool EmployeeComponent::compareCompetency(int requiredCompetency) {
+	return requiredCompetency < 0;
+}
 
 void EmployeeComponent::prepare(WorkUnit* workUnit) {
 	std::cout << getName() << " prepares " << workUnit->getName() << std::endl;
@@ -34,23 +39,34 @@ void EmployeeComponent::doWork(WorkUnit* workUnit) {
 	perform(workUnit);
 	finish(workUnit);
 	if (mediator != nullptr) {
-		mediator->notifyColleagues(this, getName() + " completed " + workUnit->getName());
+		mediator->notifyColleagues(this, getName() + " worked on " + workUnit->getName());
 	}
 }
 
-void EmployeeComponent::handleWork(WorkUnit* workUnit) {
-	if (workUnit == nullptr) {
-		return;
+bool EmployeeComponent::canAdvance(WorkUnit* workUnit) {
+	if (workUnit->isReady()) {
+		return compareCompetency(EmployeeCompetency::INTERN);
 	}
-	if (compareProfession(workUnit->getRequiredProfession())) {
+	if (workUnit->isOngoing()) {
+		return compareCompetency(EmployeeCompetency::SENIOR);
+	}
+	return false;
+}
+
+bool EmployeeComponent::handleWork(WorkUnit* workUnit) {
+	if (workUnit == nullptr) {
+		return false;
+	}
+	if (canAdvance(workUnit)) {
 		doWork(workUnit);
-		return;
+		workUnit->advanceState();
+		return true;
 	}
 	if (successor != nullptr) {
-		successor->handleWork(workUnit);
-		return;
+		return successor->handleWork(workUnit);
 	}
 	std::cout << "No employee in the chain can handle " << workUnit->getName() << std::endl;
+  return false;
 }
 
 void EmployeeComponent::receive(std::string message) {
@@ -64,4 +80,3 @@ void EmployeeComponent::setSuccessor(EmployeeComponent* employeeComponent) {
 void EmployeeComponent::setMediator(Mediator* mediator) {
 	this->mediator = mediator;
 }
-

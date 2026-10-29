@@ -3,6 +3,7 @@
 #include "WaitingForPrerequisites.h"
 #include "Ready.h"
 #include "Completed.h"
+#include "Ongoing.h"
 #include "Cancelled.h"
 #include "Escalated.h"
 #include "Failed.h"
@@ -73,6 +74,14 @@ bool WorkNode::hasRetriesLeft() {
 
 bool WorkNode::isCompleted() {
 	return dynamic_cast<Completed*>(this->state) != NULL;
+}
+
+bool WorkNode::isOngoing() {
+	return dynamic_cast<Ongoing*>(this->state) != NULL;
+}
+
+bool WorkNode::isReady() {
+	return dynamic_cast<Ready*>(this->state) != NULL;
 }
 
 void WorkNode::modify() {

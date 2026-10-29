@@ -4,6 +4,8 @@
 #include <string>
 
 
+using namespace std;
+
 
 class Mediator;
 class WorkUnit;
@@ -14,6 +16,8 @@ class EmployeeComponent {
 private:
 	Mediator* mediator;
 	EmployeeComponent* successor;
+
+	bool canAdvance(WorkUnit* workUnit);
 
 protected:
 	virtual void prepare(WorkUnit* workUnit);
@@ -26,11 +30,12 @@ public:
 	virtual ~EmployeeComponent();
 
 	virtual std::string getKind() = 0;
-	virtual std::string getName() = 0;
-	virtual bool compareProfession(std::string professionName) = 0;
+	virtual string getName() = 0;
+	virtual bool compareProfession(string professionName) = 0
+	virtual bool compareCompetency(int requiredCompetency);
 	virtual void doWork(WorkUnit* workUnit);
-	void handleWork(WorkUnit* workUnit);
-	virtual void receive(std::string message);
+	bool handleWork(WorkUnit* workUnit);
+	virtual void receive(string message);
 	void setSuccessor(EmployeeComponent* employeeComponent);
 	virtual void setMediator(Mediator* mediator);
 	virtual void wrap(EmployeeComponent* component) = 0;

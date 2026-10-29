@@ -3,14 +3,13 @@
 
 #include "EmployeeDetail.h"
 
-#include <vector>
 class FileSystem;
 
 class EmployeeCompetency : public EmployeeDetail {
 	friend class FileSystem;
 private:
-	std::string competencyName;
-	static std::vector<std::string> competencyList;
+	int competencyId;
+	string competencyName;
 
 protected:
 	void prepare(WorkUnit* workUnit);
@@ -18,13 +17,15 @@ protected:
 	void finish(WorkUnit* workUnit);
 
 public:
-	EmployeeCompetency(std::string name);
+	enum { INTERN = 0, JUNIOR = 1, SENIOR = 2 };
+
+	EmployeeCompetency(string name);
 	EmployeeCompetency(const EmployeeCompetency& other);
 	virtual ~EmployeeCompetency();
+
 	std::string getKind();
-	static std::string registerCompetency(std::string name);
-	static bool deleteCompetency(std::string name);
-	static bool hasCompetency(std::string name);
+	static int getCompetencyLevel(string name);
+	bool compareCompetency(int requiredCompetency);
 	EmployeeComponent* clone();
 };
 

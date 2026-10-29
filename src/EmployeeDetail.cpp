@@ -23,6 +23,12 @@ bool EmployeeDetail::compareProfession(std::string professionName) {
 	return wrapped->compareProfession(professionName);
 }
 
+bool EmployeeDetail::compareCompetency(int requiredCompetency) {
+	if (wrapped == nullptr) {
+		return EmployeeComponent::compareCompetency(requiredCompetency);
+	}
+	return wrapped->compareCompetency(requiredCompetency);
+}
 
 void EmployeeDetail::prepare(WorkUnit*) {}
 

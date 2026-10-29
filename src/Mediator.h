@@ -3,8 +3,6 @@
 
 #include <string>
 
-
-
 class EmployeeComponent;
 
 class Mediator {
