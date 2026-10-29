@@ -1,20 +1,6 @@
-```
- /$$    /$$ /$$ /$$                       /$$$$$$$$                     /$$
-| $$   | $$|__/| $$                      | $$_____/                    |__/
-| $$   | $$ /$$| $$$$$$$   /$$$$$$       | $$       /$$$$$$$   /$$$$$$  /$$ /$$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$$
-|  $$ / $$/| $$| $$__  $$ /$$__  $$      | $$$$$   | $$__  $$ /$$__  $$| $$| $$__  $$ /$$__  $$ /$$__  $$ /$$__  $$ /$$_____/
- \  $$ $$/ | $$| $$  \ $$| $$$$$$$$      | $$__/   | $$  \ $$| $$  \ $$| $$| $$  \ $$| $$$$$$$$| $$$$$$$$| $$  \__/|  $$$$$$
-  \  $$$/  | $$| $$  | $$| $$_____/      | $$      | $$  | $$| $$  | $$| $$| $$  | $$| $$_____/| $$_____/| $$       \____  $$
-   \  $/   | $$| $$$$$$$/|  $$$$$$$      | $$$$$$$$| $$  | $$|  $$$$$$$| $$| $$  | $$|  $$$$$$$|  $$$$$$$| $$       /$$$$$$$/
-    \_/    |__/|_______/  \_______/      |________/|__/  |__/ \____  $$|__/|__/  |__/ \_______/ \_______/|__/      |_______/
-                                                              /$$  \ $$
-                                                             |  $$$$$$/
-                                                              \______/
-```
+![Logo](Logo/logo.png)
+# By Vibe Engineers
 
-
-
-# COS 214 Project: TIVIDY
 
 TIVIDY is a generic workflow management system. A project is a tree of work that moves through a lifecycle, is done by employees, and reports progress up the tree. The system is generic. The scenario is only one use of it.
 
@@ -37,10 +23,6 @@ Failures handled: game cancelled, out of money, deadline missed.
 | Rudolph Botha | u25387023 |
 
 [Current tasks](docs/Current%20Tasks.docx)
-
-## Meeting
-
-[meet.google.com/vyj-iran-psu](https://meet.google.com/vyj-iran-psu)
 
 ## Design summary
 
@@ -68,28 +50,6 @@ Failures handled: game cancelled, out of money, deadline missed.
 | Template Method | prepare, perform, finish |
 | Iterator | WorkIterator: next Ready WorkUnit |
 
-## Repository layout
-
-```
-README.md
-.gitignore
-docs/
-  COS 214 Project PDF.docx
-  COS214_Practical6_TIVIDY.pdf
-  Current Tasks.docx
-  Task 2 Define the Scenario and System.docx
-  Task 4 Design Patterns.docx
-  Design Decisions and Revision History/
-  Research Material and References/
-  UML Diagrams/
-    Activity Diagrams/
-    Class Diagram/
-    Sequence Diagrams/
-    State Diagram/
-include/
-src/
-build/
-```
 
 ## Docs
 
@@ -115,3 +75,6 @@ build/
 ## Contribution rules
 
 When you work on a task, make a branch for it and merge it into main when you are finished. If your branch needs another branch, wait until that one is merged into main and then pull from main. Whenever you make a design decision, update the Design Decisions and Revision History document.
+
+## Logo
+Logo was made with this [website](https://madegooddesigns.com/tools/logo-maker/), no AI was involved.
