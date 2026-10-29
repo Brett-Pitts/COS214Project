@@ -2,10 +2,11 @@
 #define WORKNODE_H
 
 #include <vector>
+#include <string>
 #include "Aggregate.h"
+#include "WorkIterator.h"
 
 class EmployeeComponent;
-class WorkIterator;
 class WorkMediator;
 class WorkState;
 class FileSystem;
@@ -36,7 +37,7 @@ public:
 
 	virtual bool allChildrenCompleted();
 
-	WorkIterator createIterator();
+	WorkIterator* createIterator();
 
 	virtual WorkNode* getChild(int index);
 
