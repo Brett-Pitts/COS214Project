@@ -1,6 +1,7 @@
 #include "EmployeeComponent.h"
 #include "Mediator.h"
 #include "WorkUnit.h"
+#include "EmployeeCompetency.h"
 
 #include <iostream>
 
@@ -10,10 +11,12 @@ EmployeeComponent::EmployeeComponent(const EmployeeComponent& other) : mediator(
 
 EmployeeComponent::~EmployeeComponent() {}
 
-
-
 bool EmployeeComponent::compareProfession(int professionId) {
 	return professionId < 0;
+}
+
+bool EmployeeComponent::compareCompetency(int requiredCompetency) {
+	return requiredCompetency < 0;
 }
 
 void EmployeeComponent::prepare(WorkUnit* workUnit) {
@@ -36,23 +39,33 @@ void EmployeeComponent::doWork(WorkUnit* workUnit) {
 	perform(workUnit);
 	finish(workUnit);
 	if (mediator != nullptr) {
-		mediator->notifyColleagues(this, getName() + " completed " + workUnit->getName());
+		mediator->notifyColleagues(this, getName() + " worked on " + workUnit->getName());
 	}
 }
 
-void EmployeeComponent::handleWork(WorkUnit* workUnit) {
-	if (workUnit == nullptr) {
-		return;
+bool EmployeeComponent::canAdvance(WorkUnit* workUnit) {
+	if (workUnit->isReady()) {
+		return compareCompetency(EmployeeCompetency::INTERN);
 	}
-	if (compareProfession(workUnit->getRequiredProfession())) {
+	if (workUnit->isOngoing()) {
+		return compareCompetency(EmployeeCompetency::SENIOR);
+	}
+	return false;
+}
+
+bool EmployeeComponent::handleWork(WorkUnit* workUnit) {
+	if (workUnit == nullptr) {
+		return false;
+	}
+	if (canAdvance(workUnit)) {
 		doWork(workUnit);
-		return;
+		workUnit->advanceState();
+		return true;
 	}
 	if (successor != nullptr) {
-		successor->handleWork(workUnit);
-		return;
+		return successor->handleWork(workUnit);
 	}
-	cout << "No employee in the chain can handle " << workUnit->getName() << endl;
+	return false;
 }
 
 void EmployeeComponent::receive(string message) {
@@ -65,8 +78,4 @@ void EmployeeComponent::setSuccessor(EmployeeComponent* employeeComponent) {
 
 void EmployeeComponent::setMediator(Mediator* mediator) {
 	this->mediator = mediator;
-}
-
-void EmployeeComponent::setSuccessor(EmployeeComponent* employeeComponent) {
-	this->successor = employeeComponent;
 }
