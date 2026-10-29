@@ -3,11 +3,9 @@
 
 #include <iostream>
 
-vector<string> EmployeeCompetency::competencyList;
+EmployeeCompetency::EmployeeCompetency(string name) : EmployeeDetail(), competencyId(getCompetencyLevel(name)), competencyName(name) {}
 
-EmployeeCompetency::EmployeeCompetency(string name) : EmployeeDetail(), competencyId(registerCompetency(name)) {}
-
-EmployeeCompetency::EmployeeCompetency(const EmployeeCompetency& other) : EmployeeDetail(other), competencyId(other.competencyId) {}
+EmployeeCompetency::EmployeeCompetency(const EmployeeCompetency& other) : EmployeeDetail(other), competencyId(other.competencyId), competencyName(other.competencyName) {}
 
 EmployeeCompetency::~EmployeeCompetency() {}
 
@@ -15,59 +13,42 @@ std::string EmployeeCompetency::getKind() {
 	return "Competency";
 }
 
-int EmployeeCompetency::registerCompetency(string name) {
-	if (name.empty()) {
-		return -1;
+int EmployeeCompetency::getCompetencyLevel(string name) {
+	if (name == "intern") {
+		return INTERN;
 	}
-	int existing = getCompetencyId(name);
-	if (existing >= 0) {
-		return existing;
+	if (name == "junior") {
+		return JUNIOR;
 	}
-	for (size_t i = 0; i < competencyList.size(); i++) {
-		if (competencyList[i].empty()) {
-			competencyList[i] = name;
-			return (int)i;
-		}
-	}
-	competencyList.push_back(name);
-	return (int)competencyList.size() - 1;
-}
-
-bool EmployeeCompetency::deleteCompetency(string name) {
-	int id = getCompetencyId(name);
-	if (id < 0) {
-		return false;
-	}
-	competencyList[id] = "";
-	return true;
-}
-
-int EmployeeCompetency::getCompetencyId(string name) {
-	if (name.empty()) {
-		return -1;
-	}
-	for (size_t i = 0; i < competencyList.size(); i++) {
-		if (competencyList[i] == name) {
-			return (int)i;
-		}
+	if (name == "senior") {
+		return SENIOR;
 	}
 	return -1;
 }
 
+bool EmployeeCompetency::compareCompetency(int requiredCompetency) {
+	if (requiredCompetency >= 0 && competencyId >= requiredCompetency) {
+		return true;
+	}
+	return EmployeeDetail::compareCompetency(requiredCompetency);
+}
+
 void EmployeeCompetency::prepare(WorkUnit* workUnit) {
-	cout << getName() << " gathers " << competencyList[competencyId] << " tools for " << workUnit->getName() << endl;
+	cout << getName() << " gathers " << competencyName << " tools for " << workUnit->getName() << endl;
 }
 
 void EmployeeCompetency::perform(WorkUnit* workUnit) {
-	cout << getName() << " uses " << competencyList[competencyId] << " on " << workUnit->getName() << endl;
+	cout << getName() << " uses " << competencyName << " skills on " << workUnit->getName() << endl;
 }
 
 void EmployeeCompetency::finish(WorkUnit* workUnit) {
-	cout << getName() << " records " << competencyList[competencyId] << " outcome for " << workUnit->getName() << endl;
+	cout << getName() << " records " << competencyName << " outcome for " << workUnit->getName() << endl;
 }
 
 EmployeeComponent* EmployeeCompetency::clone() {
-	EmployeeComponent* ret = new EmployeeCompetency(competencyList[competencyId]);
-	ret->wrap(wrapped->clone());
+	EmployeeComponent* ret = new EmployeeCompetency(competencyName);
+	if (wrapped != nullptr) {
+		ret->wrap(wrapped->clone());
+	}
 	return ret;
 }
