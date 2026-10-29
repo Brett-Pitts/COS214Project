@@ -1,11 +1,14 @@
 #ifndef WORKITERATOR_H
 #define WORKITERATOR_H
 
-class WorkIterator : Iterator, Iterator {
+#include "Iterator.h"
+class WorkNode;
+
+class WorkIterator : public Iterator {
 
 private:
-	WorkNode aggregate;
-	WorkNode current;
+	WorkNode* aggregate;
+	WorkNode* current;
 
 public:
 	void first();
@@ -14,7 +17,7 @@ public:
 
 	bool isDone();
 
-	WorkNode currentItem();
+	WorkNode* currentItem();
 };
 
 #endif

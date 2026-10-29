@@ -8,7 +8,7 @@ class Project;
 class Manager : public Employee {
 
 public:
-	Manager(string name);
+	Manager(std::string name);
 	Manager(const Manager& other);
 	virtual ~Manager();
 

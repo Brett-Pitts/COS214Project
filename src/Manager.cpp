@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-Manager::Manager(string name) : Employee(name) {}
+Manager::Manager(std::string name) : Employee(name) {}
 
 Manager::Manager(const Manager& other) : Employee(other) {}
 
@@ -17,14 +17,14 @@ void Manager::handleEscalation(WorkUnit* workUnit) {
 	if (workUnit == nullptr) {
 		return;
 	}
-	cout << getName() << " handles escalation of " << workUnit->getName() << endl;
+	std::cout << getName() << " handles escalation of " << workUnit->getName() << std::endl;
 }
 
 void Manager::cancelProject(Project* project) {
 	if (project == nullptr) {
 		return;
 	}
-	cout << getName() << " cancels project" << endl;
+	std::cout << getName() << " cancels project" << std::endl;
 }
 
 EmployeeComponent* Manager::clone() {

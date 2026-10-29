@@ -18,8 +18,8 @@ public:
 	EmployeeDetail(const EmployeeDetail& other);
 	virtual ~EmployeeDetail();
 
-	string getName();
-	bool compareProfession(int professionId);
+	std::string getName();
+	bool compareProfession(std::string professionName);
 	void doWork(WorkUnit* workUnit);
 	void setMediator(Mediator* mediator);
 	void wrap(EmployeeComponent* component);

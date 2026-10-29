@@ -15,7 +15,7 @@ bool WorkIterator::isDone() {
 	throw "Not yet implemented";
 }
 
-WorkNode WorkIterator::currentItem() {
+WorkNode* WorkIterator::currentItem() {
 	// TODO - implement WorkIterator::currentItem
 	throw "Not yet implemented";
 }

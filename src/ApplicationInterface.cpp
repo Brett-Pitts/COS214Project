@@ -1,4 +1,5 @@
 #include "ApplicationInterface.h"
+#include "Memento.h"
 
 void ApplicationInterface::createProject() {
 	// TODO - implement ApplicationInterface::createProject
@@ -18,6 +19,13 @@ void ApplicationInterface::addDepartment() {
 void ApplicationInterface::addEmployee() {
 	// TODO - implement ApplicationInterface::addEmployee
 	throw "Not yet implemented";
+}
+
+void ApplicationInterface::setWorkflow(WorkNode* root) {
+	this->workflowRoot = root;
+}
+void ApplicationInterface::setCompany(CompanyNode* root) {
+	this->companyRoot = root;
 }
 
 Memento* ApplicationInterface::createMemento(MementoType type) {

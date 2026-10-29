@@ -10,8 +10,8 @@ class EmployeeComponent;
 class Mediator {
 
 public:
-	virtual ~Mediator() {}
-	virtual void notifyColleagues(EmployeeComponent* employeeComponent, string message) = 0;
+	virtual ~Mediator() {};
+	virtual void notifyColleagues(EmployeeComponent* employeeComponent, std::string message) = 0;
 };
 
 #endif
