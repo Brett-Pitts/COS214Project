@@ -50,9 +50,8 @@ bool WorkNode::allChildrenCompleted() {
 	return true;
 }
 
-WorkIterator WorkNode::createIterator() {
-	// TODO - implement WorkNode::createIterator
-	throw "Not yet implemented";
+WorkIterator* WorkNode::createIterator() {
+	return new WorkIterator(this);
 }
 
 WorkNode* WorkNode::getChild(int index) {
@@ -147,5 +146,3 @@ int WorkNode::getMaxRetries() {
 std::string WorkNode::getName() {
 	return name;
 }
-
-
