@@ -76,7 +76,9 @@ void EmployeeProfession::finish(WorkUnit* workUnit) {
 
 EmployeeComponent* EmployeeProfession::clone() {
 	EmployeeComponent* ret = new EmployeeProfession(professionList[professionId]);
-	ret->wrap(wrapped->clone());
+	if (wrapped != nullptr) {
+		ret->wrap(wrapped->clone());
+	}
 	return ret;
 
 }
