@@ -20,6 +20,7 @@ public:
 
 	string getName();
 	bool compareProfession(int professionId);
+	bool compareCompetency(int requiredCompetency);
 	void doWork(WorkUnit* workUnit);
 	void setMediator(Mediator* mediator);
 	void wrap(EmployeeComponent* component);
