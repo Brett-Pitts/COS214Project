@@ -15,6 +15,8 @@ private:
 	Mediator* mediator;
 	EmployeeComponent* successor;
 
+	bool canAdvance(WorkUnit* workUnit);
+
 protected:
 	virtual void prepare(WorkUnit* workUnit);
 	virtual void perform(WorkUnit* workUnit);
@@ -28,8 +30,9 @@ public:
 	virtual std::string getKind() = 0;
 	virtual string getName() = 0;
 	virtual bool compareProfession(int professionId);
+	virtual bool compareCompetency(int requiredCompetency);
 	virtual void doWork(WorkUnit* workUnit);
-	void handleWork(WorkUnit* workUnit);
+	bool handleWork(WorkUnit* workUnit);
 	virtual void receive(string message);
 	void setSuccessor(EmployeeComponent* employeeComponent);
 	virtual void setMediator(Mediator* mediator);
