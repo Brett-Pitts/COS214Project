@@ -3,6 +3,7 @@
 #include "WaitingForPrerequisites.h"
 #include "Ready.h"
 #include "Completed.h"
+#include "Ongoing.h"
 #include "Cancelled.h"
 #include "Escalated.h"
 #include "Failed.h"
@@ -34,6 +35,10 @@ WorkNode::~WorkNode() {
 
 std::string WorkNode::getStateName() {
 	return state->getName();
+}
+
+const std::vector<std::string>& WorkNode::getPrerequisites() const {
+	return prerequisites;
 }
 
 void WorkNode::addPrerequisite(std::string workName) {
@@ -70,6 +75,14 @@ bool WorkNode::isCompleted() {
 	return dynamic_cast<Completed*>(this->state) != NULL;
 }
 
+bool WorkNode::isOngoing() {
+	return dynamic_cast<Ongoing*>(this->state) != NULL;
+}
+
+bool WorkNode::isReady() {
+	return dynamic_cast<Ready*>(this->state) != NULL;
+}
+
 void WorkNode::modify() {
 	// TODO - implement WorkNode::modify
 	throw "Not yet implemented";
@@ -102,35 +115,34 @@ void WorkNode::setParent(WorkNode* parent) {
 
 
 void WorkNode::setState(WorkState* workState) {
-	if (workState == nullptr){
+	if (workState == nullptr) {
 		return;
 	}
-	if (this->state != nullptr){
+	if (this->state != nullptr) {
 		delete this->state;
 	}
 	this->state = workState;
 }
 
-void WorkNode::setState(std::string stateName)
-{
-if (stateName == "WaitingForPrerequisites"){
-	setState(new WaitingForPrerequisites());
-}
-if (stateName == "Ready"){
-	setState(new Ready());
-}
-if (stateName == "Completed"){
-	setState(new Completed());
-}
-if (stateName == "Cancelled"){
-	setState(new Cancelled());
-}
-if (stateName == "Escalated"){
-	setState(new Escalated());
-}
-if (stateName == "Failed"){
-	setState(new Failed());
-}
+void WorkNode::setState(std::string stateName) {
+	if (stateName == "WaitingForPrerequisites") {
+		setState(new WaitingForPrerequisites());
+	}
+	if (stateName == "Ready") {
+		setState(new Ready());
+	}
+	if (stateName == "Completed") {
+		setState(new Completed());
+	}
+	if (stateName == "Cancelled") {
+		setState(new Cancelled());
+	}
+	if (stateName == "Escalated") {
+		setState(new Escalated());
+	}
+	if (stateName == "Failed") {
+		setState(new Failed());
+	}
 
 }
 

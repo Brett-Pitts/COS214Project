@@ -10,6 +10,8 @@ protected:
 	EmployeeComponent* employee;
 
 public:
+	EmployeeBuilder() : employee(nullptr) {}
+
 	virtual void reset() = 0;
 	virtual bool addCompetency(std::string name) = 0;
 

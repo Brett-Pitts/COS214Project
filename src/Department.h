@@ -3,7 +3,7 @@
 
 #include "CompanyNode.h"
 #include <vector>
-class Department : CompanyNode {
+class Department : public CompanyNode {
 private:
 
 	std::vector<CompanyNode*> children;

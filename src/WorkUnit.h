@@ -16,7 +16,7 @@ public:
 
 	WorkUnit(std::string name, std::string requiredProfession = "");
 
-	std::string getRequiredProfession() const { return requiredProfession; }
+	std::string getRequiredProfession() const;
 	void add(WorkNode* workNode);
 	WorkNode* clone();
 	bool hasName(std::string name);

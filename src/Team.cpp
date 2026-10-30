@@ -1,20 +1,49 @@
 #include "Team.h"
 #include "EmployeeComponent.h"
+#include "WorkUnit.h"
+#include "EmployeeProfession.h"
+using namespace std;
+Team::Team(std::string profession) {
+    this->profession = profession;
+}
 
-void Team::addMember(EmployeeComponent* employeeComponent) {
+std::string Team::getProfession() {
+    return this->profession;
+}
+
+bool Team::addMember(EmployeeComponent* employeeComponent) {
+	if (employeeComponent == nullptr) {
+		return false;
+	}
+	if (!this->profession.empty() && !employeeComponent->compareProfession(this->profession)) {
+		return false;
+	}
 	int count = this->members.size();
 	if (count > 0) {
 		this->members[count - 1]->setSuccessor(employeeComponent);
 	}
 	employeeComponent->setMediator(this);
 	this->members.push_back(employeeComponent);
+	return true;
 }
 
 void Team::assignWork(WorkUnit* workUnit) {
-	if (this->members.empty()) {
+	if (this->members.empty() || workUnit == nullptr) {
 		return;
 	}
-	this->members[0]->handleWork(workUnit);
+
+	std::string required = workUnit->getRequiredProfession();
+	if (required != "") {
+		if (!EmployeeProfession::hasProfession(required)) {
+			return;
+		}
+		if (!this->profession.empty() && required != this->profession) {
+			return;
+		}
+	}
+
+	while (this->members[0]->handleWork(workUnit)) {
+	}
 }
 
 void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string message) {
@@ -28,20 +57,24 @@ void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string me
 }
 
 CompanyNode* Team::clone() {
-	Team* ret = new Team();
+	Team* copy = new Team(this->profession);
+	int count = this->members.size();
 
-	for (auto& mem : members) {
-		ret->addMember(mem->clone());
+	for (int i = 0; i < count; i++) {
+		EmployeeComponent* memberCopy = this->members[i]->clone();
+		if (!copy->addMember(memberCopy)) {
+			delete memberCopy;
+		}
 	}
-
-	return ret;
+	return copy;
 }
 
-Team::~Team() {
+Team::~Team()
+{
 	if (!members.empty()) {
 		for (auto it = members.begin(); it != members.end(); ++it) {
-
-			delete* it;
+			
+			delete *it;
 		}
 	}
 }
