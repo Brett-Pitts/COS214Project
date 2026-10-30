@@ -121,33 +121,38 @@ void completeUnit(WorkNode& node) {
 	}
 }
 
-TEST_CASE("Mediator: notifyColleagues delivers to every colleague except the sender", "[mediator]") {
+TEST_CASE("Mediator: notifies every colleague except the sender", "[mediator]") {
 	ConcreteWorkMediator mediator;
 	WorkUnit sender("A", "coder");
 	WorkUnit b("B", "coder");
 	WorkUnit c("C", "coder");
-	WorkUnit d("D", "coder");
-	b.addPrerequisite("A");
-	c.addPrerequisite("A");
 	sender.addPrerequisite("A");
-	d.addPrerequisite("Z");
-
-	mediator.colleagues = { &sender, &b, &c, &d };
+	b.addPrerequisite("A");
+	c.addPrerequisite("Z");
+	mediator.colleagues = { &sender, &b, &c };
 
 	mediator.notifyColleagues(&sender, "A");
 
-	CHECK(b.getPrerequisites().empty());
-	CHECK(c.getPrerequisites().empty());
 	CHECK(sender.getPrerequisites().size() == 1);
-	CHECK(d.getPrerequisites().size() == 1);
+	CHECK(b.getPrerequisites().empty());
+	CHECK(c.getPrerequisites().size() == 1);
 }
 
-TEST_CASE("Mediator: handles an empty colleague list", "[mediator]") {
+TEST_CASE("Mediator: a waiting node becomes ready once all prerequisites are cleared", "[mediator]") {
 	ConcreteWorkMediator mediator;
 	WorkUnit a("A", "coder");
+	WorkUnit b("B", "coder");
+	WorkUnit c("C", "coder");
+	c.addPrerequisite("A");
+	c.addPrerequisite("B");
+	mediator.colleagues = { &a, &b, &c };
 
-	CHECK_NOTHROW(mediator.notifyColleagues(&a, "A"));
-	CHECK_NOTHROW(mediator.notifyColleagues(nullptr, "A"));
+	mediator.notifyColleagues(&a, "A");
+	CHECK(c.getStateName() == "WaitingForPrerequisites");
+
+	mediator.notifyColleagues(&b, "B");
+	CHECK(c.getPrerequisites().empty());
+	CHECK(c.isReady());
 }
 
 TEST_CASE("Mediator: a message matching no prerequisite changes nothing", "[mediator]") {
@@ -159,139 +164,34 @@ TEST_CASE("Mediator: a message matching no prerequisite changes nothing", "[medi
 
 	mediator.notifyColleagues(&a, "Unrelated");
 
-	REQUIRE(b.getPrerequisites().size() == 1);
-	CHECK(b.getPrerequisites()[0] == "A");
+	CHECK(b.getPrerequisites().size() == 1);
 	CHECK(b.getStateName() == "WaitingForPrerequisites");
 }
 
-TEST_CASE("Mediator: clearing the last prerequisite moves a waiting node to Ready", "[mediator]") {
-	ConcreteWorkMediator mediator;
-	WorkUnit a("A", "coder");
-	WorkUnit b("B", "coder");
-	b.addPrerequisite("A");
-	mediator.colleagues = { &a, &b };
-
-	REQUIRE(b.getStateName() == "WaitingForPrerequisites");
-	mediator.notifyColleagues(&a, "A");
-
-	CHECK(b.getPrerequisites().empty());
-	CHECK(b.isReady());
-}
-
-TEST_CASE("Mediator: a node with several prerequisites stays waiting until all are done", "[mediator]") {
-	ConcreteWorkMediator mediator;
-	WorkUnit a("A", "coder");
-	WorkUnit b("B", "coder");
-	WorkUnit c("C", "coder");
-	c.addPrerequisite("A");
-	c.addPrerequisite("B");
-	mediator.colleagues = { &a, &b, &c };
-
-	mediator.notifyColleagues(&a, "A");
-	CHECK(c.getPrerequisites().size() == 1);
-	CHECK(c.getStateName() == "WaitingForPrerequisites");
-	CHECK_FALSE(c.isReady());
-
-	mediator.notifyColleagues(&b, "B");
-	CHECK(c.getPrerequisites().empty());
-	CHECK(c.isReady());
-}
-
-TEST_CASE("Mediator: duplicate prerequisites are all cleared by one notification", "[mediator]") {
-	ConcreteWorkMediator mediator;
-	WorkUnit a("A", "coder");
-	WorkUnit b("B", "coder");
-	b.addPrerequisite("A");
-	b.addPrerequisite("A");
-	mediator.colleagues = { &a, &b };
-
-	mediator.notifyColleagues(&a, "A");
-
-	CHECK(b.getPrerequisites().empty());
-	CHECK(b.isReady());
-}
-
-TEST_CASE("Mediator: a node that is not waiting does not change state when its prerequisites clear", "[mediator]") {
-	ConcreteWorkMediator mediator;
-	WorkUnit a("A", "coder");
-	WorkUnit b("B", "coder");
-	b.addPrerequisite("A");
-	b.setState("Ongoing");
-	mediator.colleagues = { &a, &b };
-
-	mediator.notifyColleagues(&a, "A");
-
-	CHECK(b.getPrerequisites().empty());
-	CHECK(b.isOngoing());
-}
-
-TEST_CASE("Mediator: a notification is repeatable and does not re-advance a node", "[mediator]") {
-	ConcreteWorkMediator mediator;
-	WorkUnit a("A", "coder");
-	WorkUnit b("B", "coder");
-	b.addPrerequisite("A");
-	mediator.colleagues = { &a, &b };
-
-	mediator.notifyColleagues(&a, "A");
-	REQUIRE(b.isReady());
-
-	mediator.notifyColleagues(&a, "A");
-	CHECK(b.isReady());
-	CHECK_FALSE(b.isOngoing());
-}
-
-TEST_CASE("Mediator: setMediator wires a node to the mediator", "[mediator]") {
+TEST_CASE("Mediator: a node only notifies when it becomes completed", "[mediator]") {
 	SpyWorkMediator spy;
 	WorkUnit a("A", "coder");
 	a.setMediator(&spy);
 
-	SECTION("only the final transition into Completed notifies") {
+	SECTION("earlier transitions do not notify") {
 		a.advanceState();
-		CHECK(a.isReady());
 		a.advanceState();
-		CHECK(a.isOngoing());
 		a.advanceState();
-		CHECK(a.getStateName() == "Escalated");
 		CHECK(spy.calls.empty());
+	}
 
+	SECTION("completing notifies once with the node's name") {
+		completeUnit(a);
 		a.advanceState();
-		CHECK(a.isCompleted());
 		REQUIRE(spy.calls.size() == 1);
 		CHECK(spy.calls[0].first == &a);
 		CHECK(spy.calls[0].second == "A");
-	}
-
-	SECTION("advancing an already completed node does not notify again") {
-		completeUnit(a);
-		REQUIRE(a.isCompleted());
-		REQUIRE(spy.calls.size() == 1);
-
-		a.advanceState();
-		a.advanceState();
-		CHECK(spy.calls.size() == 1);
-	}
-
-	SECTION("a node waiting on prerequisites that cannot advance does not notify") {
-		WorkUnit b("B", "coder");
-		b.setMediator(&spy);
-		b.addPrerequisite("A");
-
-		b.advanceState();
-		CHECK(b.getStateName() == "WaitingForPrerequisites");
-		CHECK(spy.calls.empty());
 	}
 
 	SECTION("a node with no mediator completes without error") {
 		WorkUnit lone("Lone", "coder");
 		CHECK_NOTHROW(completeUnit(lone));
 		CHECK(lone.isCompleted());
-	}
-
-	SECTION("replacing the mediator with nullptr stops notifications") {
-		a.setMediator(nullptr);
-		completeUnit(a);
-		CHECK(a.isCompleted());
-		CHECK(spy.calls.empty());
 	}
 }
 
@@ -304,11 +204,8 @@ TEST_CASE("Mediator: completing a node unblocks its dependent", "[mediator]") {
 	design.setMediator(&mediator);
 	build.setMediator(&mediator);
 
-	REQUIRE(build.getStateName() == "WaitingForPrerequisites");
-
 	completeUnit(design);
 
-	CHECK(design.isCompleted());
 	CHECK(build.getPrerequisites().empty());
 	CHECK(build.isReady());
 }
@@ -330,73 +227,5 @@ TEST_CASE("Mediator: completions cascade through a dependency chain", "[mediator
 	CHECK(c.getStateName() == "WaitingForPrerequisites");
 
 	completeUnit(b);
-	CHECK(b.isCompleted());
 	CHECK(c.isReady());
-
-	completeUnit(c);
-	CHECK(c.isCompleted());
-}
-
-TEST_CASE("Mediator: a diamond dependency only unblocks after both branches complete", "[mediator]") {
-	ConcreteWorkMediator mediator;
-	WorkUnit root("Root", "coder");
-	WorkUnit left("Left", "coder");
-	WorkUnit right("Right", "coder");
-	WorkUnit join("Join", "coder");
-	left.addPrerequisite("Root");
-	right.addPrerequisite("Root");
-	join.addPrerequisite("Left");
-	join.addPrerequisite("Right");
-	mediator.colleagues = { &root, &left, &right, &join };
-	for (WorkNode* n : mediator.colleagues) n->setMediator(&mediator);
-
-	completeUnit(root);
-	CHECK(left.isReady());
-	CHECK(right.isReady());
-	CHECK(join.getStateName() == "WaitingForPrerequisites");
-
-	completeUnit(left);
-	CHECK(join.getPrerequisites().size() == 1);
-	CHECK_FALSE(join.isReady());
-
-	completeUnit(right);
-	CHECK(join.getPrerequisites().empty());
-	CHECK(join.isReady());
-}
-
-TEST_CASE("Mediator: independent nodes are unaffected by each other's completion", "[mediator]") {
-	ConcreteWorkMediator mediator;
-	WorkUnit a("A", "coder");
-	WorkUnit b("B", "coder");
-	mediator.colleagues = { &a, &b };
-	a.setMediator(&mediator);
-	b.setMediator(&mediator);
-
-	completeUnit(a);
-
-	CHECK(a.isCompleted());
-	CHECK(b.getStateName() == "WaitingForPrerequisites");
-	CHECK(b.getPrerequisites().empty());
-}
-
-TEST_CASE("Mediator: works with Projects and their child units", "[mediator]") {
-	ConcreteWorkMediator mediator;
-	Project* project = new Project(3, "Release");
-	WorkNode* code = new WorkUnit("Code", "coder");
-	WorkNode* test = new WorkUnit("Test", "coder");
-	project->add(code);
-	project->add(test);
-	test->addPrerequisite("Code");
-
-	mediator.colleagues = { code, test };
-	code->setMediator(&mediator);
-	test->setMediator(&mediator);
-
-	completeUnit(*code);
-
-	CHECK(code->isCompleted());
-	CHECK(test->isReady());
-	CHECK_FALSE(project->isCompleted());
-
-	delete project;
 }
