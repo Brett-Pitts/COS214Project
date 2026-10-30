@@ -142,7 +142,7 @@ void FileSystem::saveToFile(std::string name, std::string filename) {
 		return;
 	}
 
-	std::ofstream file("saves/" + filename + ".txt");
+	std::ofstream file("saves/" + filename + ".tvd");
 	if (!file.is_open()) {
 		std::cerr << "Failed to open file: " << filename << '\n';
 		return;
@@ -358,7 +358,7 @@ void FileSystem::loadFromFile(std::string name, std::string filename) {
 
 	Memento* mem = new Memento(nullptr, workflow);
 
-	std::ifstream file("saves/" + filename + ".txt");
+	std::ifstream file("saves/" + filename + ".tvd");
 	if (!file.is_open()) {
 		std::cerr << "Failed to open file: " << filename << '\n';
 		return;

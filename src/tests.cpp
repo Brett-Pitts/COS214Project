@@ -72,7 +72,7 @@ TEST_CASE("Filesystem works correctly", "[filesystem]") {
 
 	face.setWorkflow(root);
 
-	SECTION("Saving and loading a workflow to and from filesystem reproduces the corrent tree structure") {
+	SECTION("Saving and loading a workflow to and from filesystem reproduces the correct workflow structure") {
 
 		Memento* workflowMem = face.createMemento(MementoType::workflow);
 
@@ -83,6 +83,10 @@ TEST_CASE("Filesystem works correctly", "[filesystem]") {
 		CompareWorkflowTrees((WorkNode*)(workflowMem->getRoot()), (WorkNode*)(workflowMem2->getRoot()));
 	}
 
+	SECTION("Saving to a file and loading produces correct workflow structure") {
+
+
+	}
 
 }
 
