@@ -8,7 +8,7 @@ class EmployeeComponent;
 class Mediator {
 
 public:
-	virtual ~Mediator();
+	virtual ~Mediator() {};
 	virtual void notifyColleagues(EmployeeComponent* employeeComponent, std::string message) = 0;
 };
 

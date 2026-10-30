@@ -1,12 +1,18 @@
 #ifndef CONCRETEWORKMEDIATOR_H
 #define CONCRETEWORKMEDIATOR_H
 
-class ConcreteWorkMediator : WorkMediator {
+#include "WorkMediator.h"
+#include <vector>
+#include <string>
+
+class WorkNode;
+
+class ConcreteWorkMediator : public WorkMediator {
 
 public:
-	vector<WorkNode> colleagues;
+	std::vector<WorkNode*> colleagues;
 
-	void notifyColleagues(WorkNode node, std::string msg);
+	void notifyColleagues(WorkNode* node, std::string msg);
 };
 
 #endif

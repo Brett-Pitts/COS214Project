@@ -11,24 +11,24 @@ EmployeeComponent::EmployeeComponent(const EmployeeComponent& other) : mediator(
 
 EmployeeComponent::~EmployeeComponent() {}
 
-bool EmployeeComponent::compareProfession(int professionId) {
-	return professionId < 0;
-}
+
+
+
 
 bool EmployeeComponent::compareCompetency(int requiredCompetency) {
 	return requiredCompetency < 0;
 }
 
 void EmployeeComponent::prepare(WorkUnit* workUnit) {
-	cout << getName() << " prepares " << workUnit->getName() << endl;
+	std::cout << getName() << " prepares " << workUnit->getName() << std::endl;
 }
 
 void EmployeeComponent::perform(WorkUnit* workUnit) {
-	cout << getName() << " performs " << workUnit->getName() << endl;
+	std::cout << getName() << " performs " << workUnit->getName() << std::endl;
 }
 
 void EmployeeComponent::finish(WorkUnit* workUnit) {
-	cout << getName() << " finishes " << workUnit->getName() << endl;
+	std::cout << getName() << " finishes " << workUnit->getName() << std::endl;
 }
 
 void EmployeeComponent::doWork(WorkUnit* workUnit) {
@@ -65,11 +65,12 @@ bool EmployeeComponent::handleWork(WorkUnit* workUnit) {
 	if (successor != nullptr) {
 		return successor->handleWork(workUnit);
 	}
-	return false;
+	std::cout << "No employee in the chain can handle " << workUnit->getName() << std::endl;
+  return false;
 }
 
-void EmployeeComponent::receive(string message) {
-	cout << getName() << " received: " << message << endl;
+void EmployeeComponent::receive(std::string message) {
+	std::cout << getName() << " received: " << message << std::endl;
 }
 
 void EmployeeComponent::setSuccessor(EmployeeComponent* employeeComponent) {

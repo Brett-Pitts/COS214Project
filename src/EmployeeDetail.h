@@ -19,7 +19,7 @@ public:
 	virtual ~EmployeeDetail();
 
 	string getName();
-	bool compareProfession(int professionId);
+	bool compareProfession(string professionName);
 	bool compareCompetency(int requiredCompetency);
 	void doWork(WorkUnit* workUnit);
 	void setMediator(Mediator* mediator);

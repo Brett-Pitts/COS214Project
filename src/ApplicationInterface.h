@@ -4,8 +4,7 @@
 #include "WorkNode.h"
 #include "CompanyNode.h"
 #include "MementoType.h"
-#include "Memento.h"
-
+class Memento;
 class ApplicationInterface {
 
 private:
@@ -20,7 +19,8 @@ public:
 	void addDepartment();
 
 	void addEmployee();
-
+	void setWorkflow(WorkNode* root);
+	void setCompany(CompanyNode* root);
 	Memento* createMemento(MementoType type);
 
 	void setMemento(Memento* memento);
