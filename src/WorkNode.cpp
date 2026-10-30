@@ -138,6 +138,9 @@ void WorkNode::setState(std::string stateName) {
 	if (stateName == "Ready") {
 		setState(new Ready());
 	}
+	if (stateName == "Ongoing") {
+		setState(new Ongoing());
+	}
 	if (stateName == "Completed") {
 		setState(new Completed());
 	}
