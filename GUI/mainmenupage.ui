@@ -191,17 +191,23 @@ Where do you want to go?</string>
        </widget>
       </item>
       <item>
-       <spacer name="menuMiddleSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
+       <widget class="QPushButton" name="assigntasksButton">
+        <property name="minimumSize">
          <size>
-          <width>20</width>
-          <height>12</height>
+          <width>0</width>
+          <height>76</height>
          </size>
         </property>
-       </spacer>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Assign Tasks</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">menu</string>
+        </property>
+       </widget>
       </item>
       <item>
        <spacer name="menuBottomSpacer">

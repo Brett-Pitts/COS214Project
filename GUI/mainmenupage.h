@@ -14,6 +14,7 @@ class MainMenuPage :public QWidget{
     signals:
         void companyRequested();
         void projectRequested();
+        void taskRequested();
     private:
         Ui::MainMenuPage* ui;
 };

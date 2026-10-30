@@ -5,17 +5,20 @@ SOURCES += \
     main.cpp \
     mainmenupage.cpp \
     mainwindow.cpp \
-    projectpage.cpp
+    projectpage.cpp \
+    taskpage.cpp
 HEADERS += \
     companypage.h \
     mainmenupage.h \
     mainwindow.h \
-    projectpage.h
+    projectpage.h \
+    taskpage.h
 FORMS += \
     companypage.ui \
     mainmenupage.ui \
     mainwindow.ui \
-    projectpage.ui
+    projectpage.ui \
+    taskpage.ui
 RESOURCES += \
     resources.qrc
 

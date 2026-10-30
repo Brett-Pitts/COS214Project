@@ -43,11 +43,12 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="MainMenuPage" name="menuPage"/>
       <widget class="CompanyPage" name="companyPage"/>
       <widget class="ProjectPage" name="projectPage"/>
+      <widget class="TaskPage" name="taskPage"/>
      </widget>
     </item>
    </layout>
@@ -70,6 +71,12 @@
    <class>ProjectPage</class>
    <extends>QWidget</extends>
    <header>projectpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TaskPage</class>
+   <extends>QWidget</extends>
+   <header>taskpage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

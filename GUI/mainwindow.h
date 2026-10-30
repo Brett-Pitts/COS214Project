@@ -17,6 +17,7 @@ class MainWindow :public QMainWindow{
         void showMenu();
         void showCompany();
         void showProject();
+        void showTasks();
     private:
         Ui::MainWindow* ui;
 };
