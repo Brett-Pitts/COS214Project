@@ -11,6 +11,12 @@
 #include "EmployeeDirector.h"
 #include "Memento.h"
 #include "ConcreteWorkMediator.h"
+#include "Employee.h"
+#include "Manager.h"
+#include "EmployeeCompetency.h"
+#include "Mediator.h"
+#include <iostream>
+#include <sstream>
 
 void CompareWorkflowTrees(WorkNode* root1, WorkNode* root2) {
 	int idx = 0;
@@ -338,4 +344,320 @@ TEST_CASE("WorkNode: reset sends a node back to Ready and uses up a retry", "[wo
 	}
 
 	CHECK_FALSE(unit.hasRetriesLeft());
+}
+
+class SpyEmployeeMediator : public Mediator {
+public:
+	std::vector<std::pair<EmployeeComponent*, std::string>> calls;
+	void notifyColleagues(EmployeeComponent* employeeComponent, std::string message) {
+		calls.push_back({ employeeComponent, message });
+	}
+};
+
+class RecordingEmployee : public Employee {
+public:
+	std::vector<std::string> received;
+	RecordingEmployee(std::string name) : Employee(name) {}
+	void receive(std::string message) {
+		received.push_back(message);
+	}
+};
+
+class QuietOutput {
+	std::ostringstream sink;
+	std::streambuf* old;
+public:
+	QuietOutput() : old(std::cout.rdbuf(sink.rdbuf())) {}
+	~QuietOutput() { std::cout.rdbuf(old); }
+};
+
+void quietDoWork(EmployeeComponent& employee, WorkUnit* unit) {
+	QuietOutput quiet;
+	employee.doWork(unit);
+}
+
+bool quietHandleWork(EmployeeComponent& employee, WorkUnit* unit) {
+	QuietOutput quiet;
+	return employee.handleWork(unit);
+}
+
+void quietAssign(Team& team, WorkUnit* unit) {
+	QuietOutput quiet;
+	team.assignWork(unit);
+}
+
+TEST_CASE("Employee: decorators report the wrapped employee's details", "[employee]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	EmployeeComponent* intern = director.makeIntern("Ian", "coder");
+	EmployeeComponent* senior = director.makeSenior("Sam", "coder");
+	Employee plain("Pat");
+
+	CHECK(senior->getName() == "Sam");
+	CHECK(senior->getKind() == "Profession");
+	CHECK(senior->compareProfession("coder"));
+	CHECK_FALSE(senior->compareProfession("artist"));
+	CHECK(senior->compareCompetency(EmployeeCompetency::SENIOR));
+	CHECK(intern->compareCompetency(EmployeeCompetency::INTERN));
+	CHECK_FALSE(intern->compareCompetency(EmployeeCompetency::JUNIOR));
+	CHECK_FALSE(plain.compareCompetency(EmployeeCompetency::INTERN));
+
+	delete intern;
+	delete senior;
+}
+
+TEST_CASE("Employee: doWork tells the mediator who worked on what", "[employee]") {
+	Employee worker("Ann");
+	SpyEmployeeMediator spy;
+	WorkUnit unit("Report", "coder");
+
+	SECTION("the mediator is notified") {
+		worker.setMediator(&spy);
+		quietDoWork(worker, &unit);
+		REQUIRE(spy.calls.size() == 1);
+		CHECK(spy.calls[0].first == &worker);
+		CHECK(spy.calls[0].second == "Ann worked on Report");
+	}
+
+	SECTION("no mediator is fine") {
+		CHECK_NOTHROW(quietDoWork(worker, &unit));
+	}
+
+	SECTION("null work does nothing") {
+		worker.setMediator(&spy);
+		quietDoWork(worker, nullptr);
+		CHECK(spy.calls.empty());
+	}
+}
+
+TEST_CASE("Employee: handleWork only advances work the competency allows", "[employee]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	EmployeeComponent* intern = director.makeIntern("Ian", "coder");
+	EmployeeComponent* senior = director.makeSenior("Sam", "coder");
+	WorkUnit unit("Task", "coder");
+	unit.advanceState();
+
+	SECTION("an intern can start ready work") {
+		CHECK(quietHandleWork(*intern, &unit));
+		CHECK(unit.isOngoing());
+	}
+
+	SECTION("an intern cannot take ongoing work further") {
+		unit.advanceState();
+		CHECK_FALSE(quietHandleWork(*intern, &unit));
+		CHECK(unit.isOngoing());
+	}
+
+	SECTION("a senior can complete escalated work") {
+		unit.setState("Escalated");
+		CHECK(quietHandleWork(*senior, &unit));
+		CHECK(unit.isCompleted());
+	}
+
+	SECTION("work passes along to the successor") {
+		unit.advanceState();
+		intern->setSuccessor(senior);
+		CHECK(quietHandleWork(*intern, &unit));
+		CHECK(unit.getStateName() == "Escalated");
+	}
+
+	SECTION("null work is refused") {
+		CHECK_FALSE(intern->handleWork(nullptr));
+	}
+
+	delete intern;
+	delete senior;
+}
+
+TEST_CASE("Employee: clone copies the whole decorated employee", "[employee]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	EmployeeComponent* senior = director.makeSenior("Sam", "coder");
+	EmployeeComponent* copy = senior->clone();
+	Manager boss("Bea");
+	EmployeeComponent* bossCopy = boss.clone();
+
+	CHECK(copy != senior);
+	CHECK(copy->getName() == "Sam");
+	CHECK(copy->compareProfession("coder"));
+	CHECK(copy->compareCompetency(EmployeeCompetency::SENIOR));
+	CHECK(bossCopy->getKind() == "Manager");
+	CHECK(bossCopy->getName() == "Bea");
+
+	delete senior;
+	delete copy;
+	delete bossCopy;
+}
+
+TEST_CASE("Team: members are notified when a colleague does work", "[team]") {
+	Team team;
+	RecordingEmployee* a = new RecordingEmployee("A");
+	RecordingEmployee* b = new RecordingEmployee("B");
+	RecordingEmployee* c = new RecordingEmployee("C");
+	team.addMember(a);
+	team.addMember(b);
+	team.addMember(c);
+	WorkUnit unit("Task");
+
+	quietDoWork(*a, &unit);
+
+	CHECK(a->received.empty());
+	REQUIRE(b->received.size() == 1);
+	CHECK(b->received[0] == "A worked on Task");
+	CHECK(c->received.size() == 1);
+}
+
+TEST_CASE("Team: addMember checks the member's profession", "[team]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	Team team(EmployeeProfession::registerProfession("coder"));
+
+	CHECK(team.getProfession() == "coder");
+
+	SECTION("null is rejected") {
+		CHECK_FALSE(team.addMember(nullptr));
+	}
+
+	SECTION("a member of another profession is rejected") {
+		EmployeeComponent* artist = director.makeIntern("Ann", "artist");
+		CHECK_FALSE(team.addMember(artist));
+		delete artist;
+	}
+
+	SECTION("an employee with no profession is rejected") {
+		Employee* plain = new Employee("Pat");
+		CHECK_FALSE(team.addMember(plain));
+		delete plain;
+	}
+
+	SECTION("a matching member is accepted") {
+		CHECK(team.addMember(director.makeIntern("Ian", "coder")));
+	}
+
+	SECTION("a team with no profession accepts anyone") {
+		Team open;
+		CHECK(open.addMember(new Employee("Pat")));
+	}
+}
+
+TEST_CASE("Team: assignWork ignores work it cannot use", "[team]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	Team team(EmployeeProfession::registerProfession("coder"));
+	team.addMember(director.makeSenior("Sam", "coder"));
+	EmployeeProfession::registerProfession("designer");
+
+	SECTION("work for another profession") {
+		WorkUnit unit("Logo", "designer");
+		unit.advanceState();
+		quietAssign(team, &unit);
+		CHECK(unit.isReady());
+	}
+
+	SECTION("work needing a profession nobody registered") {
+		WorkUnit unit("Moon", "astronaut");
+		unit.advanceState();
+		quietAssign(team, &unit);
+		CHECK(unit.isReady());
+	}
+
+	SECTION("a team with no members") {
+		Team empty;
+		WorkUnit unit("Task", "coder");
+		unit.advanceState();
+		quietAssign(empty, &unit);
+		CHECK(unit.isReady());
+	}
+
+	SECTION("null work") {
+		CHECK_NOTHROW(quietAssign(team, nullptr));
+	}
+}
+
+TEST_CASE("Team: assignWork completes work or fails it after retries", "[team]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	Team team;
+
+	SECTION("a senior takes work from Ready to Completed") {
+		team.addMember(director.makeSenior("Sam", "coder"));
+		WorkUnit unit("Task", "coder");
+		unit.advanceState();
+
+		quietAssign(team, &unit);
+		CHECK(unit.isCompleted());
+	}
+
+	SECTION("work nobody can do is retried and then failed") {
+		team.addMember(new Employee("Eve"));
+		WorkUnit unit("Task");
+		unit.advanceState();
+
+		for (int i = 0; i < 3; i++) {
+			quietAssign(team, &unit);
+			CHECK(unit.isReady());
+		}
+		quietAssign(team, &unit);
+		CHECK(unit.getStateName() == "Failed");
+	}
+}
+
+TEST_CASE("Team: clone copies the profession and members", "[team]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	Team original(EmployeeProfession::registerProfession("coder"));
+	original.addMember(director.makeSenior("Sam", "coder"));
+
+	Team* copy = dynamic_cast<Team*>(original.clone());
+	REQUIRE(copy != nullptr);
+	CHECK(copy != &original);
+	CHECK(copy->getProfession() == "coder");
+
+	WorkUnit unit("Task", "coder");
+	unit.advanceState();
+	quietAssign(*copy, &unit);
+	CHECK(unit.isCompleted());
+
+	delete copy;
+}
+
+std::string capturedDoWork(EmployeeComponent& employee, WorkUnit* unit) {
+	std::ostringstream sink;
+	std::streambuf* old = std::cout.rdbuf(sink.rdbuf());
+	employee.doWork(unit);
+	std::cout.rdbuf(old);
+	return sink.str();
+}
+
+TEST_CASE("Employee: getCore returns the innermost employee", "[employee]") {
+	Employee plain("Pat");
+	EmployeeProfession* profession = new EmployeeProfession("coder");
+	EmployeeCompetency* competency = new EmployeeCompetency("senior");
+	Employee* core = new Employee("Sam");
+	profession->wrap(competency);
+	profession->wrap(core);
+
+	CHECK(plain.getCore() == &plain);
+	CHECK(core->getCore() == core);
+	CHECK(competency->getCore() == core);
+	CHECK(profession->getCore() == core);
+
+	delete profession;
+}
+
+TEST_CASE("Team: a decorated member does not receive its own message", "[team]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	Team team;
+	EmployeeComponent* sam = director.makeSenior("Sam", "coder");
+	EmployeeComponent* ann = director.makeSenior("Ann", "coder");
+	team.addMember(sam);
+	team.addMember(ann);
+	WorkUnit unit("Task", "coder");
+
+	std::string output = capturedDoWork(*sam, &unit);
+
+	CHECK(output.find("Sam received") == std::string::npos);
+	CHECK(output.find("Ann received: Sam worked on Task") != std::string::npos);
 }

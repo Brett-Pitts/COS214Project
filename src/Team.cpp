@@ -58,13 +58,13 @@ void Team::assignWork(WorkUnit* workUnit) {
 }
 
 void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string message) {
-	int count = this->members.size();
+    int count = this->members.size();
 
-	for (int i = 0; i < count; i++) {
-		if (this->members[i] != employeeComponent) {
-			this->members[i]->receive(message);
-		}
-	}
+    for (int i = 0; i < count; i++) {
+        if (this->members[i]->getCore() != employeeComponent->getCore()) {
+            this->members[i]->receive(message);
+        }
+    }
 }
 
 CompanyNode* Team::clone() {
