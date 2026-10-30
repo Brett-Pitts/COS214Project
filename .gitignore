@@ -27,3 +27,6 @@ ehthumbs.db
 .vpprefdata
 .lock
 *.bak_*
+/GUI/build/
+/GUI/build/
+/GUI/.qtcreator/
