@@ -13,13 +13,13 @@ class WorkUnit;
 class Team : public CompanyNode, public Mediator {
 	friend class FileSystem;
 private:
-	int profession;
+	std::string profession;
 	std::vector<EmployeeComponent*> members;
 
 public:
-	Team(int profession = -1);
+	Team(std::string profession = "");
 
-	int getProfession();
+	std::string getProfession();
 
 	bool addMember(EmployeeComponent* employeeComponent);
 

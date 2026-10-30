@@ -12,6 +12,8 @@ private:
 	CompanyNode* companyRoot;
 
 public:
+	ApplicationInterface() : workflowRoot(nullptr), companyRoot(nullptr) {}
+
 	void createProject();
 
 	void addSubcomponent();
