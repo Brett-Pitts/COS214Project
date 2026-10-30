@@ -3,9 +3,12 @@
 
 #include "WorkNode.h"
 #include "Project.h"
-#include "WorkUnit.h"
 #include "ApplicationInterface.h"
-
+#include "Team.h"
+#include "WorkUnit.h"
+#include "EmployeeProfession.h"
+#include "ConcreteEmployeeBuilder.h"
+#include "EmployeeDirector.h"
 #include "Memento.h"
 
 void CompareWorkflowTrees(WorkNode* root1, WorkNode* root2) {
@@ -87,3 +90,18 @@ TEST_CASE("Filesystem works correctly", "[filesystem]") {
 }
 
 
+TEST_CASE("Chain: intern starts a unit and senior finishes it", "[chain]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	Team team(EmployeeProfession::registerProfession("coder"));
+	team.addMember(director.makeIntern("Ian", "coder"));
+	WorkUnit unit("login screen", "coder");
+	unit.advanceState();
+
+	team.assignWork(&unit);
+	CHECK(unit.isOngoing());
+
+	team.addMember(director.makeSenior("Sam", "coder"));
+	team.assignWork(&unit);
+	CHECK(unit.isCompleted());
+}	

@@ -2,13 +2,13 @@
 #include "EmployeeComponent.h"
 #include "WorkUnit.h"
 #include "EmployeeProfession.h"
-
+using namespace std;
 Team::Team(std::string profession) {
-	this->profession = profession;
+    this->profession = profession;
 }
 
 std::string Team::getProfession() {
-	return this->profession;
+    return this->profession;
 }
 
 bool Team::addMember(EmployeeComponent* employeeComponent) {
