@@ -17,7 +17,7 @@ public:
 	EmployeeDetail();
 	EmployeeDetail(const EmployeeDetail& other);
 	virtual ~EmployeeDetail();
-
+	EmployeeComponent* getCore();
 	string getName();
 	bool compareProfession(string professionName);
 	bool compareCompetency(int requiredCompetency);
