@@ -229,3 +229,113 @@ TEST_CASE("Mediator: completions cascade through a dependency chain", "[mediator
 	completeUnit(b);
 	CHECK(c.isReady());
 }
+
+TEST_CASE("WorkNode: a new node starts waiting with no parent or prerequisites", "[worknode]") {
+	WorkUnit unit("Unit", "coder");
+
+	CHECK(unit.getName() == "Unit");
+	CHECK(unit.getStateName() == "WaitingForPrerequisites");
+	CHECK(unit.getParent() == nullptr);
+	CHECK(unit.getPrerequisites().empty());
+	CHECK(unit.prerequisitesCompleted());
+	CHECK(unit.getMaxRetries() == 3);
+	CHECK(unit.hasRetriesLeft());
+}
+
+TEST_CASE("WorkNode: setState by name selects the matching state", "[worknode]") {
+	WorkUnit unit("Unit", "coder");
+	const char* names[] = { "Ready", "Ongoing", "Escalated", "Completed", "Cancelled", "Failed", "WaitingForPrerequisites" };
+
+	for (int i = 0; i < 7; i++) {
+		unit.setState(names[i]);
+		CHECK(unit.getStateName() == names[i]);
+	}
+
+	SECTION("an unknown name leaves the state unchanged") {
+		unit.setState("Ongoing");
+		unit.setState("NotAState");
+		CHECK(unit.isOngoing());
+	}
+
+	SECTION("a null state leaves the state unchanged") {
+		unit.setState("Ready");
+		unit.setState((WorkState*)nullptr);
+		CHECK(unit.isReady());
+	}
+}
+
+TEST_CASE("States: a unit moves through every state to Completed", "[state]") {
+	WorkUnit unit("Unit", "coder");
+
+	unit.advanceState();
+	CHECK(unit.isReady());
+	unit.advanceState();
+	CHECK(unit.isOngoing());
+	unit.advanceState();
+	CHECK(unit.getStateName() == "Escalated");
+	unit.advanceState();
+	CHECK(unit.isCompleted());
+}
+
+TEST_CASE("States: unmet prerequisites hold a node in WaitingForPrerequisites", "[state]") {
+	WorkUnit unit("Unit", "coder");
+	unit.addPrerequisite("Other");
+
+	CHECK_FALSE(unit.prerequisitesCompleted());
+	unit.advanceState();
+	CHECK(unit.getStateName() == "WaitingForPrerequisites");
+
+	unit.update("Other");
+	CHECK(unit.prerequisitesCompleted());
+	CHECK(unit.isReady());
+}
+
+TEST_CASE("States: Completed, Cancelled and Failed do not change when advanced", "[state]") {
+	WorkUnit unit("Unit", "coder");
+	const char* names[] = { "Completed", "Cancelled", "Failed" };
+
+	for (int i = 0; i < 3; i++) {
+		unit.setState(names[i]);
+		unit.advanceState();
+		CHECK(unit.getStateName() == names[i]);
+	}
+}
+
+TEST_CASE("States: a project completes only when all of its children have", "[state]") {
+	Project* project = new Project(3, "Project");
+	WorkNode* first = new WorkUnit("First", "coder");
+	WorkNode* second = new WorkUnit("Second", "coder");
+	project->add(first);
+	project->add(second);
+
+	SECTION("the project completes when the last child completes") {
+		completeUnit(*first);
+		CHECK_FALSE(project->isCompleted());
+
+		completeUnit(*second);
+		CHECK(project->isCompleted());
+	}
+
+	SECTION("a cancelled project is not completed by its children") {
+		project->setState("Cancelled");
+
+		completeUnit(*first);
+		completeUnit(*second);
+		CHECK(project->getStateName() == "Cancelled");
+	}
+
+	delete project;
+}
+
+TEST_CASE("WorkNode: reset sends a node back to Ready and uses up a retry", "[worknode]") {
+	WorkUnit unit("Unit", "coder");
+	unit.setState("Failed");
+
+	for (int i = 0; i < 3; i++) {
+		CHECK(unit.hasRetriesLeft());
+		unit.reset();
+		CHECK(unit.isReady());
+	}
+
+	CHECK_FALSE(unit.hasRetriesLeft());
+}
