@@ -114,7 +114,7 @@
     <widget class="QWidget" name="menuArea" native="true">
      <layout class="QVBoxLayout" name="menuLayout">
       <property name="spacing">
-       <number>14</number>
+       <number>50</number>
       </property>
       <property name="leftMargin">
        <number>90</number>
@@ -144,26 +144,13 @@
       <item>
        <widget class="QLabel" name="menuHeading">
         <property name="text">
-         <string>Welcome 
-Main Menu</string>
+         <string>Welcome
+Where do you want to go?</string>
         </property>
         <property name="variant" stdset="0">
          <string notr="true">title</string>
         </property>
        </widget>
-      </item>
-      <item>
-       <spacer name="menuHeadingSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>12</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item>
        <widget class="QPushButton" name="manageCompanyButton">
@@ -215,49 +202,6 @@ Main Menu</string>
          </size>
         </property>
        </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="saveLoadLabel">
-        <property name="text">
-         <string>Load or save</string>
-        </property>
-        <property name="variant" stdset="0">
-         <string notr="true">section</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="saveLoadLayout">
-        <property name="spacing">
-         <number>12</number>
-        </property>
-        <item>
-         <widget class="QPushButton" name="saveButton">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>44</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Save</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="loadButton">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>44</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Load</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
       </item>
       <item>
        <spacer name="menuBottomSpacer">

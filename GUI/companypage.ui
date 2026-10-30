@@ -71,23 +71,41 @@
         </property>
        </spacer>
       </item>
-      <item>
-       <widget class="QLabel" name="breadcrumbLabel">
-        <property name="text">
-         <string>Company</string>
-        </property>
-        <property name="variant" stdset="0">
-         <string notr="true">muted</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Load or save</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Load</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="bodyLayout">
      <property name="spacing">
       <number>16</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
      </property>
      <item>
       <widget class="QGroupBox" name="structureBox">
@@ -109,6 +127,9 @@
        <layout class="QVBoxLayout" name="structureLayout">
         <property name="spacing">
          <number>10</number>
+        </property>
+        <property name="leftMargin">
+         <number>9</number>
         </property>
         <item>
          <widget class="QTreeWidget" name="companyTree">
@@ -172,10 +193,16 @@
         <string>Contents</string>
        </property>
        <layout class="QVBoxLayout" name="contentLayout">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
         <item>
          <widget class="QStackedWidget" name="contentStack">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="departmentPage">
            <layout class="QVBoxLayout" name="departmentLayout">
