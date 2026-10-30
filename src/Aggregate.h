@@ -1,13 +1,14 @@
 #ifndef AGGREGATE_H
 #define AGGREGATE_H
 
-#include "Iterator.h"
+class Iterator;
 
 class Aggregate {
 
-
 public:
-	Iterator createIterator();
+	virtual ~Aggregate();
+
+	virtual Iterator* createIterator() = 0;
 };
 
 #endif

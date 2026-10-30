@@ -2,7 +2,6 @@
 #define WORKITERATOR_H
 
 #include "Iterator.h"
-class WorkNode;
 
 class WorkIterator : public Iterator {
 
@@ -11,6 +10,9 @@ private:
 	WorkNode* current;
 
 public:
+	WorkIterator(WorkNode* aggregate);
+	virtual ~WorkIterator();
+
 	void first();
 
 	void next();
