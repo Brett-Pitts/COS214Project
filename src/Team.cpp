@@ -65,6 +65,15 @@ void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string me
 			this->members[i]->receive(message);
 		}
 	}
+=======
+    int count = this->members.size();
+
+    for (int i = 0; i < count; i++) {
+        if (this->members[i]->getCore() != employeeComponent->getCore()) {
+            this->members[i]->receive(message);
+        }
+    }
+>>>>>>> Stashed changes
 }
 
 CompanyNode* Team::clone() {
