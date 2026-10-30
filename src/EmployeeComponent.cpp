@@ -48,6 +48,9 @@ bool EmployeeComponent::canAdvance(WorkUnit* workUnit) {
 		return compareCompetency(EmployeeCompetency::INTERN);
 	}
 	if (workUnit->isOngoing()) {
+		return compareCompetency(EmployeeCompetency::JUNIOR);
+	}
+	if (workUnit->getStateName() == "Escalated") {
 		return compareCompetency(EmployeeCompetency::SENIOR);
 	}
 	return false;
