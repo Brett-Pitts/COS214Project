@@ -58,15 +58,6 @@ void Team::assignWork(WorkUnit* workUnit) {
 }
 
 void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string message) {
-<<<<<<< Updated upstream
-	int count = this->members.size();
-
-	for (int i = 0; i < count; i++) {
-		if (this->members[i] != employeeComponent) {
-			this->members[i]->receive(message);
-		}
-	}
-=======
     int count = this->members.size();
 
     for (int i = 0; i < count; i++) {
@@ -74,7 +65,6 @@ void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string me
             this->members[i]->receive(message);
         }
     }
->>>>>>> Stashed changes
 }
 
 CompanyNode* Team::clone() {

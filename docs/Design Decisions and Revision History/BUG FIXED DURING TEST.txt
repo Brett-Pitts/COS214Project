@@ -1,0 +1,4 @@
+The bug was that a team member got a copy of their own message. When Sam did work, the team was supposed to tell everyone except Sam. Instead Sam was told too, which is why your output had Sam received: Sam worked on login screen.
+Sam received his own message because the team compared the wrong pointers.
+The team stores the outer wrapper (profession) of each employee, but doWork reports the inner plain Employee. They’re different pointers for the same person, so != never matched and the sender wasn’t skipped.
+getCore() returns the innermost object, so comparing cores matches correctly.

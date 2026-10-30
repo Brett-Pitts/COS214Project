@@ -30,7 +30,9 @@ void EmployeeComponent::perform(WorkUnit* workUnit) {
 void EmployeeComponent::finish(WorkUnit* workUnit) {
 	std::cout << getName() << " finishes " << workUnit->getName() << std::endl;
 }
-
+EmployeeComponent* EmployeeComponent::getCore() {
+    return this;
+}
 void EmployeeComponent::doWork(WorkUnit* workUnit) {
 	if (workUnit == nullptr) {
 		return;
