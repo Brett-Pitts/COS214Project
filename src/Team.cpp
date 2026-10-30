@@ -58,6 +58,7 @@ void Team::assignWork(WorkUnit* workUnit) {
 }
 
 void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string message) {
+<<<<<<< Updated upstream
 	int count = this->members.size();
 
 	for (int i = 0; i < count; i++) {
