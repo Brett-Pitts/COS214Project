@@ -1,33 +1,20 @@
 #include "TeamIterator.h"
 #include "CompanyNode.h"
 #include "Team.h"
-#include "EmployeeProfession.h"
-
-TeamIterator::TeamIterator(CompanyNode* root, int profession) {
-	this->current = 0;
-	this->collect(root, profession);
-}
 
 TeamIterator::TeamIterator(CompanyNode* root, std::string professionName) {
 	this->current = 0;
-	if (professionName == "") {
-		this->collect(root, -1);
-		return;
-	}
-	int profession = EmployeeProfession::getProfessionId(professionName);
-	if (profession >= 0) {
-		this->collect(root, profession);
-	}
+	this->collect(root, professionName);
 }
 
-void TeamIterator::collect(CompanyNode* node, int profession) {
+void TeamIterator::collect(CompanyNode* node, const std::string& profession) {
 	if (node == nullptr) {
 		return;
 	}
 
 	Team* team = dynamic_cast<Team*>(node);
 	if (team != nullptr) {
-		if (profession < 0 || team->getProfession() == profession) {
+		if (profession.empty() || team->getProfession() == profession) {
 			this->teams.push_back(team);
 		}
 		return;

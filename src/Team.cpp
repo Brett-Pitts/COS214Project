@@ -3,11 +3,11 @@
 #include "WorkUnit.h"
 #include "EmployeeProfession.h"
 
-Team::Team(int profession) {
+Team::Team(std::string profession) {
 	this->profession = profession;
 }
 
-int Team::getProfession() {
+std::string Team::getProfession() {
 	return this->profession;
 }
 
@@ -15,7 +15,7 @@ bool Team::addMember(EmployeeComponent* employeeComponent) {
 	if (employeeComponent == nullptr) {
 		return false;
 	}
-	if (!employeeComponent->compareProfession(this->profession)) {
+	if (!this->profession.empty() && !employeeComponent->compareProfession(this->profession)) {
 		return false;
 	}
 	int count = this->members.size();
@@ -32,10 +32,12 @@ void Team::assignWork(WorkUnit* workUnit) {
 		return;
 	}
 
-	std::string requiredName = workUnit->getRequiredProfession();
-	if (requiredName != "") {
-		int required = EmployeeProfession::getProfessionId(requiredName);
-		if (required < 0 || (this->profession >= 0 && required != this->profession)) {
+	std::string required = workUnit->getRequiredProfession();
+	if (required != "") {
+		if (!EmployeeProfession::hasProfession(required)) {
+			return;
+		}
+		if (!this->profession.empty() && required != this->profession) {
 			return;
 		}
 	}

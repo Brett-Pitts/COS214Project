@@ -13,12 +13,10 @@ private:
 	std::vector<Team*> teams;
 	int current;
 
-	void collect(CompanyNode* node, int profession);
+	void collect(CompanyNode* node, const std::string& profession);
 
 public:
-	TeamIterator(CompanyNode* root, int profession);
-
-	TeamIterator(CompanyNode* root, std::string professionName);
+	TeamIterator(CompanyNode* root, std::string professionName = "");
 
 	void first();
 

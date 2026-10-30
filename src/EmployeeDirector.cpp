@@ -1,46 +1,43 @@
 #include "EmployeeDirector.h"
 #include <iostream>
 
+EmployeeDirector::EmployeeDirector(EmployeeBuilder* builder) : builder(builder) {}
+
 void EmployeeDirector::setBuilder(EmployeeBuilder* builder) {
+
 	if (builder == nullptr) {
-		std::cerr << "Nullpointer passed to setBuilder()\n";
+
+		std::cerr << "NULL\n";
 		return;
+
 	}
+
 	this->builder = builder;
+
 }
 
-void EmployeeDirector::reset() {
-	if (builder == nullptr) {
-		std::cerr << "Builder has not been set.\n";
-		return;
-	}
+EmployeeComponent* EmployeeDirector::build(std::string name, std::string profession, std::string competency) {
 
 	builder->reset();
+	builder->addProfession(profession);
+	builder->addCompetency(competency);
+	return builder->finish(name);
+}
+
+EmployeeComponent* EmployeeDirector::makeIntern(std::string name, std::string profession) {
+
+	return build(name, profession, "intern");
 
 }
 
+EmployeeComponent* EmployeeDirector::makeJunior(std::string name, std::string profession) {
 
+	return build(name, profession, "junior");
 
-bool EmployeeDirector::addProfession(std::string name) {
-	if (builder == nullptr) {
-		std::cerr << "Builder has not been set.\n";
-		return false;
-	}
-	return builder->addProfession(name);
 }
 
-bool EmployeeDirector::addCompetency(std::string name) {
-	if (builder == nullptr) {
-		std::cerr << "Builder has not been set.\n";
-		return false;
-	}
-	return builder->addCompetency(name);
-}
+EmployeeComponent* EmployeeDirector::makeSenior(std::string name, std::string profession) {
 
-EmployeeComponent* EmployeeDirector::finish(std::string name, bool isManager) {
-	if (builder == nullptr) {
-		std::cerr << "Builder has not been set.\n";
-		return nullptr;
-	}
-	return builder->finish(name, isManager);
+	return build(name, profession, "senior");
+	
 }
