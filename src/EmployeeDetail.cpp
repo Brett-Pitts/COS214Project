@@ -29,12 +29,7 @@ bool EmployeeDetail::compareCompetency(int requiredCompetency) {
 	}
 	return wrapped->compareCompetency(requiredCompetency);
 }
-EmployeeComponent* EmployeeDetail::getCore() {
-	if (wrapped == nullptr) {
-		return this;
-	}
-	return wrapped->getCore();
-}
+
 void EmployeeDetail::prepare(WorkUnit*) {}
 
 void EmployeeDetail::perform(WorkUnit*) {}

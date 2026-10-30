@@ -33,7 +33,6 @@ public:
 	virtual string getName() = 0;
 	virtual bool compareProfession(string professionName) = 0;
 	virtual bool compareCompetency(int requiredCompetency);
-	virtual EmployeeComponent* getCore();
 	virtual void doWork(WorkUnit* workUnit);
 	bool handleWork(WorkUnit* workUnit);
 	virtual void receive(string message);

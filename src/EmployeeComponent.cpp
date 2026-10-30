@@ -18,9 +18,7 @@ EmployeeComponent::~EmployeeComponent() {}
 bool EmployeeComponent::compareCompetency(int requiredCompetency) {
 	return requiredCompetency < 0;
 }
-EmployeeComponent* EmployeeComponent::getCore() {
-	return this;
-}
+
 void EmployeeComponent::prepare(WorkUnit* workUnit) {
 	std::cout << getName() << " prepares " << workUnit->getName() << std::endl;
 }

@@ -1,8 +1,0 @@
-Sam received his own message because the team compared the wrong pointers.
-
-The team stores the outer wrapper (profession) of each employee, but doWork reports the inner plain Employee. They’re different pointers for the same person, so != never matched and the sender wasn’t skipped.
-
-getCore() returns the innermost object, so comparing cores matches correctly.
-Team::notifyColleagues assumed that “the sender” and “the stored member” would be the same pointer, so it used != to skip the sender. For a wrapped employee the two pointers are different objects, so the check never skipped anyone.
-
-The fix is to compare the innermost object of each side with getCore(), which is the same for every layer of one employee
