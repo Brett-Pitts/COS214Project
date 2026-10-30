@@ -2,6 +2,7 @@
 #include "EmployeeComponent.h"
 #include "WorkUnit.h"
 #include "EmployeeProfession.h"
+#include "Failed.h"
 using namespace std;
 Team::Team(std::string profession) {
     this->profession = profession;
@@ -26,7 +27,6 @@ bool Team::addMember(EmployeeComponent* employeeComponent) {
 	this->members.push_back(employeeComponent);
 	return true;
 }
-
 void Team::assignWork(WorkUnit* workUnit) {
 	if (this->members.empty() || workUnit == nullptr) {
 		return;
@@ -42,7 +42,18 @@ void Team::assignWork(WorkUnit* workUnit) {
 		}
 	}
 
+	bool advanced = false;
 	while (this->members[0]->handleWork(workUnit)) {
+		advanced = true;
+	}
+
+	if (!advanced && (workUnit->isReady() || workUnit->isOngoing() || workUnit->getStateName() == "Escalated")) {
+		if (workUnit->hasRetriesLeft()) {
+			workUnit->reset();
+		}
+		else {
+			workUnit->setState(new Failed());
+		}
 	}
 }
 
