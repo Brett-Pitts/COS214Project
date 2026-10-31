@@ -1,7 +1,0 @@
-<map id="WorkUnit" name="WorkUnit">
-<area shape="rect" id="Node000001" title="A single piece of work that one profession can do; the leaf of the work tree." alt="" coords="5,612,191,757"/>
-<area shape="rect" id="Node000002" href="$classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries." alt="" coords="8,139,188,564"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,578,101,612,95,612,95,578"/>
-<area shape="rect" id="Node000003" href="$classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="34,5,162,91"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="101,105,101,138,95,138,95,105"/>
-</map>

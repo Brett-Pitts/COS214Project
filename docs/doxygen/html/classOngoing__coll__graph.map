@@ -1,5 +1,0 @@
-<map id="Ongoing" name="Ongoing">
-<area shape="rect" id="Node000001" title="Concrete state: work has started and a junior performs it." alt="" coords="17,179,111,264"/>
-<area shape="rect" id="Node000002" href="$classWorkState.html" title="Abstract state of a work node." alt="" coords="5,5,123,131"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,145,67,178,61,178,61,145"/>
-</map>

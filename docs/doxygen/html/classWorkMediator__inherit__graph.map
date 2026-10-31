@@ -1,5 +1,0 @@
-<map id="WorkMediator" name="WorkMediator">
-<area shape="rect" id="Node000001" title="Abstract mediator that lets work nodes communicate without knowing each other." alt="" coords="13,5,161,71"/>
-<area shape="rect" id="Node000002" href="$classConcreteWorkMediator.html" title="Coordinates work nodes: releases nodes that wait on prerequisites." alt="" coords="5,119,168,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,84,89,119,84,119,84,84"/>
-</map>
