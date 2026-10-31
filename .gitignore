@@ -32,3 +32,6 @@ TIVIDYtest
 TIVIDY
 /GUI/build
 TIVIDYtest
+/GUI/build/
+/GUI/build/
+/GUI/.qtcreator/
