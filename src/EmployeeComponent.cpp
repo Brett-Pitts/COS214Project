@@ -27,7 +27,9 @@ void EmployeeComponent::perform(WorkUnit* workUnit) {
 void EmployeeComponent::finish(WorkUnit* workUnit) {
 	std::cout << getName() << " finishes " << workUnit->getName() << std::endl;
 }
-
+EmployeeComponent* EmployeeComponent::getCore() {
+    return this;
+}
 void EmployeeComponent::doWork(WorkUnit* workUnit) {
 	if (workUnit == nullptr) {
 		return;
@@ -45,6 +47,9 @@ bool EmployeeComponent::canAdvance(WorkUnit* workUnit) {
 		return compareCompetency(EmployeeCompetency::INTERN);
 	}
 	if (workUnit->isOngoing()) {
+		return compareCompetency(EmployeeCompetency::JUNIOR);
+	}
+	if (workUnit->getStateName() == "Escalated") {
 		return compareCompetency(EmployeeCompetency::SENIOR);
 	}
 	return false;

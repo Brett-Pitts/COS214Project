@@ -1,5 +1,7 @@
 #include "Manager.h"
 #include "WorkUnit.h"
+#include "Project.h"
+#include "Cancelled.h"
 
 #include <iostream>
 
@@ -24,6 +26,7 @@ void Manager::cancelProject(Project* project) {
 	if (project == nullptr) {
 		return;
 	}
+	project->setState(new Cancelled());
 	std::cout << getName() << " cancels project" << std::endl;
 }
 

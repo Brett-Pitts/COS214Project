@@ -2,6 +2,7 @@
 #include "EmployeeComponent.h"
 #include "WorkUnit.h"
 #include "EmployeeProfession.h"
+#include "Failed.h"
 using namespace std;
 Team::Team(std::string profession) {
     this->profession = profession;
@@ -26,7 +27,6 @@ bool Team::addMember(EmployeeComponent* employeeComponent) {
 	this->members.push_back(employeeComponent);
 	return true;
 }
-
 void Team::assignWork(WorkUnit* workUnit) {
 	if (this->members.empty() || workUnit == nullptr) {
 		return;
@@ -42,18 +42,29 @@ void Team::assignWork(WorkUnit* workUnit) {
 		}
 	}
 
+	bool advanced = false;
 	while (this->members[0]->handleWork(workUnit)) {
+		advanced = true;
+	}
+
+	if (!advanced && (workUnit->isReady() || workUnit->isOngoing() || workUnit->getStateName() == "Escalated")) {
+		if (workUnit->hasRetriesLeft()) {
+			workUnit->reset();
+		}
+		else {
+			workUnit->setState(new Failed());
+		}
 	}
 }
 
 void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string message) {
-	int count = this->members.size();
+    int count = this->members.size();
 
-	for (int i = 0; i < count; i++) {
-		if (this->members[i] != employeeComponent) {
-			this->members[i]->receive(message);
-		}
-	}
+    for (int i = 0; i < count; i++) {
+        if (this->members[i]->getCore() != employeeComponent->getCore()) {
+            this->members[i]->receive(message);
+        }
+    }
 }
 
 CompanyNode* Team::clone() {
