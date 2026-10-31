@@ -11,21 +11,21 @@
  * @brief Declares the composite node of the work tree.
  */
 
-/**
- * @class Project
- * @brief A project or phase: a work node that contains other work nodes.
- *
- * A project holds sub-projects and work units. It is completed when all of
- * its children are completed, and it then tells its parent. Phases of a larger
- * project are simply Projects as well.
- *
- * @par Design patterns
- * - Composite (Composite): children are WorkNode pointers.
- * - Prototype (ConcretePrototype): clone() copies the project and its children.
- * - Iterator (ConcreteAggregate): createIterator() is inherited from WorkNode.
- *
- * @see WorkNode, WorkUnit
- */
+ /**
+  * @class Project
+  * @brief A project or phase: a work node that contains other work nodes.
+  *
+  * A project holds sub-projects and work units. It is completed when all of
+  * its children are completed, and it then tells its parent. Phases of a larger
+  * project are simply Projects as well.
+  *
+  * @par Design patterns
+  * - Composite (Composite): children are WorkNode pointers.
+  * - Prototype (ConcretePrototype): clone() copies the project and its children.
+  * - Iterator (ConcreteAggregate): createIterator() is inherited from WorkNode.
+  *
+  * @see WorkNode, WorkUnit
+  */
 class Project : public WorkNode {
 
 public:
@@ -38,13 +38,7 @@ public:
 	 * @param name Name of the project.
 	 */
 	Project(int maxRetries, std::string name);
-<<<<<<< HEAD
-
-	/** @brief Destroys the project and all its children. */
-	~Project();
-=======
 	virtual ~Project();
->>>>>>> dev
 
 	/**
 	 * @brief Adds a child to the project.
