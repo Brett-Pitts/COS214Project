@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QFile>
+#include <iostream>
 
 int main(int argc, char* argv[]) {
 	QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
@@ -10,7 +11,7 @@ int main(int argc, char* argv[]) {
 		a.setStyleSheet(styleFile.readAll());
 		styleFile.close();
 	}
-	MainWindow w;
+	MainWindow w(argc, argv);
 	w.show();
 	return a.exec();
 }

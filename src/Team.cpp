@@ -4,12 +4,12 @@
 #include "EmployeeProfession.h"
 #include "Failed.h"
 using namespace std;
-Team::Team(std::string profession) {
-    this->profession = profession;
+Team::Team(std::string name, std::string profession) : CompanyNode(name) {
+	this->profession = profession;
 }
 
 std::string Team::getProfession() {
-    return this->profession;
+	return this->profession;
 }
 
 bool Team::addMember(EmployeeComponent* employeeComponent) {
@@ -130,13 +130,13 @@ void Team::assignWork(WorkUnit* workUnit) {
 }
 
 void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string message) {
-    int count = this->members.size();
+	int count = this->members.size();
 
-    for (int i = 0; i < count; i++) {
-        if (this->members[i]->getCore() != employeeComponent->getCore()) {
-            this->members[i]->receive(message);
-        }
-    }
+	for (int i = 0; i < count; i++) {
+		if (this->members[i]->getCore() != employeeComponent->getCore()) {
+			this->members[i]->receive(message);
+		}
+	}
 }
 
 CompanyNode* Team::clone() {
@@ -153,12 +153,11 @@ CompanyNode* Team::clone() {
 	return copy;
 }
 
-Team::~Team()
-{
+Team::~Team() {
 	if (!members.empty()) {
 		for (auto it = members.begin(); it != members.end(); ++it) {
-			
-			delete *it;
+
+			delete* it;
 		}
 	}
 }

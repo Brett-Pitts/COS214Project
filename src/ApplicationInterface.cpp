@@ -11,12 +11,394 @@
 #include "TeamIterator.h"
 #include "WorkIterator.h"
 #include <algorithm>
+#include "Manager.h"
 
 void ApplicationInterface::setWorkflow(WorkNode* root) {
 	this->workflowRoot = root;
 }
 void ApplicationInterface::setCompany(CompanyNode* root) {
 	this->companyRoot = root;
+}
+
+static EmployeeComponent* makeEmployee(const std::string& name,
+	const std::string& profession,
+	const std::string& competency,
+	bool isManager = false) {
+	EmployeeComponent* core;
+	if (isManager) {
+		core = new Manager(name);
+	}
+	else {
+		core = new Employee(name);
+	}
+
+	EmployeeComponent* prof = new EmployeeProfession(profession);
+	prof->wrap(core);
+
+	EmployeeComponent* comp = new EmployeeCompetency(competency);
+	comp->wrap(prof);
+
+	return comp;
+}
+
+// Builds an empty team called `name` for one profession.
+static Team* makeTeam(const std::string& name, const std::string& profession) {
+	Team* team = new Team(profession);
+	team->setName(name);
+	return team;
+}
+
+WorkNode* createWorkflowA() {
+	WorkNode* root = new Project(3, "Fortnite");
+
+
+	WorkNode* Preparation = new Project(3, "Preparation");
+	root->add(Preparation);
+
+	WorkNode* Creation = new Project(3, "Creation");
+	Creation->addPrerequisite("Preparation");
+	root->add(Creation);
+
+	WorkNode* Marketing = new Project(3, "Marketing");
+	Marketing->addPrerequisite("Creation");
+	root->add(Marketing);
+
+	WorkNode* QATesting = new Project(3, "QATesting");
+	QATesting->addPrerequisite("Creation");
+	root->add(QATesting);
+
+	WorkNode* Servers = new Project(3, "Servers");
+	Servers->addPrerequisite("Creation");
+	root->add(Servers);
+
+	WorkNode* Launch = new Project(3, "Launch");
+	Launch->addPrerequisite("Servers");
+	Launch->addPrerequisite("Marketing");
+	Launch->addPrerequisite("QATesting");
+	root->add(Launch);
+
+
+	//Preparation
+
+	WorkNode* research = new WorkUnit("Market Research", "Marketing");
+	Preparation->add(research);
+
+
+	WorkNode* ideaGeneration = new WorkUnit("Idea Generation", "Marketing");
+	ideaGeneration->addPrerequisite(research->getName());
+	Preparation->add(ideaGeneration);
+
+	WorkNode* budget = new WorkUnit("Budget", "Manager");
+	budget->addPrerequisite(ideaGeneration->getName());
+	Preparation->add(budget);
+
+	WorkNode* hiring = new WorkUnit("Hiring", "HR");
+	hiring->addPrerequisite(budget->getName());
+	Preparation->add(hiring);
+
+	// Creation
+
+	WorkNode* coding = new Project(3, "Development");
+	Creation->add(coding);
+	WorkNode* movement = new WorkUnit("Player Movement", "Coder");
+	WorkNode* world = new WorkUnit("World Creation", "Coder");
+	WorkNode* story = new WorkUnit("Story", "Artist");
+	coding->add(movement);
+	coding->add(world);
+	coding->add(story);
+
+
+	WorkNode* art = new Project(3, "Art");
+	Creation->add(art);
+
+	WorkNode* conceptArt = new WorkUnit("Concept Art", "Artist");
+	WorkNode* finalArt = new WorkUnit("Final Art", "Artist");
+	finalArt->addPrerequisite(conceptArt->getName());
+
+	art->add(conceptArt);
+	art->add(finalArt);
+
+
+
+	// Marketing
+
+
+	WorkNode* trailer = new WorkUnit("Trailer", "Marketing");
+	WorkNode* showcase = new WorkUnit("Gameplay Showcase", "Marketing");
+	WorkNode* interviews = new WorkUnit("Interviews", "Marketing");
+	WorkNode* ads = new WorkUnit("Ads", "Marketing");
+	Marketing->add(trailer);
+	Marketing->add(showcase);
+	Marketing->add(interviews);
+	Marketing->add(ads);
+
+	//QATesting
+	WorkNode* buildTest = new WorkUnit("Build Testing", "QA");
+	QATesting->add(buildTest);
+
+	//Servers
+
+	const int NUM_SERVERS = 3;
+	for (int i = 1; i <= NUM_SERVERS; i++) {
+		std::string n = std::to_string(i);
+
+		WorkNode* server = new Project(3, "Server " + n);
+		Servers->add(server);
+
+		WorkNode* acquire = new WorkUnit("Acquire Server " + n + " (Buy/Rent/Reallocate)", "IT");
+		WorkNode* setup = new WorkUnit("Set Up Server " + n, "IT");
+		setup->addPrerequisite(acquire->getName());
+
+		server->add(acquire);
+		server->add(setup);
+	}
+	//Launch
+
+	WorkNode* launchGame = new WorkUnit("Launch Game", "Marketing");
+	Launch->add(launchGame);
+
+	return root;
+}
+
+
+CompanyNode* createCompanyA() {
+
+	// Professions must be registered before EmployeeProfession is created with them.
+	// These match the resource names used in createScenarioA().
+	EmployeeProfession::registerProfession("Coder");
+	EmployeeProfession::registerProfession("Artist");
+	EmployeeProfession::registerProfession("Marketing");
+	EmployeeProfession::registerProfession("HR");
+	EmployeeProfession::registerProfession("QA");
+	EmployeeProfession::registerProfession("IT");
+	EmployeeProfession::registerProfession("Manager");
+
+	// ASSUMPTION: competency names are "Intern", "Junior" and "Senior"
+	// (see EmployeeCompetency::getCompetencyLevel). Change to match your implementation.
+
+	Department* company = new Department();
+	company->setName("Game Studio");
+
+	// ---- Development department: Coders and Artists ----
+	Department* development = new Department();
+	development->setName("Development");
+
+	Team* coders = makeTeam("Coders", "Coder");
+	coders->addMember(makeEmployee("Carla", "Coder", "Intern"));
+	coders->addMember(makeEmployee("Bob", "Coder", "Junior"));
+	coders->addMember(makeEmployee("Alice", "Coder", "Senior"));
+	development->add(coders);
+
+	Team* artists = makeTeam("Artists", "Artist");
+	artists->addMember(makeEmployee("Farid", "Artist", "Intern"));
+	artists->addMember(makeEmployee("Erin", "Artist", "Junior"));
+	artists->addMember(makeEmployee("Dan", "Artist", "Senior"));
+	development->add(artists);
+
+	company->add(development);
+
+	// ---- Business department: Marketing, HR ----
+	Department* business = new Department();
+	business->setName("Business");
+
+	Team* marketing = makeTeam("Marketing", "Marketing");
+	marketing->addMember(makeEmployee("Ivy", "Marketing", "Intern"));
+	marketing->addMember(makeEmployee("Henry", "Marketing", "Junior"));
+	marketing->addMember(makeEmployee("Gina", "Marketing", "Senior"));
+	business->add(marketing);
+
+	Team* hr = makeTeam("HR", "HR");
+	hr->addMember(makeEmployee("Mira", "HR", "Intern"));
+	hr->addMember(makeEmployee("Kira", "HR", "Junior"));
+	hr->addMember(makeEmployee("Jack", "HR", "Senior"));
+	business->add(hr);
+
+	company->add(business);
+
+	// ---- Operations department: QA, IT/Servers ----
+	Department* operations = new Department();
+	operations->setName("Operations");
+
+	Team* qa = makeTeam("QA", "QA");
+	qa->addMember(makeEmployee("Noah", "QA", "Intern"));
+	qa->addMember(makeEmployee("Maya", "QA", "Junior"));
+	qa->addMember(makeEmployee("Liam", "QA", "Senior"));
+	operations->add(qa);
+
+	Team* it = makeTeam("IT", "IT");
+	it->addMember(makeEmployee("Sam", "IT", "Intern"));
+	it->addMember(makeEmployee("Pedro", "IT", "Junior"));
+	it->addMember(makeEmployee("Olivia", "IT", "Senior"));
+	operations->add(it);
+
+	company->add(operations);
+
+	// ---- Management: managers handle escalations and can cancel projects ----
+	Team* managers = makeTeam("Managers", "Manager");
+	managers->addMember(makeEmployee("Tara", "Manager", "Intern", true));
+	managers->addMember(makeEmployee("Rosa", "Manager", "Junior", true));
+	managers->addMember(makeEmployee("Quinn", "Manager", "Senior", true));
+	company->add(managers);
+
+
+	return company;
+}
+
+
+void ApplicationInterface::createScenarioA() {
+	this->workflowRoot = createWorkflowA();
+
+	this->companyRoot = createCompanyA();
+
+}
+
+// Scenario B: a building contractor builds one house.
+// Uses the same helpers (makeTeam / makeEmployee) as scenario A.
+
+WorkNode* createWorkflowB() {
+	WorkNode* root = new Project(3, "House");
+
+	WorkNode* Design = new Project(3, "Design");
+	root->add(Design);
+
+	WorkNode* Structure = new Project(3, "Structure");
+	Structure->addPrerequisite("Design");          // needs the plans
+	root->add(Structure);
+
+	WorkNode* Services = new Project(3, "Services");
+	Services->addPrerequisite("Structure");
+	root->add(Services);
+
+	WorkNode* Inspection = new Project(3, "Inspection");
+	Inspection->addPrerequisite("Services");
+	root->add(Inspection);
+
+	WorkNode* Handover = new Project(3, "Handover");
+	Handover->addPrerequisite("Inspection");
+	root->add(Handover);
+
+
+	// Design: site survey (engineer), then plans (architect)
+
+	WorkNode* survey = new WorkUnit("Site Survey", "Engineer");
+	Design->add(survey);
+
+	WorkNode* plans = new WorkUnit("Plans", "Architect");
+	plans->addPrerequisite(survey->getName());
+	Design->add(plans);
+
+
+	// Structure: foundations, then framing (bricklayer)
+
+	WorkNode* foundations = new WorkUnit("Foundations", "Bricklayer");
+	Structure->add(foundations);
+
+	WorkNode* framing = new WorkUnit("Framing", "Bricklayer");
+	framing->addPrerequisite(foundations->getName());
+	Structure->add(framing);
+
+
+	// Services: plumbing and electrical run in parallel (no prerequisites between them)
+
+	WorkNode* plumbing = new WorkUnit("Plumbing", "Plumber");
+	WorkNode* electrical = new WorkUnit("Electrical", "Electrician");
+	Services->add(plumbing);
+	Services->add(electrical);
+
+
+	// Inspection: municipal inspector (stub)
+
+	WorkNode* municipalInspection = new WorkUnit("Municipal Inspection", "Inspector");
+	Inspection->add(municipalInspection);
+
+
+	// Handover (architect)
+
+	WorkNode* handoverUnit = new WorkUnit("Handover", "Architect");
+	Handover->add(handoverUnit);
+
+	return root;
+}
+
+
+CompanyNode* createCompanyB() {
+
+
+	const char* professions[] = { "Architect", "Engineer", "Bricklayer", "Plumber",
+								  "Electrician", "Manager", "Inspector" };
+	for (const char* p : professions) {
+		if (!EmployeeProfession::hasProfession(p)) {
+			EmployeeProfession::registerProfession(p);
+		}
+	}
+
+	Department* company = new Department();
+	company->setName("Building Contractor");
+
+	// ---- Design department: Architects and Engineers ----
+	Department* design = new Department();
+	design->setName("Design");
+
+	Team* architects = makeTeam("Architects", "Architect");
+	architects->addMember(makeEmployee("Zara", "Architect", "Intern"));
+	architects->addMember(makeEmployee("Yusuf", "Architect", "Junior"));
+	architects->addMember(makeEmployee("Willa", "Architect", "Senior"));
+	design->add(architects);
+
+	Team* engineers = makeTeam("Engineers", "Engineer");
+	engineers->addMember(makeEmployee("Victor", "Engineer", "Intern"));
+	engineers->addMember(makeEmployee("Uma", "Engineer", "Junior"));
+	engineers->addMember(makeEmployee("Thabo", "Engineer", "Senior"));
+	design->add(engineers);
+
+	company->add(design);
+
+	// ---- Construction department: Bricklayers, Plumbers, Electricians ----
+	Department* construction = new Department();
+	construction->setName("Construction");
+
+	Team* bricklayers = makeTeam("Bricklayers", "Bricklayer");
+	bricklayers->addMember(makeEmployee("Sipho", "Bricklayer", "Intern"));
+	bricklayers->addMember(makeEmployee("Ruben", "Bricklayer", "Junior"));
+	bricklayers->addMember(makeEmployee("Pieter", "Bricklayer", "Senior"));
+	construction->add(bricklayers);
+
+	Team* plumbers = makeTeam("Plumbers", "Plumber");
+	plumbers->addMember(makeEmployee("Omar", "Plumber", "Intern"));
+	plumbers->addMember(makeEmployee("Nandi", "Plumber", "Junior"));
+	plumbers->addMember(makeEmployee("Moses", "Plumber", "Senior"));
+	construction->add(plumbers);
+
+	Team* electricians = makeTeam("Electricians", "Electrician");
+	electricians->addMember(makeEmployee("Lerato", "Electrician", "Intern"));
+	electricians->addMember(makeEmployee("Kabelo", "Electrician", "Junior"));
+	electricians->addMember(makeEmployee("Johan", "Electrician", "Senior"));
+	construction->add(electricians);
+
+	company->add(construction);
+
+	// ---- Site management: the site manager ----
+	Team* managers = makeTeam("Managers", "Manager");
+	managers->addMember(makeEmployee("Ingrid", "Manager", "Senior", true));
+	company->add(managers);
+
+	// ---- Municipality: inspector (stub) ----
+	Team* inspectors = makeTeam("Inspectors", "Inspector");
+	inspectors->addMember(makeEmployee("Hendrik", "Inspector", "Intern"));
+	inspectors->addMember(makeEmployee("Gugu", "Inspector", "Junior"));
+	inspectors->addMember(makeEmployee("Frans", "Inspector", "Senior"));
+	company->add(inspectors);
+
+	return company;
+}
+
+void ApplicationInterface::createScenarioB() {
+	this->workflowRoot = createWorkflowB();
+
+	this->companyRoot = createCompanyB();
+
+
+
 }
 
 Memento* ApplicationInterface::createMemento(MementoType type) {
@@ -41,13 +423,15 @@ void ApplicationInterface::setMemento(Memento* memento) {
 		return;
 	}
 	switch (memento->getType()) {
-	case MementoType::company: {
+	case MementoType::company:
+	{
 		CompanyNode* restored = ((CompanyNode*)memento->getRoot())->clone();
 		delete companyRoot;
 		companyRoot = restored;
 		break;
 	}
-	case MementoType::workflow: {
+	case MementoType::workflow:
+	{
 		WorkNode* restored = ((WorkNode*)memento->getRoot())->clone();
 		delete workflowRoot;
 		workflowRoot = restored;
@@ -166,18 +550,18 @@ bool ApplicationInterface::addEmployee(Team* team, const std::string& name, cons
 }
 
 // for gui:
-bool ApplicationInterface::setCompetency(Team* team, int memberIndex, const std::string& competency){
-	if(team == nullptr || EmployeeCompetency::getCompetencyLevel(competency) < 0){
+bool ApplicationInterface::setCompetency(Team* team, int memberIndex, const std::string& competency) {
+	if (team == nullptr || EmployeeCompetency::getCompetencyLevel(competency) < 0) {
 		return false;
 	}
 	EmployeeComponent* old = team->getMember(memberIndex);
-	if(old == nullptr){
+	if (old == nullptr) {
 		return false;
 	}
 	std::string profession = team->getProfession();
-	if(profession.empty()){
-		for(const std::string& p : getProfessions()){
-			if(old->compareProfession(p)){
+	if (profession.empty()) {
+		for (const std::string& p : getProfessions()) {
+			if (old->compareProfession(p)) {
 				profession = p;
 				break;
 			}
@@ -185,12 +569,12 @@ bool ApplicationInterface::setCompetency(Team* team, int memberIndex, const std:
 	}
 	ConcreteEmployeeBuilder builder;
 	builder.reset();
-	if(!profession.empty()){
+	if (!profession.empty()) {
 		builder.addProfession(profession);
 	}
 	builder.addCompetency(competency);
 	EmployeeComponent* replacement = builder.finish(old->getName(), old->getCore()->getKind() == "Manager");
-	if(!team->replaceMember(memberIndex, replacement)){
+	if (!team->replaceMember(memberIndex, replacement)) {
 		delete replacement;
 		return false;
 	}
@@ -230,10 +614,10 @@ WorkNode* ApplicationInterface::getWorkflow() {
 }
 
 // for gui:
-std::vector<WorkNode*> ApplicationInterface::getWorkNodes(){
+std::vector<WorkNode*> ApplicationInterface::getWorkNodes() {
 	std::vector<WorkNode*> nodes;
 	WorkIterator it(getWorkflow(), false);
-	for(it.first(); !it.isDone(); it.next()){
+	for (it.first(); !it.isDone(); it.next()) {
 		nodes.push_back(it.currentItem());
 	}
 	return nodes;
@@ -252,10 +636,10 @@ std::vector<WorkUnit*> ApplicationInterface::getWorkUnits() {
 }
 
 // for gui:
-void ApplicationInterface::refreshWorkflow(){
+void ApplicationInterface::refreshWorkflow() {
 	mediator.colleagues.clear();
 	WorkIterator it(workflowRoot, false);
-	for(it.first(); !it.isDone(); it.next()){
+	for (it.first(); !it.isDone(); it.next()) {
 		it.currentItem()->setMediator(&mediator);
 		mediator.colleagues.push_back(it.currentItem());
 	}
@@ -326,7 +710,7 @@ bool ApplicationInterface::removeWorkNode(WorkNode* node) {
 	}
 	std::vector<WorkNode*> doomed;
 	WorkIterator doomedIt(node, false);
-	for(doomedIt.first(); !doomedIt.isDone(); doomedIt.next()){
+	for (doomedIt.first(); !doomedIt.isDone(); doomedIt.next()) {
 		doomed.push_back(doomedIt.currentItem());
 	}
 

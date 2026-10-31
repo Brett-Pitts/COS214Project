@@ -20,7 +20,7 @@ private:
 	bool canTake(WorkUnit* workUnit);
 
 public:
-	Team(std::string profession = "");
+	Team(std::string name, std::string profession = "");
 
 	std::string getProfession();
 
@@ -42,7 +42,7 @@ public:
 
 	void remove(CompanyNode* companyNode) {};
 
-	CompanyNode* getChild(int n) {return nullptr; };
+	CompanyNode* getChild(int n) { return nullptr; };
 
 	virtual CompanyNode* clone();
 

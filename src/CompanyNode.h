@@ -9,6 +9,7 @@ protected:
 
 public:
 	// for gui:
+	CompanyNode(std::string name) :name(name) {};
 	std::string getName() const { return name; }
 	void setName(std::string newName) { name = newName; }
 

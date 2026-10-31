@@ -45,6 +45,37 @@ public:
 
 	void setWorkflow(WorkNode* root);
 	void setCompany(CompanyNode* root);
+
+	/**
+ * @brief Builds the first demo scenario (game studio) and makes it the current workflow and company.
+ *
+ * The workflow is a project called "Fortnite" with the phases Preparation,
+ * Creation, Marketing, QATesting, Servers and Launch, linked by prerequisites. The
+ * company has development, business and operations departments and a management
+ * team, with an intern, a junior and a senior for each of the professions Coder,
+ * Artist, Marketing, HR, QA, IT and Manager. The professions are registered.
+ *
+ * The new trees replace the current ones without deleting them, so call this on a
+ * new interface. All work nodes are left in WaitingForPrerequisites and no work
+ * mediator is attached to them.
+ */
+	void createScenarioA();
+
+	/**
+	 * @brief Builds the second demo scenario (house construction) and makes it the current workflow and company.
+	 *
+	 * The workflow is a project called "House" with the phases Design, Structure,
+	 * Services, Inspection and Handover, linked by prerequisites. The company has
+	 * design and construction departments, a Manager team with one senior site
+	 * manager, and an Inspector team (the municipal inspection). Every other team has
+	 * an intern, a junior and a senior. The professions are Architect, Engineer,
+	 * Bricklayer, Plumber, Electrician, Manager and Inspector, registered if needed.
+	 *
+	 * The new trees replace the current ones without deleting them, so call this on a
+	 * new interface. All work nodes are left in WaitingForPrerequisites and no work
+	 * mediator is attached to them.
+	 */
+	void createScenarioB();
 	Memento* createMemento(MementoType type);
 	void setMemento(Memento* memento);
 

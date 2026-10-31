@@ -1,6 +1,16 @@
 QT += widgets
 CONFIG += c++11
+CONFIG += console
 INCLUDEPATH += $$PWD/../src
+
+# Redirect the final executable/library output
+DESTDIR = $$PWD/..
+
+# Redirect intermediate build artifacts
+OBJECTS_DIR = $$PWD/build/obj
+MOC_DIR = $$PWD/build/moc
+RCC_DIR = $$PWD/build/rcc
+UI_DIR = $$PWD/build/ui
 SOURCES += \
     companypage.cpp \
     loadsavepage.cpp \
