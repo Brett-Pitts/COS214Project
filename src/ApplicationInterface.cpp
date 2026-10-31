@@ -12,6 +12,7 @@
 #include "WorkIterator.h"
 #include <algorithm>
 #include "Manager.h"
+#include "CompetencyLevel.h"
 
 void ApplicationInterface::setWorkflow(WorkNode* root) {
 	this->workflowRoot = root;
@@ -22,7 +23,7 @@ void ApplicationInterface::setCompany(CompanyNode* root) {
 
 static EmployeeComponent* makeEmployee(const std::string& name,
 	const std::string& profession,
-	const std::string& competency,
+	const CompetencyLevel competency,
 	bool isManager = false) {
 	EmployeeComponent* core;
 	if (isManager) {
@@ -85,27 +86,31 @@ WorkNode* createWorkflowA() {
 
 
 	WorkNode* ideaGeneration = new WorkUnit("Idea Generation", "Marketing");
-	ideaGeneration->addPrerequisite(research->getName());
 	Preparation->add(ideaGeneration);
+	ideaGeneration->addPrerequisite(research->getName());
 
 	WorkNode* budget = new WorkUnit("Budget", "Manager");
-	budget->addPrerequisite(ideaGeneration->getName());
 	Preparation->add(budget);
+	budget->addPrerequisite(ideaGeneration->getName());
 
 	WorkNode* hiring = new WorkUnit("Hiring", "HR");
-	hiring->addPrerequisite(budget->getName());
 	Preparation->add(hiring);
+	hiring->addPrerequisite(budget->getName());
 
 	// Creation
 
 	WorkNode* coding = new Project(3, "Development");
 	Creation->add(coding);
+	std::cout << coding->getStateName() << "\n";
 	WorkNode* movement = new WorkUnit("Player Movement", "Coder");
 	WorkNode* world = new WorkUnit("World Creation", "Coder");
 	WorkNode* story = new WorkUnit("Story", "Artist");
 	coding->add(movement);
+	std::cout << movement->getStateName() << "\n";
 	coding->add(world);
+	std::cout << world->getStateName() << "\n";
 	coding->add(story);
+	std::cout << story->getStateName() << "\n";
 
 
 	WorkNode* art = new Project(3, "Art");
@@ -173,7 +178,7 @@ CompanyNode* createCompanyA() {
 	EmployeeProfession::registerProfession("IT");
 	EmployeeProfession::registerProfession("Manager");
 
-	// ASSUMPTION: competency names are "Intern", "Junior" and "Senior"
+	// ASSUMPTION: competency names are INTERN, JUNIOR and SENIOR
 	// (see EmployeeCompetency::getCompetencyLevel). Change to match your implementation.
 
 	Department* company = new Department();
@@ -184,15 +189,15 @@ CompanyNode* createCompanyA() {
 	development->setName("Development");
 
 	Team* coders = makeTeam("Coders", "Coder");
-	coders->addMember(makeEmployee("Carla", "Coder", "Intern"));
-	coders->addMember(makeEmployee("Bob", "Coder", "Junior"));
-	coders->addMember(makeEmployee("Alice", "Coder", "Senior"));
+	coders->addMember(makeEmployee("Carla", "Coder", INTERN));
+	coders->addMember(makeEmployee("Bob", "Coder", JUNIOR));
+	coders->addMember(makeEmployee("Alice", "Coder", SENIOR));
 	development->add(coders);
 
 	Team* artists = makeTeam("Artists", "Artist");
-	artists->addMember(makeEmployee("Farid", "Artist", "Intern"));
-	artists->addMember(makeEmployee("Erin", "Artist", "Junior"));
-	artists->addMember(makeEmployee("Dan", "Artist", "Senior"));
+	artists->addMember(makeEmployee("Farid", "Artist", INTERN));
+	artists->addMember(makeEmployee("Erin", "Artist", JUNIOR));
+	artists->addMember(makeEmployee("Dan", "Artist", SENIOR));
 	development->add(artists);
 
 	company->add(development);
@@ -202,15 +207,15 @@ CompanyNode* createCompanyA() {
 	business->setName("Business");
 
 	Team* marketing = makeTeam("Marketing", "Marketing");
-	marketing->addMember(makeEmployee("Ivy", "Marketing", "Intern"));
-	marketing->addMember(makeEmployee("Henry", "Marketing", "Junior"));
-	marketing->addMember(makeEmployee("Gina", "Marketing", "Senior"));
+	marketing->addMember(makeEmployee("Ivy", "Marketing", INTERN));
+	marketing->addMember(makeEmployee("Henry", "Marketing", JUNIOR));
+	marketing->addMember(makeEmployee("Gina", "Marketing", SENIOR));
 	business->add(marketing);
 
 	Team* hr = makeTeam("HR", "HR");
-	hr->addMember(makeEmployee("Mira", "HR", "Intern"));
-	hr->addMember(makeEmployee("Kira", "HR", "Junior"));
-	hr->addMember(makeEmployee("Jack", "HR", "Senior"));
+	hr->addMember(makeEmployee("Mira", "HR", INTERN));
+	hr->addMember(makeEmployee("Kira", "HR", JUNIOR));
+	hr->addMember(makeEmployee("Jack", "HR", SENIOR));
 	business->add(hr);
 
 	company->add(business);
@@ -220,24 +225,24 @@ CompanyNode* createCompanyA() {
 	operations->setName("Operations");
 
 	Team* qa = makeTeam("QA", "QA");
-	qa->addMember(makeEmployee("Noah", "QA", "Intern"));
-	qa->addMember(makeEmployee("Maya", "QA", "Junior"));
-	qa->addMember(makeEmployee("Liam", "QA", "Senior"));
+	qa->addMember(makeEmployee("Noah", "QA", INTERN));
+	qa->addMember(makeEmployee("Maya", "QA", JUNIOR));
+	qa->addMember(makeEmployee("Liam", "QA", SENIOR));
 	operations->add(qa);
 
 	Team* it = makeTeam("IT", "IT");
-	it->addMember(makeEmployee("Sam", "IT", "Intern"));
-	it->addMember(makeEmployee("Pedro", "IT", "Junior"));
-	it->addMember(makeEmployee("Olivia", "IT", "Senior"));
+	it->addMember(makeEmployee("Sam", "IT", INTERN));
+	it->addMember(makeEmployee("Pedro", "IT", JUNIOR));
+	it->addMember(makeEmployee("Olivia", "IT", SENIOR));
 	operations->add(it);
 
 	company->add(operations);
 
 	// ---- Management: managers handle escalations and can cancel projects ----
 	Team* managers = makeTeam("Managers", "Manager");
-	managers->addMember(makeEmployee("Tara", "Manager", "Intern", true));
-	managers->addMember(makeEmployee("Rosa", "Manager", "Junior", true));
-	managers->addMember(makeEmployee("Quinn", "Manager", "Senior", true));
+	managers->addMember(makeEmployee("Tara", "Manager", INTERN, true));
+	managers->addMember(makeEmployee("Rosa", "Manager", JUNIOR, true));
+	managers->addMember(makeEmployee("Quinn", "Manager", SENIOR, true));
 	company->add(managers);
 
 
@@ -340,15 +345,15 @@ CompanyNode* createCompanyB() {
 	design->setName("Design");
 
 	Team* architects = makeTeam("Architects", "Architect");
-	architects->addMember(makeEmployee("Zara", "Architect", "Intern"));
-	architects->addMember(makeEmployee("Yusuf", "Architect", "Junior"));
-	architects->addMember(makeEmployee("Willa", "Architect", "Senior"));
+	architects->addMember(makeEmployee("Zara", "Architect", INTERN));
+	architects->addMember(makeEmployee("Yusuf", "Architect", JUNIOR));
+	architects->addMember(makeEmployee("Willa", "Architect", SENIOR));
 	design->add(architects);
 
 	Team* engineers = makeTeam("Engineers", "Engineer");
-	engineers->addMember(makeEmployee("Victor", "Engineer", "Intern"));
-	engineers->addMember(makeEmployee("Uma", "Engineer", "Junior"));
-	engineers->addMember(makeEmployee("Thabo", "Engineer", "Senior"));
+	engineers->addMember(makeEmployee("Victor", "Engineer", INTERN));
+	engineers->addMember(makeEmployee("Uma", "Engineer", JUNIOR));
+	engineers->addMember(makeEmployee("Thabo", "Engineer", SENIOR));
 	design->add(engineers);
 
 	company->add(design);
@@ -358,35 +363,35 @@ CompanyNode* createCompanyB() {
 	construction->setName("Construction");
 
 	Team* bricklayers = makeTeam("Bricklayers", "Bricklayer");
-	bricklayers->addMember(makeEmployee("Sipho", "Bricklayer", "Intern"));
-	bricklayers->addMember(makeEmployee("Ruben", "Bricklayer", "Junior"));
-	bricklayers->addMember(makeEmployee("Pieter", "Bricklayer", "Senior"));
+	bricklayers->addMember(makeEmployee("Sipho", "Bricklayer", INTERN));
+	bricklayers->addMember(makeEmployee("Ruben", "Bricklayer", JUNIOR));
+	bricklayers->addMember(makeEmployee("Pieter", "Bricklayer", SENIOR));
 	construction->add(bricklayers);
 
 	Team* plumbers = makeTeam("Plumbers", "Plumber");
-	plumbers->addMember(makeEmployee("Omar", "Plumber", "Intern"));
-	plumbers->addMember(makeEmployee("Nandi", "Plumber", "Junior"));
-	plumbers->addMember(makeEmployee("Moses", "Plumber", "Senior"));
+	plumbers->addMember(makeEmployee("Omar", "Plumber", INTERN));
+	plumbers->addMember(makeEmployee("Nandi", "Plumber", JUNIOR));
+	plumbers->addMember(makeEmployee("Moses", "Plumber", SENIOR));
 	construction->add(plumbers);
 
 	Team* electricians = makeTeam("Electricians", "Electrician");
-	electricians->addMember(makeEmployee("Lerato", "Electrician", "Intern"));
-	electricians->addMember(makeEmployee("Kabelo", "Electrician", "Junior"));
-	electricians->addMember(makeEmployee("Johan", "Electrician", "Senior"));
+	electricians->addMember(makeEmployee("Lerato", "Electrician", INTERN));
+	electricians->addMember(makeEmployee("Kabelo", "Electrician", JUNIOR));
+	electricians->addMember(makeEmployee("Johan", "Electrician", SENIOR));
 	construction->add(electricians);
 
 	company->add(construction);
 
 	// ---- Site management: the site manager ----
 	Team* managers = makeTeam("Managers", "Manager");
-	managers->addMember(makeEmployee("Ingrid", "Manager", "Senior", true));
+	managers->addMember(makeEmployee("Ingrid", "Manager", SENIOR, true));
 	company->add(managers);
 
 	// ---- Municipality: inspector (stub) ----
 	Team* inspectors = makeTeam("Inspectors", "Inspector");
-	inspectors->addMember(makeEmployee("Hendrik", "Inspector", "Intern"));
-	inspectors->addMember(makeEmployee("Gugu", "Inspector", "Junior"));
-	inspectors->addMember(makeEmployee("Frans", "Inspector", "Senior"));
+	inspectors->addMember(makeEmployee("Hendrik", "Inspector", INTERN));
+	inspectors->addMember(makeEmployee("Gugu", "Inspector", JUNIOR));
+	inspectors->addMember(makeEmployee("Frans", "Inspector", SENIOR));
 	company->add(inspectors);
 
 	return company;

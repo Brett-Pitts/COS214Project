@@ -56,6 +56,8 @@ public:
 	 */
 	EmployeeProfession(std::string name);
 
+	virtual std::string getProfession();
+
 	/**
 	 * @brief Copy constructor. Copies the profession name and makes a deep copy of the wrapped component.
 	 * @param other The decorator to copy.

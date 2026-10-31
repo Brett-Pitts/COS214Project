@@ -11,6 +11,10 @@ Manager::Manager(const Manager& other) : Employee(other) {}
 
 Manager::~Manager() {}
 
+bool Manager::compareCompetency(int requiredCompetency) {
+	return false;
+}
+
 std::string Manager::getKind() {
 	return "Manager";
 }

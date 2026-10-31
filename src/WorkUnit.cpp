@@ -18,6 +18,13 @@ bool WorkUnit::hasName(std::string name) {
 	return name == this->name;
 }
 
+WorkNode* WorkUnit::getNode(std::string name) {
+	if (this->name == name) {
+		return this;
+	}
+	return nullptr;
+}
+
 
 
 void WorkUnit::add(WorkNode* workNode) {

@@ -37,3 +37,4 @@ TIVIDYtest
 /GUI/build/
 /GUI/.qtcreator/
 */*.zip
+Makefile

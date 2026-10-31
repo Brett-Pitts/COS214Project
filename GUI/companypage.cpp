@@ -49,20 +49,15 @@ namespace {
 	};
 
 	QStringList competencyLevels() {
-		return QStringList() << "intern" << "junior" << "senior";
+		return QStringList() << "Intern" << "Junior" << "Senior";
 	}
 
 	EmployeeInfo describe(EmployeeComponent* member) {
 		EmployeeInfo info;
 		info.name = toQ(member->getName());
-		info.role = toQ(member->getCore()->getKind());
-		QStringList levels = competencyLevels();
-		for (int i = levels.size() - 1; i >= 0; i--) {
-			if (member->compareCompetency(EmployeeCompetency::getCompetencyLevel(levels[i].toStdString()))) {
-				info.topCompetency = levels[i];
-				break;
-			}
-		}
+		info.role = toQ(member->getProfession());
+		info.topCompetency = toQ(member->getCompetency());
+
 		return info;
 	}
 

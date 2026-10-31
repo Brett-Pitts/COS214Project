@@ -36,7 +36,7 @@ public:
 
 	/** @brief Virtual destructor. */
 	virtual ~Manager();
-
+	virtual bool compareCompetency(int requiredCompetency);
 	/** @brief Gets the kind of component ("Manager"). */
 	std::string getKind();
 

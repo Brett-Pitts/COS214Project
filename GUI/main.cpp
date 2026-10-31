@@ -4,6 +4,7 @@
 #include <iostream>
 
 int main(int argc, char* argv[]) {
+	std::cout << "Test\n";
 	QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
 	QApplication a(argc, argv);
 	QFile styleFile(":/style.qss");

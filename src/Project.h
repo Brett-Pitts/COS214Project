@@ -11,23 +11,23 @@
  * @brief Declares the composite node of the work tree.
  */
 
-/**
- * @class Project
- * @brief A project or phase: a work node that contains other work nodes.
- *
- * A project holds sub-projects and work units. It is completed when all of its
- * children are completed: the last child to complete puts the project in
- * Escalated and advances it (see Escalated::handle()), and that in turn can
- * complete the project's own parent. Phases of a larger project are simply
- * Projects as well.
- *
- * @par Design patterns
- * - Composite (Composite): children are WorkNode pointers.
- * - Prototype (ConcretePrototype): clone() copies the project and its children.
- * - Iterator (ConcreteAggregate): createIterator() is inherited from WorkNode.
- *
- * @see WorkNode, WorkUnit
- */
+ /**
+  * @class Project
+  * @brief A project or phase: a work node that contains other work nodes.
+  *
+  * A project holds sub-projects and work units. It is completed when all of its
+  * children are completed: the last child to complete puts the project in
+  * Escalated and advances it (see Escalated::handle()), and that in turn can
+  * complete the project's own parent. Phases of a larger project are simply
+  * Projects as well.
+  *
+  * @par Design patterns
+  * - Composite (Composite): children are WorkNode pointers.
+  * - Prototype (ConcretePrototype): clone() copies the project and its children.
+  * - Iterator (ConcreteAggregate): createIterator() is inherited from WorkNode.
+  *
+  * @see WorkNode, WorkUnit
+  */
 class Project : public WorkNode {
 
 public:
@@ -89,6 +89,8 @@ public:
 	 * @return A newly allocated copy. The caller owns it.
 	 */
 	WorkNode* clone();
+
+	virtual WorkNode* getNode(std::string name);
 
 	/**
 	 * @brief Checks whether this project, or anything below it, has a given name.

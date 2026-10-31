@@ -1,5 +1,7 @@
 #include "Project.h"
 #include <algorithm>
+#include "WorkNode.h"
+#include "WaitingForPrerequisites.h"
 
 Project::Project(int maxRetries, std::string name) : WorkNode(maxRetries, name) {}
 
@@ -9,14 +11,17 @@ Project::~Project() {
 		delete child;
 
 }
-
+#include <iostream>
 void Project::add(WorkNode* workNode) {
-
-	if (workNode == NULL) return;
-	if (hasName(workNode->getName())) {
+	std::cout << this->getName() << " adding " << workNode->getName() << '\n';
+	if (workNode == nullptr) return;
+	if (getRoot()->hasName(workNode->getName())) {
 		workNode->setName(workNode->getName() + "1");
 	}
 	workNode->setParent(this);
+	if (this->isWaitingForPrerequisites()) {
+		workNode->setState(new WaitingForPrerequisites());
+	}
 	children.push_back(workNode);
 
 }
@@ -54,6 +59,17 @@ WorkNode* Project::clone() {
 	copy->copyStateFrom(this);
 	return copy;
 
+}
+
+WorkNode* Project::getNode(std::string name) {
+	WorkNode* node = nullptr;
+	for (int i = 0;i < this->children.size();i++) {
+		node = children[i]->getNode(name);
+		if (node != nullptr) {
+			break;
+		}
+	}
+	return node;
 }
 
 bool Project::hasName(std::string name) {

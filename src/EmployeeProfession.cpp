@@ -7,6 +7,10 @@ std::vector<std::string> EmployeeProfession::professionList;
 
 EmployeeProfession::EmployeeProfession(std::string name) : EmployeeDetail(), professionName(registerProfession(name)) {}
 
+std::string EmployeeProfession::getProfession() {
+	return this->professionName;
+}
+
 EmployeeProfession::EmployeeProfession(const EmployeeProfession& other) : EmployeeDetail(other), professionName(other.professionName) {}
 
 EmployeeProfession::~EmployeeProfession() {}
@@ -68,8 +72,8 @@ void EmployeeProfession::finish(WorkUnit* workUnit) {
 
 EmployeeComponent* EmployeeProfession::clone() {
 	EmployeeComponent* ret = new EmployeeProfession(professionName);
-  if(wrapped!=nullptr)
-	  ret->wrap(wrapped->clone());
+	if (wrapped != nullptr)
+		ret->wrap(wrapped->clone());
 	return ret;
 
 }

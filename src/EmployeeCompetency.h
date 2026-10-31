@@ -2,7 +2,7 @@
 #define EMPLOYEECOMPETENCY_H
 
 #include "EmployeeDetail.h"
-
+#include "CompetencyLevel.h"
 class FileSystem;
 
 /**
@@ -25,8 +25,7 @@ class FileSystem;
 class EmployeeCompetency : public EmployeeDetail {
 	friend class FileSystem;
 private:
-	int competencyId;        ///< Numeric level: INTERN, JUNIOR or SENIOR, or -1 if the name was not recognised.
-	string competencyName;   ///< Name of the level as it was entered (for example "Intern"). Used in output and when saving.
+	CompetencyLevel competencyId;        ///< Numeric level: INTERN, JUNIOR or SENIOR, or -1 if the name was not recognised.
 
 protected:
 	/**
@@ -49,20 +48,21 @@ protected:
 
 public:
 	/** @brief Competency levels, in increasing order of seniority. */
-	enum { INTERN = 0, JUNIOR = 1, SENIOR = 2 };
+
 
 	/**
 	 * @brief Creates a competency decorator.
 	 * @param name Name of the level: "Intern", "Junior" or "Senior" (case-sensitive).
 	 *        Any other name gives the level -1, which never satisfies a requirement.
 	 */
-	EmployeeCompetency(string name);
+	EmployeeCompetency(CompetencyLevel level);
 
 	/**
 	 * @brief Copy constructor. Copies the level and makes a deep copy of the wrapped component.
 	 * @param other The decorator to copy.
 	 */
 	EmployeeCompetency(const EmployeeCompetency& other);
+	virtual std::string getCompetency();
 
 	/** @brief Virtual destructor. */
 	virtual ~EmployeeCompetency();
@@ -75,7 +75,10 @@ public:
 	 * @param name Name of the level: "Intern", "Junior" or "Senior" (case-sensitive).
 	 * @return INTERN, JUNIOR or SENIOR, or -1 if the name is not recognised.
 	 */
-	static int getCompetencyLevel(string name);
+	static CompetencyLevel getCompetencyLevel(const std::string& name);
+
+
+	static std::string getCompetencyName(CompetencyLevel level);
 
 	/**
 	 * @brief Checks whether this employee is competent enough.
@@ -83,7 +86,7 @@ public:
 	 * @return true if this decorator's level is at least the required level.
 	 *         Otherwise the wrapped chain is asked. A negative requirement is never met here.
 	 */
-	bool compareCompetency(int requiredCompetency);
+	bool compareCompetency(CompetencyLevel requiredCompetency);
 
 	/**
 	 * @brief Makes a copy of this decorator, wrapping a copy of the component it wraps.

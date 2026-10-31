@@ -22,6 +22,7 @@ public:
 	void add(WorkNode* workNode);
 	WorkNode* clone();
 	bool hasName(std::string name);
+	virtual WorkNode* getNode(std::string name);
 
 };
 
