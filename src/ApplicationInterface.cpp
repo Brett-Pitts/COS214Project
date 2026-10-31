@@ -446,6 +446,12 @@ void ApplicationInterface::setMemento(Memento* memento) {
 }
 
 ApplicationInterface::~ApplicationInterface() {
-	delete workflowRoot;
-	delete companyRoot;
+	if (workflowRoot) {
+		delete workflowRoot;
+
+	}
+	if (companyRoot) {
+
+		delete companyRoot;
+	}
 }

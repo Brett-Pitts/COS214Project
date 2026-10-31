@@ -36,6 +36,13 @@ $(TARGETTEST): $(OBJ_FILES_TEST)
 run: $(TARGET)
 	./$(TARGET)
 
+
+ScenarioA: $(TARGET)
+	./$(TARGET) ScenarioA
+
+ScenarioB: $(TARGET)
+	./$(TARGET) ScenarioB
+
 test: $(TARGETTEST)
 	./$(TARGETTEST)
 
