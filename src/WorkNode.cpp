@@ -174,3 +174,25 @@ int WorkNode::getMaxRetries() {
 std::string WorkNode::getName() {
 	return name;
 }
+
+// for gui:
+void WorkNode::copyStateFrom(WorkNode* other) {
+	if (other == nullptr) {
+		return;
+	}
+	this->prerequisites = other->prerequisites;
+	this->retryCount = other->retryCount;
+	this->setState(other->getStateName());
+}
+
+// for gui:
+void WorkNode::setMaxRetries(int retries) {
+	if (retries >= 0) {
+		this->maxRetries = retries;
+	}
+}
+
+// for gui:
+void WorkNode::removePrerequisite(std::string workName) {
+	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), workName), prerequisites.end());
+}

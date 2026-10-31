@@ -27,14 +27,13 @@ void EmployeeComponent::perform(WorkUnit* workUnit) {
 void EmployeeComponent::finish(WorkUnit* workUnit) {
 	std::cout << getName() << " finishes " << workUnit->getName() << std::endl;
 }
+// for gui:
+bool EmployeeComponent::compareCompetency(int) {
+	return false;
+}
+
 EmployeeComponent* EmployeeComponent::getCore() {
-	return this;
-}
-bool EmployeeComponent::compareProfession(string professionName) {
-	return false;
-}
-bool EmployeeComponent::compareCompetency(int requiredCompetency) {
-	return false;
+    return this;
 }
 void EmployeeComponent::doWork(WorkUnit* workUnit) {
 	if (workUnit == nullptr) {

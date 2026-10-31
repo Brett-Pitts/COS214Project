@@ -1,6 +1,11 @@
 #include "FileSystem.h"
 #include <iostream>
-#include <exception>
+#include <cerrno>
+#ifdef _WIN32
+#include <direct.h>
+#else
+#include <sys/stat.h>
+#endif
 #include "MementoType.h"
 #include "Team.h"
 #include "Department.h"
@@ -16,77 +21,81 @@
 #include "Project.h"
 #include "Memento.h"
 
-
-// Reads one line and strips a trailing '\r' so files saved on Windows load on Linux.
-static bool readLine(std::istream& file, std::string& line) {
-	if (!std::getline(file, line)) {
+static bool readLine(std::istream& in, std::string& line) {
+	if (!std::getline(in, line)) {
 		return false;
 	}
-	if (!line.empty() && line[line.size() - 1] == '\r') {
-		line.erase(line.size() - 1);
+	if (!line.empty() && line.back() == '\r') {
+		line.pop_back();
 	}
 	return true;
 }
 
-static void writePrerequisites(std::ostream& file, WorkNode* node) {
-	file << "Prerequisites\n";
-	for (const std::string& prereq : node->getPrerequisites()) {
-		file << prereq << '\n';
+static std::string oneLine(std::string text) {
+	for (char& c : text) {
+		if (c == '\n' || c == '\r') {
+			c = ' ';
+		}
 	}
-	file << "EndPrerequisites\n";
+	return text;
 }
 
-// Expects the "Prerequisites" line, then reads names until "EndPrerequisites".
-static void readPrerequisites(std::istream& file, WorkNode* node) {
-	std::string line;
-	if (!readLine(file, line) || line != "Prerequisites") {
-		std::cerr << "Error reading file, Prerequisites not found\n";
+static std::string::size_type lastSeparator(const std::string& path){
+	return path.find_last_of("/\\");
+}
+
+static bool hasDirectory(const std::string& path){
+	return lastSeparator(path) != std::string::npos;
+}
+
+static bool hasExtension(const std::string& path){
+	std::string::size_type separator = lastSeparator(path);
+	std::string::size_type dot = path.find_last_of('.');
+	if(dot == std::string::npos){
+		return false;
+	}
+	if(separator != std::string::npos && dot < separator){
+		return false;
+	}
+	return dot + 1 < path.size();
+}
+
+static std::string resolvePath(const std::string& filename){
+	std::string path = filename;
+	if(!hasDirectory(path)){
+		path = "saves/" + path;
+	}
+	if(!hasExtension(path)){
+		path += ".txt";
+	}
+	return path;
+}
+
+static void makeDirectory(const std::string& directory){
+#ifdef _WIN32
+	_mkdir(directory.c_str());
+#else
+	mkdir(directory.c_str(), 0755);
+#endif
+}
+
+static void createParentDirectories(const std::string& path){
+	std::string::size_type last = lastSeparator(path);
+	if(last == std::string::npos){
 		return;
 	}
-	while (readLine(file, line)) {
-		if (line == "EndPrerequisites") {
-			break;
+	for(std::string::size_type i = 0; i < last; i++){
+		bool isSeparator = path[i] == '/' || path[i] == '\\';
+		if(!isSeparator || i == 0){
+			continue;
 		}
-		node->addPrerequisite(line);
+		if(path[i - 1] == ':'){
+			continue;
+		}
+		makeDirectory(path.substr(0, i));
 	}
+	makeDirectory(path.substr(0, last));
 }
-
-// Reads one decorator or core part of an employee (the line after the tag is the
-// name, followed by the matching End line). Returns nullptr for an unknown tag.
-static EmployeeComponent* readEmployeePart(std::istream& file, const std::string& tag) {
-	std::string value;
-	std::string end;
-	EmployeeComponent* part = nullptr;
-
-	if (tag != "Profession" && tag != "Competency" && tag != "Employee" && tag != "Manager") {
-		return nullptr;
-	}
-	if (!readLine(file, value)) {
-		return nullptr;
-	}
-
-	if (tag == "Profession") {
-		part = new EmployeeProfession(value);
-	}
-	else if (tag == "Competency") {
-		part = new EmployeeCompetency(value);
-	}
-	else if (tag == "Employee") {
-		part = new Employee(value);
-	}
-	else {
-		part = new Manager(value);
-	}
-
-	if (!readLine(file, end) || end != "End" + tag) {
-		std::cerr << "Error reading file, End" << tag << " not found\n";
-	}
-	return part;
-}
-
-// ---------------------------------------------------------------------------
-// Storage of mementos
-// ---------------------------------------------------------------------------
 
 FileSystem::~FileSystem() {
 	for (const auto& pair : storage) {
@@ -95,12 +104,9 @@ FileSystem::~FileSystem() {
 }
 
 void FileSystem::saveMemento(std::string name, Memento* memento) {
-	std::map<std::string, Memento*>::iterator it = storage.find(name);
-	if (it != storage.end()) {
-		if (it->second == memento) {
-			return; // Same memento saved again: deleting it would leave a dangling pointer.
-		}
-		delete it->second;
+	auto iter = storage.find(name);
+	if (iter != storage.end() && iter->second != nullptr && iter->second != memento) {
+		delete iter->second;
 	}
 	storage[name] = memento;
 }
@@ -113,11 +119,35 @@ Memento* FileSystem::loadMemento(std::string name) {
 	return iter->second;
 }
 
-// ---------------------------------------------------------------------------
-// Saving
-// ---------------------------------------------------------------------------
+// for gui:
+void FileSystem::saveMember(std::ostream& file, EmployeeComponent* member) {
+	file << "Member\n";
 
-void FileSystem::saveCompany(std::ofstream& file, CompanyNode* root) {
+	EmployeeComponent* emp = member;
+	while (emp != nullptr) {
+		std::string kind = emp->getKind();
+		if (kind == "Profession") {
+			file << "Profession\n" << oneLine(((EmployeeProfession*)emp)->professionName) << "\nEndProfession\n";
+			emp = ((EmployeeDetail*)emp)->wrapped;
+		}
+		else if (kind == "Competency") {
+			file << "Competency\n" << oneLine(((EmployeeCompetency*)emp)->competencyName) << "\nEndCompetency\n";
+			emp = ((EmployeeDetail*)emp)->wrapped;
+		}
+		else if (kind == "Manager") {
+			file << "Manager\n" << oneLine(emp->getName()) << "\nEndManager\n";
+			break;
+		}
+		else {
+			file << "Employee\n" << oneLine(emp->getName()) << "\nEndEmployee\n";
+			break;
+		}
+	}
+
+	file << "EndMember\n";
+}
+
+void FileSystem::saveCompany(std::ostream& file, CompanyNode* root) {
 	if (root == nullptr) {
 		return;
 	}
@@ -125,52 +155,16 @@ void FileSystem::saveCompany(std::ofstream& file, CompanyNode* root) {
 	Team* team = dynamic_cast<Team*>(root);
 	if (team != nullptr) {
 		file << "Team\n";
-		file << team->profession << '\n';
-
+		file << oneLine(team->getName()) << '\n';
+		file << oneLine(team->getProfession()) << '\n';
 		for (EmployeeComponent* emp : team->members) {
-			file << "Member\n";
-
-			// Walk from the outermost decorator down to the core, writing each part.
-			EmployeeComponent* current = emp;
-			while (current != nullptr) {
-				std::string kind = current->getKind();
-
-				if (kind == "Profession") {
-					file << "Profession\n";
-					file << static_cast<EmployeeProfession*>(current)->professionName << '\n';
-					file << "EndProfession\n";
-					current = static_cast<EmployeeDetail*>(current)->wrapped;
-				}
-				else if (kind == "Competency") {
-					file << "Competency\n";
-					file << static_cast<EmployeeCompetency*>(current)->competencyName << '\n';
-					file << "EndCompetency\n";
-					current = static_cast<EmployeeDetail*>(current)->wrapped;
-				}
-				else if (kind == "Employee") {
-					file << "Employee\n";
-					file << current->getName() << '\n';
-					file << "EndEmployee\n";
-					break;
-				}
-				else if (kind == "Manager") {
-					file << "Manager\n";
-					file << current->getName() << '\n';
-					file << "EndManager\n";
-					break;
-				}
-				else {
-					break;
-				}
-			}
-
-			file << "EndMember\n";
+			saveMember(file, emp);
 		}
 		file << "EndTeam\n";
 	}
 	else {
-		// Department (this also handles an empty department correctly)
 		file << "Department\n";
+		file << oneLine(root->getName()) << '\n';
 		for (int i = 0;; i++) {
 			CompanyNode* child = root->getChild(i);
 			if (child == nullptr) {
@@ -182,7 +176,16 @@ void FileSystem::saveCompany(std::ofstream& file, CompanyNode* root) {
 	}
 }
 
-void FileSystem::saveWorkflow(std::ofstream& file, WorkNode* root) {
+// for gui:
+void FileSystem::savePrerequisites(std::ostream& file, WorkNode* node) {
+	file << "Prerequisites\n";
+	for (const std::string& prereq : node->getPrerequisites()) {
+		file << oneLine(prereq) << '\n';
+	}
+	file << "EndPrerequisites\n";
+}
+
+void FileSystem::saveWorkflow(std::ostream& file, WorkNode* root) {
 	if (root == nullptr) {
 		return;
 	}
@@ -190,20 +193,18 @@ void FileSystem::saveWorkflow(std::ofstream& file, WorkNode* root) {
 	WorkUnit* unit = dynamic_cast<WorkUnit*>(root);
 	if (unit != nullptr) {
 		file << "Unit\n";
-		file << unit->getName() << '\n';
-		file << unit->getRequiredProfession() << '\n';
+		file << oneLine(unit->getName()) << '\n';
+		file << oneLine(unit->getRequiredProfession()) << '\n';
 		file << unit->getStateName() << '\n';
-		writePrerequisites(file, unit);
+		savePrerequisites(file, unit);
 		file << "EndUnit\n";
 	}
 	else {
-		// Project (this also handles an empty project correctly)
 		file << "Project\n";
-		file << root->getName() << '\n';
+		file << oneLine(root->getName()) << '\n';
 		file << root->getMaxRetries() << '\n';
 		file << root->getStateName() << '\n';
-		writePrerequisites(file, root);
-
+		savePrerequisites(file, root);
 		file << "Children\n";
 		for (int i = 0;; i++) {
 			WorkNode* child = root->getChild(i);
@@ -213,245 +214,286 @@ void FileSystem::saveWorkflow(std::ofstream& file, WorkNode* root) {
 			saveWorkflow(file, child);
 		}
 		file << "EndChildren\n";
-
 		file << "EndProject\n";
 	}
 }
 
-void FileSystem::saveToFile(std::string name, std::string filename) {
-
+bool FileSystem::saveToFile(std::string name, std::string filename) {
 	Memento* mem = loadMemento(name);
 	if (mem == nullptr || mem->getRoot() == nullptr) {
-		std::cerr << "Nothing to save under the name: " << name << '\n';
-		return;
+		return false;
 	}
 
+	std::string path = resolvePath(filename);
+	createParentDirectories(path);
 
-
-	std::ofstream file("saves/" + filename + ".tvd");
+	std::ofstream file(path.c_str());
 	if (!file.is_open()) {
 		std::cerr << "Failed to open file: " << filename << '\n';
-		return;
+		return false;
 	}
 
 	switch (mem->getType()) {
-	case (MementoType::company):
-	{
+	case MementoType::company:
 		file << "Company\n";
-		CompanyNode* root = (CompanyNode*)mem->getRoot();
-		saveCompany(file, root);
+		saveCompany(file, (CompanyNode*)mem->getRoot());
 		break;
-	}
-	case (MementoType::workflow):
-	{
+	case MementoType::workflow:
 		file << "Workflow\n";
-		WorkNode* root = (WorkNode*)mem->getRoot();
-		saveWorkflow(file, root);
+		saveWorkflow(file, (WorkNode*)mem->getRoot());
 		break;
-	}
 	default:
-		break;
+		return false;
 	}
 
-	if (!file) {
-		std::cerr << "Error while writing file: " << filename << '\n';
-	}
+	file.flush();
+	return file.good();
 }
 
-// ---------------------------------------------------------------------------
-// Loading
-// ---------------------------------------------------------------------------
-
-void FileSystem::loadCompany(std::ifstream& file, CompanyNode*& root) {
+// for gui:
+EmployeeComponent* FileSystem::loadMember(std::istream& file) {
+	EmployeeComponent* head = nullptr;
 	std::string line;
-	if (!readLine(file, line)) {
-		return;
+
+	while (readLine(file, line)) {
+		if (line == "EndMember") {
+			if (head == nullptr) {
+				return nullptr;
+			}
+			std::string coreKind = head->getCore()->getKind();
+			if (coreKind != "Employee" && coreKind != "Manager") {
+				delete head;
+				return nullptr;
+			}
+			return head;
+		}
+
+		std::string tag = line;
+		std::string value;
+		std::string end;
+		if (!readLine(file, value) || !readLine(file, end) || end != "End" + tag) {
+			std::cerr << "Error reading file, End" << tag << " not found\n";
+			delete head;
+			return nullptr;
+		}
+
+		EmployeeComponent* node = nullptr;
+		if (tag == "Profession") {
+			node = new EmployeeProfession(value);
+		}
+		else if (tag == "Competency") {
+			node = new EmployeeCompetency(value);
+		}
+		else if (tag == "Employee") {
+			node = new Employee(value);
+		}
+		else if (tag == "Manager") {
+			node = new Manager(value);
+		}
+		else {
+			delete head;
+			return nullptr;
+		}
+
+		if (head == nullptr) {
+			head = node;
+		}
+		else {
+			head->wrap(node);
+		}
 	}
 
-	if (line == "EndDepartment") {
-		return;
-	}
+	delete head;
+	return nullptr;
+}
 
-	if (line == "Department") {
+CompanyNode* FileSystem::loadCompany(std::istream& file, const std::string& tag) {
+	std::string line;
+
+	if (tag == "Department") {
 		Department* department = new Department();
+		if (!readLine(file, line)) {
+			delete department;
+			return nullptr;
+		}
+		department->setName(line);
 
-		while (true) {
+		while (readLine(file, line)) {
+			if (line == "EndDepartment") {
+				return department;
+			}
 			CompanyNode* child = nullptr;
-			loadCompany(file, child);
+			if (line == "Department" || line == "Team") {
+				child = loadCompany(file, line);
+			}
 			if (child == nullptr) {
-				break;
+				delete department;
+				return nullptr;
 			}
 			department->add(child);
 		}
-		root = department;
+		delete department;
+		return nullptr;
 	}
-	else if (line == "Team") {
 
+	if (tag == "Team") {
+		std::string name;
 		std::string profession;
-		std::streampos position = file.tellg();
-		if (!readLine(file, profession)) {
-			return;
+		if (!readLine(file, name) || !readLine(file, profession)) {
+			return nullptr;
 		}
-		if (profession == "Member" || profession == "EndTeam") {
-			file.clear();
-			file.seekg(position);
-			profession = "";
-		}
-
 		Team* team = new Team(profession);
+		team->setName(name);
 
 		while (readLine(file, line)) {
 			if (line == "EndTeam") {
-				break;
+				return team;
 			}
-
-			if (line == "Member") {
-				EmployeeComponent* member = nullptr;
-
-				while (readLine(file, line)) {
-					if (line == "EndMember") {
-						break;
-					}
-					EmployeeComponent* part = readEmployeePart(file, line);
-					if (part == nullptr) {
-						continue;
-					}
-					if (member == nullptr) {
-						member = part;
-					}
-					else {
-						member->wrap(part);
-					}
-				}
-
-				if (member != nullptr && !team->addMember(member)) {
-					std::cerr << "Could not add member " << member->getName() << " to the team\n";
-					delete member;
-				}
+			if (line != "Member") {
+				delete team;
+				return nullptr;
+			}
+			EmployeeComponent* member = loadMember(file);
+			if (member == nullptr) {
+				delete team;
+				return nullptr;
+			}
+			if (!team->addMember(member)) {
+				delete member;
 			}
 		}
-		root = team;
+		delete team;
+		return nullptr;
 	}
+
+	return nullptr;
 }
 
-void FileSystem::loadWorkflow(std::ifstream& file, WorkNode*& root) {
-
+// for gui:
+bool FileSystem::loadPrerequisites(std::istream& file, WorkNode* node) {
 	std::string line;
-	if (!readLine(file, line)) {
-		return;
+	if (!readLine(file, line) || line != "Prerequisites") {
+		return false;
 	}
-
-	if (line == "EndProject" || line == "EndChildren") {
-		return;
+	while (readLine(file, line)) {
+		if (line == "EndPrerequisites") {
+			return true;
+		}
+		node->addPrerequisite(line);
 	}
+	return false;
+}
 
-	if (line == "Project") {
+WorkNode* FileSystem::loadWorkflow(std::istream& file, const std::string& tag) {
+	std::string line;
+
+	if (tag == "Project") {
 		std::string name;
 		std::string maxRetries;
 		std::string stateName;
 		if (!readLine(file, name) || !readLine(file, maxRetries) || !readLine(file, stateName)) {
-			std::cerr << "Error reading file, project header incomplete\n";
-			return;
+			return nullptr;
 		}
 
-		int retries = 0;
+		int retries = 3;
 		try {
 			retries = std::stoi(maxRetries);
 		}
-		catch (const std::exception&) {
-			std::cerr << "Error reading file, bad retry count: " << maxRetries << '\n';
-			return;
+		catch (...) {
+			return nullptr;
 		}
 
 		Project* project = new Project(retries, name);
 		project->setState(stateName);
-		readPrerequisites(file, project);
 
-		if (readLine(file, line) && line == "Children") {
-			while (true) {
-				WorkNode* child = nullptr;
-				loadWorkflow(file, child);
-				if (child == nullptr) {
-					break; // "EndChildren" (consumed above) or an error
+		if (!loadPrerequisites(file, project) || !readLine(file, line) || line != "Children") {
+			delete project;
+			return nullptr;
+		}
+
+		while (readLine(file, line)) {
+			if (line == "EndChildren") {
+				if (!readLine(file, line) || line != "EndProject") {
+					delete project;
+					return nullptr;
 				}
-				project->add(child);
+				return project;
 			}
-
-			// Consume this project's own end marker so the parent's loop stays in step.
-			if (!readLine(file, line) || line != "EndProject") {
-				std::cerr << "Error reading file, EndProject not found!\n";
+			WorkNode* child = nullptr;
+			if (line == "Project" || line == "Unit") {
+				child = loadWorkflow(file, line);
 			}
+			if (child == nullptr) {
+				delete project;
+				return nullptr;
+			}
+			project->add(child);
 		}
-		else {
-			std::cerr << "Error reading file, Children not found!\n";
-		}
-		root = project;
+		delete project;
+		return nullptr;
 	}
 
-	else if (line == "Unit") {
-
+	if (tag == "Unit") {
 		std::string name;
 		std::string required;
 		if (!readLine(file, name) || !readLine(file, required)) {
-			std::cerr << "Error reading file, unit incomplete\n";
-			return;
+			return nullptr;
 		}
 
 		WorkUnit* unit = new WorkUnit(name, required);
 
-		// Newer files store the state and prerequisites; older ones go straight to EndUnit.
 		if (!readLine(file, line)) {
+			delete unit;
+			return nullptr;
+		}
+		if (line == "EndUnit") {
+			return unit;
+		}
+
+		unit->setState(line);
+		if (!loadPrerequisites(file, unit) || !readLine(file, line) || line != "EndUnit") {
 			std::cerr << "Error reading file, EndUnit not found!\n";
+			delete unit;
+			return nullptr;
 		}
-		else if (line != "EndUnit") {
-			unit->setState(line);
-			readPrerequisites(file, unit);
-			if (!readLine(file, line) || line != "EndUnit") {
-				std::cerr << "Error reading file, EndUnit not found!\n";
-			}
-		}
-		root = unit;
+		return unit;
 	}
+
+	return nullptr;
 }
 
-void FileSystem::loadFromFile(std::string name, std::string filename) {
-
-	std::ifstream file("saves/" + filename + ".tvd");
+bool FileSystem::loadFromFile(std::string name, std::string filename) {
+	std::ifstream file(resolvePath(filename).c_str());
 	if (!file.is_open()) {
 		std::cerr << "Failed to open file: " << filename << '\n';
-		return;
+		return false;
 	}
 
-	std::string line;
-	if (!readLine(file, line)) {
-		std::cerr << "File is empty: " << filename << '\n';
-		return;
+	std::string header;
+	std::string tag;
+	if (!readLine(file, header) || !readLine(file, tag)) {
+		return false;
 	}
 
 	Memento* mem = nullptr;
-
-	if (line == "Company") {
-		CompanyNode* root = nullptr;
-		loadCompany(file, root);
+	if (header == "Company") {
+		CompanyNode* root = loadCompany(file, tag);
 		if (root == nullptr) {
-			std::cerr << "Could not read a company from: " << filename << '\n';
-			return;
+			return false;
 		}
 		mem = new Memento(root, MementoType::company);
 	}
-	else if (line == "Workflow") {
-		WorkNode* root = nullptr;
-		loadWorkflow(file, root);
+	else if (header == "Workflow") {
+		WorkNode* root = loadWorkflow(file, tag);
 		if (root == nullptr) {
-			std::cerr << "Could not read a workflow from: " << filename << '\n';
-			return;
+			return false;
 		}
 		mem = new Memento(root, MementoType::workflow);
 	}
 	else {
-		std::cerr << "Unknown file type in: " << filename << '\n';
-		return;
+		return false;
 	}
 
 	saveMemento(name, mem);
+	return true;
 }
