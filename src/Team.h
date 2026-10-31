@@ -20,9 +20,9 @@ private:
 	bool canTake(WorkUnit* workUnit);
 
 public:
-	Team(std::string name, std::string profession = "");
+	Team(std::string name, std::string profession);
 
-	std::string getProfession();
+	const std::string& getProfession();
 
 	bool addMember(EmployeeComponent* employeeComponent);
 	// for gui:

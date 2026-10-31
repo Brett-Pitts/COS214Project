@@ -13,7 +13,6 @@ Project::~Project() {
 }
 #include <iostream>
 void Project::add(WorkNode* workNode) {
-	std::cout << this->getName() << " adding " << workNode->getName() << '\n';
 	if (workNode == nullptr) return;
 	if (getRoot()->hasName(workNode->getName())) {
 		workNode->setName(workNode->getName() + "1");

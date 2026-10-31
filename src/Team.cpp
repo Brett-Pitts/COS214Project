@@ -4,11 +4,11 @@
 #include "EmployeeProfession.h"
 #include "Failed.h"
 using namespace std;
-Team::Team(std::string name, std::string profession) : CompanyNode(name) {
-	this->profession = profession;
+Team::Team(std::string name, std::string profession) : CompanyNode(name), profession(profession) {
+
 }
 
-std::string Team::getProfession() {
+const std::string& Team::getProfession() {
 	return this->profession;
 }
 
@@ -140,7 +140,7 @@ void Team::notifyColleagues(EmployeeComponent* employeeComponent, std::string me
 }
 
 CompanyNode* Team::clone() {
-	Team* copy = new Team(this->profession);
+	Team* copy = new Team(this->name, this->profession);
 	copy->name = this->name;
 	int count = this->members.size();
 
