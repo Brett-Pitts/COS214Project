@@ -5,7 +5,7 @@
 #include <string>
 #include "Aggregate.h"
 #include "WorkIterator.h"
-
+#include "WorkMediator.h";
 class EmployeeComponent;
 class WorkMediator;
 class WorkState;
@@ -47,7 +47,8 @@ public:
 	bool isEscalated();
 	bool isReady();
 	void modify();
-	bool prerequisitesCompleted();
+
+
 	void reassign(EmployeeComponent* employeeComponent);
 	virtual void remove(WorkNode* workNode);
 	void reset();

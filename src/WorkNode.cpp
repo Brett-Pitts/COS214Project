@@ -68,15 +68,20 @@ void WorkNode::addPrerequisite(std::string workName) {
 		this->setState(new WaitingForPrerequisites());
 	}
 }
+#include <iostream>
 
 void WorkNode::advanceState() {
 	if (this->state == NULL) {
 		return;
 	}
-	bool wasCompleted = isCompleted();
+	bool wasEscalated = isEscalated();
+	std::cout << "Old state: " << this->getStateName() << '\n';
 	this->state->handle(this);
-	if (!wasCompleted && isCompleted() && this->mediator != NULL) {
+	std::cout << "ADVANCE!!!!!!!!!\n";
+	std::cout << this->mediator << '\n';
+	if (isCompleted() && this->mediator != NULL) {
 		this->mediator->notifyColleagues(this, this->name);
+		std::cout << "Notify " << this->name << '\n';
 	}
 }
 
@@ -109,6 +114,7 @@ bool WorkNode::isOngoing() {
 }
 
 bool WorkNode::isWaitingForPrerequisites() {
+
 	if (this->parent) {
 		if (this->parent->isWaitingForPrerequisites()) {
 			return true;
@@ -129,9 +135,9 @@ void WorkNode::modify() {
 	throw "Not yet implemented";
 }
 
-bool WorkNode::prerequisitesCompleted() {
-	return this->prerequisites.empty();
-}
+
+
+
 
 void WorkNode::reassign(EmployeeComponent* employeeComponent) {
 	this->assignee = employeeComponent;
@@ -195,12 +201,12 @@ void WorkNode::setState(std::string stateName) {
 
 void WorkNode::update(std::string completedName) {
 	int before = prerequisites.size();
-	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), completedName), prerequisites.end());
+	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), completedName));
 	if (prerequisites.size() == before) {
 		return;
 	}
-	if (prerequisites.empty() && getStateName() == "WaitingForPrerequisites") {
-		advanceState();
+	if (!isWaitingForPrerequisites() && getStateName() == "WaitingForPrerequisites") {
+		setState(new Ready());
 	}
 }
 

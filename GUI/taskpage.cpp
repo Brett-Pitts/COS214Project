@@ -141,7 +141,6 @@ void TaskPage::updateSelection() {
 		ui->teamCombo->clear();
 		teamChoices.clear();
 		if (app != nullptr && unitPicked) {
-			std::cout << "Required: " << unit->getRequiredProfession() << '\n';
 			teamChoices = app->getTeams(unit->getRequiredProfession());
 			for (size_t i = 0; i < teamChoices.size(); i++) {
 				QString label = toQ(teamChoices[i]->getName());

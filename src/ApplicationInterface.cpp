@@ -584,12 +584,10 @@ bool ApplicationInterface::setCompetency(Team* team, int memberIndex, const std:
 
 // for gui:
 std::vector<Team*> ApplicationInterface::getTeams(const std::string& profession) {
-	std::cout << "get profession: " << profession << '\n';
 	std::vector<Team*> teams;
 	TeamIterator it(getCompany(), profession);
 	for (it.first(); !it.isDone(); it.next()) {
 		teams.push_back(it.currentItem());
-		std::cout << "Current team: " << it.currentItem()->getName() << '\n';
 	}
 	return teams;
 }
@@ -794,7 +792,7 @@ bool ApplicationInterface::removePrerequisite(WorkNode* node, const std::string&
 		return false;
 	}
 	node->removePrerequisite(name);
-	if (node->prerequisitesCompleted() && node->getStateName() == "WaitingForPrerequisites") {
+	if (node->getPrerequisites().empty() && node->getStateName() == "WaitingForPrerequisites") {
 		node->advanceState();
 	}
 	return true;
@@ -810,7 +808,7 @@ std::string ApplicationInterface::checkAssignable(WorkUnit* unit, Team* team) {
 		return unit->getName() + " is already " + state + ".";
 	}
 	if (state == "WaitingForPrerequisites") {
-		if (!unit->prerequisitesCompleted()) {
+		if (unit->isWaitingForPrerequisites()) {
 			return unit->getName() + " is still waiting for its prerequisites.";
 		}
 		unit->advanceState();
