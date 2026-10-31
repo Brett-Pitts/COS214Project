@@ -1,5 +1,5 @@
 #include "Department.h"
-
+#include <iostream>
 void Department::add(CompanyNode* companyNode) {
 	if (companyNode != nullptr)
 		children.push_back(companyNode);
@@ -34,6 +34,7 @@ CompanyNode* Department::clone() {
 }
 
 Department::~Department() {
+
 	if (!children.empty()) {
 		for (auto it = children.begin(); it != children.end(); ++it) {
 

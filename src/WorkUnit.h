@@ -13,7 +13,7 @@ private:
 	std::string requiredProfession;
 
 public:
-
+	virtual ~WorkUnit();
 	WorkUnit(std::string name, std::string requiredProfession = "");
 
 	std::string getRequiredProfession() const;

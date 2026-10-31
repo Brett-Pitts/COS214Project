@@ -12,7 +12,7 @@ public:
 	std::vector<WorkNode*> children;
 
 	Project(int maxRetries, std::string name);
-	~Project();
+	virtual ~Project();
 
 	void add(WorkNode* workNode);
 

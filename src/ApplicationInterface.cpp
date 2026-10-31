@@ -406,27 +406,29 @@ void ApplicationInterface::createScenarioB() {
 }
 
 void ApplicationInterface::setWorkflow(WorkNode* root) {
-	this->workflowRoot = root;
+	if (workflowRoot != root) {
+		delete workflowRoot;
+		workflowRoot = root;
+	}
 }
 void ApplicationInterface::setCompany(CompanyNode* root) {
-	this->companyRoot = root;
+	if (companyRoot != root) {
+		delete companyRoot;
+		companyRoot = root;
+	}
 }
 
 Memento* ApplicationInterface::createMemento(MementoType type) {
-	Memento* ret = new Memento(nullptr, MementoType::company);
 	switch (type) {
 	case MementoType::company:
-		ret->setRoot(companyRoot->clone(), MementoType::company);
-		break;
+		if (companyRoot == nullptr) return nullptr;
+		return new Memento(companyRoot->clone(), MementoType::company);
 	case MementoType::workflow:
-		ret->setRoot(workflowRoot->clone(), MementoType::workflow);
-
-		break;
+		if (workflowRoot == nullptr) return nullptr;
+		return new Memento(workflowRoot->clone(), MementoType::workflow);
 	default:
 		return nullptr;
 	}
-
-	return ret;
 }
 
 void ApplicationInterface::setMemento(Memento* memento) {
