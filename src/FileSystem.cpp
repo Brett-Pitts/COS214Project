@@ -40,38 +40,38 @@ static std::string oneLine(std::string text) {
 	return text;
 }
 
-static std::string::size_type lastSeparator(const std::string& path){
+static std::string::size_type lastSeparator(const std::string& path) {
 	return path.find_last_of("/\\");
 }
 
-static bool hasDirectory(const std::string& path){
+static bool hasDirectory(const std::string& path) {
 	return lastSeparator(path) != std::string::npos;
 }
 
-static bool hasExtension(const std::string& path){
+static bool hasExtension(const std::string& path) {
 	std::string::size_type separator = lastSeparator(path);
 	std::string::size_type dot = path.find_last_of('.');
-	if(dot == std::string::npos){
+	if (dot == std::string::npos) {
 		return false;
 	}
-	if(separator != std::string::npos && dot < separator){
+	if (separator != std::string::npos && dot < separator) {
 		return false;
 	}
 	return dot + 1 < path.size();
 }
 
-static std::string resolvePath(const std::string& filename){
+static std::string resolvePath(const std::string& filename) {
 	std::string path = filename;
-	if(!hasDirectory(path)){
+	if (!hasDirectory(path)) {
 		path = "saves/" + path;
 	}
-	if(!hasExtension(path)){
+	if (!hasExtension(path)) {
 		path += ".txt";
 	}
 	return path;
 }
 
-static void makeDirectory(const std::string& directory){
+static void makeDirectory(const std::string& directory) {
 #ifdef _WIN32
 	_mkdir(directory.c_str());
 #else
@@ -79,17 +79,17 @@ static void makeDirectory(const std::string& directory){
 #endif
 }
 
-static void createParentDirectories(const std::string& path){
+static void createParentDirectories(const std::string& path) {
 	std::string::size_type last = lastSeparator(path);
-	if(last == std::string::npos){
+	if (last == std::string::npos) {
 		return;
 	}
-	for(std::string::size_type i = 0; i < last; i++){
+	for (std::string::size_type i = 0; i < last; i++) {
 		bool isSeparator = path[i] == '/' || path[i] == '\\';
-		if(!isSeparator || i == 0){
+		if (!isSeparator || i == 0) {
 			continue;
 		}
-		if(path[i - 1] == ':'){
+		if (path[i - 1] == ':') {
 			continue;
 		}
 		makeDirectory(path.substr(0, i));
@@ -131,7 +131,7 @@ void FileSystem::saveMember(std::ostream& file, EmployeeComponent* member) {
 			emp = ((EmployeeDetail*)emp)->wrapped;
 		}
 		else if (kind == "Competency") {
-			file << "Competency\n" << oneLine(((EmployeeCompetency*)emp)->competencyName) << "\nEndCompetency\n";
+			file << "Competency\n" << oneLine(((EmployeeCompetency*)emp)->getCompetency()) << "\nEndCompetency\n";
 			emp = ((EmployeeDetail*)emp)->wrapped;
 		}
 		else if (kind == "Manager") {
@@ -282,7 +282,7 @@ EmployeeComponent* FileSystem::loadMember(std::istream& file) {
 			node = new EmployeeProfession(value);
 		}
 		else if (tag == "Competency") {
-			node = new EmployeeCompetency(value);
+			node = new EmployeeCompetency(EmployeeCompetency::getCompetencyLevel(value));
 		}
 		else if (tag == "Employee") {
 			node = new Employee(value);

@@ -14,6 +14,10 @@ std::string Employee::getKind() {
 	return "Employee";
 }
 
+bool Employee::compareCompetency(int requiredCompetency) {
+	return false;
+}
+
 void Employee::doWork(WorkUnit* workUnit) {
 	EmployeeComponent::doWork(workUnit);
 }

@@ -23,11 +23,19 @@ bool EmployeeDetail::compareProfession(std::string professionName) {
 	return wrapped->compareProfession(professionName);
 }
 
-bool EmployeeDetail::compareCompetency(int requiredCompetency) {
+bool EmployeeDetail::compareCompetency(CompetencyLevel requiredCompetency) {
 	if (wrapped == nullptr) {
 		return EmployeeComponent::compareCompetency(requiredCompetency);
 	}
 	return wrapped->compareCompetency(requiredCompetency);
+}
+
+std::string EmployeeDetail::getProfession() {
+	return wrapped->getProfession();
+}
+
+std::string EmployeeDetail::getCompetency() {
+	return wrapped->getCompetency();
 }
 
 void EmployeeDetail::prepare(WorkUnit*) {}
@@ -48,10 +56,10 @@ void EmployeeDetail::doWork(WorkUnit* workUnit) {
 	finish(workUnit);
 }
 EmployeeComponent* EmployeeDetail::getCore() {
-    if (wrapped == nullptr) {
-        return this;
-    }
-    return wrapped->getCore();
+	if (wrapped == nullptr) {
+		return this;
+	}
+	return wrapped->getCore();
 }
 void EmployeeDetail::setMediator(Mediator* mediator) {
 	EmployeeComponent::setMediator(mediator);

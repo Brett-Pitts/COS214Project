@@ -44,7 +44,7 @@ public:
 
 	/** @brief Gets the kind of component ("Employee"). */
 	std::string getKind();
-
+	virtual bool compareCompetency(int requiredCompetency);
 	/**
 	 * @brief Does the work on a unit.
 	 *

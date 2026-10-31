@@ -12,13 +12,13 @@
 #include <algorithm>
 
 WorkNode::WorkNode(int maxRetries, std::string name) {
-	this->assignee = NULL;
+	this->assignee = nullptr;
 	this->maxRetries = maxRetries;
-	this->mediator = NULL;
-	this->parent = NULL;
+	this->mediator = nullptr;
+	this->parent = nullptr;
 	this->retryCount = 0;
-	this->state = NULL;
-	this->setState(new WaitingForPrerequisites());
+	this->state = nullptr;
+	this->setState(new Ready());
 	this->name = name;
 }
 
@@ -30,12 +30,21 @@ void WorkNode::setName(std::string name) {
 		setName(name + "1");
 	}
 }
+WorkNode* WorkNode::getRoot() {
+	if (this->parent != nullptr) {
+		return this->parent->getRoot();
+	}
+	return this;
+}
 
 WorkNode::~WorkNode() {
 	delete this->state;
 }
 
 std::string WorkNode::getStateName() {
+	if (state == nullptr) {
+		return "";
+	}
 	return state->getName();
 }
 
@@ -44,16 +53,29 @@ const std::vector<std::string>& WorkNode::getPrerequisites() const {
 }
 
 void WorkNode::addPrerequisite(std::string workName) {
+	if (this->isCompleted() || this->getStateName() == "Failed") {
+		return;
+	}
+	if (getRoot()->getNode(workName) != nullptr) {
+
+		if (getRoot()->getNode(workName)->isCompleted()) {
+			return;
+		}
+	}
 	this->prerequisites.push_back(workName);
+
+	if (this->getStateName() != "WaitingForPrerequisites") {
+		this->setState(new WaitingForPrerequisites());
+	}
 }
 
-void WorkNode::advanceState(){
-	if(this->state == NULL){
+void WorkNode::advanceState() {
+	if (this->state == NULL) {
 		return;
 	}
 	bool wasCompleted = isCompleted();
 	this->state->handle(this);
-	if(!wasCompleted && isCompleted() && this->mediator != NULL){
+	if (!wasCompleted && isCompleted() && this->mediator != NULL) {
 		this->mediator->notifyColleagues(this, this->name);
 	}
 }
@@ -86,6 +108,18 @@ bool WorkNode::isOngoing() {
 	return dynamic_cast<Ongoing*>(this->state) != NULL;
 }
 
+bool WorkNode::isWaitingForPrerequisites() {
+	if (this->parent) {
+		if (this->parent->isWaitingForPrerequisites()) {
+			return true;
+		}
+	}
+	return !(this->prerequisites.empty());
+}
+bool WorkNode::isEscalated() {
+	return dynamic_cast<Escalated*>(this->state) != NULL;
+}
+
 bool WorkNode::isReady() {
 	return dynamic_cast<Ready*>(this->state) != NULL;
 }
@@ -96,7 +130,7 @@ void WorkNode::modify() {
 }
 
 bool WorkNode::prerequisitesCompleted() {
-	return this->prerequisites.size() == 0;
+	return this->prerequisites.empty();
 }
 
 void WorkNode::reassign(EmployeeComponent* employeeComponent) {
@@ -108,8 +142,11 @@ void WorkNode::remove(WorkNode* workNode) {
 }
 
 void WorkNode::reset() {
-	this->retryCount++;
-	this->setState(new Ready());
+	if (this->isOngoing() || this->getStateName() == "Escalated") {
+
+		this->retryCount++;
+		this->setState(new Ready());
+	}
 }
 
 void WorkNode::setMediator(WorkMediator* mediator) {
@@ -156,13 +193,13 @@ void WorkNode::setState(std::string stateName) {
 
 }
 
-void WorkNode::update(std::string completedName){
+void WorkNode::update(std::string completedName) {
 	int before = prerequisites.size();
 	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), completedName), prerequisites.end());
-	if(prerequisites.size() == before){
+	if (prerequisites.size() == before) {
 		return;
 	}
-	if(prerequisites.empty() && getStateName() == "WaitingForPrerequisites"){
+	if (prerequisites.empty() && getStateName() == "WaitingForPrerequisites") {
 		advanceState();
 	}
 }

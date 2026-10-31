@@ -1,6 +1,6 @@
 #ifndef EMPLOYEEDETAIL_H
 #define EMPLOYEEDETAIL_H
-
+#include "CompetencyLevel.h"
 #include "EmployeeComponent.h"
 class FileSystem;
 
@@ -86,7 +86,11 @@ public:
 	 * @param requiredCompetency The level required.
 	 * @return true if a decorator further in the chain has at least this level. If nothing is wrapped, false.
 	 */
-	bool compareCompetency(int requiredCompetency);
+	bool compareCompetency(CompetencyLevel requiredCompetency);
+
+
+	virtual std::string getProfession();
+	virtual std::string getCompetency();
 
 	/**
 	 * @brief Does the work in layers.

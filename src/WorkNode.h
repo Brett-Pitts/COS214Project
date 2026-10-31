@@ -28,6 +28,8 @@ protected:
 
 public:
 
+	virtual WorkNode* getNode(std::string name) = 0;
+	WorkNode* getRoot();
 	virtual ~WorkNode();
 	std::string getStateName();
 	virtual void add(WorkNode* workNode) = 0;
@@ -41,6 +43,8 @@ public:
 	bool hasRetriesLeft();
 	bool isCompleted();
 	bool isOngoing();
+	bool isWaitingForPrerequisites();
+	bool isEscalated();
 	bool isReady();
 	void modify();
 	bool prerequisitesCompleted();

@@ -2,7 +2,7 @@
 #include "Mediator.h"
 #include "WorkUnit.h"
 #include "EmployeeCompetency.h"
-
+#include "CompetencyLevel.h"
 #include <iostream>
 
 EmployeeComponent::EmployeeComponent() : mediator(nullptr), successor(nullptr) {}
@@ -28,12 +28,22 @@ void EmployeeComponent::finish(WorkUnit* workUnit) {
 	std::cout << getName() << " finishes " << workUnit->getName() << std::endl;
 }
 // for gui:
-bool EmployeeComponent::compareCompetency(int) {
-	return false;
-}
+
 
 EmployeeComponent* EmployeeComponent::getCore() {
-    return this;
+	return this;
+}
+bool EmployeeComponent::compareProfession(string professionName) {
+	return false;
+}
+bool EmployeeComponent::compareCompetency(CompetencyLevel requiredCompetency) {
+	return false;
+}
+std::string EmployeeComponent::getProfession() {
+	return "";
+}
+std::string EmployeeComponent::getCompetency() {
+	return "";
 }
 void EmployeeComponent::doWork(WorkUnit* workUnit) {
 	if (workUnit == nullptr) {
@@ -49,13 +59,13 @@ void EmployeeComponent::doWork(WorkUnit* workUnit) {
 
 bool EmployeeComponent::canAdvance(WorkUnit* workUnit) {
 	if (workUnit->isReady()) {
-		return compareCompetency(EmployeeCompetency::INTERN);
+		return compareCompetency(CompetencyLevel::INTERN);
 	}
 	if (workUnit->isOngoing()) {
-		return compareCompetency(EmployeeCompetency::JUNIOR);
+		return compareCompetency(CompetencyLevel::JUNIOR);
 	}
 	if (workUnit->getStateName() == "Escalated") {
-		return compareCompetency(EmployeeCompetency::SENIOR);
+		return compareCompetency(CompetencyLevel::SENIOR);
 	}
 	return false;
 }

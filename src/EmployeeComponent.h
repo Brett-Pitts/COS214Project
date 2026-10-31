@@ -3,7 +3,7 @@
 
 #include <string>
 
-
+#include "CompetencyLevel.h"
 using std::string;
 
 
@@ -31,8 +31,10 @@ public:
 	virtual EmployeeComponent* getCore();
 	virtual std::string getKind() = 0;
 	virtual string getName() = 0;
-	virtual bool compareProfession(string professionName) = 0;
-	virtual bool compareCompetency(int requiredCompetency);
+	virtual bool compareProfession(string professionName);
+	virtual bool compareCompetency(CompetencyLevel requiredCompetency);
+	virtual std::string getProfession();
+	virtual std::string getCompetency();
 	virtual void doWork(WorkUnit* workUnit);
 	bool handleWork(WorkUnit* workUnit);
 	virtual void receive(string message);

@@ -17,10 +17,10 @@ bool ConcreteEmployeeBuilder::addCompetency(std::string name) {
 		return false;
 	}
 	if (employee == nullptr) {
-		employee = new EmployeeCompetency(name);
+		employee = new EmployeeCompetency(EmployeeCompetency::getCompetencyLevel(name));
 	}
 	else {
-		employee->wrap(new EmployeeCompetency(name));
+		employee->wrap(new EmployeeCompetency(EmployeeCompetency::getCompetencyLevel(name)));
 	}
 	return true;
 }
