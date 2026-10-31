@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1100</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>TIVIDY</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/icon.png</normaloff>:/images/icon.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="mainLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>3</number>
+      </property>
+      <widget class="MainMenuPage" name="menuPage"/>
+      <widget class="CompanyPage" name="companyPage"/>
+      <widget class="ProjectPage" name="projectPage"/>
+      <widget class="TaskPage" name="taskPage"/>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MainMenuPage</class>
+   <extends>QWidget</extends>
+   <header>mainmenupage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CompanyPage</class>
+   <extends>QWidget</extends>
+   <header>companypage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ProjectPage</class>
+   <extends>QWidget</extends>
+   <header>projectpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TaskPage</class>
+   <extends>QWidget</extends>
+   <header>taskpage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
