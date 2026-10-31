@@ -8,9 +8,12 @@ class WorkIterator : public Iterator {
 private:
 	WorkNode* aggregate;
 	WorkNode* current;
+	// for gui:
+	bool readyOnly;
 
 public:
-	WorkIterator(WorkNode* aggregate);
+	// for gui:
+	WorkIterator(WorkNode* aggregate, bool readyOnly = true);
 	virtual ~WorkIterator();
 
 	void first();

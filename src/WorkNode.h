@@ -54,8 +54,14 @@ public:
 	void update(std::string completedName);
 	virtual WorkNode* clone() = 0;
 	int getMaxRetries();
+	// for gui:
+	void setMaxRetries(int retries);
+	// for gui:
+	void removePrerequisite(std::string workName);
 	std::string getName();
 	void setName(std::string name);
+	// for gui:
+	void copyStateFrom(WorkNode* other);
 	virtual bool hasName(std::string name) = 0;
 };
 

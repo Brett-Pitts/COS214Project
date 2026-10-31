@@ -26,6 +26,7 @@ CompanyNode* Department::getChild(int n) {
 
 CompanyNode* Department::clone() {
 	Department* ret = new Department();
+	ret->name = this->name;
 
 	for (auto& child : children) {
 		ret->add(child->clone());

@@ -75,31 +75,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Load or save</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="text">
-        <string>Save</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Load</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="bodyLayout">
      <property name="spacing">
       <number>16</number>
@@ -199,354 +174,34 @@
      </item>
      <item>
       <widget class="QGroupBox" name="detailsBox">
-       <property name="minimumSize">
-        <size>
-         <width>420</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>480</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="title">
-        <string>Selected Item</string>
-       </property>
-       <property name="flat">
-        <bool>false</bool>
-       </property>
+       <property name="minimumSize"><size><width>360</width><height>0</height></size></property>
+       <property name="maximumSize"><size><width>420</width><height>16777215</height></size></property>
+       <property name="title"><string>Selected item</string></property>
        <layout class="QVBoxLayout" name="detailsLayout">
-        <property name="spacing">
-         <number>0</number>
-        </property>
         <item>
-         <widget class="QTabWidget" name="detailsTabs">
-          <property name="currentIndex">
-           <number>1</number>
-          </property>
-          <widget class="QWidget" name="overviewTab">
-           <attribute name="title">
-            <string>Overview</string>
-           </attribute>
-           <layout class="QVBoxLayout" name="overviewLayout">
-            <property name="spacing">
-             <number>12</number>
-            </property>
-            <property name="leftMargin">
-             <number>16</number>
-            </property>
-            <property name="topMargin">
-             <number>16</number>
-            </property>
-            <property name="rightMargin">
-             <number>16</number>
-            </property>
-            <property name="bottomMargin">
-             <number>16</number>
-            </property>
-            <item>
-             <layout class="QFormLayout" name="overviewForm">
-              <property name="horizontalSpacing">
-               <number>14</number>
-              </property>
-              <property name="verticalSpacing">
-               <number>12</number>
-              </property>
-              <item row="0" column="0">
-               <widget class="QLabel" name="nameCaption">
-                <property name="text">
-                 <string>Name</string>
-                </property>
-                <property name="variant" stdset="0">
-                 <string notr="true">muted</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="nodeNameEdit"/>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="typeCaption">
-                <property name="text">
-                 <string>Type</string>
-                </property>
-                <property name="variant" stdset="0">
-                 <string notr="true">muted</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLabel" name="nodeTypeLabel">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="stateCaption">
-                <property name="text">
-                 <string>State</string>
-                </property>
-                <property name="variant" stdset="0">
-                 <string notr="true">muted</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QLabel" name="nodeStateLabel">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="assigneeCaption">
-                <property name="text">
-                 <string>Assigned to</string>
-                </property>
-                <property name="variant" stdset="0">
-                 <string notr="true">muted</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLabel" name="nodeAssigneeLabel">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="retriesCaption">
-                <property name="text">
-                 <string>Max retries</string>
-                </property>
-                <property name="variant" stdset="0">
-                 <string notr="true">muted</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QSpinBox" name="maxRetriesSpin">
-                <property name="maximum">
-                 <number>10</number>
-                </property>
-                <property name="value">
-                 <number>0</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer name="overviewSpacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="saveChangesButton">
-              <property name="text">
-               <string>Save Changes</string>
-              </property>
-              <property name="variant" stdset="0">
-               <string notr="true">primary</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="prerequisitesTab">
-           <attribute name="title">
-            <string>Prerequisites</string>
-           </attribute>
-           <layout class="QVBoxLayout" name="prerequisitesLayout">
-            <property name="spacing">
-             <number>10</number>
-            </property>
-            <property name="leftMargin">
-             <number>16</number>
-            </property>
-            <property name="topMargin">
-             <number>16</number>
-            </property>
-            <property name="rightMargin">
-             <number>16</number>
-            </property>
-            <property name="bottomMargin">
-             <number>16</number>
-            </property>
-            <item>
-             <widget class="QListWidget" name="prerequisiteList"/>
-            </item>
-            <item>
-             <widget class="QComboBox" name="prerequisiteCombo"/>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="prerequisiteButtonsLayout">
-              <property name="spacing">
-               <number>8</number>
-              </property>
-              <item>
-               <widget class="QPushButton" name="addPrerequisiteButton">
-                <property name="text">
-                 <string>Add Prerequisite</string>
-                </property>
-                <property name="variant" stdset="0">
-                 <string notr="true">primary</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="removePrerequisiteButton">
-                <property name="text">
-                 <string>Remove</string>
-                </property>
-                <property name="variant" stdset="0">
-                 <string notr="true">danger</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="prerequisiteButtonsSpacer">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="requirementsTab">
-           <attribute name="title">
-            <string>Requirements</string>
-           </attribute>
-           <layout class="QVBoxLayout" name="requirementsLayout">
-            <property name="spacing">
-             <number>8</number>
-            </property>
-            <property name="leftMargin">
-             <number>16</number>
-            </property>
-            <property name="topMargin">
-             <number>16</number>
-            </property>
-            <property name="rightMargin">
-             <number>16</number>
-            </property>
-            <property name="bottomMargin">
-             <number>16</number>
-            </property>
-            <item>
-             <widget class="QGroupBox" name="professionBox">
-              <property name="title">
-               <string>Required Professions</string>
-              </property>
-              <layout class="QVBoxLayout" name="professionLayout">
-               <property name="spacing">
-                <number>8</number>
-               </property>
-               <item>
-                <widget class="QListWidget" name="professionList"/>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="professionAddLayout">
-                 <property name="spacing">
-                  <number>8</number>
-                 </property>
-                 <item>
-                  <widget class="QComboBox" name="professionCombo"/>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="addProfessionButton">
-                   <property name="text">
-                    <string>Add</string>
-                   </property>
-                   <property name="variant" stdset="0">
-                    <string notr="true">primary</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="removeProfessionButton">
-                   <property name="text">
-                    <string>Remove</string>
-                   </property>
-                   <property name="variant" stdset="0">
-                    <string notr="true">danger</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="competencyBox">
-              <property name="title">
-               <string>Required Competencies</string>
-              </property>
-              <layout class="QVBoxLayout" name="competencyLayout">
-               <property name="spacing">
-                <number>8</number>
-               </property>
-               <item>
-                <widget class="QListWidget" name="competencyList"/>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="competencyAddLayout">
-                 <property name="spacing">
-                  <number>8</number>
-                 </property>
-                 <item>
-                  <widget class="QComboBox" name="competencyCombo"/>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="addCompetencyButton">
-                   <property name="text">
-                    <string>Add</string>
-                   </property>
-                   <property name="variant" stdset="0">
-                    <string notr="true">primary</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="removeCompetencyButton">
-                   <property name="text">
-                    <string>Remove</string>
-                   </property>
-                   <property name="variant" stdset="0">
-                    <string notr="true">danger</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
+         <layout class="QFormLayout" name="detailsForm">
+          <item row="0" column="0"><widget class="QLabel" name="nameCaption"><property name="text"><string>Name</string></property></widget></item>
+          <item row="0" column="1"><widget class="QLineEdit" name="nodeNameEdit"/></item>
+          <item row="1" column="0"><widget class="QLabel" name="typeCaption"><property name="text"><string>Type</string></property></widget></item>
+          <item row="1" column="1"><widget class="QLabel" name="nodeTypeLabel"><property name="text"><string>-</string></property></widget></item>
+          <item row="2" column="0"><widget class="QLabel" name="stateCaption"><property name="text"><string>State</string></property></widget></item>
+          <item row="2" column="1"><widget class="QLabel" name="nodeStateLabel"><property name="text"><string>-</string></property></widget></item>
+          <item row="3" column="0"><widget class="QLabel" name="assignedtoCaption"><property name="text"><string>Assigned to</string></property></widget></item>
+          <item row="3" column="1"><widget class="QLabel" name="nodeAssigneeLabel"><property name="text"><string>-</string></property></widget></item>
+          <item row="4" column="0"><widget class="QLabel" name="maxretriesCaption"><property name="text"><string>Max retries</string></property></widget></item>
+          <item row="4" column="1"><widget class="QSpinBox" name="maxRetriesSpin"><property name="maximum"><number>10</number></property></widget></item>
+          <item row="5" column="0"><widget class="QLabel" name="professionCaption"><property name="text"><string>Profession</string></property></widget></item>
+          <item row="5" column="1"><widget class="QComboBox" name="professionCombo"/></item>
+         </layout>
         </item>
+        <item><widget class="QLabel" name="prerequisitesLabel"><property name="text"><string>Prerequisites</string></property></widget></item>
+        <item><widget class="QListWidget" name="prerequisiteList"/></item>
+        <item><widget class="QComboBox" name="prerequisiteCombo"/></item>
+        <item><layout class="QHBoxLayout" name="prerequisiteButtonsLayout">
+         <item><widget class="QPushButton" name="addPrerequisiteButton"><property name="text"><string>Add</string></property></widget></item>
+         <item><widget class="QPushButton" name="removePrerequisiteButton"><property name="text"><string>Remove</string></property></widget></item>
+        </layout></item>
+        <item><widget class="QPushButton" name="saveChangesButton"><property name="text"><string>Save changes</string></property></widget></item>
        </layout>
       </widget>
      </item>

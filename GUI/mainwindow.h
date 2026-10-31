@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 
+class ApplicationInterface;
+
 QT_BEGIN_NAMESPACE
 namespace Ui{
     class MainWindow;
@@ -18,7 +20,10 @@ class MainWindow :public QMainWindow{
         void showCompany();
         void showProject();
         void showTasks();
+        void showLoadSave();
+        void workLoaded();
     private:
         Ui::MainWindow* ui;
+        ApplicationInterface* app;
 };
 #endif // MAINWINDOW_H

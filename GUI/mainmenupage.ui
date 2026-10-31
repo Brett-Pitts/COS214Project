@@ -114,19 +114,19 @@
     <widget class="QWidget" name="menuArea" native="true">
      <layout class="QVBoxLayout" name="menuLayout">
       <property name="spacing">
-       <number>50</number>
+       <number>20</number>
       </property>
       <property name="leftMargin">
        <number>90</number>
       </property>
       <property name="topMargin">
-       <number>40</number>
+       <number>24</number>
       </property>
       <property name="rightMargin">
        <number>90</number>
       </property>
       <property name="bottomMargin">
-       <number>40</number>
+       <number>24</number>
       </property>
       <item>
        <spacer name="menuTopSpacer">
@@ -157,7 +157,7 @@ Where do you want to go?</string>
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>76</height>
+          <height>64</height>
          </size>
         </property>
         <property name="cursor">
@@ -176,7 +176,7 @@ Where do you want to go?</string>
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>76</height>
+          <height>64</height>
          </size>
         </property>
         <property name="cursor">
@@ -195,7 +195,7 @@ Where do you want to go?</string>
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>76</height>
+          <height>64</height>
          </size>
         </property>
         <property name="cursor">
@@ -208,6 +208,46 @@ Where do you want to go?</string>
          <string notr="true">menu</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="loadSaveButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Load or Save</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">menu</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="statusLayout">
+        <property name="spacing">
+         <number>4</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="companyStatusLabel">
+          <property name="text">
+           <string>Company not loaded</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="projectStatusLabel">
+          <property name="text">
+           <string>Project not loaded</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <spacer name="menuBottomSpacer">

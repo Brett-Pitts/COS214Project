@@ -27,6 +27,11 @@ void EmployeeComponent::perform(WorkUnit* workUnit) {
 void EmployeeComponent::finish(WorkUnit* workUnit) {
 	std::cout << getName() << " finishes " << workUnit->getName() << std::endl;
 }
+// for gui:
+bool EmployeeComponent::compareCompetency(int) {
+	return false;
+}
+
 EmployeeComponent* EmployeeComponent::getCore() {
     return this;
 }

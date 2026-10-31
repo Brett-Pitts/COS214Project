@@ -4,9 +4,14 @@ WorkUnit::WorkUnit(std::string name, std::string requiredProfession) : WorkNode(
 
 std::string WorkUnit::getRequiredProfession() const { return requiredProfession; }
 
+// for gui:
+void WorkUnit::setRequiredProfession(std::string profession) { requiredProfession = profession; }
+
 
 WorkNode* WorkUnit::clone() {
-	return new WorkUnit(this->name, this->requiredProfession);
+	WorkUnit* copy = new WorkUnit(this->name, this->requiredProfession);
+	copy->copyStateFrom(this);
+	return copy;
 }
 
 bool WorkUnit::hasName(std::string name) {

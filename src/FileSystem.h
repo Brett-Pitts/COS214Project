@@ -3,27 +3,40 @@
 
 #include <string>
 #include <map>
+#include <iostream>
 #include <fstream>
 
 class Memento;
 class CompanyNode;
 class WorkNode;
+class EmployeeComponent;
 
 class FileSystem {
 private:
 	std::map<std::string, Memento*> storage;
-	void saveCompany(std::ofstream& file, CompanyNode* root);
-	void saveWorkflow(std::ofstream& file, WorkNode* root);
-	void loadCompany(std::ifstream& file, CompanyNode*& root);
-	void loadWorkflow(std::ifstream& file, WorkNode*& root);
+
+	void saveCompany(std::ostream& file, CompanyNode* root);
+	// for gui:
+	void saveMember(std::ostream& file, EmployeeComponent* member);
+	void saveWorkflow(std::ostream& file, WorkNode* root);
+	// for gui:
+	void savePrerequisites(std::ostream& file, WorkNode* node);
+
+	CompanyNode* loadCompany(std::istream& file, const std::string& tag);
+	// for gui:
+	EmployeeComponent* loadMember(std::istream& file);
+	WorkNode* loadWorkflow(std::istream& file, const std::string& tag);
+	// for gui:
+	bool loadPrerequisites(std::istream& file, WorkNode* node);
+
 public:
 	~FileSystem();
 	void saveMemento(std::string name, Memento* memento);
 
 	Memento* loadMemento(std::string name);
 
-	void saveToFile(std::string name, std::string filename);
-	void loadFromFile(std::string name, std::string filename);
+	bool saveToFile(std::string name, std::string filename);
+	bool loadFromFile(std::string name, std::string filename);
 };
 
 #endif

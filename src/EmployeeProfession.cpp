@@ -34,6 +34,7 @@ bool EmployeeProfession::deleteProfession(std::string name) {
 	std::vector<std::string>::iterator iter = professionList.begin();
 	for (;*iter != name;iter++);
 	professionList.erase(iter);
+	return true;
 }
 
 bool EmployeeProfession::hasProfession(std::string name) {

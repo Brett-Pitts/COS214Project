@@ -103,7 +103,7 @@
         <item>
          <widget class="QLabel" name="workUnitHintLabel">
           <property name="text">
-           <string>Pick a work unit to give to a team.</string>
+           <string>Pick a work unit, assign it to a team, then step it forward.</string>
           </property>
           <property name="variant" stdset="0">
            <string notr="true">muted</string>
@@ -186,6 +186,37 @@
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="stepButton">
+              <property name="text">
+               <string>Next step</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="forceFailButton">
+              <property name="text">
+               <string>Force fail</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="forceStateButton">
+              <property name="text">
+               <string>Force state</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="cancelWorkButton">
+              <property name="text">
+               <string>Cancel work</string>
+              </property>
+              <property name="variant" stdset="0">
+               <string notr="true">danger</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="assignButtonsSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -199,6 +230,16 @@
              </spacer>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="resultLabel">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -240,6 +281,11 @@
             <column>
              <property name="text">
               <string>Team</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>State</string>
              </property>
             </column>
            </widget>
