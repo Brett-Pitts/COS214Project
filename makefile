@@ -12,17 +12,10 @@ OBJ_FILES_MAIN := $(patsubst src/%.cpp, bin/%.o, $(SRC_FILES_MAIN))
 OBJ_FILES_TEST := $(patsubst src/%.cpp, bin/%.o, $(SRC_FILES_TEST))
 
 
-
-
-# Map source files to object files in the bin/ folder
-OBJ_FILES_MAIN := $(patsubst src/%.cpp, bin/%.o, $(SRC_FILES_MAIN))
-OBJ_FILES_TEST := $(patsubst src/%.cpp, bin/%.o, $(SRC_FILES_TEST))
-
 CXX        := g++
 CXXFLAGS   := -Wall -Wextra -std=c++11 -Isrc
 TARGET     := TIVIDY
 TARGETTEST := $(TARGET)test
-
 
 
 
@@ -48,6 +41,6 @@ test: $(TARGETTEST)
 
 
 clean:
-	rm -rf bin $(TARGET) $(TARGETTEST)
+	rm -rf bin $(TARGET) $(TARGETTEST) *.exe
 
 

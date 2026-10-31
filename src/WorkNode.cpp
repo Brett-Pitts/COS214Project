@@ -8,6 +8,8 @@
 #include "Escalated.h"
 #include "Failed.h"
 #include "WorkIterator.h"
+#include "WorkMediator.h"
+#include <algorithm>
 
 WorkNode::WorkNode(int maxRetries, std::string name) {
 	this->assignee = NULL;
@@ -45,9 +47,14 @@ void WorkNode::addPrerequisite(std::string workName) {
 	this->prerequisites.push_back(workName);
 }
 
-void WorkNode::advanceState() {
-	if (this->state != NULL) {
-		this->state->handle(this);
+void WorkNode::advanceState(){
+	if(this->state == NULL){
+		return;
+	}
+	bool wasCompleted = isCompleted();
+	this->state->handle(this);
+	if(!wasCompleted && isCompleted() && this->mediator != NULL){
+		this->mediator->notifyColleagues(this, this->name);
 	}
 }
 
@@ -55,9 +62,8 @@ bool WorkNode::allChildrenCompleted() {
 	return true;
 }
 
-WorkIterator WorkNode::createIterator() {
-	// TODO - implement WorkNode::createIterator
-	throw "Not yet implemented";
+WorkIterator* WorkNode::createIterator() {
+	return new WorkIterator(this);
 }
 
 WorkNode* WorkNode::getChild(int index) {
@@ -132,6 +138,9 @@ void WorkNode::setState(std::string stateName) {
 	if (stateName == "Ready") {
 		setState(new Ready());
 	}
+	if (stateName == "Ongoing") {
+		setState(new Ongoing());
+	}
 	if (stateName == "Completed") {
 		setState(new Completed());
 	}
@@ -147,9 +156,15 @@ void WorkNode::setState(std::string stateName) {
 
 }
 
-void WorkNode::update() {
-	// TODO - implement WorkNode::update
-	throw "Not yet implemented";
+void WorkNode::update(std::string completedName){
+	int before = prerequisites.size();
+	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), completedName), prerequisites.end());
+	if(prerequisites.size() == before){
+		return;
+	}
+	if(prerequisites.empty() && getStateName() == "WaitingForPrerequisites"){
+		advanceState();
+	}
 }
 
 int WorkNode::getMaxRetries() {
@@ -159,5 +174,3 @@ int WorkNode::getMaxRetries() {
 std::string WorkNode::getName() {
 	return name;
 }
-
-

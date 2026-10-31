@@ -27,6 +27,11 @@ ehthumbs.db
 .vpprefdata
 .lock
 *.bak_*
+TIVIDYtest
+*.exe
+TIVIDY
+/GUI/build
+TIVIDYtest
 /GUI/build/
 /GUI/build/
 /GUI/.qtcreator/

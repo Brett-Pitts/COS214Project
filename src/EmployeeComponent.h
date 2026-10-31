@@ -28,10 +28,10 @@ public:
 	EmployeeComponent();
 	EmployeeComponent(const EmployeeComponent& other);
 	virtual ~EmployeeComponent();
-
+	virtual EmployeeComponent* getCore();
 	virtual std::string getKind() = 0;
 	virtual string getName() = 0;
-	virtual bool compareProfession(string professionName) = 0
+	virtual bool compareProfession(string professionName) = 0;
 	virtual bool compareCompetency(int requiredCompetency);
 	virtual void doWork(WorkUnit* workUnit);
 	bool handleWork(WorkUnit* workUnit);

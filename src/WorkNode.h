@@ -4,10 +4,9 @@
 #include <vector>
 #include <string>
 #include "Aggregate.h"
-#include <string>
+#include "WorkIterator.h"
 
 class EmployeeComponent;
-class WorkIterator;
 class WorkMediator;
 class WorkState;
 class FileSystem;
@@ -28,56 +27,36 @@ protected:
 	std::string name;
 
 public:
+
 	virtual ~WorkNode();
 	std::string getStateName();
 	virtual void add(WorkNode* workNode) = 0;
 	const std::vector<std::string>& getPrerequisites() const;
 	void addPrerequisite(std::string workName);
-
 	void advanceState();
-
 	virtual bool allChildrenCompleted();
-
-	WorkIterator createIterator();
-
+	WorkIterator* createIterator();
 	virtual WorkNode* getChild(int index);
-
 	WorkNode* getParent();
-
 	bool hasRetriesLeft();
-
 	bool isCompleted();
-
 	bool isOngoing();
-
 	bool isReady();
-
 	void modify();
-
 	bool prerequisitesCompleted();
-
 	void reassign(EmployeeComponent* employeeComponent);
-
 	virtual void remove(WorkNode* workNode);
-
 	void reset();
-
 	void setMediator(WorkMediator* mediator);
-
 	void setParent(WorkNode* parent);
-
 	void setState(WorkState* workState);
 	void setState(std::string stateName);
-
-	void update();
+	void update(std::string completedName);
 	virtual WorkNode* clone() = 0;
-
 	int getMaxRetries();
 	std::string getName();
 	void setName(std::string name);
-
 	virtual bool hasName(std::string name) = 0;
-
 };
 
 #endif

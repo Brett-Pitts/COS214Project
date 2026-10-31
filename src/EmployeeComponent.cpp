@@ -15,9 +15,6 @@ EmployeeComponent::~EmployeeComponent() {}
 
 
 
-bool EmployeeComponent::compareCompetency(int requiredCompetency) {
-	return requiredCompetency < 0;
-}
 
 void EmployeeComponent::prepare(WorkUnit* workUnit) {
 	std::cout << getName() << " prepares " << workUnit->getName() << std::endl;
@@ -30,7 +27,9 @@ void EmployeeComponent::perform(WorkUnit* workUnit) {
 void EmployeeComponent::finish(WorkUnit* workUnit) {
 	std::cout << getName() << " finishes " << workUnit->getName() << std::endl;
 }
-
+EmployeeComponent* EmployeeComponent::getCore() {
+    return this;
+}
 void EmployeeComponent::doWork(WorkUnit* workUnit) {
 	if (workUnit == nullptr) {
 		return;
@@ -48,6 +47,9 @@ bool EmployeeComponent::canAdvance(WorkUnit* workUnit) {
 		return compareCompetency(EmployeeCompetency::INTERN);
 	}
 	if (workUnit->isOngoing()) {
+		return compareCompetency(EmployeeCompetency::JUNIOR);
+	}
+	if (workUnit->getStateName() == "Escalated") {
 		return compareCompetency(EmployeeCompetency::SENIOR);
 	}
 	return false;
@@ -66,7 +68,7 @@ bool EmployeeComponent::handleWork(WorkUnit* workUnit) {
 		return successor->handleWork(workUnit);
 	}
 	std::cout << "No employee in the chain can handle " << workUnit->getName() << std::endl;
-  return false;
+	return false;
 }
 
 void EmployeeComponent::receive(std::string message) {

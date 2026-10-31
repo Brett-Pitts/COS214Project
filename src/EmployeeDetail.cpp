@@ -47,7 +47,12 @@ void EmployeeDetail::doWork(WorkUnit* workUnit) {
 	}
 	finish(workUnit);
 }
-
+EmployeeComponent* EmployeeDetail::getCore() {
+    if (wrapped == nullptr) {
+        return this;
+    }
+    return wrapped->getCore();
+}
 void EmployeeDetail::setMediator(Mediator* mediator) {
 	EmployeeComponent::setMediator(mediator);
 	if (wrapped != nullptr) {
