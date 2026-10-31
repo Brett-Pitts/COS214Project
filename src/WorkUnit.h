@@ -26,12 +26,7 @@ private:
 	std::string requiredProfession; ///< Profession needed to do this unit.
 
 public:
-
-	/**
-	 * @brief Creates a work unit.
-	 * @param name Name of the unit.
-	 * @param requiredProfession Profession needed. An empty string means no profession is required.
-	 */
+	virtual ~WorkUnit();
 	WorkUnit(std::string name, std::string requiredProfession = "");
 
 	/** @brief Gets the profession needed to do this unit. */

@@ -1,8 +1,8 @@
 #include "Memento.h"
-
+#include <iostream>
 Memento::Memento(void* root, MementoType type) {
 	this->root = root;
-	this->type == type;
+	this->type = type;
 }
 
 
@@ -14,9 +14,15 @@ void* Memento::getRoot() const {
 }
 void  Memento::setRoot(void* root, MementoType type) {
 	this->root = root;
-	this->type == type;
+	this->type = type;
 }
 
 Memento::~Memento() {
-	delete root;
+	if (type == MementoType::company) {
+		delete (CompanyNode*)root;
+	}
+	else if (type == MementoType::workflow) {
+
+		delete (WorkNode*)root;
+	}
 }

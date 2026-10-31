@@ -1,0 +1,139 @@
+/*THIS SHIT IS CRAZY */
+/* https://doc.qt.io/archives/qt-5.15/stylesheet-examples.html */
+
+QMainWindow, QDialog {
+    background: #ffffff;
+}
+
+QWidget {
+    color: #0b1020;
+    font-size: 14px;
+}
+
+QLabel[variant="muted"] {
+    color: #6b7280;
+}
+
+QLabel[variant="heading"] {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+QLabel[variant="title"] {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+QLabel[variant="section"] {
+    font-size: 12px;
+    font-weight: bold;
+    color: #4f46e5;
+}
+
+QFrame#heroPanel {
+    background: #f1f2f6;
+}
+
+QFrame#headerBar {
+    background: #f1f2f6;
+    border: 1px solid #d0d4dc;
+}
+
+QGroupBox {
+    border: 1px solid #d0d4dc;
+    margin-top: 12px;
+    padding: 12px 8px 8px 8px;
+    font-weight: bold;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 4px;
+}
+
+QPushButton {
+    background: #eceef3;
+    border: 1px solid #c5cad3;
+    padding: 6px 14px;
+}
+
+QPushButton:hover {
+    background: #e0e3ea;
+}
+
+QPushButton:pressed {
+    background: #d3d7e0;
+}
+
+QPushButton:default,
+QPushButton[variant="primary"] {
+    background: #4f46e5;
+    border: 1px solid #4f46e5;
+    color: #ffffff;
+}
+
+QPushButton:default:hover,
+QPushButton[variant="primary"]:hover {
+    background: #433bc9;
+}
+
+QPushButton[variant="danger"] {
+    color: #b42318;
+}
+
+QPushButton[variant="ghost"] {
+    background: transparent;
+    border: none;
+}
+
+QPushButton[variant="ghost"]:hover {
+    background: #e0e3ea;
+}
+
+QPushButton[variant="menu"] {
+    text-align: left;
+    padding: 14px 18px;
+    font-size: 16px;
+}
+
+QLineEdit, QSpinBox, QComboBox, QTextEdit {
+    background: #ffffff;
+    border: 1px solid #c5cad3;
+    padding: 4px 6px;
+}
+
+QLineEdit:focus, QSpinBox:focus, QComboBox:focus {
+    border: 1px solid #4f46e5;
+}
+
+QListWidget, QTreeWidget, QTableWidget {
+    background: #ffffff;
+    border: 1px solid #c5cad3;
+}
+
+QListWidget::item:selected, QTreeWidget::item:selected, QTableWidget::item:selected {
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+QHeaderView::section {
+    background: #eceef3;
+    border: 1px solid #d0d4dc;
+    padding: 4px;
+}
+
+QTabWidget::pane {
+    border: 1px solid #c5cad3;
+}
+
+QTabBar::tab {
+    background: #eceef3;
+    border: 1px solid #c5cad3;
+    padding: 6px 14px;
+}
+
+QTabBar::tab:selected {
+    background: #ffffff;
+    border-bottom: 1px solid #ffffff;
+}

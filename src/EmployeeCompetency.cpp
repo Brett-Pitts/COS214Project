@@ -14,13 +14,14 @@ std::string EmployeeCompetency::getKind() {
 }
 
 int EmployeeCompetency::getCompetencyLevel(std::string name) {
-	if (name == "intern") {
+
+	if (name == "Intern") {
 		return INTERN;
 	}
-	if (name == "junior") {
+	if (name == "Junior") {
 		return JUNIOR;
 	}
-	if (name == "senior") {
+	if (name == "Senior") {
 		return SENIOR;
 	}
 	return -1;
@@ -38,11 +39,11 @@ void EmployeeCompetency::prepare(WorkUnit* workUnit) {
 }
 
 void EmployeeCompetency::perform(WorkUnit* workUnit) {
-	std::cout<< getName() << " uses " << competencyName << " skills on " << workUnit->getName() << std::endl;
+	std::cout << getName() << " uses " << competencyName << " skills on " << workUnit->getName() << std::endl;
 }
 
 void EmployeeCompetency::finish(WorkUnit* workUnit) {
-	std::cout<< getName() << " records " << competencyName << " outcome for " << workUnit->getName() << std::endl;
+	std::cout << getName() << " records " << competencyName << " outcome for " << workUnit->getName() << std::endl;
 }
 
 EmployeeComponent* EmployeeCompetency::clone() {

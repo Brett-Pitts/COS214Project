@@ -38,9 +38,13 @@ public:
 	 * @param name Name of the project.
 	 */
 	Project(int maxRetries, std::string name);
+<<<<<<< HEAD
 
 	/** @brief Destroys the project and all its children. */
 	~Project();
+=======
+	virtual ~Project();
+>>>>>>> dev
 
 	/**
 	 * @brief Adds a child to the project.

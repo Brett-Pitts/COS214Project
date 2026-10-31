@@ -48,6 +48,6 @@ test: $(TARGETTEST)
 
 
 clean:
-	rm -rf bin $(TARGET) $(TARGETTEST) *.exe
+	rm -rf bin $(TARGET) $(TARGETTEST) *.exe saves/*.tvd
 
 

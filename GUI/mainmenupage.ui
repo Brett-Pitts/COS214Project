@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainMenuPage</class>
+ <widget class="QWidget" name="MainMenuPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Main Menu</string>
+  </property>
+  <layout class="QHBoxLayout" name="pageLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="heroPanel">
+     <property name="minimumSize">
+      <size>
+       <width>460</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>460</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <layout class="QVBoxLayout" name="heroLayout">
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <property name="leftMargin">
+       <number>48</number>
+      </property>
+      <property name="topMargin">
+       <number>48</number>
+      </property>
+      <property name="rightMargin">
+       <number>48</number>
+      </property>
+      <property name="bottomMargin">
+       <number>40</number>
+      </property>
+      <item>
+       <spacer name="heroTopSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="heroTitle">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>245</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>300</width>
+          <height>245</height>
+         </size>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="resources.qrc">:/images/logo.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="heroBottomSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="menuArea" native="true">
+     <layout class="QVBoxLayout" name="menuLayout">
+      <property name="spacing">
+       <number>50</number>
+      </property>
+      <property name="leftMargin">
+       <number>90</number>
+      </property>
+      <property name="topMargin">
+       <number>40</number>
+      </property>
+      <property name="rightMargin">
+       <number>90</number>
+      </property>
+      <property name="bottomMargin">
+       <number>40</number>
+      </property>
+      <item>
+       <spacer name="menuTopSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="menuHeading">
+        <property name="text">
+         <string>Welcome
+Where do you want to go?</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">title</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="manageCompanyButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>76</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Manage Company</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">menu</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="manageProjectsButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>76</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Manage Projects</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">menu</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="assigntasksButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>76</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Assign Tasks</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">menu</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="menuBottomSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item alignment="Qt::AlignRight">
+       <widget class="QPushButton" name="exitButton">
+        <property name="text">
+         <string>Exit</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">ghost</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
