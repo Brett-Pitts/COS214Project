@@ -7,13 +7,14 @@
  * @class Cancelled
  * @brief Concrete state: the work node was cancelled and will not run.
  *
- * Cancelling a project cancels every node under it, so no ready work is left
- * behind.
+ * Manager::cancelProject() sets this state on the project it is given. This is an
+ * end state and handle() does nothing. Escalated::handle() does not complete a
+ * parent that is Cancelled.
  *
  * @par Design pattern
  * State (ConcreteState); the context is WorkNode.
  *
- * @see WorkState, WorkNode
+ * @see WorkState, WorkNode, Manager
  */
 class Cancelled : public WorkState {
 public:
@@ -21,8 +22,8 @@ public:
 	Cancelled() :WorkState("Cancelled") {};
 
 	/**
-	 * @brief Handles an advance request for a cancelled node.
-	 * @param workNode The node whose state is being advanced.
+	 * @brief Does nothing: a cancelled node stays cancelled.
+	 * @param workNode The node whose state is being advanced (ignored).
 	 */
 	void handle(WorkNode* workNode) override;
 };

@@ -34,7 +34,11 @@ public:
 	virtual std::string getName();
 
 	/**
-	 * @brief Handles an advance request: performs the state's action and sets the next state.
+	 * @brief Handles an advance request.
+	 *
+	 * A concrete state may move the node to another state with WorkNode::setState(),
+	 * or leave it as it is. Called by WorkNode::advanceState().
+	 *
 	 * @param workNode The node whose state is being advanced.
 	 */
 	virtual void handle(WorkNode* workNode) = 0;

@@ -21,13 +21,20 @@ private:
 public:
 
 	/**
-	 * @brief Adds a child department or team.
+	 * @brief Adds a child department or team to the end of the list.
+	 *
+	 * A null pointer is ignored.
+	 *
 	 * @param companyNode The child to add. Ownership passes to this department.
 	 */
 	void add(CompanyNode* companyNode);
 
 	/**
-	 * @brief Removes the first instance of a child.
+	 * @brief Removes the first occurrence of a child from the list.
+	 *
+	 * The child is not deleted: it belongs to the caller again. Nothing happens if it
+	 * is not a child of this department.
+	 *
 	 * @param companyNode The child to remove.
 	 */
 	void remove(CompanyNode* companyNode);

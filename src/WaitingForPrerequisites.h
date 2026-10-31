@@ -7,8 +7,8 @@
  * @class WaitingForPrerequisites
  * @brief Concrete state: the work node waits for other work to be completed first.
  *
- * The node moves on to Ready once every prerequisite is Completed (the
- * mediator tells the node when one is).
+ * Every new node starts here. When a prerequisite completes, WorkNode::update()
+ * removes it from the node's list and advances the node once the list is empty.
  *
  * @par Design pattern
  * State (ConcreteState); the context is WorkNode.
@@ -21,7 +21,7 @@ public:
 	WaitingForPrerequisites() :WorkState("WaitingForPrerequisites") {};
 
 	/**
-	 * @brief Chooses the next state of a waiting node.
+	 * @brief Moves the node to Ready if it has no outstanding prerequisites; otherwise leaves it as it is.
 	 * @param workNode The node whose state is being advanced.
 	 */
 	void handle(WorkNode* workNode) override;

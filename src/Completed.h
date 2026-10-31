@@ -7,14 +7,15 @@
  * @class Completed
  * @brief Concrete state: the work node has finished successfully.
  *
- * Reaching this state lets the parent project check whether all of its
- * children are done, and releases work that waits on this node as a
- * prerequisite.
+ * This is an end state and handle() does nothing. Completion is announced
+ * elsewhere: Escalated::handle() completes the parent project when its last
+ * child is done, and WorkNode::advanceState() tells the mediator, which releases
+ * work that waits on this node as a prerequisite.
  *
  * @par Design pattern
  * State (ConcreteState); the context is WorkNode.
  *
- * @see WorkState, WorkNode
+ * @see WorkState, WorkNode, Escalated
  */
 class Completed : public WorkState {
 public:
@@ -22,8 +23,8 @@ public:
 	Completed() :WorkState("Completed") {};
 
 	/**
-	 * @brief Handles an advance request for a completed node.
-	 * @param workNode The node whose state is being advanced.
+	 * @brief Does nothing: a completed node stays completed.
+	 * @param workNode The node whose state is being advanced (ignored).
 	 */
 	void handle(WorkNode* workNode) override;
 };

@@ -5,9 +5,10 @@
 
 /**
  * @class Ongoing
- * @brief Concrete state: work has started and a junior performs it.
+ * @brief Concrete state: work has started.
  *
- * A project is Ongoing until all of its children are completed.
+ * A work unit in this state can be advanced by an employee with at least Junior
+ * competency (see EmployeeComponent::canAdvance()).
  *
  * @par Design pattern
  * State (ConcreteState); the context is WorkNode.
@@ -20,7 +21,7 @@ public:
 	Ongoing() :WorkState("Ongoing") {};
 
 	/**
-	 * @brief Chooses the next state of an ongoing node.
+	 * @brief Moves the node to Escalated.
 	 * @param workNode The node whose state is being advanced.
 	 */
 	void handle(WorkNode* workNode) override;

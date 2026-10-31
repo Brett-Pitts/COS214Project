@@ -7,8 +7,9 @@
  * @class Ready
  * @brief Concrete state: all prerequisites are done and the work can be picked up.
  *
- * In this state an intern prepares the work. WorkIterator only stops on work
- * units in this state.
+ * A work unit in this state can be advanced by an employee with at least Intern
+ * competency (see EmployeeComponent::canAdvance()). WorkIterator only stops on
+ * work units in this state.
  *
  * @par Design pattern
  * State (ConcreteState); the context is WorkNode.
@@ -21,7 +22,7 @@ public:
 	Ready() :WorkState("Ready") {};
 
 	/**
-	 * @brief Chooses the next state of a ready node.
+	 * @brief Moves the node to Ongoing.
 	 * @param workNode The node whose state is being advanced.
 	 */
 	void handle(WorkNode* workNode) override;

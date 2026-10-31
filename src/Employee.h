@@ -46,19 +46,30 @@ public:
 	std::string getKind();
 
 	/**
-	 * @brief Does one step of work on a work unit.
+	 * @brief Does the work on a unit.
+	 *
+	 * Runs the template steps of EmployeeComponent::doWork(): prepare, perform and
+	 * finish, and then tells the mediator. For a decorated employee this is the
+	 * innermost step of the decorators' doWork().
+	 *
 	 * @param workUnit The unit being worked on.
 	 */
 	void doWork(WorkUnit* workUnit);
 
 	/**
-	 * @brief Not supported on the core: an Employee cannot wrap another component.
-	 * @param component The component that would be wrapped.
+	 * @brief Not supported: an Employee is always the innermost component and cannot wrap another.
+	 *
+	 * The component that is passed in is deleted.
+	 *
+	 * @param component The component that would be wrapped. It is deleted.
 	 */
 	void wrap(EmployeeComponent* component);
 
 	/**
-	 * @brief Makes a copy of this employee.
+	 * @brief Makes a copy of this employee with the same name.
+	 *
+	 * The copy has no mediator and no successor.
+	 *
 	 * @return A newly allocated copy. The caller owns it.
 	 */
 	virtual EmployeeComponent* clone();

@@ -5,10 +5,12 @@
 
 /**
  * @class Escalated
- * @brief Concrete state: the work needs a senior employee to finish it.
+ * @brief Concrete state: the last step before completion, which needs a senior employee.
  *
- * Escalated does not mean the work failed. It is also entered when QA finds
- * bugs or an inspection fails, so the unit is redone at senior level.
+ * Despite the name, being Escalated does not mean that something went wrong:
+ * every work unit passes through this state on its way to Completed. A work unit
+ * here can only be advanced by an employee with Senior competency (see
+ * EmployeeComponent::canAdvance()).
  *
  * @par Design pattern
  * State (ConcreteState); the context is WorkNode.
@@ -21,7 +23,14 @@ public:
 	Escalated() :WorkState("Escalated") {};
 
 	/**
-	 * @brief Chooses the next state of an escalated node.
+	 * @brief Completes the node, and then its parent if that has nothing left to wait for.
+	 *
+	 * If the node has unfinished children (only possible for a Project), nothing
+	 * happens. Otherwise the node is set to Completed. Then, if it has a parent that
+	 * is not Cancelled and all of the parent's children are now completed, the parent
+	 * is set to Escalated and advanced as well, so completion moves up the tree one
+	 * level at a time.
+	 *
 	 * @param workNode The node whose state is being advanced.
 	 */
 	void handle(WorkNode* workNode) override;

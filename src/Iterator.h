@@ -11,9 +11,11 @@ class WorkNode;
  * unit) without knowing how the tree is stored.
  *
  * @par Design pattern
- * Iterator (Iterator). WorkIterator and TeamIterator are concrete iterators.
+ * Iterator (Iterator). WorkIterator is the concrete iterator. TeamIterator uses
+ * the same first, next, isDone and currentItem operations but does not derive
+ * from this class, because it returns Team objects rather than work nodes.
  *
- * @see Aggregate
+ * @see Aggregate, WorkIterator, TeamIterator
  */
 class Iterator {
 

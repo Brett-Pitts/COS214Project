@@ -27,7 +27,10 @@ private:
 
 
 	/**
-	 * @brief Replaces the saved tree.
+	 * @brief Replaces the saved tree and its type.
+	 *
+	 * The tree that was saved before is not deleted.
+	 *
 	 * @param root Root of the new tree.
 	 * @param type What kind of tree it is.
 	 */
@@ -39,7 +42,11 @@ public:
 	/** @brief Gets the root of the saved tree as an untyped pointer. */
 	void* getRoot() const;
 
-	/** @brief Destroys the memento and the tree it holds. */
+	/**
+	 * @brief Destroys the memento and the tree it holds.
+	 *
+	 * The root is deleted as a CompanyNode or as a WorkNode, depending on the type.
+	 */
 	~Memento();
 
 	/**

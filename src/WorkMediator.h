@@ -20,7 +20,7 @@ public:
 	/**
 	 * @brief Informs the colleagues about a change in one work node.
 	 * @param node The node that changed.
-	 * @param msg Description of the change, for example the name of a node that completed.
+	 * @param msg Description of the change. WorkNode::update() reads it as the name of a node that completed.
 	 */
 	virtual void notifyColleagues(WorkNode* node, std::string msg) = 0;
 };

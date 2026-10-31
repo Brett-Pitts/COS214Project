@@ -36,12 +36,16 @@ public:
 	/**
 	 * @brief Adds a profession to the employee under construction.
 	 * @param name Name of the profession.
-	 * @return true on success, false if the profession is not registered.
+	 * @return true if the profession was added.
 	 */
 	virtual bool addProfession(std::string name) = 0;
 
 	/**
 	 * @brief Completes the employee and returns it.
+	 *
+	 * The builder no longer holds the employee afterwards, so it is ready to start
+	 * another one.
+	 *
 	 * @param name Name given to the employee.
 	 * @param isManager If true, a Manager is built instead of an Employee.
 	 * @return The finished employee. The caller owns it.

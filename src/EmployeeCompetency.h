@@ -9,8 +9,11 @@ class FileSystem;
  * @class EmployeeCompetency
  * @brief Decorator that gives an employee a competency level.
  *
- * The level (intern, junior or senior) decides which step of the work the
- * employee may do: interns prepare, juniors perform and seniors finish.
+ * The levels are ordered Intern, Junior, Senior, and an employee can do
+ * everything at or below their own level. The level needed depends on the state
+ * of the work unit: Ready needs at least Intern, Ongoing at least Junior and
+ * Escalated at least Senior (see EmployeeComponent::canAdvance()). A senior can
+ * therefore advance a unit in any of these states, but an intern only in Ready.
  *
  * @par Design patterns
  * - Decorator (ConcreteDecorator).
@@ -22,24 +25,24 @@ class FileSystem;
 class EmployeeCompetency : public EmployeeDetail {
 	friend class FileSystem;
 private:
-	int competencyId;        ///< Numeric level: INTERN, JUNIOR or SENIOR.
-	string competencyName;   ///< Name of the level as entered by the user.
+	int competencyId;        ///< Numeric level: INTERN, JUNIOR or SENIOR, or -1 if the name was not recognised.
+	string competencyName;   ///< Name of the level as it was entered (for example "Intern"). Used in output and when saving.
 
 protected:
 	/**
-	 * @brief Template-method step: prepare the work unit, then pass the step inward.
+	 * @brief Template-method step: prints that the employee gathers tools of this level for the unit.
 	 * @param workUnit The unit being worked on.
 	 */
 	void prepare(WorkUnit* workUnit);
 
 	/**
-	 * @brief Template-method step: perform the work, then pass the step inward.
+	 * @brief Template-method step: prints that the employee uses skills of this level on the unit.
 	 * @param workUnit The unit being worked on.
 	 */
 	void perform(WorkUnit* workUnit);
 
 	/**
-	 * @brief Template-method step: finish the work, then pass the step inward.
+	 * @brief Template-method step: prints that the employee records the outcome for the unit.
 	 * @param workUnit The unit being worked on.
 	 */
 	void finish(WorkUnit* workUnit);
@@ -50,12 +53,13 @@ public:
 
 	/**
 	 * @brief Creates a competency decorator.
-	 * @param name Name of the level (for example "Intern").
+	 * @param name Name of the level: "Intern", "Junior" or "Senior" (case-sensitive).
+	 *        Any other name gives the level -1, which never satisfies a requirement.
 	 */
 	EmployeeCompetency(string name);
 
 	/**
-	 * @brief Copy constructor.
+	 * @brief Copy constructor. Copies the level and makes a deep copy of the wrapped component.
 	 * @param other The decorator to copy.
 	 */
 	EmployeeCompetency(const EmployeeCompetency& other);
@@ -68,20 +72,24 @@ public:
 
 	/**
 	 * @brief Converts a level name to its numeric level.
-	 * @param name Name of the level.
-	 * @return INTERN, JUNIOR or SENIOR, or a negative value if the name is not recognised.
+	 * @param name Name of the level: "Intern", "Junior" or "Senior" (case-sensitive).
+	 * @return INTERN, JUNIOR or SENIOR, or -1 if the name is not recognised.
 	 */
 	static int getCompetencyLevel(string name);
 
 	/**
 	 * @brief Checks whether this employee is competent enough.
 	 * @param requiredCompetency The level required (INTERN, JUNIOR or SENIOR).
-	 * @return true if this employee's level matches the requirement.
+	 * @return true if this decorator's level is at least the required level.
+	 *         Otherwise the wrapped chain is asked. A negative requirement is never met here.
 	 */
 	bool compareCompetency(int requiredCompetency);
 
 	/**
-	 * @brief Makes a copy of this decorator and the components it wraps.
+	 * @brief Makes a copy of this decorator, wrapping a copy of the component it wraps.
+	 *
+	 * The copy has no mediator and no successor.
+	 *
 	 * @return A newly allocated copy. The caller owns it.
 	 */
 	EmployeeComponent* clone();

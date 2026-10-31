@@ -24,20 +24,20 @@ class CompanyNode {
 public:
 	/**
 	 * @brief Adds a child to this node.
-	 * @param companyNode The child to add. Ownership passes to this node.
+	 * @param companyNode The child to add. Department takes ownership of it; Team ignores it.
 	 */
 	virtual void add(CompanyNode* companyNode) = 0;
 
 	/**
-	 * @brief Removes a child from this node.
-	 * @param companyNode The child to remove.
+	 * @brief Removes a child from this node. The child is not deleted.
+	 * @param companyNode The child to remove. Team ignores the call.
 	 */
 	virtual void remove(CompanyNode* companyNode) = 0;
 
 	/**
 	 * @brief Gets a child by position.
 	 * @param n Zero-based index of the child.
-	 * @return The nth child, or nullptr if @p n is out of bounds.
+	 * @return The nth child, or nullptr if @p n is out of bounds. A Team always returns nullptr.
 	 */
 	virtual CompanyNode* getChild(int n) = 0;
 

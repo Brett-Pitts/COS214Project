@@ -5,15 +5,16 @@
 
 /**
  * @class Failed
- * @brief Concrete state: nobody could do the work.
+ * @brief Concrete state: nobody could do the work and no retries are left.
  *
- * Failed work goes back to Ready until the retry limit is reached; after that
- * it stays failed.
+ * Team::assignWork() sets this state when no member can advance a work unit and
+ * the retry limit has been reached. Before that, the unit is sent back to Ready
+ * with WorkNode::reset(). handle() does nothing, so a failed node stays failed.
  *
  * @par Design pattern
  * State (ConcreteState); the context is WorkNode.
  *
- * @see WorkState, WorkNode
+ * @see WorkState, WorkNode, Team
  */
 class Failed : public WorkState {
 public:
@@ -21,8 +22,8 @@ public:
 	Failed() :WorkState("Failed") {};
 
 	/**
-	 * @brief Handles an advance request for a failed node (retry or remain failed).
-	 * @param workNode The node whose state is being advanced.
+	 * @brief Does nothing: a failed node stays failed.
+	 * @param workNode The node whose state is being advanced (ignored).
 	 */
 	void handle(WorkNode* workNode) override;
 };
