@@ -15,9 +15,6 @@ EmployeeComponent::~EmployeeComponent() {}
 
 
 
-bool EmployeeComponent::compareCompetency(int requiredCompetency) {
-	return requiredCompetency < 0;
-}
 
 void EmployeeComponent::prepare(WorkUnit* workUnit) {
 	std::cout << getName() << " prepares " << workUnit->getName() << std::endl;
@@ -66,7 +63,7 @@ bool EmployeeComponent::handleWork(WorkUnit* workUnit) {
 		return successor->handleWork(workUnit);
 	}
 	std::cout << "No employee in the chain can handle " << workUnit->getName() << std::endl;
-  return false;
+	return false;
 }
 
 void EmployeeComponent::receive(std::string message) {

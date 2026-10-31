@@ -21,11 +21,13 @@ public:
 	void addDepartment();
 
 	void addEmployee();
+
 	void setWorkflow(WorkNode* root);
 	void setCompany(CompanyNode* root);
 	Memento* createMemento(MementoType type);
-
 	void setMemento(Memento* memento);
+
+
 	~ApplicationInterface();
 };
 
