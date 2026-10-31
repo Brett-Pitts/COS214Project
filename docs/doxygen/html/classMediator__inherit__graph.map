@@ -1,0 +1,5 @@
+<map id="Mediator" name="Mediator">
+<area shape="rect" id="Node000001" title="Abstract mediator that lets the members of a team communicate." alt="" coords="5,5,153,91"/>
+<area shape="rect" id="Node000002" href="$classTeam.html" title="A group of employees of one profession; the leaf of the company tree." alt="" coords="5,139,153,404"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,104,82,138,77,138,77,104"/>
+</map>

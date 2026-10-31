@@ -1,0 +1,7 @@
+<map id="CompanyNode" name="CompanyNode">
+<area shape="rect" id="Node000001" title="Common interface for departments and teams in the company structure." alt="" coords="78,5,223,151"/>
+<area shape="rect" id="Node000002" href="$classDepartment.html" title="Composite node of the company tree: holds departments and teams." alt="" coords="5,259,133,404"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,165,95,259,90,258,121,163"/>
+<area shape="rect" id="Node000003" href="$classTeam.html" title="A group of employees of one profession; the leaf of the company tree." alt="" coords="158,199,306,464"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,163,192,197,187,199,175,165"/>
+</map>

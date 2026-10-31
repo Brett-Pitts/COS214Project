@@ -1,0 +1,33 @@
+<map id="src/CompanyNode.h" name="src/CompanyNode.h">
+<area shape="rect" id="Node000001" title="Declares the component of the company composite." alt="" coords="524,5,677,31"/>
+<area shape="rect" id="Node000002" href="$ApplicationInterface_8h.html" title="Declares the single entry point used by the user interface." alt="" coords="160,79,348,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="532,36,311,81,310,76,531,31"/>
+<area shape="rect" id="Node000008" href="$CompanyNode_8cpp.html" title=" " alt="" coords="722,79,890,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="647,33,774,76,772,81,646,38"/>
+<area shape="rect" id="Node000009" href="$Department_8h.html" title=" " alt="" coords="388,152,523,177"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="581,42,469,154,465,150,577,39"/>
+<area shape="rect" id="Node000011" href="$Team_8h.html" title=" " alt="" coords="555,79,647,104"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="603,44,603,79,598,79,598,44"/>
+<area shape="rect" id="Node000013" href="$TeamIterator_8cpp.html" title=" " alt="" coords="729,152,883,177"/>
+<area shape="poly" id="edge18_Node000001_Node000013" title=" " alt="" coords="627,38,712,102,788,150,785,154,708,106,624,42"/>
+<area shape="rect" id="Node000003" href="$ApplicationInterface_8cpp.html" title=" " alt="" coords="181,225,383,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="265,116,275,151,284,225,279,225,270,153,260,118"/>
+<area shape="rect" id="Node000004" href="$Memento_8h.html" title=" " alt="" coords="13,152,132,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="213,111,103,154,101,149,211,106"/>
+<area shape="rect" id="Node000007" href="$main_8cpp.html" title=" " alt="" coords="156,152,261,177"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="241,117,218,153,214,150,237,114"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="120,179,249,223,247,228,119,184"/>
+<area shape="rect" id="Node000005" href="$FileSystem_8cpp.html" title=" " alt="" coords="583,225,727,251"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="146,175,360,200,570,223,584,224,583,230,570,228,359,205,145,180"/>
+<area shape="rect" id="Node000006" href="$Memento_8cpp.html" title=" " alt="" coords="5,225,140,251"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="75,191,75,225,70,225,70,191"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="416,185,311,228,309,223,414,180"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="501,179,624,223,622,228,500,184"/>
+<area shape="rect" id="Node000010" href="$Department_8cpp.html" title=" " alt="" coords="408,225,559,251"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="467,189,481,224,476,226,463,191"/>
+<area shape="poly" id="edge14_Node000011_Node000003" title=" " alt="" coords="541,103,461,121,418,136,377,154,351,171,328,191,294,227,290,223,324,187,348,167,374,150,416,131,459,116,540,98"/>
+<area shape="poly" id="edge15_Node000011_Node000005" title=" " alt="" coords="634,110,653,128,668,151,673,171,672,192,663,226,658,224,667,191,668,172,664,153,649,132,630,114"/>
+<area shape="rect" id="Node000012" href="$Team_8cpp.html" title=" " alt="" coords="547,152,654,177"/>
+<area shape="poly" id="edge16_Node000011_Node000012" title=" " alt="" coords="603,118,603,152,598,152,598,118"/>
+<area shape="poly" id="edge17_Node000011_Node000013" title=" " alt="" coords="647,106,774,149,772,154,646,111"/>
+</map>

@@ -1,0 +1,37 @@
+<map id="src/Manager.cpp" name="src/Manager.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="322,5,450,31"/>
+<area shape="rect" id="Node000002" href="$Manager_8h.html" title=" " alt="" coords="341,79,431,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="389,31,389,65,383,65,383,31"/>
+<area shape="rect" id="Node000006" href="$WorkUnit_8h.html" title=" " alt="" coords="235,152,329,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="375,33,331,80,295,141,291,138,327,77,371,29"/>
+<area shape="rect" id="Node000012" href="$Project_8h.html" title="Declares the composite node of the work tree." alt="" coords="119,152,197,177"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="369,33,190,147,187,142,366,29"/>
+<area shape="rect" id="Node000013" href="$Cancelled_8h.html" title=" " alt="" coords="455,79,554,104"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="406,28,475,69,472,74,404,33"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="578,79,658,104"/>
+<area shape="poly" id="edge20_Node000001_Node000015" title=" " alt="" coords="424,28,568,72,567,77,422,33"/>
+<area shape="rect" id="Node000003" href="$Employee_8h.html" title=" " alt="" coords="355,152,454,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="392,104,401,138,396,140,387,105"/>
+<area shape="rect" id="Node000004" href="$EmployeeComponent_8h.html" title=" " alt="" coords="320,225,495,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="408,178,409,212,404,212,402,178"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="357,299,415,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="406,252,396,286,391,285,401,250"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="286,177,293,211,310,249,330,272,354,289,351,294,327,275,305,252,288,213,281,178"/>
+<area shape="rect" id="Node000007" href="$WorkNode_8h.html" title="Declares the component of the work tree." alt="" coords="93,225,194,251"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="261,180,179,221,177,217,259,175"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="183,248,344,295,343,300,182,253"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="5,299,68,324"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="128,253,67,293,64,289,125,248"/>
+<area shape="rect" id="Node000009" href="$Aggregate_8h.html" title="Declares the Aggregate interface of the Iterator pattern." alt="" coords="93,299,194,324"/>
+<area shape="poly" id="edge10_Node000007_Node000009" title=" " alt="" coords="146,251,146,285,141,285,141,251"/>
+<area shape="rect" id="Node000010" href="$WorkIterator_8h.html" title=" " alt="" coords="218,299,333,324"/>
+<area shape="poly" id="edge11_Node000007_Node000010" title=" " alt="" coords="166,248,243,290,241,294,163,253"/>
+<area shape="rect" id="Node000011" href="$Iterator_8h.html" title=" " alt="" coords="235,372,316,397"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="278,324,278,358,273,358,273,324"/>
+<area shape="poly" id="edge16_Node000012_Node000005" title=" " alt="" coords="177,175,291,248,357,289,354,294,289,253,174,180"/>
+<area shape="poly" id="edge14_Node000012_Node000007" title=" " alt="" coords="158,178,151,212,146,211,153,177"/>
+<area shape="poly" id="edge15_Node000012_Node000008" title=" " alt="" coords="140,180,111,200,83,227,63,257,48,287,43,285,58,254,79,224,108,196,137,175"/>
+<area shape="rect" id="Node000014" href="$WorkState_8h.html" title=" " alt="" coords="519,225,621,251"/>
+<area shape="poly" id="edge18_Node000013_Node000014" title=" " alt="" coords="512,103,562,212,557,214,508,106"/>
+<area shape="poly" id="edge19_Node000014_Node000005" title=" " alt="" coords="541,253,429,296,427,291,539,248"/>
+</map>
