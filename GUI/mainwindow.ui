@@ -49,6 +49,7 @@
       <widget class="CompanyPage" name="companyPage"/>
       <widget class="ProjectPage" name="projectPage"/>
       <widget class="TaskPage" name="taskPage"/>
+      <widget class="LoadSavePage" name="loadSavePage"/>
      </widget>
     </item>
    </layout>
@@ -77,6 +78,12 @@
    <class>TaskPage</class>
    <extends>QWidget</extends>
    <header>taskpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>LoadSavePage</class>
+   <extends>QWidget</extends>
+   <header>loadsavepage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

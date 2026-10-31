@@ -1,54 +1,92 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "ApplicationInterface.h"
+#include <iostream>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
+MainWindow::MainWindow(int argc, char* argv[], QWidget* parent)
+	: QMainWindow(parent), ui(new Ui::MainWindow), app(new ApplicationInterface) {
 
-    ui->stackedWidget->setCurrentWidget(ui->menuPage);
 
-    connect(ui->menuPage, &MainMenuPage::companyRequested,
-            this, &MainWindow::showCompany);
+	if (argc > 1) {
+		if (std::string(argv[1]) == "ScenarioA") {
+			std::cout << "Loading scenario A\n";
+			app->createScenarioA();
 
-    connect(ui->menuPage, &MainMenuPage::projectRequested,
-            this, &MainWindow::showProject);
+		}
+		else if (std::string(argv[1]) == "ScenarioB") {
+			std::cout << "Loading scenario B\n";
+			app->createScenarioB();
+		}
+	}
 
-    connect(ui->menuPage, &MainMenuPage::taskRequested,
-            this, &MainWindow::showTasks);
+	ui->setupUi(this);
 
-    connect(ui->companyPage, &CompanyPage::backRequested,
-            this, &MainWindow::showMenu);
+	ui->companyPage->setApplication(app);
+	ui->projectPage->setApplication(app);
+	ui->taskPage->setApplication(app);
+	ui->menuPage->setApplication(app);
+	ui->loadSavePage->setApplication(app);
 
-    connect(ui->projectPage, &ProjectPage::backRequested,
-            this, &MainWindow::showMenu);
+	ui->stackedWidget->setCurrentWidget(ui->menuPage);
 
-    connect(ui->taskPage, &TaskPage::backRequested,
-            this, &MainWindow::showMenu);
+	connect(ui->menuPage, &MainMenuPage::companyRequested,
+		this, &MainWindow::showCompany);
+
+	connect(ui->menuPage, &MainMenuPage::projectRequested,
+		this, &MainWindow::showProject);
+
+	connect(ui->menuPage, &MainMenuPage::taskRequested,
+		this, &MainWindow::showTasks);
+
+	connect(ui->menuPage, &MainMenuPage::loadSaveRequested,
+		this, &MainWindow::showLoadSave);
+
+	connect(ui->loadSavePage, &LoadSavePage::backRequested,
+		this, &MainWindow::showMenu);
+
+	connect(ui->loadSavePage, &LoadSavePage::loaded,
+		this, &MainWindow::workLoaded);
+
+	connect(ui->companyPage, &CompanyPage::backRequested,
+		this, &MainWindow::showMenu);
+
+	connect(ui->projectPage, &ProjectPage::backRequested,
+		this, &MainWindow::showMenu);
+
+	connect(ui->taskPage, &TaskPage::backRequested,
+		this, &MainWindow::showMenu);
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
+MainWindow::~MainWindow() {
+	delete ui;
+	delete app;
 }
 
-void MainWindow::showMenu()
-{
-    ui->stackedWidget->setCurrentWidget(ui->menuPage);
+void MainWindow::showMenu() {
+	ui->menuPage->refresh();
+	ui->stackedWidget->setCurrentWidget(ui->menuPage);
 }
 
-void MainWindow::showCompany()
-{
-    ui->stackedWidget->setCurrentWidget(ui->companyPage);
+void MainWindow::showCompany() {
+	ui->companyPage->refresh();
+	ui->stackedWidget->setCurrentWidget(ui->companyPage);
 }
 
-void MainWindow::showProject()
-{
-    ui->stackedWidget->setCurrentWidget(ui->projectPage);
+void MainWindow::showProject() {
+	ui->projectPage->refresh();
+	ui->stackedWidget->setCurrentWidget(ui->projectPage);
 }
 
-void MainWindow::showTasks()
-{
-    ui->stackedWidget->setCurrentWidget(ui->taskPage);
+void MainWindow::showTasks() {
+	ui->taskPage->refresh();
+	ui->stackedWidget->setCurrentWidget(ui->taskPage);
+}
+
+void MainWindow::showLoadSave() {
+	ui->stackedWidget->setCurrentWidget(ui->loadSavePage);
+}
+
+void MainWindow::workLoaded() {
+	ui->taskPage->reset();
 }

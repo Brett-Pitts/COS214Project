@@ -32,7 +32,8 @@ static bool isReadyUnit(WorkNode* node) {
 	return dynamic_cast<WorkUnit*>(node) != nullptr && node->getStateName() == "Ready";
 }
 
-WorkIterator::WorkIterator(WorkNode* aggregate) : aggregate(aggregate), current(nullptr) {
+// for gui:
+WorkIterator::WorkIterator(WorkNode* aggregate, bool readyOnly) : aggregate(aggregate), current(nullptr), readyOnly(readyOnly) {
 }
 
 WorkIterator::~WorkIterator() {
@@ -40,7 +41,7 @@ WorkIterator::~WorkIterator() {
 
 void WorkIterator::first() {
 	current = aggregate;
-	if (current != nullptr && !isReadyUnit(current)) {
+	if (current != nullptr && readyOnly && !isReadyUnit(current)) {
 		next();
 	}
 }
@@ -50,7 +51,7 @@ void WorkIterator::next() {
 		return;
 	}
 	current = nextInTree(aggregate, current);
-	while (current != nullptr && !isReadyUnit(current)) {
+	while (current != nullptr && readyOnly && !isReadyUnit(current)) {
 		current = nextInTree(aggregate, current);
 	}
 }

@@ -51,6 +51,7 @@ WorkNode* Project::clone() {
 	Project* copy = new Project(this->getMaxRetries(), this->getName());
 	for (int i = 0; i < children.size(); i++)
 		copy->add(children[i]->clone());
+	copy->copyStateFrom(this);
 	return copy;
 
 }

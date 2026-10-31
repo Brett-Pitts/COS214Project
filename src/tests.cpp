@@ -26,7 +26,7 @@ void CompareWorkflowTrees(WorkNode* root1, WorkNode* root2) {
 	child1 = root1->getChild(idx);
 	child2 = root2->getChild(idx);
 	INFO("child1: " << child1 << " or child2: " << child2 << " is a null pointer");
-	CHECK((child1 == child2 && !(child1 != nullptr ^ child2 != nullptr)));
+	CHECK((child1 != nullptr) == (child2 != nullptr));
 
 	while (child1 != nullptr && child2 != nullptr) {
 		CHECK(child1->getMaxRetries() == child2->getMaxRetries());
@@ -49,7 +49,7 @@ void CompareWorkflowTrees(WorkNode* root1, WorkNode* root2) {
 		child2 = child2->getChild(idx);
 
 		INFO("child1: " << child1 << " or child2: " << child2 << " is a null pointer");
-		CHECK((child1 == child2 && !(child1 != nullptr ^ child2 != nullptr)));
+		CHECK((child1 != nullptr) == (child2 != nullptr));
 
 
 
@@ -660,4 +660,449 @@ TEST_CASE("Team: a decorated member does not receive its own message", "[team]")
 
 	CHECK(output.find("Sam received") == std::string::npos);
 	CHECK(output.find("Ann received: Sam worked on Task") != std::string::npos);
+}
+
+#include <cstdio>
+#include <cstdlib>
+#include "Department.h"
+#include "Project.h"
+
+static std::string tempSavePath(const std::string& name){
+	const char* folder = std::getenv("TEMP");
+	if(folder == nullptr){
+		folder = std::getenv("TMPDIR");
+	}
+	if(folder == nullptr){
+		folder = "/tmp";
+	}
+	return std::string(folder) + "/" + name;
+}
+
+TEST_CASE("Memento: remembers the type it was created with", "[memento]") {
+	ApplicationInterface face;
+	face.getCompany();
+	face.getWorkflow();
+
+	Memento* company = face.createMemento(MementoType::company);
+	Memento* workflow = face.createMemento(MementoType::workflow);
+	REQUIRE(company != nullptr);
+	REQUIRE(workflow != nullptr);
+	CHECK(company->getType() == MementoType::company);
+	CHECK(workflow->getType() == MementoType::workflow);
+	delete company;
+	delete workflow;
+}
+
+TEST_CASE("Memento: nothing to snapshot gives no memento", "[memento]") {
+	ApplicationInterface face;
+	CHECK(face.createMemento(MementoType::company) == nullptr);
+	CHECK(face.createMemento(MementoType::workflow) == nullptr);
+}
+
+TEST_CASE("Save/load: a workflow keeps names, states and prerequisites", "[saveload]") {
+	ApplicationInterface face;
+	Project* phase = face.createProject(nullptr, "Phase 1");
+	REQUIRE(phase != nullptr);
+	WorkUnit* design = face.addSubcomponent(phase, "Design", "Artist");
+	WorkUnit* build = face.addSubcomponent(phase, "Build", "Developer");
+	REQUIRE(design != nullptr);
+	REQUIRE(build != nullptr);
+	build->addPrerequisite("Design");
+	design->setState("Ongoing");
+
+	std::string path = tempSavePath("tividy_test_workflow.txt");
+	REQUIRE(face.saveToFile(MementoType::workflow, path));
+
+	ApplicationInterface other;
+	REQUIRE(other.loadFromFile(MementoType::workflow, path));
+	CompareWorkflowTrees(face.getWorkflow(), other.getWorkflow());
+
+	WorkNode* phaseCopy = other.getWorkflow()->getChild(0);
+	REQUIRE(phaseCopy != nullptr);
+	CHECK(phaseCopy->getName() == "Phase 1");
+	WorkUnit* buildCopy = dynamic_cast<WorkUnit*>(phaseCopy->getChild(1));
+	REQUIRE(buildCopy != nullptr);
+	CHECK(buildCopy->getRequiredProfession() == "Developer");
+	CHECK(buildCopy->getPrerequisites().size() == 1);
+	CHECK(phaseCopy->getChild(0)->getStateName() == "Ongoing");
+	std::remove(path.c_str());
+}
+
+TEST_CASE("Save/load: a loaded workflow still drives the mediator", "[saveload]") {
+	ApplicationInterface face;
+	WorkUnit* a = face.addSubcomponent(nullptr, "A", "");
+	WorkUnit* b = face.addSubcomponent(nullptr, "B", "");
+	b->addPrerequisite("A");
+
+	std::string path = tempSavePath("tividy_test_mediator.txt");
+	REQUIRE(face.saveToFile(MementoType::workflow, path));
+	ApplicationInterface other;
+	REQUIRE(other.loadFromFile(MementoType::workflow, path));
+
+	auto units = other.getWorkUnits();
+	REQUIRE(units.size() == 2);
+	completeUnit(*units[0]);
+	CHECK(units[1]->getPrerequisites().empty());
+	CHECK(units[1]->isReady());
+	(void)a;
+	std::remove(path.c_str());
+}
+
+TEST_CASE("Save/load: a company keeps departments, teams and decorated employees", "[saveload]") {
+	ApplicationInterface face;
+	Department* dept = face.addDepartment(nullptr, "Engineering");
+	Department* sub = face.addDepartment(dept, "Platform");
+	Team* team = face.addTeam(sub, "Core Devs", "Developer");
+	Team* empty = face.addTeam(dept, "Nobody Yet", "Designer");
+	REQUIRE(team != nullptr);
+	REQUIRE(face.addEmployee(team, "Ann", "Developer", "senior", false));
+	REQUIRE(face.addEmployee(team, "Bob", "Developer", "intern", true));
+	REQUIRE(face.setCompetency(team, 1, "junior"));
+	CHECK_FALSE(face.addEmployee(team, "Wrong", "Designer", "intern", false));
+	(void)empty;
+
+	std::string path = tempSavePath("tividy_test_company.txt");
+	REQUIRE(face.saveToFile(MementoType::company, path));
+
+	ApplicationInterface other;
+	REQUIRE(other.loadFromFile(MementoType::company, path));
+
+	REQUIRE(other.getCompany()->getChild(0) != nullptr);
+	CompanyNode* deptCopy = other.getCompany()->getChild(0);
+	CHECK(deptCopy->getName() == "Engineering");
+	CompanyNode* subCopy = deptCopy->getChild(0);
+	REQUIRE(subCopy != nullptr);
+	CHECK(subCopy->getName() == "Platform");
+	Team* teamCopy = dynamic_cast<Team*>(subCopy->getChild(0));
+	REQUIRE(teamCopy != nullptr);
+	CHECK(teamCopy->getName() == "Core Devs");
+	CHECK(teamCopy->getProfession() == "Developer");
+	REQUIRE(teamCopy->getMemberCount() == 2);
+
+	EmployeeComponent* ann = teamCopy->getMember(0);
+	CHECK(ann->getName() == "Ann");
+	CHECK(ann->getKind() == "Profession");
+	CHECK(ann->compareCompetency(EmployeeCompetency::SENIOR));
+	CHECK(ann->getCore()->getKind() == "Employee");
+
+	EmployeeComponent* bob = teamCopy->getMember(1);
+	CHECK(bob->getName() == "Bob");
+	CHECK(bob->getCore()->getKind() == "Manager");
+	CHECK(bob->compareCompetency(EmployeeCompetency::JUNIOR));
+
+	CompanyNode* emptyCopy = deptCopy->getChild(1);
+	REQUIRE(dynamic_cast<Team*>(emptyCopy) != nullptr);
+	CHECK(dynamic_cast<Team*>(emptyCopy)->getMemberCount() == 0);
+	std::remove(path.c_str());
+}
+
+TEST_CASE("Save/load: wrong or missing files are rejected and change nothing", "[saveload]") {
+	ApplicationInterface face;
+	face.createProject(nullptr, "Keep me");
+	face.addDepartment(nullptr, "Dept");
+
+	std::string path = tempSavePath("tividy_test_wrongtype.txt");
+	REQUIRE(face.saveToFile(MementoType::company, path));
+
+	CHECK_FALSE(face.loadFromFile(MementoType::workflow, path));
+	CHECK(face.getWorkflow()->getChild(0)->getName() == "Keep me");
+	CHECK_FALSE(face.loadFromFile(MementoType::company, tempSavePath("does_not_exist_tividy.txt")));
+	std::remove(path.c_str());
+}
+
+TEST_CASE("Save/load: work can be assigned to a team after loading", "[saveload]") {
+	ApplicationInterface face;
+	Team* team = face.addTeam(nullptr, "Devs", "Developer");
+	face.addEmployee(team, "Sam", "Developer", "senior", false);
+	WorkUnit* unit = face.addSubcomponent(nullptr, "Ship it", "Developer");
+	REQUIRE(unit != nullptr);
+
+	std::string path = tempSavePath("tividy_test_assign.txt");
+	REQUIRE(face.saveToFile(MementoType::workflow, path));
+	REQUIRE(face.loadFromFile(MementoType::workflow, path));
+
+	WorkUnit* loaded = face.getWorkUnits()[0];
+	std::string result = face.assignWork(loaded, face.getTeams("Developer")[0]);
+	CHECK(loaded->isCompleted());
+	CHECK(result.find("Completed") != std::string::npos);
+	std::remove(path.c_str());
+}
+
+
+TEST_CASE("Workflow: prerequisites can be added and removed safely", "[workflow]") {
+	ApplicationInterface face;
+	Project* phase = face.createProject(nullptr, "Phase");
+	WorkUnit* a = face.addSubcomponent(phase, "A", "");
+	WorkUnit* b = face.addSubcomponent(phase, "B", "");
+	WorkUnit* c = face.addSubcomponent(nullptr, "C", "");
+
+	CHECK(face.addPrerequisite(b, "A"));
+	CHECK_FALSE(face.addPrerequisite(b, "A"));
+	CHECK_FALSE(face.addPrerequisite(b, "B"));
+	CHECK_FALSE(face.addPrerequisite(b, "Nope"));
+	CHECK_FALSE(face.addPrerequisite(b, "Phase"));
+	CHECK_FALSE(face.addPrerequisite(a, "B"));
+	CHECK(face.addPrerequisite(c, "B"));
+	CHECK_FALSE(face.addPrerequisite(a, "C"));
+
+	CHECK(face.removePrerequisite(b, "A"));
+	CHECK(b->isReady());
+	CHECK_FALSE(face.removePrerequisite(b, "A"));
+
+	completeUnit(*a);
+	CHECK_FALSE(face.addPrerequisite(c, "A"));
+}
+
+TEST_CASE("Workflow: removing a node removes prerequisites on it and keeps names unique", "[workflow]") {
+	ApplicationInterface face;
+	WorkUnit* a = face.addSubcomponent(nullptr, "A", "");
+	WorkUnit* b = face.addSubcomponent(nullptr, "B", "");
+	CHECK(face.addSubcomponent(nullptr, "A", "") == nullptr);
+	REQUIRE(face.addPrerequisite(b, "A"));
+
+	REQUIRE(face.removeWorkNode(a));
+	CHECK(b->getPrerequisites().empty());
+	CHECK(face.getWorkUnits().size() == 1);
+	CHECK_FALSE(face.removeWorkNode(face.getWorkflow()));
+}
+
+TEST_CASE("Company: members can be removed and the chain still works", "[company]") {
+	ApplicationInterface face;
+	Team* team = face.addTeam(nullptr, "Devs", "Developer");
+	REQUIRE(face.addEmployee(team, "Intern", "Developer", "intern", false));
+	REQUIRE(face.addEmployee(team, "Mid", "Developer", "junior", false));
+	REQUIRE(face.addEmployee(team, "Boss", "Developer", "senior", true));
+	REQUIRE(team->removeMember(1));
+	CHECK(team->getMemberCount() == 2);
+
+	WorkUnit* unit = face.addSubcomponent(nullptr, "Task", "Developer");
+	face.assignWork(unit, team);
+	CHECK(unit->isCompleted());
+
+	face.getCompany()->remove(team);
+	delete team;
+	CHECK(face.getTeams().empty());
+}
+
+TEST_CASE("WorkIterator: can walk every node, not just ready units", "[iterator]"){
+	ApplicationInterface face;
+	Project* phase = face.createProject(nullptr, "Phase");
+	WorkUnit* a = face.addSubcomponent(phase, "A", "");
+	WorkUnit* b = face.addSubcomponent(phase, "B", "");
+	REQUIRE(face.addPrerequisite(b, "A"));
+	a->advanceState();
+
+	int all = 0;
+	WorkIterator everything(face.getWorkflow(), false);
+	for(everything.first(); !everything.isDone(); everything.next()){
+		all++;
+	}
+	CHECK(all == 4);
+
+	int ready = 0;
+	WorkIterator readyOnly(face.getWorkflow());
+	for(readyOnly.first(); !readyOnly.isDone(); readyOnly.next()){
+		ready++;
+	}
+	CHECK(ready == 1);
+	CHECK(a->isReady());
+}
+
+TEST_CASE("Company: setCompetency replaces the level and keeps name, role and profession", "[company]"){
+	ApplicationInterface face;
+	Team* team = face.addTeam(nullptr, "Devs", "Developer");
+	REQUIRE(face.addEmployee(team, "Boss", "Developer", "senior", true));
+	REQUIRE(face.setCompetency(team, 0, "intern"));
+	EmployeeComponent* boss = team->getMember(0);
+	CHECK(team->getMemberCount() == 1);
+	CHECK(boss->getName() == "Boss");
+	CHECK(boss->getCore()->getKind() == "Manager");
+	CHECK(boss->compareProfession("Developer"));
+	CHECK(boss->compareCompetency(EmployeeCompetency::INTERN));
+	CHECK_FALSE(boss->compareCompetency(EmployeeCompetency::JUNIOR));
+	CHECK_FALSE(face.setCompetency(team, 5, "senior"));
+	CHECK_FALSE(face.setCompetency(team, 0, "wizard"));
+}
+
+
+bool quietStep(Team& team, WorkUnit* unit) {
+	QuietOutput quiet;
+	return team.stepWork(unit);
+}
+
+TEST_CASE("Team: stepWork moves work on one state at a time", "[team][step]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	Team team;
+	team.addMember(director.makeSenior("Sam", "coder"));
+	WorkUnit unit("Task", "coder");
+	unit.advanceState();
+
+	CHECK(quietStep(team, &unit));
+	CHECK(unit.isOngoing());
+	CHECK(quietStep(team, &unit));
+	CHECK(unit.getStateName() == "Escalated");
+	CHECK(quietStep(team, &unit));
+	CHECK(unit.isCompleted());
+	CHECK_FALSE(quietStep(team, &unit));
+}
+
+TEST_CASE("Team: stepWork stays put when nobody can take the next step", "[team][step]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	Team team;
+	team.addMember(director.makeIntern("Ian", "coder"));
+	WorkUnit unit("Task", "coder");
+	unit.advanceState();
+
+	CHECK(quietStep(team, &unit));
+	CHECK(unit.isOngoing());
+	CHECK_FALSE(quietStep(team, &unit));
+	CHECK(unit.isOngoing());
+	CHECK_FALSE(quietStep(team, nullptr));
+}
+
+TEST_CASE("Workflow: assigned work can be stepped and cancelled", "[workflow][step]") {
+	ApplicationInterface face;
+	Team* team = face.addTeam(nullptr, "Devs", "Developer");
+	REQUIRE(face.addEmployee(team, "Sam", "Developer", "senior", false));
+	WorkUnit* unit = face.addSubcomponent(nullptr, "Task", "Developer");
+	WorkUnit* other = face.addSubcomponent(nullptr, "Other", "Developer");
+	REQUIRE(unit != nullptr);
+	REQUIRE(other != nullptr);
+
+	SECTION("stepping needs an assignment") {
+		CHECK(face.stepWork(unit).find("still waiting") != std::string::npos);
+		unit->advanceState();
+		CHECK(face.stepWork(unit).find("not assigned") != std::string::npos);
+		CHECK(unit->isReady());
+	}
+
+	SECTION("assigning alone does no work, each step moves one state") {
+		face.assignOnly(unit, team);
+		CHECK(unit->isReady());
+		QuietOutput quiet;
+		face.stepWork(unit);
+		CHECK(unit->isOngoing());
+		face.stepWork(unit);
+		face.stepWork(unit);
+		CHECK(unit->isCompleted());
+		CHECK(face.stepWork(unit).find("already Completed") != std::string::npos);
+	}
+
+	SECTION("cancelling stops the work") {
+		face.assignOnly(other, team);
+		CHECK(face.cancelWork(other).find("cancelled") != std::string::npos);
+		CHECK(other->getStateName() == "Cancelled");
+		CHECK(face.stepWork(other).find("already Cancelled") != std::string::npos);
+		CHECK(face.cancelWork(other).find("already Cancelled") != std::string::npos);
+		CHECK_FALSE(face.cancelWork(nullptr).empty());
+	}
+
+	SECTION("work nobody can finish is retried and then failed") {
+		Team* interns = face.addTeam(nullptr, "Interns", "Developer");
+		REQUIRE(face.addEmployee(interns, "Ian", "Developer", "intern", false));
+		face.assignOnly(unit, interns);
+		QuietOutput quiet;
+		for (int attempt = 0; attempt < unit->getMaxRetries(); attempt++) {
+			face.stepWork(unit);
+			CHECK(unit->isOngoing());
+			CHECK(face.stepWork(unit).find("another try") != std::string::npos);
+			CHECK(unit->isReady());
+		}
+		face.stepWork(unit);
+		CHECK(unit->isOngoing());
+		CHECK(face.stepWork(unit).find("failed") != std::string::npos);
+		CHECK(unit->getStateName() == "Failed");
+		CHECK(face.stepWork(unit).find("already Failed") != std::string::npos);
+	}
+
+	SECTION("work nobody can finish can be cancelled instead") {
+		Team* interns = face.addTeam(nullptr, "Interns", "Developer");
+		REQUIRE(face.addEmployee(interns, "Ian", "Developer", "intern", false));
+		face.assignOnly(unit, interns);
+		QuietOutput quiet;
+		face.stepWork(unit);
+		face.stepWork(unit);
+		face.cancelWork(unit);
+		CHECK(unit->getStateName() == "Cancelled");
+	}
+
+	SECTION("a deleted team cannot be stepped") {
+		face.assignOnly(unit, team);
+		face.getCompany()->remove(team);
+		delete team;
+		CHECK(face.stepWork(unit).find("still exists") != std::string::npos);
+	}
+}
+
+TEST_CASE("Team: retryOrFail sends work back to Ready until retries run out", "[team][step]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	Team team;
+	team.addMember(director.makeIntern("Ian", "coder"));
+	WorkUnit unit("Task", "coder");
+	unit.advanceState();
+	REQUIRE(quietStep(team, &unit));
+	REQUIRE(unit.isOngoing());
+
+	for (int i = 0; i < unit.getMaxRetries(); i++) {
+		CHECK(team.retryOrFail(&unit));
+		CHECK(unit.isReady());
+		quietStep(team, &unit);
+	}
+	CHECK(team.retryOrFail(&unit));
+	CHECK(unit.getStateName() == "Failed");
+	CHECK_FALSE(team.retryOrFail(&unit));
+	CHECK_FALSE(team.retryOrFail(nullptr));
+}
+
+TEST_CASE("Workflow: work can be forced to fail and forced into a state", "[workflow][step]") {
+	ApplicationInterface face;
+	Team* team = face.addTeam(nullptr, "Devs", "Developer");
+	REQUIRE(face.addEmployee(team, "Sam", "Developer", "senior", false));
+	WorkUnit* unit = face.addSubcomponent(nullptr, "Task", "Developer");
+	WorkUnit* next = face.addSubcomponent(nullptr, "Next", "Developer");
+	REQUIRE(face.addPrerequisite(next, "Task"));
+
+	SECTION("forcing a fail needs an assignment") {
+		unit->advanceState();
+		CHECK(face.failWork(unit).find("not assigned") != std::string::npos);
+		CHECK(unit->isReady());
+	}
+
+	SECTION("a forced fail retries until the retries run out") {
+		face.assignOnly(unit, team);
+		QuietOutput quiet;
+		face.stepWork(unit);
+		for (int attempt = 0; attempt < unit->getMaxRetries(); attempt++) {
+			CHECK(face.failWork(unit).find("another try") != std::string::npos);
+			CHECK(unit->isReady());
+		}
+		CHECK(face.failWork(unit).find("no retries left") != std::string::npos);
+		CHECK(unit->getStateName() == "Failed");
+		CHECK(face.failWork(unit).find("already Failed") != std::string::npos);
+	}
+
+	SECTION("forcing a state sets it") {
+		CHECK(face.forceState(unit, "Cancelled").find("Cancelled") != std::string::npos);
+		CHECK(unit->getStateName() == "Cancelled");
+		CHECK(face.forceState(unit, "Ongoing").find("Ongoing") != std::string::npos);
+		CHECK(unit->isOngoing());
+		CHECK(face.forceState(unit, "Ongoing").find("already") != std::string::npos);
+	}
+
+	SECTION("forcing Completed lets the work waiting on it start") {
+		CHECK(next->getStateName() == "WaitingForPrerequisites");
+		face.forceState(unit, "Completed");
+		CHECK(unit->isCompleted());
+		CHECK(next->isReady());
+	}
+
+	SECTION("bad input is refused") {
+		CHECK(face.forceState(unit, "Sleeping").find("not a state") != std::string::npos);
+		CHECK(unit->getStateName() == "WaitingForPrerequisites");
+		CHECK_FALSE(face.forceState(nullptr, "Ready").empty());
+		CHECK_FALSE(face.failWork(nullptr).empty());
+	}
 }

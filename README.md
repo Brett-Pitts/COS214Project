@@ -79,75 +79,55 @@ When you work on a task, make a branch for it and merge it into main when you ar
 ## Logo
 Logo was made with this [website](https://madegooddesigns.com/tools/logo-maker/), no AI was involved.
 
-## How to Build the GUI
+## How to Build the application
 
-The GUI is written with Qt 5 (Qt Widgets) and built on Windows with MinGW. The project uses C++11, so use Qt 5.15, the latest Qt 5 release. Everything below was done on Windows.
+Clone the project
 
-<details>
-<summary><b>1. Install Qt and Qt Creator</b></summary>
+```bash
+git clone https://github.com/Brett-Pitts/COS214Project
+```
 
-1. Make a free account at [qt.io](https://www.qt.io). The installer asks you to log in.
-2. Download the **Qt Online Installer** for Windows from the [Qt open source download page](https://www.qt.io/download-open-source) and run it.
-3. Log in and accept the open source license terms.
-4. On the component selection page, tick the **Archive** checkbox on the right and press **Filter**. Qt 5.15 is an archived release, so it will not show up until you do this.
-5. Expand **Qt** and then **Qt 5.15.2**, and tick **MinGW 8.1.0 64-bit**.
-6. Expand **Developer and Designer Tools** and tick:
-   - **Qt Creator** (normally ticked by default)
-   - **MinGW 8.1.0 64-bit** (this is the compiler)
-7. Finish the installer. The default install path is `C:\Qt`.
+Go to the project directory
 
-The installer layout changes slightly between versions, but the three things you need are Qt Creator, Qt 5.15.2 for MinGW 64-bit, and the MinGW 64-bit compiler.
+```bash
+cd COS214Project
+```
 
-</details>
+Build Docker Image
+```bash
+docker build -t tividy .
+```
 
-<details>
-<summary><b>2. Set up the kit and build</b></summary>
+Run Docker
+```bash
+docker run -it \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+  tividy /bin/bash
+```
 
-1. Open Qt Creator and go to **File > Open File or Project**, then pick `TIVIDY.pro`.
-2. On the **Configure Project** page, tick **Desktop Qt 5.15.2 MinGW 64-bit** and leave all the settings on their defaults.
-   - If the kit is missing, go to **Edit > Preferences > Kits** and check that the Qt version and the MinGW compiler were detected.
-3. Click the kit selector (the monitor icon at the bottom left) and change the build type from Debug to **Release**.
-4. Build with **Ctrl+B** (the hammer icon). Press **Ctrl+R** to run it and check that it works.
+Compile
 
-Qt Creator makes a build folder named after the kit and the build type. A Debug build goes in `Desktop_Qt_5_15_2_MinGW_64_bit_Debug`, so the Release build goes in `Desktop_Qt_5_15_2_MinGW_64_bit_Release`. Once the build finishes, `TIVIDY.exe` is in the `release` folder inside the Release one. Do not package the Debug build. It is bigger and needs the debug versions of the Qt DLLs.
+```bash
+qmake GUI/TIVIDY.pro
+make -j$(nproc)
+```
 
-The stylesheet and images are compiled into the exe through `resources.qrc`, so you do not need to ship them separately.
+Run
 
-</details>
+```bash
+./TIVIDY
+```
 
-<details>
-<summary><b>3. Package it with windeployqt</b></summary>
 
-`TIVIDY.exe` on its own only runs on a machine with Qt installed. `windeployqt` copies in the Qt DLLs and plugins it needs.
+Run ScenarioA
 
-1. Make a new empty folder (for example `TIVIDY-release`) and copy **only** `TIVIDY.exe` into it. The build's `release` folder also contains `.o`, `moc_` and `ui_` files that you do not want to ship.
-2. Open the Start menu and launch **Qt 5.15.2 (MinGW 8.1.0 64-bit)**. This is a command prompt that already has Qt on the PATH.
-   - With a normal `cmd` window it will not find `windeployqt` unless you add `C:\Qt\5.15.2\mingw81_64\bin` and `C:\Qt\Tools\mingw810_64\bin` to the PATH first.
-3. Go to the folder and run it:
-   ```
-   cd /d C:\path\to\TIVIDY-release
-   windeployqt TIVIDY.exe
-   ```
-4. The folder now holds the exe, the Qt DLLs and the `platforms` folder, among other files. Zip the whole folder and share the zip.
+```bash
+./TIVIDY ScenarioA
+```
 
-Test the zip by unzipping it somewhere else and running `TIVIDY.exe`, ideally on a computer that does not have Qt installed.
+Run ScenarioB
 
-</details>
-
-<details>
-<summary><b>4. Optional: a single exe with Enigma Virtual Box</b></summary>
-
-If you want one file instead of a zip, [Enigma Virtual Box](https://enigmaprotector.com/en/downloads.html) (free) can pack the exe and its DLLs together.
-
-1. Do step 3 first so the folder is complete.
-2. Open Enigma Virtual Box.
-3. Set **Enter Input File Name** to the `TIVIDY.exe` in your deployed folder.
-4. Set **Enter Output File Name** to a different location, for example `TIVIDY-single.exe`. Do not use the same folder as the input.
-5. Click **Add** and choose **Add Folder Recursive**, then select the deployed folder. This keeps the `platforms` folder and the other subfolders, which Qt needs.
-   - If `TIVIDY.exe` shows up in the file list as well, remove that entry. It is already the input file.
-6. Optionally tick **Compress Files** under the file options.
-7. Click **Process**.
-
-`TIVIDY-single.exe` runs on its own. It unpacks virtually in memory, so it can start a little slower, and some antivirus programs flag packed exes as false positives. Keep the zip from step 3 as a backup.
-
-</details>
+```bash
+./TIVIDY ScenarioB
+```
