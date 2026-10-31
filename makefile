@@ -19,7 +19,10 @@ TARGETTEST := $(TARGET)test
 
 
 
-all: $(TARGET)
+all: $(TARGET) | saves
+
+saves:
+	mkdir -p saves
 
 bin/%.o: src/%.cpp | bin
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -36,18 +39,11 @@ $(TARGETTEST): $(OBJ_FILES_TEST)
 run: $(TARGET)
 	./$(TARGET)
 
-
-ScenarioA: $(TARGET)
-	./$(TARGET) ScenarioA
-
-ScenarioB: $(TARGET)
-	./$(TARGET) ScenarioB
-
 test: $(TARGETTEST)
 	./$(TARGETTEST)
 
 
 clean:
-	rm -rf bin $(TARGET) $(TARGETTEST) *.exe saves/*.tvd
+	rm -rf bin $(TARGET) $(TARGETTEST) *.exe
 
 
