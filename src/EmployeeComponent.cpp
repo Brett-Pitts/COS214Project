@@ -28,7 +28,13 @@ void EmployeeComponent::finish(WorkUnit* workUnit) {
 	std::cout << getName() << " finishes " << workUnit->getName() << std::endl;
 }
 EmployeeComponent* EmployeeComponent::getCore() {
-    return this;
+	return this;
+}
+bool EmployeeComponent::compareProfession(string professionName) {
+	return false;
+}
+bool EmployeeComponent::compareCompetency(int requiredCompetency) {
+	return false;
 }
 void EmployeeComponent::doWork(WorkUnit* workUnit) {
 	if (workUnit == nullptr) {

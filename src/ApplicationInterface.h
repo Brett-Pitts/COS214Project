@@ -22,6 +22,10 @@ public:
 
 	void addEmployee();
 
+	void createScenarioA();
+
+	void createScenarioB();
+
 	void setWorkflow(WorkNode* root);
 	void setCompany(CompanyNode* root);
 	Memento* createMemento(MementoType type);
