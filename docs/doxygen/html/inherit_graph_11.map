@@ -1,0 +1,17 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classWorkState.html" title="Abstract state of a work node." alt="" coords="5,153,95,179"/>
+<area shape="rect" id="Node000001" href="$classCancelled.html" title="Concrete state: the work node was cancelled and will not run." alt="" coords="187,5,274,31"/>
+<area shape="poly" id="edge15_Node000000_Node000001" title=" " alt="" coords="61,140,92,89,115,62,141,40,163,28,186,21,188,26,165,33,144,44,119,66,97,92,65,143"/>
+<area shape="rect" id="Node000002" href="$classCompleted.html" title="Concrete state: the work node has finished successfully." alt="" coords="184,55,277,80"/>
+<area shape="poly" id="edge16_Node000000_Node000002" title=" " alt="" coords="72,141,103,114,141,89,183,74,185,79,144,94,106,118,75,145"/>
+<area shape="rect" id="Node000003" href="$classEscalated.html" title="Concrete state: the last step before completion, which needs a senior employee." alt="" coords="188,104,273,129"/>
+<area shape="poly" id="edge17_Node000000_Node000003" title=" " alt="" coords="107,148,142,138,187,126,189,131,143,143,109,153"/>
+<area shape="rect" id="Node000004" href="$classFailed.html" title="Concrete state: nobody could do the work and no retries are left." alt="" coords="201,153,261,179"/>
+<area shape="poly" id="edge18_Node000000_Node000004" title=" " alt="" coords="108,163,200,163,200,169,108,169"/>
+<area shape="rect" id="Node000005" href="$classOngoing.html" title="Concrete state: work has started." alt="" coords="193,203,269,228"/>
+<area shape="poly" id="edge19_Node000000_Node000005" title=" " alt="" coords="109,179,193,202,192,208,107,184"/>
+<area shape="rect" id="Node000006" href="$classReady.html" title="Concrete state: all prerequisites are done and the work can be picked up." alt="" coords="199,252,262,277"/>
+<area shape="poly" id="edge20_Node000000_Node000006" title=" " alt="" coords="75,186,107,213,144,237,172,249,200,256,198,261,170,254,141,242,103,217,72,190"/>
+<area shape="rect" id="Node000007" href="$classWaitingForPrerequisites.html" title="Concrete state: the work node waits for other work to be completed first." alt="" coords="143,301,319,327"/>
+<area shape="poly" id="edge21_Node000000_Node000007" title=" " alt="" coords="66,190,97,239,119,265,144,286,169,299,166,304,141,291,115,269,93,242,61,193"/>
+</map>

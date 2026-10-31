@@ -1,0 +1,20 @@
+<map id="src/WorkIterator.cpp" name="src/WorkIterator.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="100,5,252,31"/>
+<area shape="rect" id="Node000002" href="$WorkIterator_8h.html" title=" " alt="" coords="5,225,120,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,32,77,214,73,212,168,30"/>
+<area shape="rect" id="Node000004" href="$WorkNode_8h.html" title="Declares the component of the work tree." alt="" coords="156,152,257,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="181,31,204,138,199,139,176,32"/>
+<area shape="rect" id="Node000008" href="$WorkUnit_8h.html" title=" " alt="" coords="214,79,309,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="191,29,239,68,235,72,188,33"/>
+<area shape="rect" id="Node000003" href="$Iterator_8h.html" title=" " alt="" coords="22,299,103,324"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="65,251,65,285,60,285,60,251"/>
+<area shape="poly" id="edge7_Node000004_Node000002" title=" " alt="" coords="185,180,100,221,97,217,182,175"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="145,225,207,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="204,179,189,214,184,212,199,177"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="357,225,416,251"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="237,175,346,218,344,223,235,180"/>
+<area shape="rect" id="Node000007" href="$Aggregate_8h.html" title="Declares the Aggregate interface of the Iterator pattern." alt="" coords="232,225,333,251"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="221,175,262,214,258,218,217,179"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="254,106,226,143,222,140,250,103"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="274,103,370,213,366,217,270,106"/>
+</map>

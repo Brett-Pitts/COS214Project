@@ -1,0 +1,7 @@
+<map id="EmployeeCompetency" name="EmployeeCompetency">
+<area shape="rect" id="Node000001" title="Decorator that gives an employee a competency level." alt="" coords="5,872,203,1137"/>
+<area shape="rect" id="Node000002" href="$classEmployeeDetail.html" title="Abstract decorator that adds a detail (profession or competency) to an employee." alt="" coords="15,499,193,824"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,838,107,872,101,872,101,838"/>
+<area shape="rect" id="Node000003" href="$classEmployeeComponent.html" title="Abstract base of every employee and every employee decorator." alt="" coords="9,5,199,451"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,464,107,498,101,498,101,464"/>
+</map>
