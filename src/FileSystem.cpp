@@ -342,8 +342,7 @@ CompanyNode* FileSystem::loadCompany(std::istream& file, const std::string& tag)
 		if (!readLine(file, name) || !readLine(file, profession)) {
 			return nullptr;
 		}
-		Team* team = new Team(profession);
-		team->setName(name);
+		Team* team = new Team(name, profession);
 
 		while (readLine(file, line)) {
 			if (line == "EndTeam") {

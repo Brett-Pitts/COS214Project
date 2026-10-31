@@ -44,7 +44,7 @@ static EmployeeComponent* makeEmployee(const std::string& name,
 
 // Builds an empty team called `name` for one profession.
 static Team* makeTeam(const std::string& name, const std::string& profession) {
-	Team* team = new Team(profession);
+	Team* team = new Team(name, profession);
 	team->setName(name);
 	return team;
 }
@@ -101,16 +101,12 @@ WorkNode* createWorkflowA() {
 
 	WorkNode* coding = new Project(3, "Development");
 	Creation->add(coding);
-	std::cout << coding->getStateName() << "\n";
 	WorkNode* movement = new WorkUnit("Player Movement", "Coder");
 	WorkNode* world = new WorkUnit("World Creation", "Coder");
 	WorkNode* story = new WorkUnit("Story", "Artist");
 	coding->add(movement);
-	std::cout << movement->getStateName() << "\n";
 	coding->add(world);
-	std::cout << world->getStateName() << "\n";
 	coding->add(story);
-	std::cout << story->getStateName() << "\n";
 
 
 	WorkNode* art = new Project(3, "Art");
@@ -495,8 +491,7 @@ bool ApplicationInterface::isLoaded(MementoType type) const {
 // for gui:
 CompanyNode* ApplicationInterface::getCompany() {
 	if (companyRoot == nullptr) {
-		Department* root = new Department();
-		root->setName("Company");
+		Department* root = new Department("Company");
 		companyRoot = root;
 	}
 	return companyRoot;
@@ -525,7 +520,7 @@ Team* ApplicationInterface::addTeam(CompanyNode* parent, const std::string& name
 		return nullptr;
 	}
 	EmployeeProfession::registerProfession(profession);
-	Team* team = new Team(profession);
+	Team* team = new Team(name, profession);
 	team->setName(name);
 	parent->add(team);
 	return team;
@@ -589,10 +584,12 @@ bool ApplicationInterface::setCompetency(Team* team, int memberIndex, const std:
 
 // for gui:
 std::vector<Team*> ApplicationInterface::getTeams(const std::string& profession) {
+	std::cout << "get profession: " << profession << '\n';
 	std::vector<Team*> teams;
 	TeamIterator it(getCompany(), profession);
 	for (it.first(); !it.isDone(); it.next()) {
 		teams.push_back(it.currentItem());
+		std::cout << "Current team: " << it.currentItem()->getName() << '\n';
 	}
 	return teams;
 }
