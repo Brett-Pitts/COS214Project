@@ -395,12 +395,15 @@ CompanyNode* createCompanyB() {
 }
 
 void ApplicationInterface::createScenarioB() {
-	this->workflowRoot = createWorkflowB();
-
-	this->companyRoot = createCompanyB();
-
-
-
+	delete workflowRoot;
+	delete companyRoot;
+	workflowRoot = createWorkflowB();
+	companyRoot = createCompanyB();
+	assignments.clear();
+	assignedTeams.clear();
+	workflowLoaded = true;
+	companyLoaded = true;
+	refreshWorkflow();
 }
 
 Memento* ApplicationInterface::createMemento(MementoType type) {
