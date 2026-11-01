@@ -42,7 +42,7 @@ bool EmployeeProfession::deleteProfession(std::string name) {
 }
 
 bool EmployeeProfession::hasProfession(std::string name) {
-	for (int i = 0;i < professionList.size();i++) {
+	for (int i = 0;i < (int)professionList.size();i++) {
 		if (professionList[i] == name) {
 			return true;
 		}
