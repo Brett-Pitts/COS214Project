@@ -41,7 +41,7 @@ private:
 	std::string retryOrFailText(WorkUnit* unit, Team* team, const std::string& cause);
 
 public:
-	ApplicationInterface() : workflowRoot(nullptr), companyRoot(nullptr), companyLoaded(false), workflowLoaded(false) {}
+	ApplicationInterface() : workflowRoot(nullptr), companyRoot(nullptr), companyLoaded(false), workflowLoaded(false),mediator(ConcreteWorkMediator()) {}
 
 	void setWorkflow(WorkNode* root);
 	void setCompany(CompanyNode* root);
