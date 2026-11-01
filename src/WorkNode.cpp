@@ -201,7 +201,7 @@ void WorkNode::setState(std::string stateName) {
 
 void WorkNode::update(std::string completedName) {
 	int before = prerequisites.size();
-	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), completedName));
+	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), completedName), prerequisites.end());
 	if (prerequisites.size() == before) {
 		return;
 	}
