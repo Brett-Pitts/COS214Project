@@ -5,7 +5,7 @@
 #include <string>
 #include "Aggregate.h"
 #include "WorkIterator.h"
-#include "WorkMediator.h";
+#include "WorkMediator.h"
 class EmployeeComponent;
 class WorkMediator;
 class WorkState;

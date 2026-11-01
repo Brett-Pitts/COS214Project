@@ -16,30 +16,26 @@
 
 void ApplicationInterface::setWorkflow(WorkNode* root) {
 	this->workflowRoot = root;
+	assignments.clear();
+	assignedTeams.clear();
+	workflowLoaded = (root != nullptr);
+	refreshWorkflow();
 }
 void ApplicationInterface::setCompany(CompanyNode* root) {
 	this->companyRoot = root;
+	assignedTeams.clear();
+	companyLoaded = (root != nullptr);
 }
 
 static EmployeeComponent* makeEmployee(const std::string& name,
 	const std::string& profession,
 	const CompetencyLevel competency,
 	bool isManager = false) {
-	EmployeeComponent* core;
-	if (isManager) {
-		core = new Manager(name);
-	}
-	else {
-		core = new Employee(name);
-	}
-
-	EmployeeComponent* prof = new EmployeeProfession(profession);
-	prof->wrap(core);
-
-	EmployeeComponent* comp = new EmployeeCompetency(competency);
-	comp->wrap(prof);
-
-	return comp;
+	ConcreteEmployeeBuilder builder;
+	builder.reset();
+	builder.addProfession(profession);
+	builder.addCompetency(EmployeeCompetency::getCompetencyName(competency));
+	return builder.finish(name, isManager);
 }
 
 // Builds an empty team called `name` for one profession.
@@ -247,10 +243,15 @@ CompanyNode* createCompanyA() {
 
 
 void ApplicationInterface::createScenarioA() {
-	this->workflowRoot = createWorkflowA();
-
-	this->companyRoot = createCompanyA();
-
+	delete workflowRoot;
+	delete companyRoot;
+	workflowRoot = createWorkflowA();
+	companyRoot = createCompanyA();
+	assignments.clear();
+	assignedTeams.clear();
+	workflowLoaded = true;
+	companyLoaded = true;
+	refreshWorkflow();
 }
 
 // Scenario B: a building contractor builds one house.
@@ -429,6 +430,15 @@ void ApplicationInterface::setMemento(Memento* memento) {
 		CompanyNode* restored = ((CompanyNode*)memento->getRoot())->clone();
 		delete companyRoot;
 		companyRoot = restored;
+		assignedTeams.clear();
+		for (const auto& entry : assignments) {
+			for (Team* team : getTeams()) {
+				if (team->getName() == entry.second) {
+					assignedTeams[entry.first] = team;
+					break;
+				}
+			}
+		}
 		break;
 	}
 	case MementoType::workflow:
@@ -700,6 +710,11 @@ bool ApplicationInterface::renameWorkNode(WorkNode* node, const std::string& nam
 		assignments[name] = it->second;
 		assignments.erase(oldName);
 	}
+	auto teamIt = assignedTeams.find(oldName);
+	if (teamIt != assignedTeams.end()) {
+		assignedTeams[name] = teamIt->second;
+		assignedTeams.erase(oldName);
+	}
 	return true;
 }
 
@@ -716,15 +731,26 @@ bool ApplicationInterface::removeWorkNode(WorkNode* node) {
 
 	node->getParent()->remove(node);
 
+	std::vector<WorkNode*> released;
 	for (WorkNode* gone : doomed) {
 		std::string goneName = gone->getName();
 		assignments.erase(goneName);
+		assignedTeams.erase(goneName);
 		for (WorkNode* other : getWorkNodes()) {
-			other->removePrerequisite(goneName);
+			const std::vector<std::string>& prereqs = other->getPrerequisites();
+			if (std::find(prereqs.begin(), prereqs.end(), goneName) != prereqs.end()) {
+				other->removePrerequisite(goneName);
+				released.push_back(other);
+			}
 		}
 	}
 	delete node;
 	refreshWorkflow();
+	for (WorkNode* other : released) {
+		if (other->getPrerequisites().empty() && other->getStateName() == "WaitingForPrerequisites") {
+			other->advanceState();
+		}
+	}
 	return true;
 }
 
@@ -805,7 +831,14 @@ std::string ApplicationInterface::checkAssignable(WorkUnit* unit, Team* team) {
 	}
 	std::string state = unit->getStateName();
 	if (state == "Completed" || state == "Cancelled" || state == "Failed") {
-		return unit->getName() + " is already " + state + ".";
+	return unit->getName() + " is already " + state + ".";
+	}
+	std::string required = unit->getRequiredProfession();
+	if (!required.empty() && !team->getProfession().empty() && required != team->getProfession()) {
+		return unit->getName() + " needs a " + required + " team, not " + team->getName() + ".";
+	}
+	if (!required.empty() && !EmployeeProfession::hasProfession(required)) {
+		return "Nobody in the company has the profession " + required + ".";
 	}
 	if (state == "WaitingForPrerequisites") {
 		if (unit->isWaitingForPrerequisites()) {
