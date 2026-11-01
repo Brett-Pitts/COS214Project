@@ -76,7 +76,7 @@ The Doxygen documentation for the project can be viewed here: [https://brett-pit
 ### Final submission
 
 - [Final submission instructions](diagrams/Project%20Instructions/Final%20Project.pdf)
-- [Final report](diagrams/TIVIDY%20Final%20Report.docx)
+- [Final report](TIVIDY%20Final%20Report%20%E2%80%94%20COS%20214.pdf)
 - [Design decisions and revision history](diagrams/Design%20Decisions%20and%20Revision%20History/)
 
 ### UML diagrams
