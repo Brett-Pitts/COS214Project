@@ -98,6 +98,14 @@ public:
 	 * @return true if a match is found.
 	 */
 	bool hasName(std::string name);
+
+	/**
+	* @brief Checks if the prerequisites and children are completed
+	* @param completedName Unit completed
+	*/
+	void update(std::string completedName);
+
+	void refresh() override;
 };
 
 #endif
