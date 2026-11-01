@@ -109,25 +109,32 @@ docker run -it \
 Compile
 
 ```bash
-qmake TIVIDY.pro
+qmake GUI/TIVIDY.pro
 make -j$(nproc)
 ```
 
 Run
 
 ```bash
-./TIVIDY
+./GUI/TIVIDY
 ```
 
 
 Run ScenarioA
 
 ```bash
-./TIVIDY ScenarioA
+./GUI/TIVIDY ScenarioA
 ```
 
 Run ScenarioB
 
 ```bash
-./TIVIDY ScenarioB
+./GUI/TIVIDY ScenarioB
+```
+
+
+Run Tests
+```bash
+make -C src test
+make -C src clean
 ```
