@@ -109,7 +109,7 @@ docker run -it \
 Compile
 
 ```bash
-qmake GUI/TIVIDY.pro
+qmake TIVIDY.pro
 make -j$(nproc)
 ```
 
