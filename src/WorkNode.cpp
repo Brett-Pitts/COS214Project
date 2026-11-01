@@ -239,3 +239,9 @@ void WorkNode::setMaxRetries(int retries) {
 void WorkNode::removePrerequisite(std::string workName) {
 	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), workName), prerequisites.end());
 }
+
+void WorkNode::refresh() {
+    if (getStateName() == "WaitingForPrerequisites" && !isWaitingForPrerequisites()) {
+        setState(new Ready());
+    }
+}

@@ -68,6 +68,7 @@ public:
 	// for gui:
 	void copyStateFrom(WorkNode* other);
 	virtual bool hasName(std::string name) = 0;
+	virtual void refresh();
 };
 
 #endif

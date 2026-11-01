@@ -105,7 +105,7 @@ public:
 	*/
 	void update(std::string completedName);
 
-	void refresh() override;
+	void refresh();
 };
 
 #endif
