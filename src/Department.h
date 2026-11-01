@@ -19,7 +19,9 @@ private:
 
 	std::vector<CompanyNode*> children; ///< Child departments and teams, in the order they were added.
 public:
+	/** @brief Creates a department with a name. */
 	Department(std::string name) :CompanyNode(name) {};
+	/** @brief Creates a department with an empty name. */
 	Department(): CompanyNode(""){};
 	/**
 	 * @brief Adds a child department or team to the end of the list.

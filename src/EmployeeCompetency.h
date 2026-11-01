@@ -62,6 +62,7 @@ public:
 	 * @param other The decorator to copy.
 	 */
 	EmployeeCompetency(const EmployeeCompetency& other);
+	/** @brief Gets the level name (Intern, Junior or Senior). */
 	virtual std::string getCompetency();
 
 	/** @brief Virtual destructor. */
@@ -78,6 +79,7 @@ public:
 	static CompetencyLevel getCompetencyLevel(const std::string& name);
 
 
+	/** @brief Converts a level to its name. Empty if unknown. */
 	static std::string getCompetencyName(CompetencyLevel level);
 
 	/**

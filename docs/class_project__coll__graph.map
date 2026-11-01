@@ -1,0 +1,17 @@
+<map id="Project" name="Project">
+<area shape="rect" id="Node000001" title="A project or phase: a work node that contains other work nodes." alt="" coords="343,1025,499,1308"/>
+<area shape="rect" id="Node000002" href="$class_work_node.html" title="Base of the work tree. Holds the state, prerequisites and retry count." alt="" coords="343,608,499,976"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="422,989,424,1026,419,1024,420,993"/>
+<area shape="poly" id="edge7_Node000002_Node000002" title=" " alt="" coords="499,752,518,766,524,778,526,792,523,809,515,822,511,818,518,807,521,792,519,779,514,769,499,758"/>
+<area shape="rect" id="Node000003" href="$class_aggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="5,307,114,397"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="73,409,96,473,111,505,129,534,178,595,234,651,292,699,346,740,341,741,289,703,230,655,174,599,124,538,106,507,91,475,73,414"/>
+<area shape="rect" id="Node000004" href="$class_employee_component.html" title="Base of every employee and decorator. Members of a team are linked as a chain." alt="" coords="139,168,304,536"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="304,530,339,605,334,605,303,536"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="303,311,323,325,328,337,330,352,328,370,320,382,315,380,323,368,325,352,323,339,319,329,304,316"/>
+<area shape="rect" id="Node000005" href="$class_mediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="157,5,286,96"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="221,93,224,152,219,151,221,98"/>
+<area shape="rect" id="Node000006" href="$class_work_mediator.html" title="Abstract mediator that lets work nodes communicate without knowing each other." alt="" coords="423,317,552,387"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="484,384,454,592,449,590,482,389"/>
+<area shape="rect" id="Node000007" href="$class_work_state.html" title="Abstract state of a work node." alt="" coords="576,285,677,419"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="609,416,590,477,566,537,510,648,505,646,561,535,585,475,606,421"/>
+</map>

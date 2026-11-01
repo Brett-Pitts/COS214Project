@@ -1,0 +1,9 @@
+<map id="Aggregate" name="Aggregate">
+<area shape="rect" id="Node000001" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="121,5,230,96"/>
+<area shape="rect" id="Node000002" href="$class_work_node.html" title="Base of the work tree. Holds the state, prerequisites and retry count." alt="" coords="97,144,253,597"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,108,178,145,173,144,175,113"/>
+<area shape="rect" id="Node000003" href="$class_project.html" title="A project or phase: a work node that contains other work nodes." alt="" coords="5,645,161,928"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,609,117,646,112,645,121,614"/>
+<area shape="rect" id="Node000004" href="$class_work_unit.html" title="A single piece of work. Leaf of the work tree." alt="" coords="185,688,349,885"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="230,609,248,689,243,688,228,614"/>
+</map>

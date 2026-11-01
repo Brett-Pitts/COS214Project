@@ -1,0 +1,5 @@
+<map id="Ready" name="Ready">
+<area shape="rect" id="Node000001" title="Concrete state: all prerequisites are done and the work can be picked up." alt="" coords="21,187,91,277"/>
+<area shape="rect" id="Node000002" href="$class_work_state.html" title="Abstract state of a work node." alt="" coords="5,5,106,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,151,58,187,53,187,55,156"/>
+</map>

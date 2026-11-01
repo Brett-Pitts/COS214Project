@@ -1,0 +1,20 @@
+<map id="src/Project.h" name="src/Project.h">
+<area shape="rect" id="Node000001" title="Declares the composite node of the work tree." alt="" coords="222,5,318,32"/>
+<area shape="rect" id="Node000002" href="$_work_node_8h.html" title=" " alt="" coords="223,80,317,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="271,30,272,65,268,63,269,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,63,181"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="251,35,68,148,65,144,249,30"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="337,229,390,256"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="318,29,366,46,418,72,467,107,488,129,506,153,511,170,508,185,498,197,483,208,446,225,405,236,404,231,444,220,481,204,494,194,503,182,506,170,501,156,484,132,464,111,415,76,364,51,318,35"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="228,110,78,156,76,151,229,105"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="290,105,317,126,340,153,354,184,362,216,357,213,349,186,336,156,313,130,289,110"/>
+<area shape="rect" id="Node000005" href="$_aggregate_8h.html" title="Declares the Aggregate interface of the Iterator pattern." alt="" coords="400,155,492,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="301,105,404,148,398,149,300,110"/>
+<area shape="rect" id="Node000006" href="$_work_iterator_8h.html" title=" " alt="" coords="86,155,190,181"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="245,109,175,149,173,145,249,106"/>
+<area shape="rect" id="Node000008" href="$_work_mediator_8h.html" title=" " alt="" coords="214,155,326,181"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="272,105,272,140,268,138,268,109"/>
+<area shape="rect" id="Node000007" href="$_iterator_8h.html" title=" " alt="" coords="101,229,175,256"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="140,180,140,215,136,213,136,184"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="287,179,338,220,333,219,285,184"/>
+</map>

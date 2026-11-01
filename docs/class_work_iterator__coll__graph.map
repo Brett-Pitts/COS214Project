@@ -1,0 +1,19 @@
+<map id="WorkIterator" name="WorkIterator">
+<area shape="rect" id="Node000001" title="Walks a work tree. By default it only stops on ready work units." alt="" coords="170,1069,281,1245"/>
+<area shape="rect" id="Node000002" href="$class_iterator.html" title="Abstract iterator over work nodes." alt="" coords="155,715,253,869"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,882,223,1070,217,1069,207,886"/>
+<area shape="rect" id="Node000003" href="$class_work_node.html" title="Base of the work tree. Holds the state, prerequisites and retry count." alt="" coords="276,608,432,976"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="291,974,264,1055,259,1052,288,978"/>
+<area shape="poly" id="edge8_Node000003_Node000003" title=" " alt="" coords="432,750,452,765,457,777,459,792,456,810,449,823,445,820,451,808,454,792,452,778,448,768,433,756"/>
+<area shape="rect" id="Node000004" href="$class_aggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="5,307,114,397"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="70,409,92,474,108,506,129,534,145,550,162,560,196,570,231,581,249,591,267,606,279,620,274,621,263,610,246,595,228,586,194,575,160,565,142,554,124,538,104,509,88,476,70,415"/>
+<area shape="rect" id="Node000005" href="$class_employee_component.html" title="Base of every employee and decorator. Members of a team are linked as a chain." alt="" coords="139,168,304,536"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="277,533,297,592,291,592,277,538"/>
+<area shape="poly" id="edge6_Node000005_Node000005" title=" " alt="" coords="303,311,323,325,328,337,330,352,328,370,320,382,315,380,323,368,325,352,323,339,319,329,304,316"/>
+<area shape="rect" id="Node000006" href="$class_mediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="157,5,286,96"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="221,93,224,152,219,151,221,98"/>
+<area shape="rect" id="Node000007" href="$class_work_mediator.html" title="Abstract mediator that lets work nodes communicate without knowing each other." alt="" coords="423,317,552,387"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="479,384,418,593,413,591,476,389"/>
+<area shape="rect" id="Node000008" href="$class_work_state.html" title="Abstract state of a work node." alt="" coords="576,285,677,419"/>
+<area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="612,416,593,478,566,537,509,624,446,700,442,697,505,620,562,535,588,476,609,421"/>
+</map>

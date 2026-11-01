@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_employee_builder.html" title="Abstract builder that assembles an employee from optional parts." alt="" coords="5,5,125,32"/>
+<area shape="rect" id="Node000001" href="$class_concrete_employee_builder.html" title="Builds an employee by wrapping it in profession and competency decorators." alt="" coords="173,5,345,32"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="140,16,175,18,169,19,141,21"/>
+</map>

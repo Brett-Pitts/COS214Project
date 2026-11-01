@@ -1,0 +1,11 @@
+<map id="EmployeeCompetency" name="EmployeeCompetency">
+<area shape="rect" id="Node000001" title="Decorator that gives an employee a competency level." alt="" coords="5,1047,177,1351"/>
+<area shape="rect" id="Node000002" href="$class_employee_detail.html" title="Abstract decorator that adds a detail (profession or competency) to an employee." alt="" coords="13,608,169,997"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,1010,94,1047,89,1047,91,1015"/>
+<area shape="rect" id="Node000003" href="$class_employee_component.html" title="Base of every employee and decorator. Members of a team are linked as a chain." alt="" coords="9,168,174,536"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,548,91,560,91,608,86,608,86,560,89,554"/>
+<area shape="poly" id="edge5_Node000002_Node000003" title=" " alt="" coords="91,533,94,591,89,591,91,538"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="173,311,193,325,199,337,200,352,198,370,190,382,185,380,193,368,195,352,193,339,189,329,174,316"/>
+<area shape="rect" id="Node000004" href="$class_mediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="27,5,156,96"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="91,93,94,151,89,151,91,98"/>
+</map>

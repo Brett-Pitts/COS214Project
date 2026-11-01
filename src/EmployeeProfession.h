@@ -56,6 +56,7 @@ public:
 	 */
 	EmployeeProfession(std::string name);
 
+	/** @brief Gets this decorator's profession name. */
 	virtual std::string getProfession();
 
 	/**

@@ -1,0 +1,24 @@
+<map id="ApplicationInterface" name="ApplicationInterface">
+<area shape="rect" id="Node000001" title="Entry point of the system. Holds the current workflow and company." alt="" coords="665,1048,812,1565"/>
+<area shape="rect" id="Node000002" href="$class_work_node.html" title="Base of the work tree. Holds the state, prerequisites and retry count." alt="" coords="302,608,458,976"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="459,902,658,1186,653,1187,457,907"/>
+<area shape="poly" id="edge7_Node000002_Node000002" title=" " alt="" coords="457,750,477,765,483,777,484,792,482,810,474,823,470,820,477,808,479,792,477,778,473,768,458,756"/>
+<area shape="rect" id="Node000003" href="$class_aggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="291,307,400,397"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="350,409,368,609,363,608,349,415"/>
+<area shape="rect" id="Node000004" href="$class_employee_component.html" title="Base of every employee and decorator. Members of a team are linked as a chain." alt="" coords="5,168,170,536"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="170,474,295,659,290,660,170,479"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="169,311,190,325,195,337,197,352,194,370,187,382,182,380,189,368,192,352,190,339,185,329,171,316"/>
+<area shape="rect" id="Node000005" href="$class_mediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="23,5,152,96"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="88,93,90,151,85,151,88,98"/>
+<area shape="rect" id="Node000006" href="$class_work_mediator.html" title="Abstract mediator that lets work nodes communicate without knowing each other." alt="" coords="557,317,686,387"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="608,384,579,457,540,537,469,658,464,656,535,535,574,455,606,389"/>
+<area shape="rect" id="Node000010" href="$class_concrete_work_mediator.html" title="Passes the completion of one work node on to all the others, which releases nodes that wait on it." alt="" coords="553,757,697,827"/>
+<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="623,399,627,758,622,757,620,404"/>
+<area shape="rect" id="Node000007" href="$class_work_state.html" title="Abstract state of a work node." alt="" coords="424,285,525,419"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="461,416,425,593,420,591,460,421"/>
+<area shape="rect" id="Node000008" href="$class_company_node.html" title="Base of the company tree. Departments and teams derive from it." alt="" coords="722,683,849,901"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="777,899,766,1032,761,1030,774,904"/>
+<area shape="rect" id="Node000009" href="$class_file_system.html" title="Keeps named mementos in memory and saves or loads them as text files." alt="" coords="873,629,1009,955"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="891,952,866,1025,821,1134,817,1130,861,1023,888,956"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="634,824,680,1032,675,1031,631,829"/>
+</map>

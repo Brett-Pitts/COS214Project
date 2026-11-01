@@ -1,0 +1,5 @@
+<map id="WorkIterator" name="WorkIterator">
+<area shape="rect" id="Node000001" title="Walks a work tree. By default it only stops on ready work units." alt="" coords="5,208,116,427"/>
+<area shape="rect" id="Node000002" href="$class_iterator.html" title="Abstract iterator over work nodes." alt="" coords="12,5,110,160"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,172,63,209,58,208,60,178"/>
+</map>

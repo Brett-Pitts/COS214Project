@@ -1,0 +1,7 @@
+<map id="Employee" name="Employee">
+<area shape="rect" id="Node000001" title="The core employee: a named person who can be wrapped with decorators." alt="" coords="10,443,166,704"/>
+<area shape="rect" id="Node000003" href="$class_manager.html" title="An employee with two extra operations: handling escalations and cancelling projects." alt="" coords="10,752,166,971"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="88,716,90,752,85,752,87,722"/>
+<area shape="rect" id="Node000002" href="$class_employee_component.html" title="Base of every employee and decorator. Members of a team are linked as a chain." alt="" coords="5,5,170,395"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,407,90,443,85,443,88,412"/>
+</map>

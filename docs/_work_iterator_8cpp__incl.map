@@ -1,0 +1,23 @@
+<map id="src/WorkIterator.cpp" name="src/WorkIterator.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="110,5,249,32"/>
+<area shape="rect" id="Node000002" href="$_work_iterator_8h.html" title=" " alt="" coords="5,229,109,256"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,34,73,217,69,215,170,31"/>
+<area shape="rect" id="Node000004" href="$_work_node_8h.html" title=" " alt="" coords="181,155,274,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,30,208,106,220,141,215,140,202,108,182,35"/>
+<area shape="rect" id="Node000009" href="$_work_unit_8h.html" title=" " alt="" coords="216,80,303,107"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="194,30,237,69,232,70,194,35"/>
+<area shape="rect" id="Node000003" href="$_iterator_8h.html" title=" " alt="" coords="20,304,94,331"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="59,254,60,289,54,288,55,259"/>
+<area shape="poly" id="edge7_Node000004_Node000002" title=" " alt="" coords="196,184,102,225,100,220,199,180"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="132,229,190,256"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="218,180,184,220,181,216,214,184"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="409,304,462,331"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="229,179,236,217,243,237,255,254,286,278,323,295,360,305,396,313,391,313,359,310,321,300,283,283,251,258,238,240,231,219,226,184"/>
+<area shape="rect" id="Node000007" href="$_aggregate_8h.html" title="Declares the Aggregate interface of the Iterator pattern." alt="" coords="265,229,356,256"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="243,179,287,219,282,219,241,184"/>
+<area shape="rect" id="Node000008" href="$_work_mediator_8h.html" title=" " alt="" coords="380,229,492,256"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="264,179,388,223,382,225,264,185"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="438,255,438,290,434,287,434,258"/>
+<area shape="poly" id="edge12_Node000009_Node000004" title=" " alt="" coords="256,105,241,142,237,139,252,109"/>
+<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="303,102,354,117,410,143,464,179,487,202,506,228,510,248,503,266,489,283,471,298,469,293,486,279,499,264,505,247,501,230,483,205,460,183,407,147,352,122,303,107"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="WorkState" name="WorkState">
+<area shape="rect" id="Node000001" title="Abstract state of a work node." alt="" coords="336,5,437,139"/>
+<area shape="rect" id="Node000002" href="$class_cancelled.html" title="Concrete state: the work node was cancelled and will not run." alt="" coords="5,187,95,277"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="320,95,219,135,162,160,108,189,96,196,93,192,105,184,160,155,217,130,324,92"/>
+<area shape="rect" id="Node000003" href="$class_completed.html" title="Concrete state: the work node has finished successfully." alt="" coords="119,187,214,277"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="326,116,227,189,215,197,212,193,223,185,321,118"/>
+<area shape="rect" id="Node000004" href="$class_escalated.html" title="Concrete state: the last step before completion, which needs a senior employee." alt="" coords="237,187,327,277"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="337,149,313,189,309,185,333,152"/>
+<area shape="rect" id="Node000005" href="$class_failed.html" title="Concrete state: nobody could do the work and no retries are left." alt="" coords="351,187,421,277"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="388,151,389,188,384,186,385,155"/>
+<area shape="rect" id="Node000006" href="$class_ongoing.html" title="Concrete state: work has started." alt="" coords="445,187,525,277"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="436,149,460,188,455,186,434,153"/>
+<area shape="rect" id="Node000007" href="$class_ready.html" title="Concrete state: all prerequisites are done and the work can be picked up." alt="" coords="549,187,619,277"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="450,115,539,185,551,198,546,196,535,189,448,121"/>
+<area shape="rect" id="Node000008" href="$class_waiting_for_prerequisites.html" title="Concrete state: the work node waits for other work to be completed first." alt="" coords="643,187,813,277"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="451,100,646,191,641,192,450,105"/>
+</map>

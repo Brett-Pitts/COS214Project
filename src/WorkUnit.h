@@ -6,10 +6,12 @@
 
 #include "WorkNode.h"
 
+/** @brief A single piece of work. Leaf of the work tree. */
 class WorkUnit : public WorkNode {
 
 private:
 
+	/** Profession needed for this unit. Empty means any. */
 	std::string requiredProfession;
 
 public:

@@ -44,6 +44,7 @@ public:
 
 	/** @brief Gets the kind of component ("Employee"). */
 	std::string getKind();
+	/** @brief Always false, the core has no competency. */
 	virtual bool compareCompetency(int requiredCompetency);
 	/**
 	 * @brief Does the work on a unit.

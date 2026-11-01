@@ -1,9 +1,10 @@
 PROJECT_NAME           = "TIVIDY"
 PROJECT_BRIEF          = "Generic project workflow engine (COS 214)"
-OUTPUT_DIRECTORY       = docs/doxygen
+OUTPUT_DIRECTORY       = docs
+HTML_OUTPUT            = .
 INPUT                  = src
-FILE_PATTERNS          = *.h *.cpp
-EXCLUDE                = src/catch.hpp src/tests.cpp main.cpp
+FILE_PATTERNS          = *.h *.cpp *.dox
+EXCLUDE                = src/catch.hpp src/tests.cpp src/test_main.cpp src/main.cpp
 RECURSIVE              = YES
 EXTRACT_ALL            = YES
 EXTRACT_PRIVATE        = YES
@@ -16,3 +17,7 @@ CLASS_GRAPH            = YES
 COLLABORATION_GRAPH    = YES
 UML_LOOK               = YES
 SOURCE_BROWSER         = YES
+IMAGE_PATH             = "diagrams/UML Diagrams/Activity Diagrams" \
+                         "diagrams/UML Diagrams/Class Diagram" \
+                         "diagrams/UML Diagrams/Sequence Diagrams" \
+                         "diagrams/UML Diagrams/State Diagram"

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['readme_0',['README',['../md_README.html',1,'']]],
-  ['rules_1',['Contribution rules',['../md_README.html#autotoc_md8',1,'']]]
+  ['junior_0',['JUNIOR',['../_competency_level_8h.html#ad1e69b046346dab3017af9e3cb5ee48eaedbb2000e69afdfa0c25294ee165ea05',1,'CompetencyLevel.h']]]
 ];

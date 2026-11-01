@@ -1,0 +1,7 @@
+<map id="Team" name="Team">
+<area shape="rect" id="Node000001" title="A group of employees with one profession. Leaf of the company tree and mediator for its members." alt="" coords="79,272,211,619"/>
+<area shape="rect" id="Node000002" href="$class_company_node.html" title="Base of the company tree. Departments and teams derive from it." alt="" coords="5,5,132,224"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,236,108,273,102,273,97,241"/>
+<area shape="rect" id="Node000003" href="$class_mediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="156,69,285,160"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,172,187,273,182,271,206,177"/>
+</map>

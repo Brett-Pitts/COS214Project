@@ -89,7 +89,9 @@ public:
 	bool compareCompetency(CompetencyLevel requiredCompetency);
 
 
+	/** @brief Gets the profession from the wrapped component. */
 	virtual std::string getProfession();
+	/** @brief Gets the competency from the wrapped component. */
 	virtual std::string getCompetency();
 
 	/**

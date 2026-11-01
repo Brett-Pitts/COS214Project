@@ -16,18 +16,26 @@ class WorkUnit;
 class Project;
 class Department;
 
+/** @brief Entry point of the system. Holds the current workflow and company. */
 class ApplicationInterface {
 
 private:
+	/** Root of the current workflow. Owned. */
 	WorkNode* workflowRoot;
+	/** Root of the current company. Owned. */
 	CompanyNode* companyRoot;
 
 	// for gui:
 	FileSystem fileSystem;
+	/** Mediator for the work nodes. */
 	ConcreteWorkMediator mediator;
+	/** Name of the team each unit is assigned to, by unit name. */
 	std::map<std::string, std::string> assignments;
+	/** The same assignments as team pointers. */
 	std::map<std::string, Team*> assignedTeams;
+	/** True once a company is set. */
 	bool companyLoaded;
+	/** True once a workflow is set. */
 	bool workflowLoaded;
 
 	// for gui:
@@ -41,9 +49,12 @@ private:
 	std::string retryOrFailText(WorkUnit* unit, Team* team, const std::string& cause);
 
 public:
+	/** @brief Creates an interface with no workflow or company. */
 	ApplicationInterface() : workflowRoot(nullptr), companyRoot(nullptr),mediator(ConcreteWorkMediator()), companyLoaded(false), workflowLoaded(false) {}
 
+	/** @brief Sets the current workflow. The old one is not deleted. */
 	void setWorkflow(WorkNode* root);
+	/** @brief Sets the current company. The old one is not deleted. */
 	void setCompany(CompanyNode* root);
 
 	/**
@@ -76,7 +87,9 @@ public:
 	 * mediator is attached to them.
 	 */
 	void createScenarioB();
+	/** @brief Saves a copy of the company or workflow in a new memento. nullptr if there is none. */
 	Memento* createMemento(MementoType type);
+	/** @brief Restores the company or workflow from a memento. The current one is deleted. */
 	void setMemento(Memento* memento);
 
 	// for gui:
@@ -115,6 +128,7 @@ public:
 	void unassign(const std::string& unitName);
 	const std::map<std::string, std::string>& getAssignments() const;
 
+	/** @brief Deletes the workflow and company. */
 	~ApplicationInterface();
 };
 

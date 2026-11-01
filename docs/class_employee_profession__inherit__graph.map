@@ -1,0 +1,7 @@
+<map id="EmployeeProfession" name="EmployeeProfession">
+<area shape="rect" id="Node000001" title="Decorator that gives an employee a profession (for example coder or plumber)." alt="" coords="8,880,168,1227"/>
+<area shape="rect" id="Node000002" href="$class_employee_detail.html" title="Abstract decorator that adds a detail (profession or competency) to an employee." alt="" coords="10,443,166,832"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,844,90,881,85,880,87,849"/>
+<area shape="rect" id="Node000003" href="$class_employee_component.html" title="Base of every employee and decorator. Members of a team are linked as a chain." alt="" coords="5,5,170,395"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="88,407,90,443,85,443,88,412"/>
+</map>

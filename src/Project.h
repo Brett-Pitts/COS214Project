@@ -90,6 +90,7 @@ public:
 	 */
 	WorkNode* clone();
 
+	/** @brief Finds a node by name below this project. nullptr if not found. */
 	virtual WorkNode* getNode(std::string name);
 
 	/**

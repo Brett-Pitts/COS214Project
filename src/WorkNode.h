@@ -11,15 +11,23 @@ class WorkMediator;
 class WorkState;
 class FileSystem;
 
+/** @brief Base of the work tree. Holds the state, prerequisites and retry count. */
 class WorkNode : public Aggregate {
 	friend class FileSystem;
 private:
+	/** The employee assigned to this node. */
 	EmployeeComponent* assignee;
+	/** Number of retries allowed. */
 	int maxRetries;
+	/** Used to announce completion. Not owned. */
 	WorkMediator* mediator;
+	/** The parent node, nullptr at the root. */
 	WorkNode* parent;
+	/** Names of the nodes that must complete first. */
 	std::vector<std::string> prerequisites;
+	/** Retries used so far. */
 	int retryCount;
+	/** The current state. Owned. */
 	WorkState* state;
 
 protected:
@@ -29,6 +37,7 @@ protected:
 	 * @param name Node name.
 	 */
 	WorkNode(int maxRetries, std::string name);
+	/** Name of the node. */
 	std::string name;
 	
 	
@@ -142,6 +151,7 @@ public:
 	 * @return True if Ready.
 	 */
 	bool isReady();
+	/** @brief Not implemented. Throws if called. */
 	void modify();
 
 

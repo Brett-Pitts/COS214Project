@@ -1,0 +1,18 @@
+/**
+ * @page uml UML Diagrams
+ *
+ * @section classdiagram Class Diagram
+ * @image html "Class Diagram.png" "Class Diagram"
+ *
+ * @section sequence Sequence Diagrams
+ * @image html "Sequence Diagram 1 (4).png" "Sequence Diagram 1"
+ * @image html "Sequence Diagram 2 (3).png" "Sequence Diagram 2"
+ *
+ * @section state State Diagram
+ * @image html "State Diagram (3).png" "State Diagram"
+ *
+ * @section activity Activity Diagrams
+ * @image html "Activity Diagram1.jpg" "Activity Diagram 1"
+ * @image html "Activity Diagram2.jpg" "Activity Diagram 2"
+ * @image html "Activity Diagram3.jpg" "Activity Diagram 3"
+ */
