@@ -104,7 +104,10 @@ public:
 	* @param completedName Unit completed
 	*/
 	void update(std::string completedName);
-
+protected:
+	/**
+	* @brief update helper function that calls children so that they can change due to parent's state changes
+	*/
 	void refresh();
 };
 
