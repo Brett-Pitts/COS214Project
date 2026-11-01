@@ -200,14 +200,10 @@ void WorkNode::setState(std::string stateName) {
 }
 
 void WorkNode::update(std::string completedName) {
-	int before = prerequisites.size();
-	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), completedName), prerequisites.end());
-	if ((int)prerequisites.size() == before) {
-		return;
-	}
-	if (!isWaitingForPrerequisites() && getStateName() == "WaitingForPrerequisites") {
-		setState(new Ready());
-	}
+    prerequisites.erase(
+        std::remove(prerequisites.begin(), prerequisites.end(), completedName),
+        prerequisites.end());
+    refresh();   // always re-check, even if nothing was erased
 }
 
 int WorkNode::getMaxRetries() {

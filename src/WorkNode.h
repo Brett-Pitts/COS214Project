@@ -30,7 +30,7 @@ protected:
 	 */
 	WorkNode(int maxRetries, std::string name);
 	std::string name;
-	virtual void refresh();
+	
 	
 public:
 
@@ -183,7 +183,7 @@ public:
 	 * @brief Drops a completed prerequisite and moves to Ready if none are left.
 	 * @param completedName Name of the node that completed.
 	 */
-	void update(std::string completedName);
+	virtual void update(std::string completedName);
 
 	/**
 	 * @brief Makes a copy of the node (and its children).
@@ -221,7 +221,7 @@ public:
 	 * @return True if the name is found.
 	 */
 	virtual bool hasName(std::string name) = 0;
-	
+	virtual void refresh();
 };
 
 #endif

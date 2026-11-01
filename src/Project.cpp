@@ -84,19 +84,16 @@ bool Project::hasName(std::string name) {
 	return false;
 }
 
+
 void Project::update(std::string completedName)
 {
-    WorkNode::update(completedName);          
+    WorkNode::update(completedName);           // erases prerequisite + calls refresh()
 
     if (getStateName() == "Ready")
     {
         for (auto child : children)
-		{
             if (child->getStateName() != "Completed")
-			{
                 return;
-			}
-		}
         setState("Escalated");
         advanceState();
     }
