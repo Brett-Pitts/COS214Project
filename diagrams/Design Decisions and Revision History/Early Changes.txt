@@ -1,0 +1,61 @@
+Design Decisions and Revision History
+1. Removed the workflow template
+Problem: Should there be a separate workflow definition or template?
+Original: Projects are built directly as a Composite tree, with no template.
+Change: Kept it that way and removed the “Select workflow definition” step from Diagram 1. The Project tree is the workflow.
+Why: The manager stays generic, and the same structure can be created again for each project.
+Diagrams: Diagram 1 now starts at “Create project”.
+2. WorkNode now has 7 states
+Problem: How do we handle failure, escalation and cancelling?
+Original: Four states: WaitingForPrerequisites, Ready, Ongoing, completed.
+Change: Added Failed, Escalated and Cancelled. Failed goes back to Ready while retries are left, otherwise to Escalated. From Escalated the manager modifies or reassigns the unit or cancels the project.
+Why: The brief needs failure, retry and escalation, and the old states had no place for them.
+Diagrams: State diagram, Activity Diagrams 1 and 2, class ddiagrams
+3. Template Method has three steps
+Problem: How does work differ per profession without repeating the flow?
+Original: One “do work” step.
+Change: Split it into prepare, perform and finish.
+Why: Every profession follows the same order and only fills in its own part.
+Diagrams: Class diagram, sequence diagrams.
+4. WorkNode has a parent and manager operations
+Problem: How does completion move up the tree, and how does the manager step in?
+Original: WorkNode only tracked its own state.
+Change: Added a parent, a retry count, and reset, modify and reassign.
+Why: Completion has to move up the Composite tree, and retries and escalation need something to act on.
+Diagrams: Class diagram, Activity Diagram 1, sequence diagram.
+5. Observer also covers the parents
+Problem: How do dependencies and completion spread?
+Original: Observer was only for prerequisites.
+Change: A parent now also observes its children.
+Why: One mechanism handle unblocking the next unit and completing the parent.
+Diagrams: Class diagram, sequence diagram.
+6. Dropped the abstract factory for the work tree
+Problem: Should a factory create the Composite tree?
+Original: An abstract factory to build the tree.
+Change: Removed it. ApplicationInterface builds projects, and Factory Method is only for employees.
+Why: There is only one kind of tree, so a factory would add classes with nothing to vary.
+Diagrams: Class diagram.
+7. Dropped the decorator for access permission
+Problem: Who is allowed to work on a unit?
+Original: A decorator gave access permissions.
+Change: Decorators only give profession and competency now. The chain of responsibility decides who can do a unit.
+Why: Permissions and eligibility were the same question, so one mechanism is enough.
+Diagrams: Class diagram.
+8. Dropped the company iterator
+Problem: Where do we need an Iterator?
+Original: One iterator printed the company structure and one found the next work.
+Change: Only WorkIterator is left, which returns the next Ready WorkUnit.
+Why: The work iterator drives execution. Printing the company is just reporting.
+Diagrams: Class diagram.
+9. Phases are just Projects
+Problem: How do we represent phases, tasks and units?
+Original: Separate classes for phase, task and unit.
+Change: Only Project and WorkUnit. A phase is a Project inside another Project.
+Why: A phase only differs by where it sits in the tree, so extra classes add nothing.
+Diagrams: Class diagram, Activity Diagram 3.
+10. The manager is a subclass of Employee
+Problem: Should the manager be an employee or part of Team?
+Original: Not decided.
+Change: Manager extends Employee and handles escalation and cancelling the project.
+Why: Escalation uses the existing successor chain, and Team stays a Mediator only.
+Diagrams: Class diagram, Activity Diagram 2.
