@@ -16,7 +16,7 @@ class WorkNode : public Aggregate {
 private:
 	EmployeeComponent* assignee;
 	int maxRetries;
-	
+	WorkMediator* mediator;
 	WorkNode* parent;
 	std::vector<std::string> prerequisites;
 	int retryCount;
@@ -25,7 +25,6 @@ private:
 protected:
 	WorkNode(int maxRetries, std::string name);
 	std::string name;
-	WorkMediator* mediator;
 
 public:
 
@@ -57,7 +56,7 @@ public:
 	void setParent(WorkNode* parent);
 	void setState(WorkState* workState);
 	void setState(std::string stateName);
-	virtual void update(std::string completedName);
+	void update(std::string completedName);
 	virtual WorkNode* clone() = 0;
 	int getMaxRetries();
 	// for gui:
@@ -69,7 +68,6 @@ public:
 	// for gui:
 	void copyStateFrom(WorkNode* other);
 	virtual bool hasName(std::string name) = 0;
-	virtual void refresh();
 };
 
 #endif

@@ -21,7 +21,7 @@ WORKDIR /app
 
 COPY GUI/ ./GUI/
 COPY src/ ./src/
-COPY ./TIVIDY.pro .
+COPY ./GUI/TIVIDY.pro .
 
 
 

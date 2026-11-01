@@ -202,15 +202,11 @@ void WorkNode::setState(std::string stateName) {
 void WorkNode::update(std::string completedName) {
 	int before = prerequisites.size();
 	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), completedName), prerequisites.end());
-
-	if (getStateName() == "WaitingForPrerequisites" && !isWaitingForPrerequisites()) {
-        setState(new Ready());
-    }
 	if (prerequisites.size() == before) {
 		return;
 	}
 	if (!isWaitingForPrerequisites() && getStateName() == "WaitingForPrerequisites") {
-		advanceState();
+		setState(new Ready());
 	}
 }
 
@@ -242,10 +238,4 @@ void WorkNode::setMaxRetries(int retries) {
 // for gui:
 void WorkNode::removePrerequisite(std::string workName) {
 	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), workName), prerequisites.end());
-}
-
-void WorkNode::refresh() {
-    if (getStateName() == "WaitingForPrerequisites" && !isWaitingForPrerequisites()) {
-        setState(new Ready());
-    }
 }
