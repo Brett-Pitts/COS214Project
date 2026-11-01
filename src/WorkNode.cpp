@@ -68,20 +68,15 @@ void WorkNode::addPrerequisite(std::string workName) {
 		this->setState(new WaitingForPrerequisites());
 	}
 }
-#include <iostream>
 
 void WorkNode::advanceState() {
 	if (this->state == NULL) {
 		return;
 	}
-	
-	std::cout << "Old state: " << this->getStateName() << '\n';
+
 	this->state->handle(this);
-	std::cout << "ADVANCE!!!!!!!!!\n";
-	std::cout << this->mediator << '\n';
 	if (isCompleted() && this->mediator != NULL) {
 		this->mediator->notifyColleagues(this, this->name);
-		std::cout << "Notify " << this->name << '\n';
 	}
 }
 
@@ -93,7 +88,7 @@ WorkIterator* WorkNode::createIterator() {
 	return new WorkIterator(this);
 }
 
-WorkNode* WorkNode::getChild(int ) {
+WorkNode* WorkNode::getChild(int) {
 	return nullptr;
 }
 
@@ -143,7 +138,7 @@ void WorkNode::reassign(EmployeeComponent* employeeComponent) {
 	this->assignee = employeeComponent;
 }
 
-void WorkNode::remove(WorkNode* ) {
+void WorkNode::remove(WorkNode*) {
 	return;
 }
 
@@ -200,10 +195,10 @@ void WorkNode::setState(std::string stateName) {
 }
 
 void WorkNode::update(std::string completedName) {
-    prerequisites.erase(
-        std::remove(prerequisites.begin(), prerequisites.end(), completedName),
-        prerequisites.end());
-    refresh();   // always re-check, even if nothing was erased
+	prerequisites.erase(
+		std::remove(prerequisites.begin(), prerequisites.end(), completedName),
+		prerequisites.end());
+	refresh();   // always re-check, even if nothing was erased
 }
 
 int WorkNode::getMaxRetries() {
@@ -237,7 +232,7 @@ void WorkNode::removePrerequisite(std::string workName) {
 }
 
 void WorkNode::refresh() {
-    if (getStateName() == "WaitingForPrerequisites" && !isWaitingForPrerequisites()) {
-        setState(new Ready());
-    }
+	if (getStateName() == "WaitingForPrerequisites" && !isWaitingForPrerequisites()) {
+		setState(new Ready());
+	}
 }
