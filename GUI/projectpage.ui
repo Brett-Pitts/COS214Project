@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProjectPage</class>
+ <widget class="QWidget" name="ProjectPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Project Structure</string>
+  </property>
+  <layout class="QVBoxLayout" name="pageLayout">
+   <property name="spacing">
+    <number>16</number>
+   </property>
+   <property name="leftMargin">
+    <number>24</number>
+   </property>
+   <property name="topMargin">
+    <number>24</number>
+   </property>
+   <property name="rightMargin">
+    <number>24</number>
+   </property>
+   <property name="bottomMargin">
+    <number>24</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="headerBar">
+     <layout class="QHBoxLayout" name="headerLayout">
+      <property name="spacing">
+       <number>14</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="backButton">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">ghost</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="pageTitle">
+        <property name="text">
+         <string>Project Structure</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">heading</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="headerSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="bodyLayout">
+     <property name="spacing">
+      <number>16</number>
+     </property>
+     <item>
+      <widget class="QGroupBox" name="structureBox">
+       <property name="title">
+        <string>Project Structure</string>
+       </property>
+       <layout class="QVBoxLayout" name="structureLayout">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" name="structureButtonsLayout">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="newProjectButton">
+            <property name="text">
+             <string>+ Project</string>
+            </property>
+            <property name="variant" stdset="0">
+             <string notr="true">primary</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addSubProjectButton">
+            <property name="text">
+             <string>+ Sub-project</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addWorkUnitButton">
+            <property name="text">
+             <string>+ Work Unit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="structureButtonsSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deleteNodeButton">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+            <property name="variant" stdset="0">
+             <string notr="true">danger</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTreeWidget" name="projectTree">
+          <property name="alternatingRowColors">
+           <bool>false</bool>
+          </property>
+          <column>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>State</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Prerequisites</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="detailsBox">
+       <property name="minimumSize"><size><width>360</width><height>0</height></size></property>
+       <property name="maximumSize"><size><width>420</width><height>16777215</height></size></property>
+       <property name="title"><string>Selected item</string></property>
+       <layout class="QVBoxLayout" name="detailsLayout">
+        <item>
+         <layout class="QFormLayout" name="detailsForm">
+          <item row="0" column="0"><widget class="QLabel" name="nameCaption"><property name="text"><string>Name</string></property></widget></item>
+          <item row="0" column="1"><widget class="QLineEdit" name="nodeNameEdit"/></item>
+          <item row="1" column="0"><widget class="QLabel" name="typeCaption"><property name="text"><string>Type</string></property></widget></item>
+          <item row="1" column="1"><widget class="QLabel" name="nodeTypeLabel"><property name="text"><string>-</string></property></widget></item>
+          <item row="2" column="0"><widget class="QLabel" name="stateCaption"><property name="text"><string>State</string></property></widget></item>
+          <item row="2" column="1"><widget class="QLabel" name="nodeStateLabel"><property name="text"><string>-</string></property></widget></item>
+          <item row="3" column="0"><widget class="QLabel" name="assignedtoCaption"><property name="text"><string>Assigned to</string></property></widget></item>
+          <item row="3" column="1"><widget class="QLabel" name="nodeAssigneeLabel"><property name="text"><string>-</string></property></widget></item>
+          <item row="4" column="0"><widget class="QLabel" name="maxretriesCaption"><property name="text"><string>Max retries</string></property></widget></item>
+          <item row="4" column="1"><widget class="QSpinBox" name="maxRetriesSpin"><property name="maximum"><number>10</number></property></widget></item>
+          <item row="5" column="0"><widget class="QLabel" name="professionCaption"><property name="text"><string>Profession</string></property></widget></item>
+          <item row="5" column="1"><widget class="QComboBox" name="professionCombo"/></item>
+         </layout>
+        </item>
+        <item><widget class="QLabel" name="prerequisitesLabel"><property name="text"><string>Prerequisites</string></property></widget></item>
+        <item><widget class="QListWidget" name="prerequisiteList"/></item>
+        <item><widget class="QComboBox" name="prerequisiteCombo"/></item>
+        <item><layout class="QHBoxLayout" name="prerequisiteButtonsLayout">
+         <item><widget class="QPushButton" name="addPrerequisiteButton"><property name="text"><string>Add</string></property></widget></item>
+         <item><widget class="QPushButton" name="removePrerequisiteButton"><property name="text"><string>Remove</string></property></widget></item>
+        </layout></item>
+        <item><widget class="QPushButton" name="saveChangesButton"><property name="text"><string>Save changes</string></property></widget></item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

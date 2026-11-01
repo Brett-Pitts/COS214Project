@@ -1,0 +1,24 @@
+All parameters and attributes changed to pointers (WorkUnit*, Mediator*, EmployeeComponent*)
+
+EmployeeComponent:
+added constructors and virtual destructor
+added getName()
+added setMediator(Mediator*)
+prepare(), perform(), finish() made virtual and protected
+
+Employee, Manager, EmployeeProfession, EmployeeCompetency:
+added constructor taking name
+added copy constructor
+
+EmployeeDetail:
+added destructor that deletes wrapped
+override getName(), compareProfession(), setMediator() to delegate to wrapped
+wrap() pushes new component to the innermost slot
+
+EmployeeProfession, EmployeeCompetency:
+registerX() returns a stable id, reusing deleted slots
+deleteX() leaves an empty slot so ids do not shift
+
+Requires:
+WorkUnit::getName(), WorkUnit::getRequiredProfession()
+Mediator::notifyColleagues(EmployeeComponent*, string)

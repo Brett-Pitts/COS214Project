@@ -1,0 +1,19 @@
+Aggregate, Iterator, WorkIterator: all WorkNode and Iterator values changed to pointers
+
+Aggregate:
+made abstract, createIterator() returns Iterator*
+added virtual destructor
+
+Iterator:
+made abstract, all four methods pure virtual
+added virtual destructor
+
+WorkIterator:
+added constructor taking the WorkNode* to traverse
+added virtual destructor
+first() positions on the first Ready WorkUnit in the tree, next() moves to the next one, isDone() when none are left
+traversal is depth first using getChild() and getParent(), never leaves the node it was created on
+
+WorkNode:
+createIterator() returns WorkIterator* (new WorkIterator(this))
+added #include <string>

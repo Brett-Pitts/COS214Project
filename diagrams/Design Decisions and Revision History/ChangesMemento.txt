@@ -1,0 +1,2 @@
+Changed to only have one kind of memento class with an enum for type.
+Added a map attribute to file system.

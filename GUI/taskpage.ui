@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TaskPage</class>
+ <widget class="QWidget" name="TaskPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Assign Tasks</string>
+  </property>
+  <layout class="QVBoxLayout" name="pageLayout">
+   <property name="spacing">
+    <number>16</number>
+   </property>
+   <property name="leftMargin">
+    <number>24</number>
+   </property>
+   <property name="topMargin">
+    <number>24</number>
+   </property>
+   <property name="rightMargin">
+    <number>24</number>
+   </property>
+   <property name="bottomMargin">
+    <number>24</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="headerBar">
+     <layout class="QHBoxLayout" name="headerLayout">
+      <property name="spacing">
+       <number>14</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="backButton">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string>Back</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">ghost</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="pageTitle">
+        <property name="text">
+         <string>Assign Tasks</string>
+        </property>
+        <property name="variant" stdset="0">
+         <string notr="true">heading</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="headerSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="bodyLayout">
+     <property name="spacing">
+      <number>16</number>
+     </property>
+     <item>
+      <widget class="QGroupBox" name="workUnitBox">
+       <property name="minimumSize">
+        <size>
+         <width>320</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>380</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Work Units</string>
+       </property>
+       <layout class="QVBoxLayout" name="workUnitLayout">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="workUnitHintLabel">
+          <property name="text">
+           <string>Pick a work unit, assign it to a team, then step it forward.</string>
+          </property>
+          <property name="variant" stdset="0">
+           <string notr="true">muted</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QListWidget" name="workUnitList"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="rightLayout">
+       <property name="spacing">
+        <number>16</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="assignBox">
+         <property name="title">
+          <string>Assign to Team</string>
+         </property>
+         <layout class="QVBoxLayout" name="assignLayout">
+          <property name="spacing">
+           <number>12</number>
+          </property>
+          <item>
+           <layout class="QFormLayout" name="assignForm">
+            <property name="horizontalSpacing">
+             <number>14</number>
+            </property>
+            <property name="verticalSpacing">
+             <number>12</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="selectedCaption">
+              <property name="text">
+               <string>Work unit</string>
+              </property>
+              <property name="variant" stdset="0">
+               <string notr="true">muted</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="selectedWorkUnitLabel">
+              <property name="text">
+               <string>None selected</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="teamCaption">
+              <property name="text">
+               <string>Team</string>
+              </property>
+              <property name="variant" stdset="0">
+               <string notr="true">muted</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="teamCombo"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="assignButtonsLayout">
+            <property name="spacing">
+             <number>8</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="assignButton">
+              <property name="text">
+               <string>Assign</string>
+              </property>
+              <property name="variant" stdset="0">
+               <string notr="true">primary</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="stepButton">
+              <property name="text">
+               <string>Next step</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="forceFailButton">
+              <property name="text">
+               <string>Force fail</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="forceStateButton">
+              <property name="text">
+               <string>Force state</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="cancelWorkButton">
+              <property name="text">
+               <string>Cancel work</string>
+              </property>
+              <property name="variant" stdset="0">
+               <string notr="true">danger</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="assignButtonsSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="resultLabel">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="assignmentsBox">
+         <property name="title">
+          <string>Current Assignments</string>
+         </property>
+         <layout class="QVBoxLayout" name="assignmentsLayout">
+          <property name="spacing">
+           <number>10</number>
+          </property>
+          <item>
+           <widget class="QTableWidget" name="assignmentTable">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <property name="showGrid">
+             <bool>false</bool>
+            </property>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>Work Unit</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Team</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>State</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="assignmentButtonsLayout">
+            <property name="spacing">
+             <number>8</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="unassignButton">
+              <property name="text">
+               <string>Unassign</string>
+              </property>
+              <property name="variant" stdset="0">
+               <string notr="true">danger</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="assignmentButtonsSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
