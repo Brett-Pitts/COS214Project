@@ -25,8 +25,8 @@ private:
 protected:
 	WorkNode(int maxRetries, std::string name);
 	std::string name;
-	virtual void refresh();
 	
+
 public:
 
 	virtual WorkNode* getNode(std::string name) = 0;
@@ -69,7 +69,7 @@ public:
 	// for gui:
 	void copyStateFrom(WorkNode* other);
 	virtual bool hasName(std::string name) = 0;
-	
+	virtual void refresh();
 };
 
 #endif

@@ -1112,3 +1112,26 @@ TEST_CASE("Workflow: work can be forced to fail and forced into a state", "[work
 		CHECK_FALSE(face.failWork(nullptr).empty());
 	}
 }
+
+TEST_CASE("Company: Children get assigned correctly","[company]")
+{
+	CompanyNode* root=new Department("root");
+	CompanyNode* child0=new Department("child0");
+	CompanyNode* child1=new Department("child1");
+	CompanyNode* child2=new Department("child2");
+	CompanyNode* team0=new Team("team0","coder");
+	CompanyNode* team1=new Team("team1","coder");
+
+	root->add(child0);
+	root->add(child1);
+	child0->add(child2);
+	child2->add(team0);
+	team0->add(team1);
+
+	CHECK(root->getChild(0)==child0);
+	CHECK(root->getChild(1)==child1);
+	CHECK(root->getChild(2)==nullptr);
+	CHECK(root->getChild(-11)==nullptr);
+	CHECK(child2->getChild(0)==team0);
+	CHECK(team0->getChild(0)==nullptr);
+}
