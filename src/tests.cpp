@@ -1135,3 +1135,191 @@ TEST_CASE("Company: Children get assigned correctly","[company]")
 	CHECK(child2->getChild(0)==team0);
 	CHECK(team0->getChild(0)==nullptr);
 }
+
+#include "EmployeeDetail.h"
+#include "TeamIterator.h"
+#include "Iterator.h"
+#include "WorkIterator.h"
+#include <vector>
+#include <string>
+
+TEST_CASE("Employee: a plain employee only has a name", "[employee]") {
+	Employee alice("Alice");
+
+	CHECK(alice.getName() == "Alice");
+	CHECK(alice.getKind() == "Employee");
+	CHECK_FALSE(alice.compareProfession("coder"));
+}
+
+TEST_CASE("Employee: wrapping adds a profession and a level and keeps the name", "[employee]") {
+	EmployeeProfession::registerProfession("coder");
+	EmployeeComponent* bob = new EmployeeProfession("coder");
+	bob->wrap(new EmployeeCompetency(CompetencyLevel::JUNIOR));
+	bob->wrap(new Employee("Bob"));
+
+	CHECK(bob->getName() == "Bob");
+	CHECK(bob->compareProfession("coder"));
+	CHECK_FALSE(bob->compareProfession("artist"));
+	CHECK(bob->compareCompetency(CompetencyLevel::INTERN));
+	CHECK(bob->compareCompetency(CompetencyLevel::JUNIOR));
+	CHECK_FALSE(bob->compareCompetency(CompetencyLevel::SENIOR));
+	CHECK(bob->getCore()->getKind() == "Employee");
+
+	delete bob;
+}
+
+TEST_CASE("Employee: one employee can hold two professions", "[employee]") {
+	EmployeeProfession::registerProfession("coder");
+	EmployeeProfession::registerProfession("artist");
+	EmployeeComponent* carol = new EmployeeProfession("coder");
+	carol->wrap(new EmployeeProfession("artist"));
+	carol->wrap(new Employee("Carol"));
+
+	CHECK(carol->getName() == "Carol");
+	CHECK(carol->compareProfession("coder"));
+	CHECK(carol->compareProfession("artist"));
+
+	delete carol;
+}
+
+TEST_CASE("Employee: the director's junior has a junior level", "[employee]") {
+	ConcreteEmployeeBuilder builder;
+	EmployeeDirector director(&builder);
+	EmployeeComponent* junior = director.makeJunior("Jo", "coder");
+
+	CHECK(junior->getName() == "Jo");
+	CHECK(junior->getCompetency() == "Junior");
+	CHECK(junior->compareCompetency(CompetencyLevel::JUNIOR));
+	CHECK_FALSE(junior->compareCompetency(CompetencyLevel::SENIOR));
+
+	delete junior;
+}
+
+TEST_CASE("Employee: a manager stays a manager inside the layers", "[employee]") {
+	ConcreteEmployeeBuilder builder;
+	builder.reset();
+	builder.addProfession("Manager");
+	builder.addCompetency("Senior");
+	EmployeeComponent* mia = builder.finish("Mia", true);
+
+	CHECK(mia->getName() == "Mia");
+	CHECK(mia->getCore()->getKind() == "Manager");
+	CHECK(mia->compareCompetency(CompetencyLevel::SENIOR));
+
+	delete mia;
+}
+
+TEST_CASE("Employee: an unknown competency level is rejected", "[employee]") {
+	ConcreteEmployeeBuilder builder;
+	builder.reset();
+
+	CHECK(EmployeeCompetency::getCompetencyLevel("Wizard") == CompetencyLevel::NONE);
+	CHECK_FALSE(builder.addCompetency("Wizard"));
+
+	builder.reset();
+}
+
+TEST_CASE("TeamIterator: finds teams by profession anywhere in the tree", "[iterator]") {
+	Department company("Studio");
+	Department* development = new Department("Development");
+	Department* support = new Department("Support");
+	development->add(new Team("Coders", "coder"));
+	development->add(new Team("Artists", "artist"));
+	support->add(new Team("Fixers", "coder"));
+	company.add(development);
+	company.add(support);
+
+	std::vector<std::string> coderTeams;
+	TeamIterator coders(&company, "coder");
+	for (coders.first(); !coders.isDone(); coders.next()) {
+		coderTeams.push_back(coders.currentItem()->getName());
+	}
+	REQUIRE(coderTeams.size() == 2);
+	CHECK(coderTeams[0] == "Coders");
+	CHECK(coderTeams[1] == "Fixers");
+
+	int allTeams = 0;
+	TeamIterator everyone(&company, "");
+	for (everyone.first(); !everyone.isDone(); everyone.next()) {
+		allTeams++;
+	}
+	CHECK(allTeams == 3);
+}
+
+std::vector<std::string> readyUnitNames(WorkNode* root) {
+	std::vector<std::string> names;
+	Iterator* it = root->createIterator();
+	for (it->first(); !it->isDone(); it->next()) {
+		names.push_back(it->currentItem()->getName());
+	}
+	delete it;
+	return names;
+}
+
+TEST_CASE("WorkIterator: an empty project gives nothing", "[iterator]") {
+	Project root(3, "Root");
+
+	CHECK(readyUnitNames(&root).empty());
+}
+
+TEST_CASE("WorkIterator: only Ready work units come back, in order", "[iterator]") {
+	Project root(3, "Root");
+	WorkUnit* a = new WorkUnit("A", "coder");
+	WorkUnit* b = new WorkUnit("B", "coder");
+	WorkUnit* c = new WorkUnit("C", "coder");
+	WorkUnit* d = new WorkUnit("D", "coder");
+	root.add(a);
+	root.add(b);
+	root.add(c);
+	root.add(d);
+	b->setState("Completed");
+	d->setState("WaitingForPrerequisites");
+
+	std::vector<std::string> names = readyUnitNames(&root);
+	REQUIRE(names.size() == 2);
+	CHECK(names[0] == "A");
+	CHECK(names[1] == "C");
+}
+
+TEST_CASE("WorkIterator: nested projects are walked depth first", "[iterator]") {
+	Project root(3, "Root");
+	Project* sub = new Project(3, "Sub");
+	root.add(new WorkUnit("A", "coder"));
+	root.add(sub);
+	sub->add(new WorkUnit("B", "coder"));
+	sub->add(new WorkUnit("C", "coder"));
+	root.add(new WorkUnit("D", "coder"));
+
+	std::vector<std::string> names = readyUnitNames(&root);
+	REQUIRE(names.size() == 4);
+	CHECK(names[0] == "A");
+	CHECK(names[1] == "B");
+	CHECK(names[2] == "C");
+	CHECK(names[3] == "D");
+}
+
+TEST_CASE("WorkIterator: stays inside the project it was made on", "[iterator]") {
+	Project root(3, "Root");
+	Project* sub = new Project(3, "Sub");
+	root.add(sub);
+	sub->add(new WorkUnit("Inside", "coder"));
+	root.add(new WorkUnit("Outside", "coder"));
+
+	std::vector<std::string> names = readyUnitNames(sub);
+	REQUIRE(names.size() == 1);
+	CHECK(names[0] == "Inside");
+}
+
+TEST_CASE("WorkIterator: next after the end stays done", "[iterator]") {
+	Project root(3, "Root");
+	root.add(new WorkUnit("A", "coder"));
+	WorkIterator it(&root);
+
+	it.first();
+	CHECK_FALSE(it.isDone());
+	it.next();
+	CHECK(it.isDone());
+	it.next();
+	CHECK(it.isDone());
+	CHECK(it.currentItem() == nullptr);
+}
