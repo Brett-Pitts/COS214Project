@@ -84,22 +84,42 @@ bool Project::hasName(std::string name) {
 	return false;
 }
 
+// void Project::update(std::string completedName)
+// {
+
+// 	WorkNode::update(completedName);
+// 	if(getStateName() == "Ready")
+// 	{
+// 		for(auto child : children)
+// 		{
+// 			if(child->getStateName()!="Completed")
+// 			{
+// 				return;
+// 			}
+// 		}
+// 		setState("Escalated");
+// 		advanceState();
+// 	}
+// }
 void Project::update(std::string completedName)
 {
-	if(!isWaitingForPrerequisites() && getStateName() == "WaitingForPrerequisites")
-	{
-		WorkNode::update(completedName);
-	}
-	if(getStateName() == "Ready")
-	{
-		for(auto child : children)
-		{
-			if(child->getStateName()!="Completed")
-			{
-				return;
-			}
-		}
-		setState("Escalated");
-		advanceState();
-	}
+    WorkNode::update(completedName);           // erases prerequisite + calls refresh()
+
+    if (getStateName() == "Ready")
+    {
+        for (auto child : children)
+            if (child->getStateName() != "Completed")
+                return;
+        setState("Escalated");
+        advanceState();
+    }
+}
+
+void Project::refresh() {
+    WorkNode::refresh();                       // release myself if unblocked
+    if (!isWaitingForPrerequisites()) {        // only release children once I'm free
+        for (auto child : children) {
+            child->refresh();                  // recurses through nested projects
+        }
+    }
 }

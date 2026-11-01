@@ -104,6 +104,8 @@ public:
 	* @param completedName Unit completed
 	*/
 	void update(std::string completedName);
+
+	void refresh() override;
 };
 
 #endif
