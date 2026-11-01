@@ -1,5 +1,7 @@
 <map id="src/EmployeeComponent.h" name="src/EmployeeComponent.h">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,203,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="75,79,133,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,31,107,65,101,65,101,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="11,79,69,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,33,61,70,57,67,91,29"/>
+<area shape="rect" id="Node000003" href="$CompetencyLevel_8h.html" title=" " alt="" coords="94,79,245,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="117,29,151,67,148,70,113,33"/>
 </map>

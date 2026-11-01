@@ -17,12 +17,12 @@
  */
 class Ongoing : public WorkState {
 public:
-	/** @brief Creates the state with the name "Ongoing". */
+	/** @brief Creates the state named "Ongoing". */
 	Ongoing() :WorkState("Ongoing") {};
 
 	/**
 	 * @brief Moves the node to Escalated.
-	 * @param workNode The node whose state is being advanced.
+	 * @param workNode The node being advanced.
 	 */
 	void handle(WorkNode* workNode) override;
 };

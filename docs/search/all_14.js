@@ -18,6 +18,5 @@ var searchData=
   ['_7eteam_15',['~Team',['../classTeam.html#ab4218fddd612d52bab47bec4feeb49de',1,'Team']]],
   ['_7eworkiterator_16',['~WorkIterator',['../classWorkIterator.html#a5fb8e0475ffd92a88eaa9e9e5ae90627',1,'WorkIterator']]],
   ['_7eworknode_17',['~WorkNode',['../classWorkNode.html#a09dc4cec7c226562515318463c4ac44e',1,'WorkNode']]],
-  ['_7eworkstate_18',['~WorkState',['../classWorkState.html#a8d5370fca8b1b72d49bcf5200d76140d',1,'WorkState']]],
-  ['_7eworkunit_19',['~WorkUnit',['../classWorkUnit.html#af075d5c323446253a293e1f126420a1b',1,'WorkUnit']]]
+  ['_7eworkstate_18',['~WorkState',['../classWorkState.html#a8d5370fca8b1b72d49bcf5200d76140d',1,'WorkState']]]
 ];

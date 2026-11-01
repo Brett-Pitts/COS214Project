@@ -31,73 +31,72 @@
 class Project : public WorkNode {
 
 public:
-	/** @brief The child nodes, in the order they were added. Owned by the project. */
+	/** @brief The child nodes in the order added, owned by the project. */
 	std::vector<WorkNode*> children;
 
 	/**
-	 * @brief Creates an empty project in the WaitingForPrerequisites state.
-	 * @param maxRetries Number of times failed work may be retried.
-	 * @param name Name of the project.
+	 * @brief Creates an empty project with a retry limit and a name.
+	 * @param maxRetries Retry limit.
+	 * @param name Project name.
 	 */
 	Project(int maxRetries, std::string name);
 
-	/** @brief Destroys the project and deletes all of its children. */
+	/** @brief Deletes the project and all its children. */
 	virtual ~Project();
 
 	/**
-	 * @brief Adds a child to the end of the project.
-	 *
-	 * A null pointer is ignored. If this project (or anything below it) already has
-	 * a node with the child's name, "1" is added to the end of the child's name once;
-	 * the new name is not checked again. The child's parent is set to this project.
-	 * The child's mediator is not set.
-	 *
-	 * @param workNode The sub-project or work unit to add. Ownership passes to this project.
+	 * @brief Adds a child, renaming it if the name's taken (nulls ignored).
+	 * @param workNode The child to add (now owned).
 	 */
 	void add(WorkNode* workNode);
 
 	/**
-	 * @brief Removes a child from the project and clears its parent.
-	 *
-	 * The child is not deleted; the caller becomes responsible for it. Nothing
-	 * happens if the node is not a child of this project.
-	 *
+	 * @brief Removes a child without deleting it.
 	 * @param workNode The child to remove.
 	 */
 	void remove(WorkNode* workNode);
 
 	/**
-	 * @brief Gets a child by position.
-	 * @param index Zero-based index of the child.
-	 * @return The child, or nullptr if @p index is out of bounds.
+	 * @brief Gets a child by index, or nullptr if out of range.
+	 * @param index Zero-based index.
+	 * @return The child, or nullptr.
 	 */
 	WorkNode* getChild(int index);
 
 	/**
-	 * @brief Checks whether every child has been completed.
-	 * @return true if all children are in the Completed state (also true when there are no children).
+	 * @brief True if every child is Completed.
+	 * @return True if all are done.
 	 */
 	bool allChildrenCompleted();
 
 	/**
-	 * @brief Makes a copy of this project with copies of all its children.
-	 *
-	 * Only the name, the retry limit and the structure are copied. The copy and its
-	 * children start in WaitingForPrerequisites, without prerequisites, retry count,
-	 * mediator or assignee.
-	 *
-	 * @return A newly allocated copy. The caller owns it.
+	 * @brief Copies the project and its children, back at the starting state.
+	 * @return A new copy; the caller owns it.
 	 */
 	WorkNode* clone();
 
+	/**
+	 * @brief Finds a node by name in this project or below, or nullptr.
+	 * @param name Name to find.
+	 * @return The node, or nullptr.
+	 */
 	virtual WorkNode* getNode(std::string name);
 
 	/**
-	 * @brief Checks whether this project, or anything below it, has a given name.
-	 * @param name The name to look for.
-	 * @return true if a match is found.
+	 * @brief True if this project or anything below it has the name.
+	 * @param name Name to look for.
+	 * @return True if the name is found.
 	 */
 	bool hasName(std::string name);
+
+	/**
+	 * @brief Drops a completed prerequisite, and escalates the project if all its children are done.
+	 * @param completedName Name of the node that completed.
+	 */
+	void update(std::string completedName);
+
+	/** @brief Re-checks the state of this project and its children. */
+	void refresh();
 };
 
 #endif

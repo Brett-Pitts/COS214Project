@@ -17,12 +17,12 @@
  */
 class WaitingForPrerequisites : public WorkState {
 public:
-	/** @brief Creates the state with the name "WaitingForPrerequisites". */
+	/** @brief Creates the state named "WaitingForPrerequisites". */
 	WaitingForPrerequisites() :WorkState("WaitingForPrerequisites") {};
 
 	/**
-	 * @brief Moves the node to Ready if it has no outstanding prerequisites; otherwise leaves it as it is.
-	 * @param workNode The node whose state is being advanced.
+	 * @brief Moves the node to Ready once no prerequisites are left.
+	 * @param workNode The node being advanced.
 	 */
 	void handle(WorkNode* workNode) override;
 };

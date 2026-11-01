@@ -22,8 +22,8 @@ public:
 	virtual ~Mediator() {};
 
 	/**
-	 * @brief Tells the colleagues about something one member did.
-	 * @param employeeComponent The member who sent the message.
+	 * @brief Passes one member's message on to the others.
+	 * @param employeeComponent The sender.
 	 * @param message The message text.
 	 */
 	virtual void notifyColleagues(EmployeeComponent* employeeComponent, std::string message) = 0;

@@ -2,6 +2,12 @@
 #include "WorkNode.h"
 #include "WorkUnit.h"
 
+/**
+ * @brief Gets the next node in depth-first order, or nullptr at the end.
+ * @param aggregate Root of the walk.
+ * @param node Node to move on from.
+ * @return The next node, or nullptr at the end.
+ */
 static WorkNode* nextInTree(WorkNode* aggregate, WorkNode* node) {
 	if (node == nullptr) {
 		return nullptr;
@@ -28,6 +34,11 @@ static WorkNode* nextInTree(WorkNode* aggregate, WorkNode* node) {
 	return nullptr;
 }
 
+/**
+ * @brief True if the node is a work unit in the Ready state.
+ * @param node Node to check.
+ * @return True if it is a Ready unit.
+ */
 static bool isReadyUnit(WorkNode* node) {
 	return dynamic_cast<WorkUnit*>(node) != nullptr && node->getStateName() == "Ready";
 }

@@ -23,45 +23,48 @@ class Manager : public Employee {
 
 public:
 	/**
-	 * @brief Creates a manager.
-	 * @param name The manager's name.
+	 * @brief Creates a manager with the given name.
+	 * @param name Manager name.
 	 */
 	Manager(std::string name);
 
 	/**
-	 * @brief Copy constructor.
-	 * @param other The manager to copy.
+	 * @brief Copies another manager.
+	 * @param other The one to copy.
 	 */
 	Manager(const Manager& other);
 
 	/** @brief Virtual destructor. */
 	virtual ~Manager();
+
+	/**
+	 * @brief Always false, same as Employee.
+	 * @param requiredCompetency The level required.
+	 * @return Always false.
+	 */
 	virtual bool compareCompetency(int requiredCompetency);
-	/** @brief Gets the kind of component ("Manager"). */
+
+	/**
+	 * @brief Returns "Manager".
+	 * @return The kind of component.
+	 */
 	std::string getKind();
 
 	/**
-	 * @brief Handles an escalated work unit. It only prints a line saying that the manager handles the escalation; the unit is not changed.
-	 * @param workUnit The unit that needs a decision. A null unit is ignored.
+	 * @brief Prints that the manager handles the escalation; the unit is untouched.
+	 * @param workUnit The escalated unit (null is ignored).
 	 */
 	void handleEscalation(WorkUnit* workUnit);
 
 	/**
-	 * @brief Cancels a project.
-	 *
-	 * Sets the state of the given project to Cancelled and prints a line saying that
-	 * the manager cancels the project. The nodes below the project are not changed.
-	 *
-	 * @param project The project to cancel. A null project is ignored.
+	 * @brief Sets the project to Cancelled and prints a message.
+	 * @param project The project to cancel (null is ignored).
 	 */
 	void cancelProject(Project* project);
 
 	/**
-	 * @brief Makes a copy of this manager with the same name.
-	 *
-	 * The copy has no mediator and no successor.
-	 *
-	 * @return A newly allocated copy. The caller owns it.
+	 * @brief Copies the manager (same name, no mediator or successor).
+	 * @return A new copy; the caller owns it.
 	 */
 	virtual EmployeeComponent* clone();
 };

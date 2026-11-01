@@ -22,39 +22,28 @@ class ConcreteEmployeeBuilder : public EmployeeBuilder {
 
 
 public:
-	/**
-	 * @brief Deletes any employee under construction, so that the next part added starts a new one.
-	 */
+	/** @brief Throws away any half-built employee so the next part starts a fresh one. */
 	void reset();
 
 	/**
-	 * @brief Adds a competency decorator to the employee under construction.
-	 * @param name Name of the level: "Intern", "Junior" or "Senior" (case-sensitive).
-	 * @return true if the competency was added, false (and nothing is added) if the name is not recognised.
+	 * @brief Adds a competency decorator; false if the level name is not recognised.
+	 * @param name Level name ("Intern", "Junior" or "Senior").
+	 * @return True if added, false if the level is not recognised.
 	 */
 	bool addCompetency(std::string name);
 
 	/**
-	 * @brief Adds a profession decorator to the employee under construction.
-	 *
-	 * The profession does not have to be registered first: creating the decorator
-	 * registers it.
-	 *
-	 * @param name Name of the profession.
+	 * @brief Adds a profession decorator (registering the profession); always true.
+	 * @param name Profession name.
 	 * @return Always true.
 	 */
 	bool addProfession(std::string name);
 
 	/**
-	 * @brief Completes the employee and hands it to the caller.
-	 *
-	 * The core is created last and placed at the centre of the decorators that were
-	 * added. If no parts were added, the result is just the core. Afterwards the
-	 * builder holds no employee.
-	 *
-	 * @param name Name given to the employee.
-	 * @param isManager If true the core is a Manager, otherwise an Employee.
-	 * @return The finished employee. The caller owns it.
+	 * @brief Puts the Employee or Manager core in the middle and hands over the employee.
+	 * @param name Name for the employee.
+	 * @param isManager True to build a Manager.
+	 * @return The finished employee; the caller owns it.
 	 */
 	EmployeeComponent* finish(std::string name, bool isManager = false);
 };

@@ -1,7 +1,10 @@
 <map id="src/EmployeeDetail.h" name="src/EmployeeDetail.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="12,5,173,31"/>
-<area shape="rect" id="Node000002" href="$EmployeeComponent_8h.html" title=" " alt="" coords="5,79,180,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,31,95,65,90,65,90,31"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="63,152,122,177"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,104,95,138,90,138,90,104"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="63,5,224,31"/>
+<area shape="rect" id="Node000002" href="$CompetencyLevel_8h.html" title=" " alt="" coords="5,152,156,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,32,110,80,89,139,84,137,105,78,133,29"/>
+<area shape="rect" id="Node000003" href="$EmployeeComponent_8h.html" title=" " alt="" coords="119,79,293,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="156,29,189,66,185,70,152,33"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="187,106,114,147,112,143,185,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="181,152,239,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="209,104,211,138,206,139,204,104"/>
 </map>

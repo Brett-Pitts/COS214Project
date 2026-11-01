@@ -103,13 +103,13 @@ Collaboration diagram for WorkMediator:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3e2a9c05c6b54908edeca9d0ba5819be" id="r_a3e2a9c05c6b54908edeca9d0ba5819be"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWorkMediator.html#a3e2a9c05c6b54908edeca9d0ba5819be">notifyColleagues</a> (<a class="el" href="classWorkNode.html">WorkNode</a> *node, std::string msg)=0</td></tr>
-<tr class="memdesc:a3e2a9c05c6b54908edeca9d0ba5819be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs the colleagues about a change in one work node.  <br /></td></tr>
+<tr class="memdesc:a3e2a9c05c6b54908edeca9d0ba5819be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the colleagues a work node changed.  <br /></td></tr>
 <tr class="separator:a3e2a9c05c6b54908edeca9d0ba5819be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract mediator that lets work nodes communicate without knowing each other. </p>
-<dl class="section user"><dt>Design pattern</dt><dd><a class="el" href="classMediator.html" title="Abstract mediator that lets the members of a team communicate.">Mediator</a> (<a class="el" href="classMediator.html" title="Abstract mediator that lets the members of a team communicate.">Mediator</a>); the colleagues are <a class="el" href="classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries.">WorkNode</a> objects.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classConcreteWorkMediator.html" title="Passes the completion of one work node on to all the others, which releases nodes that wait on it.">ConcreteWorkMediator</a>, <a class="el" href="classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries.">WorkNode</a> </dd></dl>
+<dl class="section user"><dt>Design pattern</dt><dd><a class="el" href="classMediator.html" title="Abstract mediator that lets the members of a team communicate.">Mediator</a> (<a class="el" href="classMediator.html" title="Abstract mediator that lets the members of a team communicate.">Mediator</a>); the colleagues are <a class="el" href="classWorkNode.html">WorkNode</a> objects.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classConcreteWorkMediator.html" title="Passes the completion of one work node on to all the others, which releases nodes that wait on it.">ConcreteWorkMediator</a>, <a class="el" href="classWorkNode.html">WorkNode</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="WorkMediator_8h_source.html#l00016">16</a> of file <a class="el" href="WorkMediator_8h_source.html">WorkMediator.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -147,11 +147,11 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Informs the colleagues about a change in one work node. </p>
+<p>Tells the colleagues a work node changed. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">node</td><td>The node that changed. </td></tr>
-    <tr><td class="paramname">msg</td><td>Description of the change. <a class="el" href="classWorkNode.html#a33cab4218fb1d9def67d0f025a8e290e" title="Called by the mediator when another node completes.">WorkNode::update()</a> reads it as the name of a node that completed. </td></tr>
+    <tr><td class="paramname">msg</td><td>Name of the node that completed. </td></tr>
   </table>
   </dd>
 </dl>

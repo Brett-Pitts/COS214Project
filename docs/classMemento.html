@@ -99,19 +99,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a244edc9773c87cce2d0f70ef80a7a50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the kind of snapshot.  <br /></td></tr>
 <tr class="separator:a244edc9773c87cce2d0f70ef80a7a50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3a922032b3ab68590944fb147b1d0c5" id="r_aa3a922032b3ab68590944fb147b1d0c5"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMemento.html#aa3a922032b3ab68590944fb147b1d0c5">getRoot</a> () const</td></tr>
-<tr class="memdesc:aa3a922032b3ab68590944fb147b1d0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the root of the saved tree as an untyped pointer.  <br /></td></tr>
+<tr class="memdesc:aa3a922032b3ab68590944fb147b1d0c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the saved tree's root as an untyped pointer.  <br /></td></tr>
 <tr class="separator:aa3a922032b3ab68590944fb147b1d0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af680b5488989567d0f03d655c4232924" id="r_af680b5488989567d0f03d655c4232924"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMemento.html#af680b5488989567d0f03d655c4232924">~Memento</a> ()</td></tr>
-<tr class="memdesc:af680b5488989567d0f03d655c4232924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the memento and the tree it holds.  <br /></td></tr>
+<tr class="memdesc:af680b5488989567d0f03d655c4232924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the memento and the tree it holds.  <br /></td></tr>
 <tr class="separator:af680b5488989567d0f03d655c4232924"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6db51704b8a278879f15b9bcadef728" id="r_ab6db51704b8a278879f15b9bcadef728"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMemento.html#ab6db51704b8a278879f15b9bcadef728">Memento</a> (void *<a class="el" href="classMemento.html#a5272c9598d42964fd0316fba0c5ad438">root</a>, <a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049">MementoType</a> <a class="el" href="classMemento.html#afb63ad98af0cfbb1586accced7df29dd">type</a>)</td></tr>
-<tr class="memdesc:ab6db51704b8a278879f15b9bcadef728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a memento.  <br /></td></tr>
+<tr class="memdesc:ab6db51704b8a278879f15b9bcadef728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a memento that takes ownership of the tree.  <br /></td></tr>
 <tr class="separator:ab6db51704b8a278879f15b9bcadef728"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:afbe372b848b3cda543972abb3323ca50" id="r_afbe372b848b3cda543972abb3323ca50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMemento.html#afbe372b848b3cda543972abb3323ca50">setRoot</a> (void *<a class="el" href="classMemento.html#a5272c9598d42964fd0316fba0c5ad438">root</a>, <a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049">MementoType</a> <a class="el" href="classMemento.html#afb63ad98af0cfbb1586accced7df29dd">type</a>)</td></tr>
-<tr class="memdesc:afbe372b848b3cda543972abb3323ca50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the saved tree and its type.  <br /></td></tr>
+<tr class="memdesc:afbe372b848b3cda543972abb3323ca50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps in a new saved tree and type; the old tree isn't deleted.  <br /></td></tr>
 <tr class="separator:afbe372b848b3cda543972abb3323ca50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -132,9 +132,9 @@ Friends</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A snapshot of the company tree or the work tree. </p>
-<p>One class covers both kinds of snapshot; MementoType says which one it is. Only <a class="el" href="classApplicationInterface.html" title="Facade over the TIVIDY engine: owns the company and workflow trees.">ApplicationInterface</a> (the originator) and <a class="el" href="classFileSystem.html" title="Stores mementos by name and saves them to, or loads them from, files.">FileSystem</a> (the caretaker) can change it.</p>
+<p>One class covers both kinds of snapshot; MementoType says which one it is. Only <a class="el" href="classApplicationInterface.html">ApplicationInterface</a> (the originator) and <a class="el" href="classFileSystem.html">FileSystem</a> (the caretaker) can change it.</p>
 <dl class="section user"><dt>Design pattern</dt><dd><a class="el" href="classMemento.html" title="A snapshot of the company tree or the work tree.">Memento</a> (<a class="el" href="classMemento.html" title="A snapshot of the company tree or the work tree.">Memento</a>).</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classApplicationInterface.html" title="Facade over the TIVIDY engine: owns the company and workflow trees.">ApplicationInterface</a>, <a class="el" href="classFileSystem.html" title="Stores mementos by name and saves them to, or loads them from, files.">FileSystem</a>, <a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049" title="Says what a Memento holds.">MementoType</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classApplicationInterface.html">ApplicationInterface</a>, <a class="el" href="classFileSystem.html">FileSystem</a>, <a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049" title="Says what a Memento holds.">MementoType</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Memento_8h_source.html#l00021">21</a> of file <a class="el" href="Memento_8h_source.html">Memento.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -153,10 +153,9 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Destroys the memento and the tree it holds. </p>
-<p>The root is deleted as a <a class="el" href="classCompanyNode.html" title="Common interface for departments and teams in the company structure.">CompanyNode</a> or as a <a class="el" href="classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries.">WorkNode</a>, depending on the type. </p>
+<p>Deletes the memento and the tree it holds. </p>
 
-<p class="definition">Definition at line <a class="el" href="Memento_8cpp_source.html#l00020">20</a> of file <a class="el" href="Memento_8cpp_source.html">Memento.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Memento_8cpp_source.html#l00031">31</a> of file <a class="el" href="Memento_8cpp_source.html">Memento.cpp</a>.</p>
 
 </div>
 </div>
@@ -186,16 +185,16 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a memento. </p>
+<p>Creates a memento that takes ownership of the tree. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>Root of the tree to keep. Ownership passes to the memento. </td></tr>
-    <tr><td class="paramname">type</td><td>What kind of tree it is. </td></tr>
+    <tr><td class="paramname">root</td><td>Root of the tree (now owned). </td></tr>
+    <tr><td class="paramname">type</td><td>Kind of tree. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Memento_8cpp_source.html#l00003">3</a> of file <a class="el" href="Memento_8cpp_source.html">Memento.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Memento_8cpp_source.html#l00005">5</a> of file <a class="el" href="Memento_8cpp_source.html">Memento.cpp</a>.</p>
 
 </div>
 </div>
@@ -215,9 +214,10 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the root of the saved tree as an untyped pointer. </p>
+<p>Gets the saved tree's root as an untyped pointer. </p>
+<dl class="section return"><dt>Returns</dt><dd>The saved root. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Memento_8cpp_source.html#l00012">12</a> of file <a class="el" href="Memento_8cpp_source.html">Memento.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Memento_8cpp_source.html#l00014">14</a> of file <a class="el" href="Memento_8cpp_source.html">Memento.cpp</a>.</p>
 
 </div>
 </div>
@@ -237,8 +237,9 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the kind of snapshot. </p>
+<dl class="section return"><dt>Returns</dt><dd>The kind of snapshot. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Memento_8cpp_source.html#l00009">9</a> of file <a class="el" href="Memento_8cpp_source.html">Memento.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Memento_8cpp_source.html#l00010">10</a> of file <a class="el" href="Memento_8cpp_source.html">Memento.cpp</a>.</p>
 
 </div>
 </div>
@@ -276,17 +277,16 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Replaces the saved tree and its type. </p>
-<p>The tree that was saved before is not deleted.</p>
+<p>Swaps in a new saved tree and type; the old tree isn't deleted. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">root</td><td>Root of the new tree. </td></tr>
-    <tr><td class="paramname">type</td><td>What kind of tree it is. </td></tr>
+    <tr><td class="paramname">type</td><td>Kind of tree. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Memento_8cpp_source.html#l00015">15</a> of file <a class="el" href="Memento_8cpp_source.html">Memento.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Memento_8cpp_source.html#l00018">18</a> of file <a class="el" href="Memento_8cpp_source.html">Memento.cpp</a>.</p>
 
 </div>
 </div>

@@ -27,32 +27,31 @@ private:
 
 
 	/**
-	 * @brief Replaces the saved tree and its type.
-	 *
-	 * The tree that was saved before is not deleted.
-	 *
+	 * @brief Swaps in a new saved tree and type; the old tree isn't deleted.
 	 * @param root Root of the new tree.
-	 * @param type What kind of tree it is.
+	 * @param type Kind of tree.
 	 */
 	void setRoot(void* root, MementoType type);
 public:
-	/** @brief Gets the kind of snapshot. */
+	/**
+	 * @brief Gets the kind of snapshot.
+	 * @return The kind of snapshot.
+	 */
 	MementoType getType() const;
 
-	/** @brief Gets the root of the saved tree as an untyped pointer. */
+	/**
+	 * @brief Gets the saved tree's root as an untyped pointer.
+	 * @return The saved root.
+	 */
 	void* getRoot() const;
 
-	/**
-	 * @brief Destroys the memento and the tree it holds.
-	 *
-	 * The root is deleted as a CompanyNode or as a WorkNode, depending on the type.
-	 */
+	/** @brief Deletes the memento and the tree it holds. */
 	~Memento();
 
 	/**
-	 * @brief Creates a memento.
-	 * @param root Root of the tree to keep. Ownership passes to the memento.
-	 * @param type What kind of tree it is.
+	 * @brief Creates a memento that takes ownership of the tree.
+	 * @param root Root of the tree (now owned).
+	 * @param type Kind of tree.
 	 */
 	Memento(void* root, MementoType type);
 };

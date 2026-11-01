@@ -1,8 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classCompanyNode.html" title="Common interface for departments and teams in the company structure." alt="" coords="5,5,124,31"/>
+<area shape="rect" id="Node000000" href="$classCompanyNode.html" title=" " alt="" coords="5,5,124,31"/>
 <area shape="rect" id="Node000001" href="$classDepartment.html" title="Composite node of the company tree: holds departments and teams." alt="" coords="172,5,272,31"/>
 <area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="138,15,172,15,172,21,138,21"/>
-<area shape="rect" id="Node000002" href="$classTeam.html" title="A group of employees of one profession; the leaf of the company tree." alt="" coords="193,55,251,80"/>
+<area shape="rect" id="Node000002" href="$classTeam.html" title=" " alt="" coords="193,55,251,80"/>
 <area shape="poly" id="edge5_Node000000_Node000002" title=" " alt="" coords="120,32,194,56,192,61,118,37"/>
 <area shape="rect" id="Node000003" href="$classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="25,55,105,80"/>
 <area shape="poly" id="edge6_Node000003_Node000002" title=" " alt="" coords="118,65,193,65,193,70,118,70"/>

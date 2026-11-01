@@ -1,5 +1,7 @@
 <map id="Failed" name="Failed">
-<area shape="rect" id="Node000001" title="Concrete state: nobody could do the work and no retries are left." alt="" coords="23,179,105,264"/>
-<area shape="rect" id="Node000002" href="$classWorkState.html" title="Abstract state of a work node." alt="" coords="5,5,123,131"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,145,67,178,61,178,61,145"/>
+<area shape="rect" id="Node000001" title="Concrete state: nobody could do the work and no retries are left." alt="" coords="23,308,105,393"/>
+<area shape="rect" id="Node000002" href="$classWorkState.html" title="Abstract state of a work node." alt="" coords="5,133,123,259"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,272,67,308,61,308,61,272"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="39,5,89,71"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="67,71,67,117,61,117,61,71"/>
 </map>

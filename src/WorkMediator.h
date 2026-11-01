@@ -18,9 +18,9 @@ class WorkMediator {
 
 public:
 	/**
-	 * @brief Informs the colleagues about a change in one work node.
+	 * @brief Tells the colleagues a work node changed.
 	 * @param node The node that changed.
-	 * @param msg Description of the change. WorkNode::update() reads it as the name of a node that completed.
+	 * @param msg Name of the node that completed.
 	 */
 	virtual void notifyColleagues(WorkNode* node, std::string msg) = 0;
 };

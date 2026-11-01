@@ -22,12 +22,12 @@ class Iterator;
 class Aggregate {
 
 public:
-	/** @brief Virtual destructor so derived aggregates are destroyed correctly. */
+	/** @brief Virtual destructor so derived aggregates clean up properly. */
 	virtual ~Aggregate();
 
 	/**
-	 * @brief Creates an iterator over this aggregate.
-	 * @return A newly allocated Iterator. The caller owns it and must delete it.
+	 * @brief Hands back a new iterator over this aggregate; the caller deletes it.
+	 * @return A new iterator; the caller owns it.
 	 */
 	virtual Iterator* createIterator() = 0;
 };

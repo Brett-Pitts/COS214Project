@@ -1,7 +1,7 @@
 <map id="Team" name="Team">
-<area shape="rect" id="Node000001" title="A group of employees of one profession; the leaf of the company tree." alt="" coords="89,199,237,464"/>
-<area shape="rect" id="Node000002" href="$classCompanyNode.html" title="Common interface for departments and teams in the company structure." alt="" coords="5,5,151,151"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,163,121,197,116,199,104,165"/>
-<area shape="rect" id="Node000003" href="$classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="175,35,323,121"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="233,134,211,199,206,198,228,133"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="87,259,239,584"/>
+<area shape="rect" id="Node000002" href="$classCompanyNode.html" title=" " alt="" coords="5,5,151,211"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,223,122,258,116,259,107,225"/>
+<area shape="rect" id="Node000003" href="$classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="175,65,323,151"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,165,210,259,205,258,231,163"/>
 </map>

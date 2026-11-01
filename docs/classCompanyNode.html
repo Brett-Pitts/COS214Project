@@ -72,13 +72,11 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classCompanyNode-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">CompanyNode Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Common interface for departments and teams in the company structure.  
- <a href="classCompanyNode.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="CompanyNode_8h_source.html">CompanyNode.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -86,11 +84,11 @@ Inheritance diagram for CompanyNode:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCompanyNode__inherit__graph.png" border="0" usemap="#aCompanyNode_inherit__map" alt="Inheritance graph"/></div>
 <map name="aCompanyNode_inherit__map" id="aCompanyNode_inherit__map">
-<area shape="rect" title="Common interface for departments and teams in the company structure." alt="" coords="78,5,223,151"/>
-<area shape="rect" href="classDepartment.html" title="Composite node of the company tree: holds departments and teams." alt="" coords="5,259,133,404"/>
-<area shape="poly" title=" " alt="" coords="126,165,95,259,90,258,121,163"/>
-<area shape="rect" href="classTeam.html" title="A group of employees of one profession; the leaf of the company tree." alt="" coords="158,199,306,464"/>
-<area shape="poly" title=" " alt="" coords="181,163,192,197,187,199,175,165"/>
+<area shape="rect" title=" " alt="" coords="78,5,223,211"/>
+<area shape="rect" href="classDepartment.html" title="Composite node of the company tree: holds departments and teams." alt="" coords="5,329,133,514"/>
+<area shape="poly" title=" " alt="" coords="123,225,96,329,91,328,118,223"/>
+<area shape="rect" href="classTeam.html" title=" " alt="" coords="157,259,309,584"/>
+<area shape="poly" title=" " alt="" coords="184,223,193,258,188,259,179,225"/>
 </map>
 </div>
 <div class="dynheader">
@@ -98,39 +96,73 @@ Collaboration diagram for CompanyNode:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCompanyNode__coll__graph.png" border="0" usemap="#aCompanyNode_coll__map" alt="Collaboration graph"/></div>
 <map name="aCompanyNode_coll__map" id="aCompanyNode_coll__map">
-<area shape="rect" title="Common interface for departments and teams in the company structure." alt="" coords="5,5,151,151"/>
+<area shape="rect" title=" " alt="" coords="5,133,151,339"/>
+<area shape="rect" title=" " alt="" coords="53,5,103,71"/>
+<area shape="poly" title=" " alt="" coords="81,71,81,117,75,117,75,71"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a3e0092fa6d512ac4e0f6c1d68862ced1" id="r_a3e0092fa6d512ac4e0f6c1d68862ced1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompanyNode.html#a3e0092fa6d512ac4e0f6c1d68862ced1">CompanyNode</a> (std::string <a class="el" href="classCompanyNode.html#ac5ea44c501b573a77a0bd588885aac77">name</a>)</td></tr>
+<tr class="separator:a3e0092fa6d512ac4e0f6c1d68862ced1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2a9c25b300c72a98c76a6ab6ac93d0" id="r_a0b2a9c25b300c72a98c76a6ab6ac93d0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompanyNode.html#a0b2a9c25b300c72a98c76a6ab6ac93d0">getName</a> () const</td></tr>
+<tr class="separator:a0b2a9c25b300c72a98c76a6ab6ac93d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7831eb0dac3b16c6caf497ae665260e0" id="r_a7831eb0dac3b16c6caf497ae665260e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompanyNode.html#a7831eb0dac3b16c6caf497ae665260e0">setName</a> (std::string newName)</td></tr>
+<tr class="separator:a7831eb0dac3b16c6caf497ae665260e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ed3e4f3c9560ca5d2f086b815d6d637" id="r_a6ed3e4f3c9560ca5d2f086b815d6d637"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompanyNode.html#a6ed3e4f3c9560ca5d2f086b815d6d637">add</a> (<a class="el" href="classCompanyNode.html">CompanyNode</a> *companyNode)=0</td></tr>
-<tr class="memdesc:a6ed3e4f3c9560ca5d2f086b815d6d637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a child to this node.  <br /></td></tr>
+<tr class="memdesc:a6ed3e4f3c9560ca5d2f086b815d6d637"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a child node.  <br /></td></tr>
 <tr class="separator:a6ed3e4f3c9560ca5d2f086b815d6d637"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56ec04d4280f5ade1124613d71795f95" id="r_a56ec04d4280f5ade1124613d71795f95"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompanyNode.html#a56ec04d4280f5ade1124613d71795f95">remove</a> (<a class="el" href="classCompanyNode.html">CompanyNode</a> *companyNode)=0</td></tr>
-<tr class="memdesc:a56ec04d4280f5ade1124613d71795f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a child from this node. The child is not deleted.  <br /></td></tr>
+<tr class="memdesc:a56ec04d4280f5ade1124613d71795f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a child node.  <br /></td></tr>
 <tr class="separator:a56ec04d4280f5ade1124613d71795f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adef79f4348691a58ddb5c4690cc1dd3b" id="r_adef79f4348691a58ddb5c4690cc1dd3b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCompanyNode.html">CompanyNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompanyNode.html#adef79f4348691a58ddb5c4690cc1dd3b">getChild</a> (int n)=0</td></tr>
-<tr class="memdesc:adef79f4348691a58ddb5c4690cc1dd3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a child by position.  <br /></td></tr>
+<tr class="memdesc:adef79f4348691a58ddb5c4690cc1dd3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the nth child.  <br /></td></tr>
 <tr class="separator:adef79f4348691a58ddb5c4690cc1dd3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad327da7303eaf8b999dc4cae2c130d88" id="r_ad327da7303eaf8b999dc4cae2c130d88"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classCompanyNode.html">CompanyNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompanyNode.html#ad327da7303eaf8b999dc4cae2c130d88">clone</a> ()=0</td></tr>
-<tr class="memdesc:ad327da7303eaf8b999dc4cae2c130d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a deep copy of this node and everything below it.  <br /></td></tr>
+<tr class="memdesc:ad327da7303eaf8b999dc4cae2c130d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a deep copy of the node.  <br /></td></tr>
 <tr class="separator:ad327da7303eaf8b999dc4cae2c130d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ef51542b98106dd5d05910a2ba8aa36" id="r_a4ef51542b98106dd5d05910a2ba8aa36"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompanyNode.html#a4ef51542b98106dd5d05910a2ba8aa36">~CompanyNode</a> ()</td></tr>
-<tr class="memdesc:a4ef51542b98106dd5d05910a2ba8aa36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor so derived nodes are destroyed correctly.  <br /></td></tr>
+<tr class="memdesc:a4ef51542b98106dd5d05910a2ba8aa36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
 <tr class="separator:a4ef51542b98106dd5d05910a2ba8aa36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ac5ea44c501b573a77a0bd588885aac77" id="r_ac5ea44c501b573a77a0bd588885aac77"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCompanyNode.html#ac5ea44c501b573a77a0bd588885aac77">name</a></td></tr>
+<tr class="separator:ac5ea44c501b573a77a0bd588885aac77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Common interface for departments and teams in the company structure. </p>
-<dl class="section user"><dt>Design patterns</dt><dd><ul>
-<li>Composite (Component): <a class="el" href="classDepartment.html" title="Composite node of the company tree: holds departments and teams.">Department</a> is the composite and <a class="el" href="classTeam.html" title="A group of employees of one profession; the leaf of the company tree.">Team</a> is the leaf (teams hold employees).</li>
-<li>Prototype (Prototype): <a class="el" href="classCompanyNode.html#ad327da7303eaf8b999dc4cae2c130d88" title="Makes a deep copy of this node and everything below it.">clone()</a> produces a deep copy, used when the company is saved in a <a class="el" href="classMemento.html" title="A snapshot of the company tree or the work tree.">Memento</a>.</li>
-</ul>
-</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classDepartment.html" title="Composite node of the company tree: holds departments and teams.">Department</a> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="CompanyNode_8h_source.html#l00021">21</a> of file <a class="el" href="CompanyNode_8h_source.html">CompanyNode.h</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="CompanyNode_8h_source.html#l00006">6</a> of file <a class="el" href="CompanyNode_8h_source.html">CompanyNode.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3e0092fa6d512ac4e0f6c1d68862ced1" name="a3e0092fa6d512ac4e0f6c1d68862ced1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e0092fa6d512ac4e0f6c1d68862ced1">&#9670;&#160;</a></span>CompanyNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CompanyNode::CompanyNode </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="CompanyNode_8h_source.html#l00012">12</a> of file <a class="el" href="CompanyNode_8h_source.html">CompanyNode.h</a>.</p>
+
+</div>
+</div>
 <a id="a4ef51542b98106dd5d05910a2ba8aa36" name="a4ef51542b98106dd5d05910a2ba8aa36"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4ef51542b98106dd5d05910a2ba8aa36">&#9670;&#160;</a></span>~CompanyNode()</h2>
 
@@ -154,7 +186,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Virtual destructor so derived nodes are destroyed correctly. </p>
+<p>Virtual destructor. </p>
 
 <p class="definition">Definition at line <a class="el" href="CompanyNode_8cpp_source.html#l00003">3</a> of file <a class="el" href="CompanyNode_8cpp_source.html">CompanyNode.cpp</a>.</p>
 
@@ -185,10 +217,10 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds a child to this node. </p>
+<p>Adds a child node. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">companyNode</td><td>The child to add. <a class="el" href="classDepartment.html" title="Composite node of the company tree: holds departments and teams.">Department</a> takes ownership of it; <a class="el" href="classTeam.html" title="A group of employees of one profession; the leaf of the company tree.">Team</a> ignores it. </td></tr>
+    <tr><td class="paramname">companyNode</td><td>The child node. </td></tr>
   </table>
   </dd>
 </dl>
@@ -220,8 +252,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Makes a deep copy of this node and everything below it. </p>
-<dl class="section return"><dt>Returns</dt><dd>A newly allocated copy. The caller owns it. </dd></dl>
+<p>Makes a deep copy of the node. </p>
+<dl class="section return"><dt>Returns</dt><dd>A new copy; the caller owns it. </dd></dl>
 
 <p>Implemented in <a class="el" href="classDepartment.html#ac3cf23a38ff6955583d4dd3578beebf2">Department</a>, and <a class="el" href="classTeam.html#a9b2169d3f965f28e3c7ab5247114ac99">Team</a>.</p>
 
@@ -251,16 +283,43 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets a child by position. </p>
+<p>Gets the nth child. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">n</td><td>Zero-based index of the child. </td></tr>
+    <tr><td class="paramname">n</td><td>Zero-based index. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The nth child, or nullptr if <code>n</code> is out of bounds. A <a class="el" href="classTeam.html" title="A group of employees of one profession; the leaf of the company tree.">Team</a> always returns nullptr. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The child, or nullptr. </dd></dl>
 
 <p>Implemented in <a class="el" href="classDepartment.html#a849fc680bde9099f174cc6535e6df848">Department</a>, and <a class="el" href="classTeam.html#a198f79b106a979ff8e4c68f8406a1a35">Team</a>.</p>
+
+</div>
+</div>
+<a id="a0b2a9c25b300c72a98c76a6ab6ac93d0" name="a0b2a9c25b300c72a98c76a6ab6ac93d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b2a9c25b300c72a98c76a6ab6ac93d0">&#9670;&#160;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string CompanyNode::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="CompanyNode_8h_source.html#l00013">13</a> of file <a class="el" href="CompanyNode_8h_source.html">CompanyNode.h</a>.</p>
 
 </div>
 </div>
@@ -288,15 +347,68 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Removes a child from this node. The child is not deleted. </p>
+<p>Removes a child node. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">companyNode</td><td>The child to remove. <a class="el" href="classTeam.html" title="A group of employees of one profession; the leaf of the company tree.">Team</a> ignores the call. </td></tr>
+    <tr><td class="paramname">companyNode</td><td>The child node. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Implemented in <a class="el" href="classDepartment.html#a78b852381345db0d94b1a592a5e950f5">Department</a>, and <a class="el" href="classTeam.html#a9b44b7e623d25cb3d476ef97bb81f1dd">Team</a>.</p>
+
+</div>
+</div>
+<a id="a7831eb0dac3b16c6caf497ae665260e0" name="a7831eb0dac3b16c6caf497ae665260e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7831eb0dac3b16c6caf497ae665260e0">&#9670;&#160;</a></span>setName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CompanyNode::setName </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>newName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="CompanyNode_8h_source.html#l00014">14</a> of file <a class="el" href="CompanyNode_8h_source.html">CompanyNode.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac5ea44c501b573a77a0bd588885aac77" name="ac5ea44c501b573a77a0bd588885aac77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5ea44c501b573a77a0bd588885aac77">&#9670;&#160;</a></span>name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string CompanyNode::name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="CompanyNode_8h_source.html#l00008">8</a> of file <a class="el" href="CompanyNode_8h_source.html">CompanyNode.h</a>.</p>
 
 </div>
 </div>

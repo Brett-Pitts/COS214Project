@@ -26,18 +26,18 @@ EmployeeComponent* EmployeeDirector::build(std::string name, std::string profess
 
 EmployeeComponent* EmployeeDirector::makeIntern(std::string name, std::string profession) {
 
-	return build(name, profession, "intern");
+	return build(name, profession, "Intern");
 
 }
 
 EmployeeComponent* EmployeeDirector::makeJunior(std::string name, std::string profession) {
 
-	return build(name, profession, "junior");
+	return build(name, profession, "Junior");
 
 }
 
 EmployeeComponent* EmployeeDirector::makeSenior(std::string name, std::string profession) {
 
-	return build(name, profession, "senior");
+	return build(name, profession, "Senior");
 	
 }

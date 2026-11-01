@@ -1,17 +1,21 @@
 <map id="WorkUnit" name="WorkUnit">
-<area shape="rect" id="Node000001" title="A single piece of work that one profession can do; the leaf of the work tree." alt="" coords="377,1036,562,1201"/>
-<area shape="rect" id="Node000002" href="$classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries." alt="" coords="379,641,559,987"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="472,1000,472,1036,467,1036,467,1000"/>
-<area shape="poly" id="edge7_Node000002_Node000002" title=" " alt="" coords="561,778,579,791,586,814,583,830,576,841,571,838,578,828,581,814,575,794,558,782"/>
-<area shape="rect" id="Node000003" href="$classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="5,323,133,409"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,422,106,499,124,540,147,577,200,635,260,687,322,730,380,765,378,770,319,735,257,691,196,639,143,580,119,542,101,501,77,423"/>
-<area shape="rect" id="Node000004" href="$classEmployeeComponent.html" title="Abstract base of every employee and every employee decorator." alt="" coords="157,153,347,579"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="349,560,381,625,376,628,344,563"/>
-<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="349,323,366,338,373,366,370,385,363,399,358,396,365,383,368,366,362,341,345,327"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="689,936,874,1121"/>
+<area shape="rect" id="Node000002" href="$classWorkNode.html" title=" " alt="" coords="514,561,694,887"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="703,889,730,934,725,937,699,892"/>
+<area shape="poly" id="edge7_Node000002_Node000002" title=" " alt="" coords="696,690,714,702,721,724,718,739,711,749,706,746,713,737,715,724,709,705,693,694"/>
+<area shape="rect" id="Node000003" href="$classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="5,283,133,369"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,381,109,441,126,470,147,497,188,535,234,568,282,599,331,625,429,667,515,697,513,702,427,672,329,630,279,603,231,573,185,539,143,500,122,473,104,443,80,383"/>
+<area shape="rect" id="Node000004" href="$classEmployeeComponent.html" title=" " alt="" coords="157,153,347,499"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="349,432,505,608,501,611,345,436"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="349,289,366,303,373,326,370,342,363,353,358,350,366,340,368,326,362,306,345,294"/>
 <area shape="rect" id="Node000005" href="$classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="178,5,326,91"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="255,91,255,137,249,137,249,91"/>
-<area shape="rect" id="Node000006" href="$classWorkMediator.html" title="Abstract mediator that lets work nodes communicate without knowing each other." alt="" coords="469,333,617,399"/>
-<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="540,399,503,626,498,625,535,399"/>
-<area shape="rect" id="Node000007" href="$classWorkState.html" title="Abstract state of a work node." alt="" coords="641,303,759,429"/>
-<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="687,430,664,503,632,580,603,632,571,683,566,680,598,629,627,578,659,501,682,428"/>
+<area shape="rect" id="Node000006" href="$classWorkMediator.html" title="Abstract mediator that lets work nodes communicate without knowing each other." alt="" coords="469,293,617,359"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="550,358,579,545,574,546,545,359"/>
+<area shape="rect" id="Node000007" href="$classWorkState.html" title="Abstract state of a work node." alt="" coords="743,263,860,389"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="777,390,726,500,702,548,697,546,722,498,772,388"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="776,15,827,81"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="829,73,856,109,867,130,875,153,892,257,898,364,896,472,887,576,872,676,855,769,817,921,812,919,850,768,867,676,882,576,891,471,893,364,887,258,869,154,862,132,851,112,825,76"/>
+<area shape="poly" id="edge10_Node000002_Node000008" title=" " alt="" coords="777,65,725,100,700,125,680,155,657,207,646,254,643,297,645,339,654,427,655,479,649,538,648,546,643,545,644,537,650,478,649,428,640,339,637,297,640,253,652,206,675,152,696,122,722,96,774,60"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="804,81,804,247,799,247,799,81"/>
 </map>

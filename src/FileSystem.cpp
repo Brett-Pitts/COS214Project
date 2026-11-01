@@ -21,6 +21,12 @@
 #include "Project.h"
 #include "Memento.h"
 
+/**
+ * @brief Reads a line and strips a trailing carriage return.
+ * @param in Stream to read from.
+ * @param line Receives the line.
+ * @return False at the end of the input.
+ */
 static bool readLine(std::istream& in, std::string& line) {
 	if (!std::getline(in, line)) {
 		return false;
@@ -31,6 +37,11 @@ static bool readLine(std::istream& in, std::string& line) {
 	return true;
 }
 
+/**
+ * @brief Swaps newlines for spaces so text fits on one line.
+ * @param text Text to flatten.
+ * @return The flattened text.
+ */
 static std::string oneLine(std::string text) {
 	for (char& c : text) {
 		if (c == '\n' || c == '\r') {
@@ -40,14 +51,29 @@ static std::string oneLine(std::string text) {
 	return text;
 }
 
+/**
+ * @brief Finds the last slash or backslash in a path.
+ * @param path The file path.
+ * @return Position of the separator, or npos.
+ */
 static std::string::size_type lastSeparator(const std::string& path) {
 	return path.find_last_of("/\\");
 }
 
+/**
+ * @brief True if the path has a folder part.
+ * @param path The file path.
+ * @return True if there is a folder part.
+ */
 static bool hasDirectory(const std::string& path) {
 	return lastSeparator(path) != std::string::npos;
 }
 
+/**
+ * @brief True if the file name has an extension.
+ * @param path The file path.
+ * @return True if there is an extension.
+ */
 static bool hasExtension(const std::string& path) {
 	std::string::size_type separator = lastSeparator(path);
 	std::string::size_type dot = path.find_last_of('.');
@@ -60,6 +86,11 @@ static bool hasExtension(const std::string& path) {
 	return dot + 1 < path.size();
 }
 
+/**
+ * @brief Adds the saves/ folder and .txt where the path has none.
+ * @param filename File name or path.
+ * @return The full path to use.
+ */
 static std::string resolvePath(const std::string& filename) {
 	std::string path = filename;
 	if (!hasDirectory(path)) {
@@ -71,6 +102,10 @@ static std::string resolvePath(const std::string& filename) {
 	return path;
 }
 
+/**
+ * @brief Creates one folder, on Windows or elsewhere.
+ * @param directory Folder to create.
+ */
 static void makeDirectory(const std::string& directory) {
 #ifdef _WIN32
 	_mkdir(directory.c_str());
@@ -79,6 +114,10 @@ static void makeDirectory(const std::string& directory) {
 #endif
 }
 
+/**
+ * @brief Creates every folder in the path's parent chain.
+ * @param path The file path.
+ */
 static void createParentDirectories(const std::string& path) {
 	std::string::size_type last = lastSeparator(path);
 	if (last == std::string::npos) {

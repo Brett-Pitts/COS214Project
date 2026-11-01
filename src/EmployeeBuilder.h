@@ -20,35 +20,31 @@ protected:
 	EmployeeComponent* employee; ///< The employee under construction, or nullptr.
 
 public:
-	/** @brief Creates a builder with no employee under construction. */
+	/** @brief Starts with no employee under construction. */
 	EmployeeBuilder() : employee(nullptr) {}
 
-	/** @brief Discards the current employee and starts a new one. */
+	/** @brief Drops the current employee and starts a new one. */
 	virtual void reset() = 0;
 
 	/**
-	 * @brief Adds a competency level to the employee under construction.
-	 * @param name Name of the competency level.
-	 * @return true on success, false if the level is not recognised.
+	 * @brief Adds a competency level; false if the name is not recognised.
+	 * @param name Level name ("Intern", "Junior" or "Senior").
+	 * @return True if added, false if the level is not recognised.
 	 */
 	virtual bool addCompetency(std::string name) = 0;
 
 	/**
-	 * @brief Adds a profession to the employee under construction.
-	 * @param name Name of the profession.
-	 * @return true if the profession was added.
+	 * @brief Adds a profession to the employee being built.
+	 * @param name Profession name.
+	 * @return True if added.
 	 */
 	virtual bool addProfession(std::string name) = 0;
 
 	/**
-	 * @brief Completes the employee and returns it.
-	 *
-	 * The builder no longer holds the employee afterwards, so it is ready to start
-	 * another one.
-	 *
-	 * @param name Name given to the employee.
-	 * @param isManager If true, a Manager is built instead of an Employee.
-	 * @return The finished employee. The caller owns it.
+	 * @brief Finishes the employee and hands it over; the caller owns it.
+	 * @param name Name for the employee.
+	 * @param isManager True to build a Manager.
+	 * @return The finished employee; the caller owns it.
 	 */
 	virtual EmployeeComponent* finish(std::string name, bool isManager = false) = 0;
 };

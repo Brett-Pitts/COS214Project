@@ -1,19 +1,28 @@
 <map id="ApplicationInterface" name="ApplicationInterface">
-<area shape="rect" id="Node000001" title="Facade over the TIVIDY engine: owns the company and workflow trees." alt="" coords="509,1049,691,1335"/>
-<area shape="rect" id="Node000002" href="$classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries." alt="" coords="379,641,559,987"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="532,986,548,1033,543,1034,527,988"/>
-<area shape="poly" id="edge7_Node000002_Node000002" title=" " alt="" coords="561,777,579,790,586,814,583,830,576,842,571,839,578,828,581,814,575,793,558,781"/>
-<area shape="rect" id="Node000003" href="$classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="5,323,133,409"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,422,106,499,124,540,147,577,200,635,260,687,322,730,380,765,378,770,319,735,257,691,196,639,143,580,119,542,101,501,77,423"/>
-<area shape="rect" id="Node000004" href="$classEmployeeComponent.html" title="Abstract base of every employee and every employee decorator." alt="" coords="157,153,347,579"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="349,560,381,625,376,628,344,563"/>
-<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="349,323,366,338,373,366,370,385,363,399,358,396,365,383,368,366,362,341,345,327"/>
-<area shape="rect" id="Node000005" href="$classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="178,5,326,91"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="255,91,255,137,249,137,249,91"/>
-<area shape="rect" id="Node000006" href="$classWorkMediator.html" title="Abstract mediator that lets work nodes communicate without knowing each other." alt="" coords="469,333,617,399"/>
-<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="540,399,503,626,498,625,535,399"/>
-<area shape="rect" id="Node000007" href="$classWorkState.html" title="Abstract state of a work node." alt="" coords="641,303,759,429"/>
-<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="686,430,663,503,630,580,602,631,571,681,566,678,598,629,626,578,658,501,681,428"/>
-<area shape="rect" id="Node000008" href="$classCompanyNode.html" title="Common interface for departments and teams in the company structure." alt="" coords="659,741,805,887"/>
-<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="709,888,658,1034,653,1033,704,886"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="495,1140,664,1625"/>
+<area shape="rect" id="Node000002" href="$classWorkNode.html" title=" " alt="" coords="335,752,515,1077"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="481,1077,496,1124,491,1125,476,1078"/>
+<area shape="poly" id="edge7_Node000002_Node000002" title=" " alt="" coords="517,879,534,892,541,915,539,930,531,941,527,938,534,928,536,915,530,895,513,884"/>
+<area shape="rect" id="Node000003" href="$classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="178,283,306,369"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="262,381,377,751,372,752,257,383"/>
+<area shape="rect" id="Node000004" href="$classEmployeeComponent.html" title=" " alt="" coords="330,153,519,499"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="427,499,427,735,422,735,422,499"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="521,289,539,303,546,326,543,342,536,353,531,350,538,340,541,326,535,306,518,294"/>
+<area shape="rect" id="Node000005" href="$classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="351,5,499,91"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="427,91,427,137,422,137,422,91"/>
+<area shape="rect" id="Node000006" href="$classWorkMediator.html" title="Abstract mediator that lets work nodes communicate without knowing each other." alt="" coords="5,293,153,359"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="89,358,107,428,138,523,180,627,206,678,235,726,325,815,321,819,231,730,201,681,175,629,133,525,102,430,84,360"/>
+<area shape="rect" id="Node000011" href="$classConcreteWorkMediator.html" title="Passes the completion of one work node on to all the others, which releases nodes that wait on it." alt="" coords="81,882,243,947"/>
+<area shape="poly" id="edge15_Node000011_Node000006" title=" " alt="" coords="84,372,95,530,105,628,119,728,137,811,155,881,150,882,132,812,114,728,100,629,90,530,79,372"/>
+<area shape="rect" id="Node000007" href="$classWorkState.html" title="Abstract state of a work node." alt="" coords="641,263,758,389"/>
+<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="678,390,631,500,517,738,512,736,626,498,673,388"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="781,15,831,81"/>
+<area shape="poly" id="edge10_Node000002_Node000008" title=" " alt="" coords="808,81,797,294,787,413,773,499,755,570,738,626,711,676,662,730,647,740,633,744,618,747,602,754,565,780,529,810,526,806,562,776,599,750,617,742,631,739,645,735,659,726,706,673,733,624,750,569,767,498,781,412,792,294,802,81"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="782,70,761,91,743,116,729,148,718,181,706,248,701,247,713,180,724,146,738,113,757,87,779,66"/>
+<area shape="rect" id="Node000009" href="$classCompanyNode.html" title=" " alt="" coords="827,523,972,728"/>
+<area shape="poly" id="edge12_Node000009_Node000008" title=" " alt="" coords="831,80,851,114,867,153,889,243,901,337,907,426,907,506,902,506,901,427,896,337,883,244,862,154,846,116,826,82"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="828,727,823,730,799,740,775,743,732,737,711,733,692,733,673,739,654,753,643,793,630,880,604,1124,599,1123,625,880,637,792,649,751,670,734,691,728,712,728,732,731,775,738,797,735,821,726,825,723"/>
+<area shape="rect" id="Node000010" href="$classFileSystem.html" title=" " alt="" coords="763,762,918,1067"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="766,1055,674,1218,670,1215,761,1052"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="192,946,486,1273,482,1277,188,949"/>
 </map>

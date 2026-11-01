@@ -18,12 +18,12 @@
  */
 class Failed : public WorkState {
 public:
-	/** @brief Creates the state with the name "Failed". */
+	/** @brief Creates the state named "Failed". */
 	Failed() :WorkState("Failed") {};
 
 	/**
-	 * @brief Does nothing: a failed node stays failed.
-	 * @param workNode The node whose state is being advanced (ignored).
+	 * @brief Does nothing, a failed node stays failed.
+	 * @param workNode The node being advanced.
 	 */
 	void handle(WorkNode* workNode) override;
 };

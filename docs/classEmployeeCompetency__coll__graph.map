@@ -1,11 +1,11 @@
 <map id="EmployeeCompetency" name="EmployeeCompetency">
-<area shape="rect" id="Node000001" title="Decorator that gives an employee a competency level." alt="" coords="5,1016,203,1281"/>
-<area shape="rect" id="Node000002" href="$classEmployeeDetail.html" title="Abstract decorator that adds a detail (profession or competency) to an employee." alt="" coords="15,641,193,967"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,980,107,1016,101,1016,101,980"/>
-<area shape="rect" id="Node000003" href="$classEmployeeComponent.html" title="Abstract base of every employee and every employee decorator." alt="" coords="9,153,199,579"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="104,592,104,617,104,641,99,641,99,617,99,592"/>
-<area shape="poly" id="edge5_Node000002_Node000003" title=" " alt="" coords="107,579,107,625,101,625,101,579"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="201,323,218,338,225,366,222,385,215,399,210,396,217,383,220,366,214,341,197,327"/>
+<area shape="rect" id="Node000001" title="Decorator that gives an employee a competency level." alt="" coords="5,976,203,1261"/>
+<area shape="rect" id="Node000002" href="$classEmployeeDetail.html" title="Abstract decorator that adds a detail (profession or competency) to an employee." alt="" coords="15,561,193,927"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,940,107,976,101,976,101,940"/>
+<area shape="rect" id="Node000003" href="$classEmployeeComponent.html" title=" " alt="" coords="9,153,199,499"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="104,512,104,523,104,561,99,561,99,523,99,512"/>
+<area shape="poly" id="edge5_Node000002_Node000003" title=" " alt="" coords="107,499,107,545,101,545,101,499"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="201,289,218,303,225,326,222,342,215,353,210,350,218,340,220,326,214,306,197,294"/>
 <area shape="rect" id="Node000004" href="$classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="30,5,178,91"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="107,91,107,137,101,137,101,91"/>
 </map>

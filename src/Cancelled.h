@@ -18,12 +18,12 @@
  */
 class Cancelled : public WorkState {
 public:
-	/** @brief Creates the state with the name "Cancelled". */
+	/** @brief Creates the state named "Cancelled". */
 	Cancelled() :WorkState("Cancelled") {};
 
 	/**
-	 * @brief Does nothing: a cancelled node stays cancelled.
-	 * @param workNode The node whose state is being advanced (ignored).
+	 * @brief Does nothing, a cancelled node stays cancelled.
+	 * @param workNode The node being advanced.
 	 */
 	void handle(WorkNode* workNode) override;
 };

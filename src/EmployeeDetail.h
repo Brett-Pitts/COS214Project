@@ -30,19 +30,19 @@ protected:
 	EmployeeComponent* wrapped; ///< The component this decorator wraps, or nullptr until wrap() is called. Owned.
 
 	/**
-	 * @brief Does nothing. Concrete decorators override this to add their part.
+	 * @brief Does nothing; concrete decorators override it.
 	 * @param workUnit The unit being worked on.
 	 */
 	void prepare(WorkUnit* workUnit);
 
 	/**
-	 * @brief Does nothing. Concrete decorators override this to add their part.
+	 * @brief Does nothing; concrete decorators override it.
 	 * @param workUnit The unit being worked on.
 	 */
 	void perform(WorkUnit* workUnit);
 
 	/**
-	 * @brief Does nothing. Concrete decorators override this to add their part.
+	 * @brief Does nothing; concrete decorators override it.
 	 * @param workUnit The unit being worked on.
 	 */
 	void finish(WorkUnit* workUnit);
@@ -52,80 +52,75 @@ public:
 	EmployeeDetail();
 
 	/**
-	 * @brief Copy constructor. Copies the mediator and successor pointers and makes a deep copy (clone()) of the wrapped component.
+	 * @brief Copies the decorator and deep-copies what it wraps.
 	 * @param other The decorator to copy.
 	 */
 	EmployeeDetail(const EmployeeDetail& other);
 
-	/** @brief Virtual destructor. Deletes the wrapped component. */
+	/** @brief Deletes the wrapped component. */
 	virtual ~EmployeeDetail();
 
 	/**
-	 * @brief Gets the innermost employee by asking the wrapped component.
-	 * @return The core of the wrapped chain, or this decorator if nothing is wrapped.
+	 * @brief Gets the innermost employee from the wrapped chain.
+	 * @return The innermost component.
 	 */
 	EmployeeComponent* getCore();
 
 	/**
-	 * @brief Gets the employee's name from the wrapped component, or an empty string if nothing is wrapped.
+	 * @brief Gets the name from the wrapped component (empty if none).
+	 * @return The name.
 	 */
 	string getName();
 
 	/**
-	 * @brief Checks the profession through the decorator chain by asking the wrapped component.
-	 *
-	 * The decorator must wrap something; this is not checked.
-	 *
-	 * @param professionName Name of the profession.
-	 * @return true if a decorator further in the chain has this profession.
+	 * @brief Asks the wrapped component about the profession.
+	 * @param professionName Profession to check.
+	 * @return True if the profession matches.
 	 */
 	bool compareProfession(string professionName);
 
 	/**
-	 * @brief Checks the competency through the decorator chain by asking the wrapped component.
+	 * @brief Asks the wrapped component about the competency.
 	 * @param requiredCompetency The level required.
-	 * @return true if a decorator further in the chain has at least this level. If nothing is wrapped, false.
+	 * @return True if the level is met.
 	 */
 	bool compareCompetency(CompetencyLevel requiredCompetency);
 
 
+	/**
+	 * @brief Gets the profession from the wrapped chain.
+	 * @return The profession name.
+	 */
 	virtual std::string getProfession();
+
+	/**
+	 * @brief Gets the competency from the wrapped chain.
+	 * @return The competency name.
+	 */
 	virtual std::string getCompetency();
 
 	/**
-	 * @brief Does the work in layers.
-	 *
-	 * Runs this decorator's prepare() and perform(), then the wrapped component's
-	 * doWork(), then this decorator's finish(). The steps of the outermost decorator
-	 * therefore come first and last, and the core employee's steps (and the mediator
-	 * notification) are in the middle. A null unit is ignored.
-	 *
+	 * @brief Runs this layer's steps around the wrapped component's doWork().
 	 * @param workUnit The unit being worked on.
 	 */
 	void doWork(WorkUnit* workUnit);
 
 	/**
-	 * @brief Sets the mediator on this decorator and the wrapped component.
+	 * @brief Sets the mediator on this decorator and what it wraps.
 	 * @param mediator The mediator.
 	 */
 	void setMediator(Mediator* mediator);
 
 	/**
-	 * @brief Adds a component to the end of the decorator chain.
-	 *
-	 * If this decorator wraps nothing yet, the component becomes the wrapped
-	 * component. Otherwise the call is passed down to the wrapped component. A null
-	 * pointer and the decorator itself are ignored. The mediator is not set on the new
-	 * component.
-	 *
-	 * @note If the chain already ends in an Employee or Manager, Employee::wrap()
-	 * deletes the component. Wrap the core last.
-	 *
-	 * @param component The component to add. Ownership passes to the chain.
+	 * @brief Adds a component to the end of the chain.
+	 * @param component The component to add to the chain.
 	 */
 	void wrap(EmployeeComponent* component);
 
-	/** @brief Makes a deep copy of this decorator chain. Implemented by concrete decorators. */
+	/**
+	 * @brief Makes a deep copy of the chain; concrete decorators implement it.
+	 * @return A new copy; the caller owns it.
+	 */
 	virtual EmployeeComponent* clone() = 0;
 };
 

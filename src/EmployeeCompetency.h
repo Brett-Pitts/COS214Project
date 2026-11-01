@@ -29,71 +29,76 @@ private:
 
 protected:
 	/**
-	 * @brief Template-method step: prints that the employee gathers tools of this level for the unit.
+	 * @brief Prints that the employee gets tools of this level ready.
 	 * @param workUnit The unit being worked on.
 	 */
 	void prepare(WorkUnit* workUnit);
 
 	/**
-	 * @brief Template-method step: prints that the employee uses skills of this level on the unit.
+	 * @brief Prints that the employee uses skills of this level on the unit.
 	 * @param workUnit The unit being worked on.
 	 */
 	void perform(WorkUnit* workUnit);
 
 	/**
-	 * @brief Template-method step: prints that the employee records the outcome for the unit.
+	 * @brief Prints that the employee records the outcome.
 	 * @param workUnit The unit being worked on.
 	 */
 	void finish(WorkUnit* workUnit);
 
 public:
-	/** @brief Competency levels, in increasing order of seniority. */
-
-
 	/**
-	 * @brief Creates a competency decorator.
-	 * @param name Name of the level: "Intern", "Junior" or "Senior" (case-sensitive).
-	 *        Any other name gives the level -1, which never satisfies a requirement.
+	 * @brief Creates a decorator with the given competency level.
+	 * @param level The competency level.
 	 */
 	EmployeeCompetency(CompetencyLevel level);
 
 	/**
-	 * @brief Copy constructor. Copies the level and makes a deep copy of the wrapped component.
+	 * @brief Copies the level and deep-copies the wrapped component.
 	 * @param other The decorator to copy.
 	 */
 	EmployeeCompetency(const EmployeeCompetency& other);
+
+	/**
+	 * @brief Gets the name of this level.
+	 * @return The competency name.
+	 */
 	virtual std::string getCompetency();
 
 	/** @brief Virtual destructor. */
 	virtual ~EmployeeCompetency();
 
-	/** @brief Gets the kind of component ("Competency"). */
+	/**
+	 * @brief Returns "Competency".
+	 * @return The kind of component.
+	 */
 	std::string getKind();
 
 	/**
-	 * @brief Converts a level name to its numeric level.
-	 * @param name Name of the level: "Intern", "Junior" or "Senior" (case-sensitive).
-	 * @return INTERN, JUNIOR or SENIOR, or -1 if the name is not recognised.
+	 * @brief Turns a level name into a CompetencyLevel (NONE if unknown).
+	 * @param name Level name.
+	 * @return The matching level, or NONE.
 	 */
 	static CompetencyLevel getCompetencyLevel(const std::string& name);
 
 
+	/**
+	 * @brief Turns a CompetencyLevel into its name.
+	 * @param level The level.
+	 * @return The level's name.
+	 */
 	static std::string getCompetencyName(CompetencyLevel level);
 
 	/**
-	 * @brief Checks whether this employee is competent enough.
-	 * @param requiredCompetency The level required (INTERN, JUNIOR or SENIOR).
-	 * @return true if this decorator's level is at least the required level.
-	 *         Otherwise the wrapped chain is asked. A negative requirement is never met here.
+	 * @brief True if this level, or one further in, is at least the required one.
+	 * @param requiredCompetency The level required.
+	 * @return True if the level is met.
 	 */
 	bool compareCompetency(CompetencyLevel requiredCompetency);
 
 	/**
-	 * @brief Makes a copy of this decorator, wrapping a copy of the component it wraps.
-	 *
-	 * The copy has no mediator and no successor.
-	 *
-	 * @return A newly allocated copy. The caller owns it.
+	 * @brief Copies this decorator and the chain it wraps.
+	 * @return A new copy; the caller owns it.
 	 */
 	EmployeeComponent* clone();
 };

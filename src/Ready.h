@@ -18,12 +18,12 @@
  */
 class Ready : public WorkState {
 public:
-	/** @brief Creates the state with the name "Ready". */
+	/** @brief Creates the state named "Ready". */
 	Ready() :WorkState("Ready") {};
 
 	/**
 	 * @brief Moves the node to Ongoing.
-	 * @param workNode The node whose state is being advanced.
+	 * @param workNode The node being advanced.
 	 */
 	void handle(WorkNode* workNode) override;
 };

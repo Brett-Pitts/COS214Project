@@ -28,38 +28,38 @@ private:
 
 protected:
 	/**
-	 * @brief Template-method step: prints that the employee reviews the unit as a member of this profession.
+	 * @brief Prints that the employee reviews the unit as their profession.
 	 * @param workUnit The unit being worked on.
 	 */
 	void prepare(WorkUnit* workUnit);
 
 	/**
-	 * @brief Template-method step: prints that the employee applies the profession's expertise to the unit.
+	 * @brief Prints that the employee applies their profession's expertise.
 	 * @param workUnit The unit being worked on.
 	 */
 	void perform(WorkUnit* workUnit);
 
 	/**
-	 * @brief Template-method step: prints that the employee signs off the unit as a member of this profession.
+	 * @brief Prints that the employee signs off the unit.
 	 * @param workUnit The unit being worked on.
 	 */
 	void finish(WorkUnit* workUnit);
 
 public:
 	/**
-	 * @brief Creates a profession decorator and registers the profession.
-	 *
-	 * The name is added to the registry if it is not there yet (an empty name is not
-	 * added).
-	 *
-	 * @param name Name of the profession.
+	 * @brief Creates a decorator and registers the profession.
+	 * @param name Profession name.
 	 */
 	EmployeeProfession(std::string name);
 
+	/**
+	 * @brief Gets the profession name.
+	 * @return The profession name.
+	 */
 	virtual std::string getProfession();
 
 	/**
-	 * @brief Copy constructor. Copies the profession name and makes a deep copy of the wrapped component.
+	 * @brief Copies the profession and deep-copies the wrapped component.
 	 * @param other The decorator to copy.
 	 */
 	EmployeeProfession(const EmployeeProfession& other);
@@ -67,54 +67,43 @@ public:
 	/** @brief Virtual destructor. */
 	virtual ~EmployeeProfession();
 
-	/** @brief Gets the kind of component ("Profession"). */
+	/**
+	 * @brief Returns "Profession".
+	 * @return The kind of component.
+	 */
 	std::string getKind();
 
 	/**
-	 * @brief Adds a profession to the registry.
-	 *
-	 * Nothing is added if the name is empty or already registered.
-	 *
-	 * @param name Name of the profession.
-	 * @return The name, or an empty string if the name was empty.
+	 * @brief Adds a profession to the registry, ignoring empty or duplicate names.
+	 * @param name Profession name.
+	 * @return The name, or "" if it was empty.
 	 */
 	static std::string registerProfession(std::string name);
 
 	/**
-	 * @brief Removes a profession from the registry.
-	 *
-	 * @param name Name of the profession.
-	 * @return false if the profession is not registered.
-	 *
-	 * @warning The function has no return statement after it removes a profession, so
-	 * the value returned in that case is undefined.
+	 * @brief Removes a profession from the registry; false if it isn't there.
+	 * @param name Profession name.
+	 * @return False if it isn't registered.
 	 */
 	static bool deleteProfession(std::string name);
 
 	/**
 	 * @brief Checks whether a profession is registered.
-	 * @param name Name of the profession.
-	 * @return true if it is in the registry.
+	 * @param name Profession name.
+	 * @return True if registered.
 	 */
 	static bool hasProfession(std::string name);
 
 	/**
-	 * @brief Checks whether this employee has a given profession.
-	 *
-	 * The decorator must wrap something when the name does not match; this is not
-	 * checked.
-	 *
-	 * @param professionName Name of the profession to compare.
-	 * @return true if it matches this decorator's profession or one further in the chain.
+	 * @brief True if this decorator, or one further in, has the profession.
+	 * @param professionName Profession to check.
+	 * @return True if the profession matches.
 	 */
 	bool compareProfession(std::string professionName);
 
 	/**
-	 * @brief Makes a copy of this decorator, wrapping a copy of the component it wraps.
-	 *
-	 * The copy has no mediator and no successor.
-	 *
-	 * @return A newly allocated copy. The caller owns it.
+	 * @brief Copies this decorator and the chain it wraps.
+	 * @return A new copy; the caller owns it.
 	 */
 	EmployeeComponent* clone();
 };

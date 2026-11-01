@@ -8,7 +8,7 @@
  * @see EmployeeCompetency
  */
 enum CompetencyLevel {
-	INTERN = 0, JUNIOR = 1, SENIOR = 2, NONE = 1
+	INTERN = 0, JUNIOR = 1, SENIOR = 2, NONE = -1
 };
 
 

@@ -20,72 +20,49 @@ private:
 	EmployeeBuilder* builder; ///< The builder used to create employees. Not owned.
 
 	/**
-	 * @brief Runs reset, addProfession, addCompetency and finish on the builder.
-	 *
-	 * The results of addProfession() and addCompetency() are not checked, so the
-	 * function does not return nullptr: if the competency name is not recognised, the
-	 * employee is built without a competency decorator. The employee is never a Manager.
-	 *
-	 * @param name Name of the employee.
-	 * @param profession Name of the profession.
-	 * @param competency Name of the competency level, passed to the builder as it is.
-	 * @return The finished employee. The caller owns it.
+	 * @brief Runs the builder steps in order for a name, profession and competency.
+	 * @param name Employee name.
+	 * @param profession Profession name.
+	 * @param competency Competency level name.
+	 * @return The new employee; the caller owns it.
 	 */
 	EmployeeComponent* build(std::string name, std::string profession, std::string competency);
  
 public:
 
 	/**
-	 * @brief Creates a director.
-	 * @param builder The builder to use. The director does not take ownership. It must not be null (this is not checked).
+	 * @brief Creates a director that uses the given builder.
+	 * @param builder The builder to use (not owned).
 	 */
 	EmployeeDirector(EmployeeBuilder* builder);
 
 	/**
-	 * @brief Changes the builder.
-	 * @param builder The new builder. The director does not take ownership. If it is null, a message is printed to the error stream and the old builder is kept.
+	 * @brief Swaps the builder; a null one is rejected with a message.
+	 * @param builder The new builder (not owned, null is rejected).
 	 */
 	void setBuilder(EmployeeBuilder* builder);
 
 	/**
-	 * @brief Builds an employee with the competency "intern" (see build()).
-	 *
-	 * @warning The level is passed to the builder in lower case. EmployeeCompetency
-	 * only recognises "Intern", "Junior" and "Senior" (case-sensitive), so
-	 * ConcreteEmployeeBuilder rejects it and the employee is built with a profession
-	 * but without a competency. Such an employee cannot advance any work unit.
-	 *
-	 * @param name Name of the employee.
-	 * @param profession Name of the profession.
-	 * @return The new employee. The caller owns it.
+	 * @brief Builds an intern (the level is passed in lower case, so it may get no competency).
+	 * @param name Employee name.
+	 * @param profession Profession name.
+	 * @return The new employee; the caller owns it.
 	 */
 	EmployeeComponent* makeIntern(std::string name, std::string profession);
 
 	/**
-	 * @brief Builds an employee with the competency "junior" (see build()).
-	 *
-	 * @warning The level is passed to the builder in lower case. EmployeeCompetency
-	 * only recognises "Intern", "Junior" and "Senior" (case-sensitive), so
-	 * ConcreteEmployeeBuilder rejects it and the employee is built with a profession
-	 * but without a competency. Such an employee cannot advance any work unit.
-	 *
-	 * @param name Name of the employee.
-	 * @param profession Name of the profession.
-	 * @return The new employee. The caller owns it.
+	 * @brief Builds a junior (the level is passed in lower case, so it may get no competency).
+	 * @param name Employee name.
+	 * @param profession Profession name.
+	 * @return The new employee; the caller owns it.
 	 */
 	EmployeeComponent* makeJunior(std::string name, std::string profession);
 
 	/**
-	 * @brief Builds an employee with the competency "senior" (see build()).
-	 *
-	 * @warning The level is passed to the builder in lower case. EmployeeCompetency
-	 * only recognises "Intern", "Junior" and "Senior" (case-sensitive), so
-	 * ConcreteEmployeeBuilder rejects it and the employee is built with a profession
-	 * but without a competency. Such an employee cannot advance any work unit.
-	 *
-	 * @param name Name of the employee.
-	 * @param profession Name of the profession.
-	 * @return The new employee. The caller owns it.
+	 * @brief Builds a senior (the level is passed in lower case, so it may get no competency).
+	 * @param name Employee name.
+	 * @param profession Profession name.
+	 * @return The new employee; the caller owns it.
 	 */
 	EmployeeComponent* makeSenior(std::string name, std::string profession);
 };

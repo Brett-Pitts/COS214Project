@@ -87,24 +87,27 @@ Include dependency graph for WorkIterator.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="WorkIterator_8cpp__incl.png" border="0" usemap="#asrc_2WorkIterator_8cpp" alt=""/></div>
 <map name="asrc_2WorkIterator_8cpp" id="asrc_2WorkIterator_8cpp">
-<area shape="rect" title=" " alt="" coords="100,5,252,31"/>
+<area shape="rect" title=" " alt="" coords="117,5,269,31"/>
 <area shape="rect" href="WorkIterator_8h.html" title=" " alt="" coords="5,225,120,251"/>
-<area shape="poly" title=" " alt="" coords="172,32,77,214,73,212,168,30"/>
-<area shape="rect" href="WorkNode_8h.html" title="Declares the component of the work tree." alt="" coords="156,152,257,177"/>
-<area shape="poly" title=" " alt="" coords="181,31,204,138,199,139,176,32"/>
-<area shape="rect" href="WorkUnit_8h.html" title=" " alt="" coords="214,79,309,104"/>
-<area shape="poly" title=" " alt="" coords="191,29,239,68,235,72,188,33"/>
+<area shape="poly" title=" " alt="" coords="189,32,79,215,74,212,184,30"/>
+<area shape="rect" href="WorkNode_8h.html" title=" " alt="" coords="195,152,296,177"/>
+<area shape="poly" title=" " alt="" coords="199,30,221,103,236,138,231,141,216,105,194,32"/>
+<area shape="rect" href="WorkUnit_8h.html" title=" " alt="" coords="231,79,326,104"/>
+<area shape="poly" title=" " alt="" coords="209,29,256,68,253,72,205,33"/>
 <area shape="rect" href="Iterator_8h.html" title=" " alt="" coords="22,299,103,324"/>
 <area shape="poly" title=" " alt="" coords="65,251,65,285,60,285,60,251"/>
-<area shape="poly" title=" " alt="" coords="185,180,100,221,97,217,182,175"/>
+<area shape="poly" title=" " alt="" coords="217,180,106,223,104,218,215,175"/>
 <area shape="rect" title=" " alt="" coords="145,225,207,251"/>
-<area shape="poly" title=" " alt="" coords="204,179,189,214,184,212,199,177"/>
-<area shape="rect" title=" " alt="" coords="357,225,416,251"/>
-<area shape="poly" title=" " alt="" coords="237,175,346,218,344,223,235,180"/>
-<area shape="rect" href="Aggregate_8h.html" title="Declares the Aggregate interface of the Iterator pattern." alt="" coords="232,225,333,251"/>
-<area shape="poly" title=" " alt="" coords="221,175,262,214,258,218,217,179"/>
-<area shape="poly" title=" " alt="" coords="254,106,226,143,222,140,250,103"/>
-<area shape="poly" title=" " alt="" coords="274,103,370,213,366,217,270,106"/>
+<area shape="poly" title=" " alt="" coords="236,180,199,217,195,214,232,176"/>
+<area shape="rect" title=" " alt="" coords="441,299,500,324"/>
+<area shape="poly" title=" " alt="" coords="248,177,253,213,261,232,273,249,308,275,349,291,390,301,428,306,427,311,389,307,347,297,305,279,269,253,256,235,248,214,243,178"/>
+<area shape="rect" href="Aggregate_8h.html" title="Declares the Aggregate interface of the Iterator pattern." alt="" coords="283,225,384,251"/>
+<area shape="poly" title=" " alt="" coords="261,175,310,214,307,219,258,179"/>
+<area shape="rect" href="WorkMediator_8h.html" title=" " alt="" coords="409,225,533,251"/>
+<area shape="poly" title=" " alt="" coords="282,175,422,219,420,224,281,180"/>
+<area shape="poly" title=" " alt="" coords="473,251,473,285,468,285,468,251"/>
+<area shape="poly" title=" " alt="" coords="276,105,259,141,254,139,271,103"/>
+<area shape="poly" title=" " alt="" coords="327,98,381,113,443,137,473,153,501,173,527,197,548,224,552,244,544,263,527,280,508,294,504,289,524,276,539,260,547,244,543,226,523,200,498,177,470,158,440,142,380,118,326,103"/>
 </map>
 </div>
 </div>
@@ -113,8 +116,10 @@ Include dependency graph for WorkIterator.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:acceb841195244b37036bea5631cc3b98" id="r_acceb841195244b37036bea5631cc3b98"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classWorkNode.html">WorkNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="WorkIterator_8cpp.html#acceb841195244b37036bea5631cc3b98">nextInTree</a> (<a class="el" href="classWorkNode.html">WorkNode</a> *aggregate, <a class="el" href="classWorkNode.html">WorkNode</a> *node)</td></tr>
+<tr class="memdesc:acceb841195244b37036bea5631cc3b98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the next node in depth-first order, or nullptr at the end.  <br /></td></tr>
 <tr class="separator:acceb841195244b37036bea5631cc3b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa476701cc25503f86b808452c438422f" id="r_aa476701cc25503f86b808452c438422f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="WorkIterator_8cpp.html#aa476701cc25503f86b808452c438422f">isReadyUnit</a> (<a class="el" href="classWorkNode.html">WorkNode</a> *node)</td></tr>
+<tr class="memdesc:aa476701cc25503f86b808452c438422f"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if the node is a work unit in the <a class="el" href="classReady.html" title="Concrete state: all prerequisites are done and the work can be picked up.">Ready</a> state.  <br /></td></tr>
 <tr class="separator:aa476701cc25503f86b808452c438422f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -142,7 +147,16 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WorkIterator_8cpp_source.html#l00031">31</a> of file <a class="el" href="WorkIterator_8cpp_source.html">WorkIterator.cpp</a>.</p>
+<p>True if the node is a work unit in the <a class="el" href="classReady.html" title="Concrete state: all prerequisites are done and the work can be picked up.">Ready</a> state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>Node to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if it is a <a class="el" href="classReady.html" title="Concrete state: all prerequisites are done and the work can be picked up.">Ready</a> unit. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="WorkIterator_8cpp_source.html#l00042">42</a> of file <a class="el" href="WorkIterator_8cpp_source.html">WorkIterator.cpp</a>.</p>
 
 </div>
 </div>
@@ -180,7 +194,17 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WorkIterator_8cpp_source.html#l00005">5</a> of file <a class="el" href="WorkIterator_8cpp_source.html">WorkIterator.cpp</a>.</p>
+<p>Gets the next node in depth-first order, or nullptr at the end. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aggregate</td><td>Root of the walk. </td></tr>
+    <tr><td class="paramname">node</td><td>Node to move on from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The next node, or nullptr at the end. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="WorkIterator_8cpp_source.html#l00011">11</a> of file <a class="el" href="WorkIterator_8cpp_source.html">WorkIterator.cpp</a>.</p>
 
 </div>
 </div>

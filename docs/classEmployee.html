@@ -87,11 +87,11 @@ Inheritance diagram for Employee:</div>
 <div class="dyncontent">
 <div class="center"><img src="classEmployee__inherit__graph.png" border="0" usemap="#aEmployee_inherit__map" alt="Inheritance graph"/></div>
 <map name="aEmployee_inherit__map" id="aEmployee_inherit__map">
-<area shape="rect" title="The core employee: a named person who can be wrapped with decorators." alt="" coords="18,499,182,724"/>
-<area shape="rect" href="classManager.html" title="An employee with two extra operations: handling escalations and cancelling projects." alt="" coords="25,772,175,957"/>
-<area shape="poly" title=" " alt="" coords="103,738,103,772,97,772,97,738"/>
-<area shape="rect" href="classEmployeeComponent.html" title="Abstract base of every employee and every employee decorator." alt="" coords="5,5,195,451"/>
-<area shape="poly" title=" " alt="" coords="103,464,103,498,97,498,97,464"/>
+<area shape="rect" title="The core employee: a named person who can be wrapped with decorators." alt="" coords="11,419,189,664"/>
+<area shape="rect" href="classManager.html" title="An employee with two extra operations: handling escalations and cancelling projects." alt="" coords="11,712,189,917"/>
+<area shape="poly" title=" " alt="" coords="103,678,103,712,97,712,97,678"/>
+<area shape="rect" href="classEmployeeComponent.html" title=" " alt="" coords="5,5,195,371"/>
+<area shape="poly" title=" " alt="" coords="103,384,103,418,97,418,97,384"/>
 </map>
 </div>
 <div class="dynheader">
@@ -99,22 +99,24 @@ Collaboration diagram for Employee:</div>
 <div class="dyncontent">
 <div class="center"><img src="classEmployee__coll__graph.png" border="0" usemap="#aEmployee_coll__map" alt="Collaboration graph"/></div>
 <map name="aEmployee_coll__map" id="aEmployee_coll__map">
-<area shape="rect" title="The core employee: a named person who can be wrapped with decorators." alt="" coords="18,628,182,853"/>
-<area shape="rect" href="classEmployeeComponent.html" title="Abstract base of every employee and every employee decorator." alt="" coords="5,153,195,579"/>
-<area shape="poly" title=" " alt="" coords="103,592,103,628,97,628,97,592"/>
-<area shape="poly" title=" " alt="" coords="197,324,214,339,221,366,218,385,211,398,206,395,213,383,216,366,210,342,193,328"/>
+<area shape="rect" title="The core employee: a named person who can be wrapped with decorators." alt="" coords="191,561,369,807"/>
+<area shape="rect" href="classEmployeeComponent.html" title=" " alt="" coords="5,153,195,499"/>
+<area shape="poly" title=" " alt="" coords="195,510,221,560,216,562,191,512"/>
+<area shape="poly" title=" " alt="" coords="197,289,214,303,221,326,218,342,211,353,206,350,214,340,216,326,210,306,193,294"/>
 <area shape="rect" href="classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="26,5,174,91"/>
 <area shape="poly" title=" " alt="" coords="103,91,103,137,97,137,97,91"/>
+<area shape="rect" title=" " alt="" coords="316,293,367,359"/>
+<area shape="poly" title=" " alt="" coords="339,359,306,545,301,544,333,358"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8117181e20a68a051d94902c89c770b6" id="r_a8117181e20a68a051d94902c89c770b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployee.html#a8117181e20a68a051d94902c89c770b6">Employee</a> (std::string <a class="el" href="classEmployee.html#a3ba103222f2451bf4d34c05ca28a1bed">name</a>)</td></tr>
-<tr class="memdesc:a8117181e20a68a051d94902c89c770b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an employee.  <br /></td></tr>
+<tr class="memdesc:a8117181e20a68a051d94902c89c770b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an employee with the given name.  <br /></td></tr>
 <tr class="separator:a8117181e20a68a051d94902c89c770b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a93433a709598b7b94039fe23573c6b" id="r_a2a93433a709598b7b94039fe23573c6b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployee.html#a2a93433a709598b7b94039fe23573c6b">Employee</a> (const <a class="el" href="classEmployee.html">Employee</a> &amp;other)</td></tr>
-<tr class="memdesc:a2a93433a709598b7b94039fe23573c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <br /></td></tr>
+<tr class="memdesc:a2a93433a709598b7b94039fe23573c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies another employee.  <br /></td></tr>
 <tr class="separator:a2a93433a709598b7b94039fe23573c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abed56e9c007fff2bfe27ca87251baaf2" id="r_abed56e9c007fff2bfe27ca87251baaf2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployee.html#abed56e9c007fff2bfe27ca87251baaf2">~Employee</a> ()</td></tr>
 <tr class="memdesc:abed56e9c007fff2bfe27ca87251baaf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
@@ -123,50 +125,59 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a72d9305f328548a928929154dab5d2b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the employee's name.  <br /></td></tr>
 <tr class="separator:a72d9305f328548a928929154dab5d2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaea9298da93a345e23c9ef344344f6c9" id="r_aaea9298da93a345e23c9ef344344f6c9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployee.html#aaea9298da93a345e23c9ef344344f6c9">getKind</a> ()</td></tr>
-<tr class="memdesc:aaea9298da93a345e23c9ef344344f6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the kind of component ("Employee").  <br /></td></tr>
+<tr class="memdesc:aaea9298da93a345e23c9ef344344f6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns "Employee".  <br /></td></tr>
 <tr class="separator:aaea9298da93a345e23c9ef344344f6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc300563b3fb65e88cee0680fb8cf502" id="r_abc300563b3fb65e88cee0680fb8cf502"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployee.html#abc300563b3fb65e88cee0680fb8cf502">compareCompetency</a> (int requiredCompetency)</td></tr>
+<tr class="memdesc:abc300563b3fb65e88cee0680fb8cf502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Always false, competency comes from the decorators.  <br /></td></tr>
+<tr class="separator:abc300563b3fb65e88cee0680fb8cf502"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a555c2d0049eec2d08eee1e5b3ec274d6" id="r_a555c2d0049eec2d08eee1e5b3ec274d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployee.html#a555c2d0049eec2d08eee1e5b3ec274d6">doWork</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *workUnit)</td></tr>
-<tr class="memdesc:a555c2d0049eec2d08eee1e5b3ec274d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does the work on a unit.  <br /></td></tr>
+<tr class="memdesc:a555c2d0049eec2d08eee1e5b3ec274d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does the prepare, perform and finish steps, then tells the mediator.  <br /></td></tr>
 <tr class="separator:a555c2d0049eec2d08eee1e5b3ec274d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a599f85aa66b8f80eb479e2610f97bf64" id="r_a599f85aa66b8f80eb479e2610f97bf64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployee.html#a599f85aa66b8f80eb479e2610f97bf64">wrap</a> (<a class="el" href="classEmployeeComponent.html">EmployeeComponent</a> *component)</td></tr>
-<tr class="memdesc:a599f85aa66b8f80eb479e2610f97bf64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not supported: an <a class="el" href="classEmployee.html" title="The core employee: a named person who can be wrapped with decorators.">Employee</a> is always the innermost component and cannot wrap another.  <br /></td></tr>
+<tr class="memdesc:a599f85aa66b8f80eb479e2610f97bf64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not supported, so it just deletes the component it was given.  <br /></td></tr>
 <tr class="separator:a599f85aa66b8f80eb479e2610f97bf64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af89b06edf4eabf74c5d69c78f4e43a6c" id="r_af89b06edf4eabf74c5d69c78f4e43a6c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classEmployeeComponent.html">EmployeeComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployee.html#af89b06edf4eabf74c5d69c78f4e43a6c">clone</a> ()</td></tr>
-<tr class="memdesc:af89b06edf4eabf74c5d69c78f4e43a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a copy of this employee with the same name.  <br /></td></tr>
+<tr class="memdesc:af89b06edf4eabf74c5d69c78f4e43a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the employee (same name, no mediator or successor).  <br /></td></tr>
 <tr class="separator:af89b06edf4eabf74c5d69c78f4e43a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add4a09b79e84ffd01b8d2e907d9ffbd4" id="r_add4a09b79e84ffd01b8d2e907d9ffbd4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployee.html#add4a09b79e84ffd01b8d2e907d9ffbd4">compareProfession</a> (std::string professionName)</td></tr>
-<tr class="memdesc:add4a09b79e84ffd01b8d2e907d9ffbd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether this employee has a given profession.  <br /></td></tr>
+<tr class="memdesc:add4a09b79e84ffd01b8d2e907d9ffbd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Always false, professions come from the decorators.  <br /></td></tr>
 <tr class="separator:add4a09b79e84ffd01b8d2e907d9ffbd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classEmployeeComponent"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classEmployeeComponent')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classEmployeeComponent.html">EmployeeComponent</a></td></tr>
 <tr class="memitem:aeaedf3b02acdd4b15bc9e74f9ad13f38 inherit pub_methods_classEmployeeComponent" id="r_aeaedf3b02acdd4b15bc9e74f9ad13f38"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#aeaedf3b02acdd4b15bc9e74f9ad13f38">EmployeeComponent</a> ()</td></tr>
-<tr class="memdesc:aeaedf3b02acdd4b15bc9e74f9ad13f38 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a component with no mediator and no successor.  <br /></td></tr>
+<tr class="memdesc:aeaedf3b02acdd4b15bc9e74f9ad13f38 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a component with no mediator or successor.  <br /></td></tr>
 <tr class="separator:aeaedf3b02acdd4b15bc9e74f9ad13f38 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ad733d24389a724deb1bc6957237745 inherit pub_methods_classEmployeeComponent" id="r_a2ad733d24389a724deb1bc6957237745"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#a2ad733d24389a724deb1bc6957237745">EmployeeComponent</a> (const <a class="el" href="classEmployeeComponent.html">EmployeeComponent</a> &amp;other)</td></tr>
-<tr class="memdesc:a2ad733d24389a724deb1bc6957237745 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor. Copies the mediator and successor pointers.  <br /></td></tr>
+<tr class="memdesc:a2ad733d24389a724deb1bc6957237745 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the mediator and successor pointers.  <br /></td></tr>
 <tr class="separator:a2ad733d24389a724deb1bc6957237745 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7739aa2c1f51ffc9047b7703a3885bd inherit pub_methods_classEmployeeComponent" id="r_ab7739aa2c1f51ffc9047b7703a3885bd"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#ab7739aa2c1f51ffc9047b7703a3885bd">~EmployeeComponent</a> ()</td></tr>
 <tr class="memdesc:ab7739aa2c1f51ffc9047b7703a3885bd inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
 <tr class="separator:ab7739aa2c1f51ffc9047b7703a3885bd inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c45b63293f5f2383b1f20cef9674762 inherit pub_methods_classEmployeeComponent" id="r_a0c45b63293f5f2383b1f20cef9674762"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classEmployeeComponent.html">EmployeeComponent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#a0c45b63293f5f2383b1f20cef9674762">getCore</a> ()</td></tr>
-<tr class="memdesc:a0c45b63293f5f2383b1f20cef9674762 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the innermost (undecorated) employee.  <br /></td></tr>
+<tr class="memdesc:a0c45b63293f5f2383b1f20cef9674762 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the innermost component (this one by default).  <br /></td></tr>
 <tr class="separator:a0c45b63293f5f2383b1f20cef9674762 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae719d47f2531d4bd6ceb80016787ff75 inherit pub_methods_classEmployeeComponent" id="r_ae719d47f2531d4bd6ceb80016787ff75"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#ae719d47f2531d4bd6ceb80016787ff75">compareProfession</a> (string professionName)</td></tr>
-<tr class="memdesc:ae719d47f2531d4bd6ceb80016787ff75 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether this employee has a given profession.  <br /></td></tr>
+<tr class="memdesc:ae719d47f2531d4bd6ceb80016787ff75 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for a profession; false by default.  <br /></td></tr>
 <tr class="separator:ae719d47f2531d4bd6ceb80016787ff75 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdea4b391d36571ec5bfb98efa2bdb65 inherit pub_methods_classEmployeeComponent" id="r_acdea4b391d36571ec5bfb98efa2bdb65"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#acdea4b391d36571ec5bfb98efa2bdb65">compareCompetency</a> (int requiredCompetency)</td></tr>
-<tr class="memdesc:acdea4b391d36571ec5bfb98efa2bdb65 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether this employee has at least the required competency level.  <br /></td></tr>
-<tr class="separator:acdea4b391d36571ec5bfb98efa2bdb65 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a16418e730bb89b0323d85277f9e9cb inherit pub_methods_classEmployeeComponent" id="r_a7a16418e730bb89b0323d85277f9e9cb"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#a7a16418e730bb89b0323d85277f9e9cb">compareCompetency</a> (<a class="el" href="CompetencyLevel_8h.html#ad1e69b046346dab3017af9e3cb5ee48e">CompetencyLevel</a> requiredCompetency)</td></tr>
+<tr class="memdesc:a7a16418e730bb89b0323d85277f9e9cb inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for a competency level; false by default.  <br /></td></tr>
+<tr class="separator:a7a16418e730bb89b0323d85277f9e9cb inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a455934b289296c535923f2e987c4cbc4 inherit pub_methods_classEmployeeComponent" id="r_a455934b289296c535923f2e987c4cbc4"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#a455934b289296c535923f2e987c4cbc4">getProfession</a> ()</td></tr>
+<tr class="memdesc:a455934b289296c535923f2e987c4cbc4 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the profession name; empty by default.  <br /></td></tr>
+<tr class="separator:a455934b289296c535923f2e987c4cbc4 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4543067e8196f7a335939885c21c8b1 inherit pub_methods_classEmployeeComponent" id="r_ab4543067e8196f7a335939885c21c8b1"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#ab4543067e8196f7a335939885c21c8b1">getCompetency</a> ()</td></tr>
+<tr class="memdesc:ab4543067e8196f7a335939885c21c8b1 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the competency name; empty by default.  <br /></td></tr>
+<tr class="separator:ab4543067e8196f7a335939885c21c8b1 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add977459b7b143c78dcca3a088875488 inherit pub_methods_classEmployeeComponent" id="r_add977459b7b143c78dcca3a088875488"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#add977459b7b143c78dcca3a088875488">handleWork</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *workUnit)</td></tr>
-<tr class="memdesc:add977459b7b143c78dcca3a088875488 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles a work unit, or passes it along the chain.  <br /></td></tr>
+<tr class="memdesc:add977459b7b143c78dcca3a088875488 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advances the unit if this employee can, otherwise passes it to the successor.  <br /></td></tr>
 <tr class="separator:add977459b7b143c78dcca3a088875488 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4774278f6d494d30922c611d2ebe9f2 inherit pub_methods_classEmployeeComponent" id="r_ab4774278f6d494d30922c611d2ebe9f2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#ab4774278f6d494d30922c611d2ebe9f2">receive</a> (string message)</td></tr>
-<tr class="memdesc:ab4774278f6d494d30922c611d2ebe9f2 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives a message from the team mediator. The base version prints it with the employee's name.  <br /></td></tr>
+<tr class="memdesc:ab4774278f6d494d30922c611d2ebe9f2 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the message this employee received.  <br /></td></tr>
 <tr class="separator:ab4774278f6d494d30922c611d2ebe9f2 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c45cf662c14a098d3bac116a10282c6 inherit pub_methods_classEmployeeComponent" id="r_a3c45cf662c14a098d3bac116a10282c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#a3c45cf662c14a098d3bac116a10282c6">setSuccessor</a> (<a class="el" href="classEmployeeComponent.html">EmployeeComponent</a> *employeeComponent)</td></tr>
-<tr class="memdesc:a3c45cf662c14a098d3bac116a10282c6 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the next employee in the chain of responsibility.  <br /></td></tr>
+<tr class="memdesc:a3c45cf662c14a098d3bac116a10282c6 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the next employee in the chain.  <br /></td></tr>
 <tr class="separator:a3c45cf662c14a098d3bac116a10282c6 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6e7337051bfa509d52335a137a41766 inherit pub_methods_classEmployeeComponent" id="r_aa6e7337051bfa509d52335a137a41766"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#aa6e7337051bfa509d52335a137a41766">setMediator</a> (<a class="el" href="classMediator.html">Mediator</a> *<a class="el" href="classEmployeeComponent.html#a4285992a497838ba0a3b1ea762be6a44">mediator</a>)</td></tr>
-<tr class="memdesc:aa6e7337051bfa509d52335a137a41766 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the mediator (team) this employee reports to.  <br /></td></tr>
+<tr class="memdesc:aa6e7337051bfa509d52335a137a41766 inherit pub_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the mediator (the team).  <br /></td></tr>
 <tr class="separator:aa6e7337051bfa509d52335a137a41766 inherit pub_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -179,13 +190,13 @@ Private Attributes</h2></td></tr>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classEmployeeComponent"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classEmployeeComponent')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classEmployeeComponent.html">EmployeeComponent</a></td></tr>
 <tr class="memitem:a02c181adfc7bf168d5f1bd582bf25cb3 inherit pro_methods_classEmployeeComponent" id="r_a02c181adfc7bf168d5f1bd582bf25cb3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#a02c181adfc7bf168d5f1bd582bf25cb3">prepare</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *workUnit)</td></tr>
-<tr class="memdesc:a02c181adfc7bf168d5f1bd582bf25cb3 inherit pro_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template-method step 1 of <a class="el" href="classEmployeeComponent.html#a69e454f1ac17cb138f104bcb2093a6f7" title="Does the work on a unit by running prepare(), perform() and finish() in that order.">doWork()</a>. The base version prints that the employee prepares the unit.  <br /></td></tr>
+<tr class="memdesc:a02c181adfc7bf168d5f1bd582bf25cb3 inherit pro_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template step: prints that the employee prepares the unit.  <br /></td></tr>
 <tr class="separator:a02c181adfc7bf168d5f1bd582bf25cb3 inherit pro_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e23e6cbbda6bd5239daf25f40f6ee05 inherit pro_methods_classEmployeeComponent" id="r_a7e23e6cbbda6bd5239daf25f40f6ee05"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#a7e23e6cbbda6bd5239daf25f40f6ee05">perform</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *workUnit)</td></tr>
-<tr class="memdesc:a7e23e6cbbda6bd5239daf25f40f6ee05 inherit pro_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template-method step 2 of <a class="el" href="classEmployeeComponent.html#a69e454f1ac17cb138f104bcb2093a6f7" title="Does the work on a unit by running prepare(), perform() and finish() in that order.">doWork()</a>. The base version prints that the employee performs the unit.  <br /></td></tr>
+<tr class="memdesc:a7e23e6cbbda6bd5239daf25f40f6ee05 inherit pro_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template step: prints that the employee performs the unit.  <br /></td></tr>
 <tr class="separator:a7e23e6cbbda6bd5239daf25f40f6ee05 inherit pro_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43a3795f5136106adfe83449d276966b inherit pro_methods_classEmployeeComponent" id="r_a43a3795f5136106adfe83449d276966b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmployeeComponent.html#a43a3795f5136106adfe83449d276966b">finish</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *workUnit)</td></tr>
-<tr class="memdesc:a43a3795f5136106adfe83449d276966b inherit pro_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template-method step 3 of <a class="el" href="classEmployeeComponent.html#a69e454f1ac17cb138f104bcb2093a6f7" title="Does the work on a unit by running prepare(), perform() and finish() in that order.">doWork()</a>. The base version prints that the employee finishes the unit.  <br /></td></tr>
+<tr class="memdesc:a43a3795f5136106adfe83449d276966b inherit pro_methods_classEmployeeComponent"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template step: prints that the employee finishes the unit.  <br /></td></tr>
 <tr class="separator:a43a3795f5136106adfe83449d276966b inherit pro_methods_classEmployeeComponent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -194,10 +205,10 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section user"><dt>Design patterns</dt><dd><ul>
 <li>Decorator (ConcreteComponent).</li>
 <li>Template Method (ConcreteClass): supplies the base prepare, perform and finish steps.</li>
-<li>Prototype (ConcretePrototype): <a class="el" href="classEmployee.html#af89b06edf4eabf74c5d69c78f4e43a6c" title="Makes a copy of this employee with the same name.">clone()</a> copies the employee.</li>
+<li>Prototype (ConcretePrototype): <a class="el" href="classEmployee.html#af89b06edf4eabf74c5d69c78f4e43a6c" title="Copies the employee (same name, no mediator or successor).">clone()</a> copies the employee.</li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classEmployeeComponent.html" title="Abstract base of every employee and every employee decorator.">EmployeeComponent</a>, <a class="el" href="classEmployeeDetail.html" title="Abstract decorator that adds a detail (profession or competency) to an employee.">EmployeeDetail</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classEmployeeComponent.html">EmployeeComponent</a>, <a class="el" href="classEmployeeDetail.html" title="Abstract decorator that adds a detail (profession or competency) to an employee.">EmployeeDetail</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Employee_8h_source.html#l00021">21</a> of file <a class="el" href="Employee_8h_source.html">Employee.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -217,10 +228,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates an employee. </p>
+<p>Creates an employee with the given name. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The employee's name. </td></tr>
+    <tr><td class="paramname">name</td><td><a class="el" href="classEmployee.html" title="The core employee: a named person who can be wrapped with decorators.">Employee</a> name. </td></tr>
   </table>
   </dd>
 </dl>
@@ -245,10 +256,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Copy constructor. </p>
+<p>Copies another employee. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>The employee to copy. </td></tr>
+    <tr><td class="paramname">other</td><td>The one to copy. </td></tr>
   </table>
   </dd>
 </dl>
@@ -310,15 +321,53 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Makes a copy of this employee with the same name. </p>
-<p>The copy has no mediator and no successor.</p>
-<dl class="section return"><dt>Returns</dt><dd>A newly allocated copy. The caller owns it. </dd></dl>
+<p>Copies the employee (same name, no mediator or successor). </p>
+<dl class="section return"><dt>Returns</dt><dd>A new copy; the caller owns it. </dd></dl>
 
 <p>Implements <a class="el" href="classEmployeeComponent.html#aec43645367bb680d3a77764724c31935">EmployeeComponent</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classManager.html#ac2cc00c32f48bca1f6230ec40825b85b">Manager</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Employee_8cpp_source.html#l00025">25</a> of file <a class="el" href="Employee_8cpp_source.html">Employee.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Employee_8cpp_source.html#l00029">29</a> of file <a class="el" href="Employee_8cpp_source.html">Employee.cpp</a>.</p>
+
+</div>
+</div>
+<a id="abc300563b3fb65e88cee0680fb8cf502" name="abc300563b3fb65e88cee0680fb8cf502"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc300563b3fb65e88cee0680fb8cf502">&#9670;&#160;</a></span>compareCompetency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Employee::compareCompetency </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>requiredCompetency</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Always false, competency comes from the decorators. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">requiredCompetency</td><td>The level required. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Always false. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classManager.html#a1c5546e20f465ee05f75950dbcb0d895">Manager</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="Employee_8cpp_source.html#l00017">17</a> of file <a class="el" href="Employee_8cpp_source.html">Employee.cpp</a>.</p>
 
 </div>
 </div>
@@ -338,16 +387,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks whether this employee has a given profession. </p>
+<p>Always false, professions come from the decorators. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">professionName</td><td>Name of the profession to check. </td></tr>
+    <tr><td class="paramname">professionName</td><td>Profession to check. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Always false for the core, since only decorators carry professions. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Always false. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Employee_8cpp_source.html#l00031">31</a> of file <a class="el" href="Employee_8cpp_source.html">Employee.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Employee_8cpp_source.html#l00035">35</a> of file <a class="el" href="Employee_8cpp_source.html">Employee.cpp</a>.</p>
 
 </div>
 </div>
@@ -375,8 +424,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Does the work on a unit. </p>
-<p>Runs the template steps of <a class="el" href="classEmployeeComponent.html#a69e454f1ac17cb138f104bcb2093a6f7" title="Does the work on a unit by running prepare(), perform() and finish() in that order.">EmployeeComponent::doWork()</a>: prepare, perform and finish, and then tells the mediator. For a decorated employee this is the innermost step of the decorators' <a class="el" href="classEmployee.html#a555c2d0049eec2d08eee1e5b3ec274d6" title="Does the work on a unit.">doWork()</a>.</p>
+<p>Does the prepare, perform and finish steps, then tells the mediator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">workUnit</td><td>The unit being worked on. </td></tr>
@@ -386,7 +434,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classEmployeeComponent.html#a69e454f1ac17cb138f104bcb2093a6f7">EmployeeComponent</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Employee_8cpp_source.html#l00017">17</a> of file <a class="el" href="Employee_8cpp_source.html">Employee.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Employee_8cpp_source.html#l00021">21</a> of file <a class="el" href="Employee_8cpp_source.html">Employee.cpp</a>.</p>
 
 </div>
 </div>
@@ -413,7 +461,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the kind of component ("Employee"). </p>
+<p>Returns "Employee". </p>
+<dl class="section return"><dt>Returns</dt><dd>The kind of component. </dd></dl>
 
 <p>Implements <a class="el" href="classEmployeeComponent.html#aaa3f07aa88f8e0e9843dcda7771e8b52">EmployeeComponent</a>.</p>
 
@@ -447,6 +496,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the employee's name. </p>
+<dl class="section return"><dt>Returns</dt><dd>The name. </dd></dl>
 
 <p>Implements <a class="el" href="classEmployeeComponent.html#af8f99c31e5df2081551e87b2003ab2f7">EmployeeComponent</a>.</p>
 
@@ -478,18 +528,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Not supported: an <a class="el" href="classEmployee.html" title="The core employee: a named person who can be wrapped with decorators.">Employee</a> is always the innermost component and cannot wrap another. </p>
-<p>The component that is passed in is deleted.</p>
+<p>Not supported, so it just deletes the component it was given. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">component</td><td>The component that would be wrapped. It is deleted. </td></tr>
+    <tr><td class="paramname">component</td><td>The component to wrap (it gets deleted). </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Implements <a class="el" href="classEmployeeComponent.html#a109aab7e94d10555fbc7a156b76b64cc">EmployeeComponent</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Employee_8cpp_source.html#l00021">21</a> of file <a class="el" href="Employee_8cpp_source.html">Employee.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Employee_8cpp_source.html#l00025">25</a> of file <a class="el" href="Employee_8cpp_source.html">Employee.cpp</a>.</p>
 
 </div>
 </div>

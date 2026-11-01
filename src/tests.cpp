@@ -14,6 +14,7 @@
 #include "Employee.h"
 #include "Manager.h"
 #include "EmployeeCompetency.h"
+#include "CompetencyLevel.h"
 #include "Mediator.h"
 #include <iostream>
 #include <sstream>
@@ -100,10 +101,9 @@ TEST_CASE("Filesystem works correctly", "[filesystem]") {
 TEST_CASE("Chain: intern starts a unit and senior finishes it", "[chain]") {
 	ConcreteEmployeeBuilder builder;
 	EmployeeDirector director(&builder);
-	Team team(EmployeeProfession::registerProfession("coder"));
+	Team team("Coders", "coder");
 	team.addMember(director.makeIntern("Ian", "coder"));
 	WorkUnit unit("login screen", "coder");
-	unit.advanceState();
 
 	team.assignWork(&unit);
 	CHECK(unit.isOngoing());
@@ -182,13 +182,12 @@ TEST_CASE("Mediator: a node only notifies when it becomes completed", "[mediator
 	SECTION("earlier transitions do not notify") {
 		a.advanceState();
 		a.advanceState();
-		a.advanceState();
+		CHECK(a.isEscalated());
 		CHECK(spy.calls.empty());
 	}
 
 	SECTION("completing notifies once with the node's name") {
 		completeUnit(a);
-		a.advanceState();
 		REQUIRE(spy.calls.size() == 1);
 		CHECK(spy.calls[0].first == &a);
 		CHECK(spy.calls[0].second == "A");
@@ -236,14 +235,14 @@ TEST_CASE("Mediator: completions cascade through a dependency chain", "[mediator
 	CHECK(c.isReady());
 }
 
-TEST_CASE("WorkNode: a new node starts waiting with no parent or prerequisites", "[worknode]") {
+TEST_CASE("WorkNode: a new node starts ready with no parent or prerequisites", "[worknode]") {
 	WorkUnit unit("Unit", "coder");
 
 	CHECK(unit.getName() == "Unit");
-	CHECK(unit.getStateName() == "WaitingForPrerequisites");
+	CHECK(unit.getStateName() == "Ready");
 	CHECK(unit.getParent() == nullptr);
 	CHECK(unit.getPrerequisites().empty());
-	CHECK(unit.prerequisitesCompleted());
+	CHECK_FALSE(unit.isWaitingForPrerequisites());
 	CHECK(unit.getMaxRetries() == 3);
 	CHECK(unit.hasRetriesLeft());
 }
@@ -273,7 +272,6 @@ TEST_CASE("WorkNode: setState by name selects the matching state", "[worknode]")
 TEST_CASE("States: a unit moves through every state to Completed", "[state]") {
 	WorkUnit unit("Unit", "coder");
 
-	unit.advanceState();
 	CHECK(unit.isReady());
 	unit.advanceState();
 	CHECK(unit.isOngoing());
@@ -287,12 +285,12 @@ TEST_CASE("States: unmet prerequisites hold a node in WaitingForPrerequisites", 
 	WorkUnit unit("Unit", "coder");
 	unit.addPrerequisite("Other");
 
-	CHECK_FALSE(unit.prerequisitesCompleted());
+	CHECK(unit.isWaitingForPrerequisites());
 	unit.advanceState();
 	CHECK(unit.getStateName() == "WaitingForPrerequisites");
 
 	unit.update("Other");
-	CHECK(unit.prerequisitesCompleted());
+	CHECK_FALSE(unit.isWaitingForPrerequisites());
 	CHECK(unit.isReady());
 }
 
@@ -307,19 +305,21 @@ TEST_CASE("States: Completed, Cancelled and Failed do not change when advanced",
 	}
 }
 
-TEST_CASE("States: a project completes only when all of its children have", "[state]") {
+TEST_CASE("States: a project reports completion only when all of its children have", "[state]") {
 	Project* project = new Project(3, "Project");
 	WorkNode* first = new WorkUnit("First", "coder");
 	WorkNode* second = new WorkUnit("Second", "coder");
 	project->add(first);
 	project->add(second);
 
-	SECTION("the project completes when the last child completes") {
+	SECTION("allChildrenCompleted is true once the last child completes") {
+		CHECK_FALSE(project->allChildrenCompleted());
+
 		completeUnit(*first);
-		CHECK_FALSE(project->isCompleted());
+		CHECK_FALSE(project->allChildrenCompleted());
 
 		completeUnit(*second);
-		CHECK(project->isCompleted());
+		CHECK(project->allChildrenCompleted());
 	}
 
 	SECTION("a cancelled project is not completed by its children") {
@@ -335,15 +335,28 @@ TEST_CASE("States: a project completes only when all of its children have", "[st
 
 TEST_CASE("WorkNode: reset sends a node back to Ready and uses up a retry", "[worknode]") {
 	WorkUnit unit("Unit", "coder");
-	unit.setState("Failed");
 
-	for (int i = 0; i < 3; i++) {
-		CHECK(unit.hasRetriesLeft());
+	SECTION("only Ongoing or Escalated nodes are reset") {
 		unit.reset();
 		CHECK(unit.isReady());
+		CHECK(unit.hasRetriesLeft());
+
+		unit.setState("Failed");
+		unit.reset();
+		CHECK(unit.getStateName() == "Failed");
+		CHECK(unit.hasRetriesLeft());
 	}
 
-	CHECK_FALSE(unit.hasRetriesLeft());
+	SECTION("each reset uses up a retry until none are left") {
+		for (int i = 0; i < unit.getMaxRetries(); i++) {
+			unit.setState(i % 2 == 0 ? "Ongoing" : "Escalated");
+			CHECK(unit.hasRetriesLeft());
+			unit.reset();
+			CHECK(unit.isReady());
+		}
+
+		CHECK_FALSE(unit.hasRetriesLeft());
+	}
 }
 
 class SpyEmployeeMediator : public Mediator {
@@ -397,10 +410,10 @@ TEST_CASE("Employee: decorators report the wrapped employee's details", "[employ
 	CHECK(senior->getKind() == "Profession");
 	CHECK(senior->compareProfession("coder"));
 	CHECK_FALSE(senior->compareProfession("artist"));
-	CHECK(senior->compareCompetency(EmployeeCompetency::SENIOR));
-	CHECK(intern->compareCompetency(EmployeeCompetency::INTERN));
-	CHECK_FALSE(intern->compareCompetency(EmployeeCompetency::JUNIOR));
-	CHECK_FALSE(plain.compareCompetency(EmployeeCompetency::INTERN));
+	CHECK(senior->compareCompetency(CompetencyLevel::SENIOR));
+	CHECK(intern->compareCompetency(CompetencyLevel::INTERN));
+	CHECK_FALSE(intern->compareCompetency(CompetencyLevel::JUNIOR));
+	CHECK_FALSE(plain.compareCompetency(CompetencyLevel::INTERN));
 
 	delete intern;
 	delete senior;
@@ -436,7 +449,6 @@ TEST_CASE("Employee: handleWork only advances work the competency allows", "[emp
 	EmployeeComponent* intern = director.makeIntern("Ian", "coder");
 	EmployeeComponent* senior = director.makeSenior("Sam", "coder");
 	WorkUnit unit("Task", "coder");
-	unit.advanceState();
 
 	SECTION("an intern can start ready work") {
 		CHECK(quietHandleWork(*intern, &unit));
@@ -481,7 +493,7 @@ TEST_CASE("Employee: clone copies the whole decorated employee", "[employee]") {
 	CHECK(copy != senior);
 	CHECK(copy->getName() == "Sam");
 	CHECK(copy->compareProfession("coder"));
-	CHECK(copy->compareCompetency(EmployeeCompetency::SENIOR));
+	CHECK(copy->compareCompetency(CompetencyLevel::SENIOR));
 	CHECK(bossCopy->getKind() == "Manager");
 	CHECK(bossCopy->getName() == "Bea");
 
@@ -491,7 +503,7 @@ TEST_CASE("Employee: clone copies the whole decorated employee", "[employee]") {
 }
 
 TEST_CASE("Team: members are notified when a colleague does work", "[team]") {
-	Team team;
+	Team team("Team", "");
 	RecordingEmployee* a = new RecordingEmployee("A");
 	RecordingEmployee* b = new RecordingEmployee("B");
 	RecordingEmployee* c = new RecordingEmployee("C");
@@ -511,7 +523,7 @@ TEST_CASE("Team: members are notified when a colleague does work", "[team]") {
 TEST_CASE("Team: addMember checks the member's profession", "[team]") {
 	ConcreteEmployeeBuilder builder;
 	EmployeeDirector director(&builder);
-	Team team(EmployeeProfession::registerProfession("coder"));
+	Team team("Coders", "coder");
 
 	CHECK(team.getProfession() == "coder");
 
@@ -536,7 +548,7 @@ TEST_CASE("Team: addMember checks the member's profession", "[team]") {
 	}
 
 	SECTION("a team with no profession accepts anyone") {
-		Team open;
+		Team open("Open", "");
 		CHECK(open.addMember(new Employee("Pat")));
 	}
 }
@@ -544,28 +556,25 @@ TEST_CASE("Team: addMember checks the member's profession", "[team]") {
 TEST_CASE("Team: assignWork ignores work it cannot use", "[team]") {
 	ConcreteEmployeeBuilder builder;
 	EmployeeDirector director(&builder);
-	Team team(EmployeeProfession::registerProfession("coder"));
+	Team team("Coders", "coder");
 	team.addMember(director.makeSenior("Sam", "coder"));
 	EmployeeProfession::registerProfession("designer");
 
 	SECTION("work for another profession") {
 		WorkUnit unit("Logo", "designer");
-		unit.advanceState();
 		quietAssign(team, &unit);
 		CHECK(unit.isReady());
 	}
 
 	SECTION("work needing a profession nobody registered") {
 		WorkUnit unit("Moon", "astronaut");
-		unit.advanceState();
 		quietAssign(team, &unit);
 		CHECK(unit.isReady());
 	}
 
 	SECTION("a team with no members") {
-		Team empty;
+		Team empty("Empty", "");
 		WorkUnit unit("Task", "coder");
-		unit.advanceState();
 		quietAssign(empty, &unit);
 		CHECK(unit.isReady());
 	}
@@ -578,12 +587,11 @@ TEST_CASE("Team: assignWork ignores work it cannot use", "[team]") {
 TEST_CASE("Team: assignWork completes work or fails it after retries", "[team]") {
 	ConcreteEmployeeBuilder builder;
 	EmployeeDirector director(&builder);
-	Team team;
+	Team team("Team", "");
 
 	SECTION("a senior takes work from Ready to Completed") {
 		team.addMember(director.makeSenior("Sam", "coder"));
 		WorkUnit unit("Task", "coder");
-		unit.advanceState();
 
 		quietAssign(team, &unit);
 		CHECK(unit.isCompleted());
@@ -592,12 +600,13 @@ TEST_CASE("Team: assignWork completes work or fails it after retries", "[team]")
 	SECTION("work nobody can do is retried and then failed") {
 		team.addMember(new Employee("Eve"));
 		WorkUnit unit("Task");
-		unit.advanceState();
 
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < unit.getMaxRetries(); i++) {
+			unit.setState("Ongoing");
 			quietAssign(team, &unit);
 			CHECK(unit.isReady());
 		}
+		unit.setState("Ongoing");
 		quietAssign(team, &unit);
 		CHECK(unit.getStateName() == "Failed");
 	}
@@ -606,7 +615,7 @@ TEST_CASE("Team: assignWork completes work or fails it after retries", "[team]")
 TEST_CASE("Team: clone copies the profession and members", "[team]") {
 	ConcreteEmployeeBuilder builder;
 	EmployeeDirector director(&builder);
-	Team original(EmployeeProfession::registerProfession("coder"));
+	Team original("Coders", "coder");
 	original.addMember(director.makeSenior("Sam", "coder"));
 
 	Team* copy = dynamic_cast<Team*>(original.clone());
@@ -615,7 +624,6 @@ TEST_CASE("Team: clone copies the profession and members", "[team]") {
 	CHECK(copy->getProfession() == "coder");
 
 	WorkUnit unit("Task", "coder");
-	unit.advanceState();
 	quietAssign(*copy, &unit);
 	CHECK(unit.isCompleted());
 
@@ -633,7 +641,7 @@ std::string capturedDoWork(EmployeeComponent& employee, WorkUnit* unit) {
 TEST_CASE("Employee: getCore returns the innermost employee", "[employee]") {
 	Employee plain("Pat");
 	EmployeeProfession* profession = new EmployeeProfession("coder");
-	EmployeeCompetency* competency = new EmployeeCompetency("senior");
+	EmployeeCompetency* competency = new EmployeeCompetency(CompetencyLevel::SENIOR);
 	Employee* core = new Employee("Sam");
 	profession->wrap(competency);
 	profession->wrap(core);
@@ -649,7 +657,7 @@ TEST_CASE("Employee: getCore returns the innermost employee", "[employee]") {
 TEST_CASE("Team: a decorated member does not receive its own message", "[team]") {
 	ConcreteEmployeeBuilder builder;
 	EmployeeDirector director(&builder);
-	Team team;
+	Team team("Team", "");
 	EmployeeComponent* sam = director.makeSenior("Sam", "coder");
 	EmployeeComponent* ann = director.makeSenior("Ann", "coder");
 	team.addMember(sam);
@@ -755,10 +763,10 @@ TEST_CASE("Save/load: a company keeps departments, teams and decorated employees
 	Team* team = face.addTeam(sub, "Core Devs", "Developer");
 	Team* empty = face.addTeam(dept, "Nobody Yet", "Designer");
 	REQUIRE(team != nullptr);
-	REQUIRE(face.addEmployee(team, "Ann", "Developer", "senior", false));
-	REQUIRE(face.addEmployee(team, "Bob", "Developer", "intern", true));
-	REQUIRE(face.setCompetency(team, 1, "junior"));
-	CHECK_FALSE(face.addEmployee(team, "Wrong", "Designer", "intern", false));
+	REQUIRE(face.addEmployee(team, "Ann", "Developer", "Senior", false));
+	REQUIRE(face.addEmployee(team, "Bob", "Developer", "Intern", true));
+	REQUIRE(face.setCompetency(team, 1, "Junior"));
+	CHECK_FALSE(face.addEmployee(team, "Wrong", "Designer", "Intern", false));
 	(void)empty;
 
 	std::string path = tempSavePath("tividy_test_company.txt");
@@ -782,13 +790,13 @@ TEST_CASE("Save/load: a company keeps departments, teams and decorated employees
 	EmployeeComponent* ann = teamCopy->getMember(0);
 	CHECK(ann->getName() == "Ann");
 	CHECK(ann->getKind() == "Profession");
-	CHECK(ann->compareCompetency(EmployeeCompetency::SENIOR));
+	CHECK(ann->compareCompetency(CompetencyLevel::SENIOR));
 	CHECK(ann->getCore()->getKind() == "Employee");
 
 	EmployeeComponent* bob = teamCopy->getMember(1);
 	CHECK(bob->getName() == "Bob");
 	CHECK(bob->getCore()->getKind() == "Manager");
-	CHECK(bob->compareCompetency(EmployeeCompetency::JUNIOR));
+	CHECK(bob->compareCompetency(CompetencyLevel::JUNIOR));
 
 	CompanyNode* emptyCopy = deptCopy->getChild(1);
 	REQUIRE(dynamic_cast<Team*>(emptyCopy) != nullptr);
@@ -813,7 +821,7 @@ TEST_CASE("Save/load: wrong or missing files are rejected and change nothing", "
 TEST_CASE("Save/load: work can be assigned to a team after loading", "[saveload]") {
 	ApplicationInterface face;
 	Team* team = face.addTeam(nullptr, "Devs", "Developer");
-	face.addEmployee(team, "Sam", "Developer", "senior", false);
+	face.addEmployee(team, "Sam", "Developer", "Senior", false);
 	WorkUnit* unit = face.addSubcomponent(nullptr, "Ship it", "Developer");
 	REQUIRE(unit != nullptr);
 
@@ -869,9 +877,9 @@ TEST_CASE("Workflow: removing a node removes prerequisites on it and keeps names
 TEST_CASE("Company: members can be removed and the chain still works", "[company]") {
 	ApplicationInterface face;
 	Team* team = face.addTeam(nullptr, "Devs", "Developer");
-	REQUIRE(face.addEmployee(team, "Intern", "Developer", "intern", false));
-	REQUIRE(face.addEmployee(team, "Mid", "Developer", "junior", false));
-	REQUIRE(face.addEmployee(team, "Boss", "Developer", "senior", true));
+	REQUIRE(face.addEmployee(team, "Intern", "Developer", "Intern", false));
+	REQUIRE(face.addEmployee(team, "Mid", "Developer", "Junior", false));
+	REQUIRE(face.addEmployee(team, "Boss", "Developer", "Senior", true));
 	REQUIRE(team->removeMember(1));
 	CHECK(team->getMemberCount() == 2);
 
@@ -890,7 +898,6 @@ TEST_CASE("WorkIterator: can walk every node, not just ready units", "[iterator]
 	WorkUnit* a = face.addSubcomponent(phase, "A", "");
 	WorkUnit* b = face.addSubcomponent(phase, "B", "");
 	REQUIRE(face.addPrerequisite(b, "A"));
-	a->advanceState();
 
 	int all = 0;
 	WorkIterator everything(face.getWorkflow(), false);
@@ -911,16 +918,16 @@ TEST_CASE("WorkIterator: can walk every node, not just ready units", "[iterator]
 TEST_CASE("Company: setCompetency replaces the level and keeps name, role and profession", "[company]"){
 	ApplicationInterface face;
 	Team* team = face.addTeam(nullptr, "Devs", "Developer");
-	REQUIRE(face.addEmployee(team, "Boss", "Developer", "senior", true));
-	REQUIRE(face.setCompetency(team, 0, "intern"));
+	REQUIRE(face.addEmployee(team, "Boss", "Developer", "Senior", true));
+	REQUIRE(face.setCompetency(team, 0, "Intern"));
 	EmployeeComponent* boss = team->getMember(0);
 	CHECK(team->getMemberCount() == 1);
 	CHECK(boss->getName() == "Boss");
 	CHECK(boss->getCore()->getKind() == "Manager");
 	CHECK(boss->compareProfession("Developer"));
-	CHECK(boss->compareCompetency(EmployeeCompetency::INTERN));
-	CHECK_FALSE(boss->compareCompetency(EmployeeCompetency::JUNIOR));
-	CHECK_FALSE(face.setCompetency(team, 5, "senior"));
+	CHECK(boss->compareCompetency(CompetencyLevel::INTERN));
+	CHECK_FALSE(boss->compareCompetency(CompetencyLevel::JUNIOR));
+	CHECK_FALSE(face.setCompetency(team, 5, "Senior"));
 	CHECK_FALSE(face.setCompetency(team, 0, "wizard"));
 }
 
@@ -933,10 +940,9 @@ bool quietStep(Team& team, WorkUnit* unit) {
 TEST_CASE("Team: stepWork moves work on one state at a time", "[team][step]") {
 	ConcreteEmployeeBuilder builder;
 	EmployeeDirector director(&builder);
-	Team team;
+	Team team("Team", "");
 	team.addMember(director.makeSenior("Sam", "coder"));
 	WorkUnit unit("Task", "coder");
-	unit.advanceState();
 
 	CHECK(quietStep(team, &unit));
 	CHECK(unit.isOngoing());
@@ -950,10 +956,9 @@ TEST_CASE("Team: stepWork moves work on one state at a time", "[team][step]") {
 TEST_CASE("Team: stepWork stays put when nobody can take the next step", "[team][step]") {
 	ConcreteEmployeeBuilder builder;
 	EmployeeDirector director(&builder);
-	Team team;
+	Team team("Team", "");
 	team.addMember(director.makeIntern("Ian", "coder"));
 	WorkUnit unit("Task", "coder");
-	unit.advanceState();
 
 	CHECK(quietStep(team, &unit));
 	CHECK(unit.isOngoing());
@@ -965,15 +970,16 @@ TEST_CASE("Team: stepWork stays put when nobody can take the next step", "[team]
 TEST_CASE("Workflow: assigned work can be stepped and cancelled", "[workflow][step]") {
 	ApplicationInterface face;
 	Team* team = face.addTeam(nullptr, "Devs", "Developer");
-	REQUIRE(face.addEmployee(team, "Sam", "Developer", "senior", false));
+	REQUIRE(face.addEmployee(team, "Sam", "Developer", "Senior", false));
 	WorkUnit* unit = face.addSubcomponent(nullptr, "Task", "Developer");
 	WorkUnit* other = face.addSubcomponent(nullptr, "Other", "Developer");
 	REQUIRE(unit != nullptr);
 	REQUIRE(other != nullptr);
 
 	SECTION("stepping needs an assignment") {
+		REQUIRE(face.addPrerequisite(unit, "Other"));
 		CHECK(face.stepWork(unit).find("still waiting") != std::string::npos);
-		unit->advanceState();
+		REQUIRE(face.removePrerequisite(unit, "Other"));
 		CHECK(face.stepWork(unit).find("not assigned") != std::string::npos);
 		CHECK(unit->isReady());
 	}
@@ -1001,7 +1007,7 @@ TEST_CASE("Workflow: assigned work can be stepped and cancelled", "[workflow][st
 
 	SECTION("work nobody can finish is retried and then failed") {
 		Team* interns = face.addTeam(nullptr, "Interns", "Developer");
-		REQUIRE(face.addEmployee(interns, "Ian", "Developer", "intern", false));
+		REQUIRE(face.addEmployee(interns, "Ian", "Developer", "Intern", false));
 		face.assignOnly(unit, interns);
 		QuietOutput quiet;
 		for (int attempt = 0; attempt < unit->getMaxRetries(); attempt++) {
@@ -1019,7 +1025,7 @@ TEST_CASE("Workflow: assigned work can be stepped and cancelled", "[workflow][st
 
 	SECTION("work nobody can finish can be cancelled instead") {
 		Team* interns = face.addTeam(nullptr, "Interns", "Developer");
-		REQUIRE(face.addEmployee(interns, "Ian", "Developer", "intern", false));
+		REQUIRE(face.addEmployee(interns, "Ian", "Developer", "Intern", false));
 		face.assignOnly(unit, interns);
 		QuietOutput quiet;
 		face.stepWork(unit);
@@ -1039,10 +1045,9 @@ TEST_CASE("Workflow: assigned work can be stepped and cancelled", "[workflow][st
 TEST_CASE("Team: retryOrFail sends work back to Ready until retries run out", "[team][step]") {
 	ConcreteEmployeeBuilder builder;
 	EmployeeDirector director(&builder);
-	Team team;
+	Team team("Team", "");
 	team.addMember(director.makeIntern("Ian", "coder"));
 	WorkUnit unit("Task", "coder");
-	unit.advanceState();
 	REQUIRE(quietStep(team, &unit));
 	REQUIRE(unit.isOngoing());
 
@@ -1060,13 +1065,12 @@ TEST_CASE("Team: retryOrFail sends work back to Ready until retries run out", "[
 TEST_CASE("Workflow: work can be forced to fail and forced into a state", "[workflow][step]") {
 	ApplicationInterface face;
 	Team* team = face.addTeam(nullptr, "Devs", "Developer");
-	REQUIRE(face.addEmployee(team, "Sam", "Developer", "senior", false));
+	REQUIRE(face.addEmployee(team, "Sam", "Developer", "Senior", false));
 	WorkUnit* unit = face.addSubcomponent(nullptr, "Task", "Developer");
 	WorkUnit* next = face.addSubcomponent(nullptr, "Next", "Developer");
 	REQUIRE(face.addPrerequisite(next, "Task"));
 
 	SECTION("forcing a fail needs an assignment") {
-		unit->advanceState();
 		CHECK(face.failWork(unit).find("not assigned") != std::string::npos);
 		CHECK(unit->isReady());
 	}
@@ -1074,11 +1078,13 @@ TEST_CASE("Workflow: work can be forced to fail and forced into a state", "[work
 	SECTION("a forced fail retries until the retries run out") {
 		face.assignOnly(unit, team);
 		QuietOutput quiet;
-		face.stepWork(unit);
 		for (int attempt = 0; attempt < unit->getMaxRetries(); attempt++) {
+			face.stepWork(unit);
+			CHECK(unit->isOngoing());
 			CHECK(face.failWork(unit).find("another try") != std::string::npos);
 			CHECK(unit->isReady());
 		}
+		face.stepWork(unit);
 		CHECK(face.failWork(unit).find("no retries left") != std::string::npos);
 		CHECK(unit->getStateName() == "Failed");
 		CHECK(face.failWork(unit).find("already Failed") != std::string::npos);
@@ -1101,7 +1107,7 @@ TEST_CASE("Workflow: work can be forced to fail and forced into a state", "[work
 
 	SECTION("bad input is refused") {
 		CHECK(face.forceState(unit, "Sleeping").find("not a state") != std::string::npos);
-		CHECK(unit->getStateName() == "WaitingForPrerequisites");
+		CHECK(unit->isReady());
 		CHECK_FALSE(face.forceState(nullptr, "Ready").empty());
 		CHECK_FALSE(face.failWork(nullptr).empty());
 	}

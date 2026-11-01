@@ -72,14 +72,12 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classApplicationInterface-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ApplicationInterface Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Facade over the TIVIDY engine: owns the company and workflow trees.  
- <a href="classApplicationInterface.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -87,85 +85,157 @@ Collaboration diagram for ApplicationInterface:</div>
 <div class="dyncontent">
 <div class="center"><img src="classApplicationInterface__coll__graph.png" border="0" usemap="#aApplicationInterface_coll__map" alt="Collaboration graph"/></div>
 <map name="aApplicationInterface_coll__map" id="aApplicationInterface_coll__map">
-<area shape="rect" title="Facade over the TIVIDY engine: owns the company and workflow trees." alt="" coords="509,1049,691,1335"/>
-<area shape="rect" href="classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries." alt="" coords="379,641,559,987"/>
-<area shape="poly" title=" " alt="" coords="532,986,548,1033,543,1034,527,988"/>
-<area shape="poly" title=" " alt="" coords="561,777,579,790,586,814,583,830,576,842,571,839,578,828,581,814,575,793,558,781"/>
-<area shape="rect" href="classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="5,323,133,409"/>
-<area shape="poly" title=" " alt="" coords="82,422,106,499,124,540,147,577,200,635,260,687,322,730,380,765,378,770,319,735,257,691,196,639,143,580,119,542,101,501,77,423"/>
-<area shape="rect" href="classEmployeeComponent.html" title="Abstract base of every employee and every employee decorator." alt="" coords="157,153,347,579"/>
-<area shape="poly" title=" " alt="" coords="349,560,381,625,376,628,344,563"/>
-<area shape="poly" title=" " alt="" coords="349,323,366,338,373,366,370,385,363,399,358,396,365,383,368,366,362,341,345,327"/>
-<area shape="rect" href="classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="178,5,326,91"/>
-<area shape="poly" title=" " alt="" coords="255,91,255,137,249,137,249,91"/>
-<area shape="rect" href="classWorkMediator.html" title="Abstract mediator that lets work nodes communicate without knowing each other." alt="" coords="469,333,617,399"/>
-<area shape="poly" title=" " alt="" coords="540,399,503,626,498,625,535,399"/>
-<area shape="rect" href="classWorkState.html" title="Abstract state of a work node." alt="" coords="641,303,759,429"/>
-<area shape="poly" title=" " alt="" coords="686,430,663,503,630,580,602,631,571,681,566,678,598,629,626,578,658,501,681,428"/>
-<area shape="rect" href="classCompanyNode.html" title="Common interface for departments and teams in the company structure." alt="" coords="659,741,805,887"/>
-<area shape="poly" title=" " alt="" coords="709,888,658,1034,653,1033,704,886"/>
+<area shape="rect" title=" " alt="" coords="495,1140,664,1625"/>
+<area shape="rect" href="classWorkNode.html" title=" " alt="" coords="335,752,515,1077"/>
+<area shape="poly" title=" " alt="" coords="481,1077,496,1124,491,1125,476,1078"/>
+<area shape="poly" title=" " alt="" coords="517,879,534,892,541,915,539,930,531,941,527,938,534,928,536,915,530,895,513,884"/>
+<area shape="rect" href="classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="178,283,306,369"/>
+<area shape="poly" title=" " alt="" coords="262,381,377,751,372,752,257,383"/>
+<area shape="rect" href="classEmployeeComponent.html" title=" " alt="" coords="330,153,519,499"/>
+<area shape="poly" title=" " alt="" coords="427,499,427,735,422,735,422,499"/>
+<area shape="poly" title=" " alt="" coords="521,289,539,303,546,326,543,342,536,353,531,350,538,340,541,326,535,306,518,294"/>
+<area shape="rect" href="classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="351,5,499,91"/>
+<area shape="poly" title=" " alt="" coords="427,91,427,137,422,137,422,91"/>
+<area shape="rect" href="classWorkMediator.html" title="Abstract mediator that lets work nodes communicate without knowing each other." alt="" coords="5,293,153,359"/>
+<area shape="poly" title=" " alt="" coords="89,358,107,428,138,523,180,627,206,678,235,726,325,815,321,819,231,730,201,681,175,629,133,525,102,430,84,360"/>
+<area shape="rect" href="classConcreteWorkMediator.html" title="Passes the completion of one work node on to all the others, which releases nodes that wait on it." alt="" coords="81,882,243,947"/>
+<area shape="poly" title=" " alt="" coords="84,372,95,530,105,628,119,728,137,811,155,881,150,882,132,812,114,728,100,629,90,530,79,372"/>
+<area shape="rect" href="classWorkState.html" title="Abstract state of a work node." alt="" coords="641,263,758,389"/>
+<area shape="poly" title=" " alt="" coords="678,390,631,500,517,738,512,736,626,498,673,388"/>
+<area shape="rect" title=" " alt="" coords="781,15,831,81"/>
+<area shape="poly" title=" " alt="" coords="808,81,797,294,787,413,773,499,755,570,738,626,711,676,662,730,647,740,633,744,618,747,602,754,565,780,529,810,526,806,562,776,599,750,617,742,631,739,645,735,659,726,706,673,733,624,750,569,767,498,781,412,792,294,802,81"/>
+<area shape="poly" title=" " alt="" coords="782,70,761,91,743,116,729,148,718,181,706,248,701,247,713,180,724,146,738,113,757,87,779,66"/>
+<area shape="rect" href="classCompanyNode.html" title=" " alt="" coords="827,523,972,728"/>
+<area shape="poly" title=" " alt="" coords="831,80,851,114,867,153,889,243,901,337,907,426,907,506,902,506,901,427,896,337,883,244,862,154,846,116,826,82"/>
+<area shape="poly" title=" " alt="" coords="828,727,823,730,799,740,775,743,732,737,711,733,692,733,673,739,654,753,643,793,630,880,604,1124,599,1123,625,880,637,792,649,751,670,734,691,728,712,728,732,731,775,738,797,735,821,726,825,723"/>
+<area shape="rect" href="classFileSystem.html" title=" " alt="" coords="763,762,918,1067"/>
+<area shape="poly" title=" " alt="" coords="766,1055,674,1218,670,1215,761,1052"/>
+<area shape="poly" title=" " alt="" coords="192,946,486,1273,482,1277,188,949"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a98020f2bece28133d5fe7f223a06c329" id="r_a98020f2bece28133d5fe7f223a06c329"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a98020f2bece28133d5fe7f223a06c329">ApplicationInterface</a> ()</td></tr>
-<tr class="memdesc:a98020f2bece28133d5fe7f223a06c329"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an interface with no company and no workflow loaded.  <br /></td></tr>
+<tr class="memdesc:a98020f2bece28133d5fe7f223a06c329"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts out empty, with no company or workflow loaded.  <br /></td></tr>
 <tr class="separator:a98020f2bece28133d5fe7f223a06c329"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a754b13c5efca9d1a58496921088ff198" id="r_a754b13c5efca9d1a58496921088ff198"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a754b13c5efca9d1a58496921088ff198">createProject</a> ()</td></tr>
-<tr class="memdesc:a754b13c5efca9d1a58496921088ff198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented yet: always throws.  <br /></td></tr>
-<tr class="separator:a754b13c5efca9d1a58496921088ff198"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f0db4135033082950ee7da68be682a3" id="r_a2f0db4135033082950ee7da68be682a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a2f0db4135033082950ee7da68be682a3">addSubcomponent</a> ()</td></tr>
-<tr class="memdesc:a2f0db4135033082950ee7da68be682a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented yet: always throws.  <br /></td></tr>
-<tr class="separator:a2f0db4135033082950ee7da68be682a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43f814b3d9e71685c846a22f8217439a" id="r_a43f814b3d9e71685c846a22f8217439a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a43f814b3d9e71685c846a22f8217439a">addDepartment</a> ()</td></tr>
-<tr class="memdesc:a43f814b3d9e71685c846a22f8217439a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented yet: always throws.  <br /></td></tr>
-<tr class="separator:a43f814b3d9e71685c846a22f8217439a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fa19b3ca0305e3786983afbbad2f76b" id="r_a8fa19b3ca0305e3786983afbbad2f76b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a8fa19b3ca0305e3786983afbbad2f76b">addEmployee</a> ()</td></tr>
-<tr class="memdesc:a8fa19b3ca0305e3786983afbbad2f76b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented yet: always throws.  <br /></td></tr>
-<tr class="separator:a8fa19b3ca0305e3786983afbbad2f76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad35b3b682d94b226fc3e9aaa56a8cac9" id="r_ad35b3b682d94b226fc3e9aaa56a8cac9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ad35b3b682d94b226fc3e9aaa56a8cac9">createScenarioA</a> ()</td></tr>
-<tr class="memdesc:ad35b3b682d94b226fc3e9aaa56a8cac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the first demo scenario (game studio) and makes it the current workflow and company.  <br /></td></tr>
-<tr class="separator:ad35b3b682d94b226fc3e9aaa56a8cac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbd7f5498b6bcc640359d85a52f0ccf2" id="r_abbd7f5498b6bcc640359d85a52f0ccf2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#abbd7f5498b6bcc640359d85a52f0ccf2">createScenarioB</a> ()</td></tr>
-<tr class="memdesc:abbd7f5498b6bcc640359d85a52f0ccf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the second demo scenario (house construction) and makes it the current workflow and company.  <br /></td></tr>
-<tr class="separator:abbd7f5498b6bcc640359d85a52f0ccf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3a8e41bca36da5bf4da4958c585f292" id="r_af3a8e41bca36da5bf4da4958c585f292"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#af3a8e41bca36da5bf4da4958c585f292">setWorkflow</a> (<a class="el" href="classWorkNode.html">WorkNode</a> *root)</td></tr>
-<tr class="memdesc:af3a8e41bca36da5bf4da4958c585f292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the current workflow.  <br /></td></tr>
+<tr class="memdesc:af3a8e41bca36da5bf4da4958c585f292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes root the current workflow and clears any assignments.  <br /></td></tr>
 <tr class="separator:af3a8e41bca36da5bf4da4958c585f292"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b5602a137f6e93c9c4bdbe9c51b5091" id="r_a8b5602a137f6e93c9c4bdbe9c51b5091"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a8b5602a137f6e93c9c4bdbe9c51b5091">setCompany</a> (<a class="el" href="classCompanyNode.html">CompanyNode</a> *root)</td></tr>
-<tr class="memdesc:a8b5602a137f6e93c9c4bdbe9c51b5091"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the current company.  <br /></td></tr>
+<tr class="memdesc:a8b5602a137f6e93c9c4bdbe9c51b5091"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes root the current company.  <br /></td></tr>
 <tr class="separator:a8b5602a137f6e93c9c4bdbe9c51b5091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad35b3b682d94b226fc3e9aaa56a8cac9" id="r_ad35b3b682d94b226fc3e9aaa56a8cac9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ad35b3b682d94b226fc3e9aaa56a8cac9">createScenarioA</a> ()</td></tr>
+<tr class="memdesc:ad35b3b682d94b226fc3e9aaa56a8cac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the game studio demo (the Fortnite project and its company).  <br /></td></tr>
+<tr class="separator:ad35b3b682d94b226fc3e9aaa56a8cac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbd7f5498b6bcc640359d85a52f0ccf2" id="r_abbd7f5498b6bcc640359d85a52f0ccf2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#abbd7f5498b6bcc640359d85a52f0ccf2">createScenarioB</a> ()</td></tr>
+<tr class="memdesc:abbd7f5498b6bcc640359d85a52f0ccf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the house building demo (the House project and its company).  <br /></td></tr>
+<tr class="separator:abbd7f5498b6bcc640359d85a52f0ccf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af81bd7c11c6534062b548be7595ca19b" id="r_af81bd7c11c6534062b548be7595ca19b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMemento.html">Memento</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#af81bd7c11c6534062b548be7595ca19b">createMemento</a> (<a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049">MementoType</a> type)</td></tr>
-<tr class="memdesc:af81bd7c11c6534062b548be7595ca19b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Captures a snapshot of the company or the workflow.  <br /></td></tr>
+<tr class="memdesc:af81bd7c11c6534062b548be7595ca19b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a deep-copy snapshot of the company or workflow, or nullptr if there is none.  <br /></td></tr>
 <tr class="separator:af81bd7c11c6534062b548be7595ca19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a097972e982c1dc78683f885044bfc516" id="r_a097972e982c1dc78683f885044bfc516"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a097972e982c1dc78683f885044bfc516">setMemento</a> (<a class="el" href="classMemento.html">Memento</a> *memento)</td></tr>
-<tr class="memdesc:a097972e982c1dc78683f885044bfc516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restores the company or the workflow from a snapshot.  <br /></td></tr>
+<tr class="memdesc:a097972e982c1dc78683f885044bfc516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restores the company or workflow from a memento; null mementos are ignored.  <br /></td></tr>
 <tr class="separator:a097972e982c1dc78683f885044bfc516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89378d020dd020bdbcdc86ca3f030b70" id="r_a89378d020dd020bdbcdc86ca3f030b70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a89378d020dd020bdbcdc86ca3f030b70">saveToFile</a> (<a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049">MementoType</a> type, const std::string &amp;path)</td></tr>
+<tr class="separator:a89378d020dd020bdbcdc86ca3f030b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a373ed01315724c04c996df96d30368ba" id="r_a373ed01315724c04c996df96d30368ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a373ed01315724c04c996df96d30368ba">loadFromFile</a> (<a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049">MementoType</a> type, const std::string &amp;path)</td></tr>
+<tr class="separator:a373ed01315724c04c996df96d30368ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33457e3bc8f17e0a7be3607b9d96593c" id="r_a33457e3bc8f17e0a7be3607b9d96593c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a33457e3bc8f17e0a7be3607b9d96593c">isLoaded</a> (<a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049">MementoType</a> type) const</td></tr>
+<tr class="separator:a33457e3bc8f17e0a7be3607b9d96593c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae577a70b3595b8d3135e95519375e466" id="r_ae577a70b3595b8d3135e95519375e466"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCompanyNode.html">CompanyNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ae577a70b3595b8d3135e95519375e466">getCompany</a> ()</td></tr>
+<tr class="separator:ae577a70b3595b8d3135e95519375e466"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49dca1c8e0f020efb16106652d8a5856" id="r_a49dca1c8e0f020efb16106652d8a5856"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDepartment.html">Department</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a49dca1c8e0f020efb16106652d8a5856">addDepartment</a> (<a class="el" href="classCompanyNode.html">CompanyNode</a> *parent, const std::string &amp;name)</td></tr>
+<tr class="separator:a49dca1c8e0f020efb16106652d8a5856"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f2ca416183214e97fb189b3923dab00" id="r_a4f2ca416183214e97fb189b3923dab00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTeam.html">Team</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a4f2ca416183214e97fb189b3923dab00">addTeam</a> (<a class="el" href="classCompanyNode.html">CompanyNode</a> *parent, const std::string &amp;name, const std::string &amp;profession)</td></tr>
+<tr class="separator:a4f2ca416183214e97fb189b3923dab00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9690f6751d2c8bae7fe995595291abe" id="r_ac9690f6751d2c8bae7fe995595291abe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ac9690f6751d2c8bae7fe995595291abe">addEmployee</a> (<a class="el" href="classTeam.html">Team</a> *team, const std::string &amp;name, const std::string &amp;profession, const std::string &amp;competency, bool isManager)</td></tr>
+<tr class="separator:ac9690f6751d2c8bae7fe995595291abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a950aa4c158859348fedde221c5f8b5f9" id="r_a950aa4c158859348fedde221c5f8b5f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a950aa4c158859348fedde221c5f8b5f9">setCompetency</a> (<a class="el" href="classTeam.html">Team</a> *team, int memberIndex, const std::string &amp;competency)</td></tr>
+<tr class="separator:a950aa4c158859348fedde221c5f8b5f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26b870a83cc1efe1efbcad8c79d91e8d" id="r_a26b870a83cc1efe1efbcad8c79d91e8d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classTeam.html">Team</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a26b870a83cc1efe1efbcad8c79d91e8d">getTeams</a> (const std::string &amp;profession=&quot;&quot;)</td></tr>
+<tr class="separator:a26b870a83cc1efe1efbcad8c79d91e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6917ee0000385ef3a78051d7cac44c1a" id="r_a6917ee0000385ef3a78051d7cac44c1a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a6917ee0000385ef3a78051d7cac44c1a">getProfessions</a> ()</td></tr>
+<tr class="separator:a6917ee0000385ef3a78051d7cac44c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace50c9c660f26695b353b280a091a428" id="r_ace50c9c660f26695b353b280a091a428"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWorkNode.html">WorkNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ace50c9c660f26695b353b280a091a428">getWorkflow</a> ()</td></tr>
+<tr class="separator:ace50c9c660f26695b353b280a091a428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a746ab9bcdf78d90d39c7c6854d017e0f" id="r_a746ab9bcdf78d90d39c7c6854d017e0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classProject.html">Project</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a746ab9bcdf78d90d39c7c6854d017e0f">createProject</a> (<a class="el" href="classProject.html">Project</a> *parent, const std::string &amp;name)</td></tr>
+<tr class="separator:a746ab9bcdf78d90d39c7c6854d017e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd21c5023586ac4ee563435dd181b112" id="r_acd21c5023586ac4ee563435dd181b112"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#acd21c5023586ac4ee563435dd181b112">addSubcomponent</a> (<a class="el" href="classProject.html">Project</a> *parent, const std::string &amp;name, const std::string &amp;profession)</td></tr>
+<tr class="separator:acd21c5023586ac4ee563435dd181b112"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa51662c39ba24f668d1935a842a1db26" id="r_aa51662c39ba24f668d1935a842a1db26"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#aa51662c39ba24f668d1935a842a1db26">renameWorkNode</a> (<a class="el" href="classWorkNode.html">WorkNode</a> *node, const std::string &amp;name)</td></tr>
+<tr class="separator:aa51662c39ba24f668d1935a842a1db26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ff4aa4a811fddc30a35dbf2b0dce9f3" id="r_a8ff4aa4a811fddc30a35dbf2b0dce9f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a8ff4aa4a811fddc30a35dbf2b0dce9f3">removeWorkNode</a> (<a class="el" href="classWorkNode.html">WorkNode</a> *node)</td></tr>
+<tr class="separator:a8ff4aa4a811fddc30a35dbf2b0dce9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac405ce1cddd130b147c77cf6ba802e02" id="r_ac405ce1cddd130b147c77cf6ba802e02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ac405ce1cddd130b147c77cf6ba802e02">addPrerequisite</a> (<a class="el" href="classWorkNode.html">WorkNode</a> *node, const std::string &amp;name)</td></tr>
+<tr class="separator:ac405ce1cddd130b147c77cf6ba802e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3d516fb0f8bb9167734ecb2f7cc70cd" id="r_ad3d516fb0f8bb9167734ecb2f7cc70cd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ad3d516fb0f8bb9167734ecb2f7cc70cd">removePrerequisite</a> (<a class="el" href="classWorkNode.html">WorkNode</a> *node, const std::string &amp;name)</td></tr>
+<tr class="separator:ad3d516fb0f8bb9167734ecb2f7cc70cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b83269fe3d712e30fec351286b18fe3" id="r_a9b83269fe3d712e30fec351286b18fe3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classWorkNode.html">WorkNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a9b83269fe3d712e30fec351286b18fe3">getWorkNodes</a> ()</td></tr>
+<tr class="separator:a9b83269fe3d712e30fec351286b18fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab7d08306d65d15a02a2eba5eef61cc3" id="r_aab7d08306d65d15a02a2eba5eef61cc3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classWorkUnit.html">WorkUnit</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#aab7d08306d65d15a02a2eba5eef61cc3">getWorkUnits</a> ()</td></tr>
+<tr class="separator:aab7d08306d65d15a02a2eba5eef61cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c21e4d07fe1dec0973d8f3b8857a109" id="r_a9c21e4d07fe1dec0973d8f3b8857a109"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a9c21e4d07fe1dec0973d8f3b8857a109">assignWork</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *unit, <a class="el" href="classTeam.html">Team</a> *team)</td></tr>
+<tr class="separator:a9c21e4d07fe1dec0973d8f3b8857a109"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0bbbd059ae56ac7fa5fb4f465475251" id="r_ad0bbbd059ae56ac7fa5fb4f465475251"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ad0bbbd059ae56ac7fa5fb4f465475251">assignOnly</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *unit, <a class="el" href="classTeam.html">Team</a> *team)</td></tr>
+<tr class="separator:ad0bbbd059ae56ac7fa5fb4f465475251"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86f9da7d62217dc79f17155fa2b42aef" id="r_a86f9da7d62217dc79f17155fa2b42aef"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a86f9da7d62217dc79f17155fa2b42aef">stepWork</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *unit)</td></tr>
+<tr class="separator:a86f9da7d62217dc79f17155fa2b42aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0cd55dffb687225e0e9b8ddcd39d8ad" id="r_ab0cd55dffb687225e0e9b8ddcd39d8ad"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ab0cd55dffb687225e0e9b8ddcd39d8ad">cancelWork</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *unit)</td></tr>
+<tr class="separator:ab0cd55dffb687225e0e9b8ddcd39d8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a2f4cffe9f8a1a4063f78f5fae9e749" id="r_a0a2f4cffe9f8a1a4063f78f5fae9e749"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a0a2f4cffe9f8a1a4063f78f5fae9e749">failWork</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *unit)</td></tr>
+<tr class="separator:a0a2f4cffe9f8a1a4063f78f5fae9e749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d0214a8414d1e135c47b412b0dd6b13" id="r_a2d0214a8414d1e135c47b412b0dd6b13"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a2d0214a8414d1e135c47b412b0dd6b13">forceState</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *unit, const std::string &amp;stateName)</td></tr>
+<tr class="separator:a2d0214a8414d1e135c47b412b0dd6b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab68443b6a96960e161fa15d4a3169c75" id="r_ab68443b6a96960e161fa15d4a3169c75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ab68443b6a96960e161fa15d4a3169c75">unassign</a> (const std::string &amp;unitName)</td></tr>
+<tr class="separator:ab68443b6a96960e161fa15d4a3169c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ef96a23bfc685d09139076288d54393" id="r_a8ef96a23bfc685d09139076288d54393"><td class="memItemLeft" align="right" valign="top">const std::map&lt; std::string, std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a8ef96a23bfc685d09139076288d54393">getAssignments</a> () const</td></tr>
+<tr class="separator:a8ef96a23bfc685d09139076288d54393"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb188e0baac345427f5286ca4d04e86c" id="r_afb188e0baac345427f5286ca4d04e86c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#afb188e0baac345427f5286ca4d04e86c">~ApplicationInterface</a> ()</td></tr>
-<tr class="memdesc:afb188e0baac345427f5286ca4d04e86c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the interface and deletes the company and the workflow.  <br /></td></tr>
+<tr class="memdesc:afb188e0baac345427f5286ca4d04e86c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the workflow and company trees.  <br /></td></tr>
 <tr class="separator:afb188e0baac345427f5286ca4d04e86c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ab8d28fa4689307d7a1eb8ff0a24b79e6" id="r_ab8d28fa4689307d7a1eb8ff0a24b79e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWorkNode.html">WorkNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ab8d28fa4689307d7a1eb8ff0a24b79e6">findWorkNode</a> (const std::string &amp;name)</td></tr>
+<tr class="separator:ab8d28fa4689307d7a1eb8ff0a24b79e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6d4f0e42686c5ac8b49de5a870d7d7c" id="r_ae6d4f0e42686c5ac8b49de5a870d7d7c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ae6d4f0e42686c5ac8b49de5a870d7d7c">dependsOn</a> (<a class="el" href="classWorkNode.html">WorkNode</a> *from, const std::string &amp;name, int depth)</td></tr>
+<tr class="separator:ae6d4f0e42686c5ac8b49de5a870d7d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b6e7e78a0d12790ce27e55cae4f7916" id="r_a2b6e7e78a0d12790ce27e55cae4f7916"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a2b6e7e78a0d12790ce27e55cae4f7916">refreshWorkflow</a> ()</td></tr>
+<tr class="separator:a2b6e7e78a0d12790ce27e55cae4f7916"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e2d622cc00ab2f4be34f8d327b5284f" id="r_a0e2d622cc00ab2f4be34f8d327b5284f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a0e2d622cc00ab2f4be34f8d327b5284f">checkAssignable</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *unit, <a class="el" href="classTeam.html">Team</a> *team)</td></tr>
+<tr class="separator:a0e2d622cc00ab2f4be34f8d327b5284f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63f52cbc969036c4ee82cd04b52ab396" id="r_a63f52cbc969036c4ee82cd04b52ab396"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a63f52cbc969036c4ee82cd04b52ab396">recordAssignment</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *unit, <a class="el" href="classTeam.html">Team</a> *team)</td></tr>
+<tr class="separator:a63f52cbc969036c4ee82cd04b52ab396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcdc4d786befca7192910655462c3ed3" id="r_abcdc4d786befca7192910655462c3ed3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTeam.html">Team</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#abcdc4d786befca7192910655462c3ed3">teamFor</a> (const std::string &amp;unitName)</td></tr>
+<tr class="separator:abcdc4d786befca7192910655462c3ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcdfc71c248ac70e9657afc9d84cbf9a" id="r_adcdfc71c248ac70e9657afc9d84cbf9a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#adcdfc71c248ac70e9657afc9d84cbf9a">checkSteppable</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *unit, <a class="el" href="classTeam.html">Team</a> *&amp;team)</td></tr>
+<tr class="separator:adcdfc71c248ac70e9657afc9d84cbf9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a652c3f11414bede8aab0317ec2ce6369" id="r_a652c3f11414bede8aab0317ec2ce6369"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a652c3f11414bede8aab0317ec2ce6369">retryOrFailText</a> (<a class="el" href="classWorkUnit.html">WorkUnit</a> *unit, <a class="el" href="classTeam.html">Team</a> *team, const std::string &amp;cause)</td></tr>
+<tr class="separator:a652c3f11414bede8aab0317ec2ce6369"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a08dce4c846e0a14647f1bb1822fa44ac" id="r_a08dce4c846e0a14647f1bb1822fa44ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWorkNode.html">WorkNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a08dce4c846e0a14647f1bb1822fa44ac">workflowRoot</a></td></tr>
-<tr class="memdesc:a08dce4c846e0a14647f1bb1822fa44ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Root of the work tree (project), or nullptr if none. Owned.  <br /></td></tr>
 <tr class="separator:a08dce4c846e0a14647f1bb1822fa44ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bd192edf4c720420323ead39b3a6610" id="r_a5bd192edf4c720420323ead39b3a6610"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCompanyNode.html">CompanyNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a5bd192edf4c720420323ead39b3a6610">companyRoot</a></td></tr>
-<tr class="memdesc:a5bd192edf4c720420323ead39b3a6610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Root of the company tree, or nullptr if none. Owned.  <br /></td></tr>
 <tr class="separator:a5bd192edf4c720420323ead39b3a6610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb64961c1539f964c0c684cea8bb3daf" id="r_acb64961c1539f964c0c684cea8bb3daf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFileSystem.html">FileSystem</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#acb64961c1539f964c0c684cea8bb3daf">fileSystem</a></td></tr>
+<tr class="separator:acb64961c1539f964c0c684cea8bb3daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54442d76c6d7d334c9bc3521322a56b3" id="r_a54442d76c6d7d334c9bc3521322a56b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConcreteWorkMediator.html">ConcreteWorkMediator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a54442d76c6d7d334c9bc3521322a56b3">mediator</a></td></tr>
+<tr class="separator:a54442d76c6d7d334c9bc3521322a56b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a513559f8303f831a20dd3ed9418516d8" id="r_a513559f8303f831a20dd3ed9418516d8"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a513559f8303f831a20dd3ed9418516d8">assignments</a></td></tr>
+<tr class="separator:a513559f8303f831a20dd3ed9418516d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae82a951e276ef7089d738dd88f515970" id="r_ae82a951e276ef7089d738dd88f515970"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="classTeam.html">Team</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#ae82a951e276ef7089d738dd88f515970">assignedTeams</a></td></tr>
+<tr class="separator:ae82a951e276ef7089d738dd88f515970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fea79e2f1e09a3abdb0937a979eeac5" id="r_a5fea79e2f1e09a3abdb0937a979eeac5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#a5fea79e2f1e09a3abdb0937a979eeac5">companyLoaded</a></td></tr>
+<tr class="separator:a5fea79e2f1e09a3abdb0937a979eeac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af544a97cf8c599a14e65a0003a46b045" id="r_af544a97cf8c599a14e65a0003a46b045"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classApplicationInterface.html#af544a97cf8c599a14e65a0003a46b045">workflowLoaded</a></td></tr>
+<tr class="separator:af544a97cf8c599a14e65a0003a46b045"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Facade over the TIVIDY engine: owns the company and workflow trees. </p>
-<p>Gives one entry point for the two demo scenarios, for replacing the company and the workflow, and for taking and restoring snapshots. The four functions that are meant to build a company and a workflow interactively (<a class="el" href="classApplicationInterface.html#a754b13c5efca9d1a58496921088ff198" title="Not implemented yet: always throws.">createProject()</a>, <a class="el" href="classApplicationInterface.html#a2f0db4135033082950ee7da68be682a3" title="Not implemented yet: always throws.">addSubcomponent()</a>, <a class="el" href="classApplicationInterface.html#a43f814b3d9e71685c846a22f8217439a" title="Not implemented yet: always throws.">addDepartment()</a> and <a class="el" href="classApplicationInterface.html#a8fa19b3ca0305e3786983afbbad2f76b" title="Not implemented yet: always throws.">addEmployee()</a>) are not implemented yet and throw.</p>
-<dl class="section user"><dt>Design patterns</dt><dd><ul>
-<li>Facade: the one entry point for the interface.</li>
-<li><a class="el" href="classMemento.html" title="A snapshot of the company tree or the work tree.">Memento</a> (Originator): creates and restores <a class="el" href="classMemento.html" title="A snapshot of the company tree or the work tree.">Memento</a> objects that hold a copy of the company or the workflow. <a class="el" href="classFileSystem.html" title="Stores mementos by name and saves them to, or loads them from, files.">FileSystem</a> is the caretaker.</li>
-</ul>
-</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classMemento.html" title="A snapshot of the company tree or the work tree.">Memento</a>, <a class="el" href="classFileSystem.html" title="Stores mementos by name and saves them to, or loads them from, files.">FileSystem</a>, <a class="el" href="classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries.">WorkNode</a>, <a class="el" href="classCompanyNode.html" title="Common interface for departments and teams in the company structure.">CompanyNode</a> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00031">31</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00019">19</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a98020f2bece28133d5fe7f223a06c329" name="a98020f2bece28133d5fe7f223a06c329"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a98020f2bece28133d5fe7f223a06c329">&#9670;&#160;</a></span>ApplicationInterface()</h2>
@@ -190,9 +260,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates an interface with no company and no workflow loaded. </p>
+<p>Starts out empty, with no company or workflow loaded. </p>
 
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00039">39</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00045">45</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
 
 </div>
 </div>
@@ -211,91 +281,346 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Destroys the interface and deletes the company and the workflow. </p>
+<p>Deletes the workflow and company trees. </p>
 
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00450">450</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l01034">1034</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a43f814b3d9e71685c846a22f8217439a" name="a43f814b3d9e71685c846a22f8217439a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43f814b3d9e71685c846a22f8217439a">&#9670;&#160;</a></span>addDepartment()</h2>
+<a id="a49dca1c8e0f020efb16106652d8a5856" name="a49dca1c8e0f020efb16106652d8a5856"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49dca1c8e0f020efb16106652d8a5856">&#9670;&#160;</a></span>addDepartment()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ApplicationInterface::addDepartment </td>
+          <td class="memname"><a class="el" href="classDepartment.html">Department</a> * ApplicationInterface::addDepartment </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classCompanyNode.html">CompanyNode</a> *&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Not implemented yet: always throws. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">const</td><td>char* The text "Not yet implemented". </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00027">27</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00543">543</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a8fa19b3ca0305e3786983afbbad2f76b" name="a8fa19b3ca0305e3786983afbbad2f76b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8fa19b3ca0305e3786983afbbad2f76b">&#9670;&#160;</a></span>addEmployee()</h2>
+<a id="ac9690f6751d2c8bae7fe995595291abe" name="ac9690f6751d2c8bae7fe995595291abe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9690f6751d2c8bae7fe995595291abe">&#9670;&#160;</a></span>addEmployee()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ApplicationInterface::addEmployee </td>
+          <td class="memname">bool ApplicationInterface::addEmployee </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classTeam.html">Team</a> *&#160;</td>
+          <td class="paramname"><em>team</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>profession</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>competency</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isManager</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Not implemented yet: always throws. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">const</td><td>char* The text "Not yet implemented". </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00032">32</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00572">572</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a2f0db4135033082950ee7da68be682a3" name="a2f0db4135033082950ee7da68be682a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f0db4135033082950ee7da68be682a3">&#9670;&#160;</a></span>addSubcomponent()</h2>
+<a id="ac405ce1cddd130b147c77cf6ba802e02" name="ac405ce1cddd130b147c77cf6ba802e02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac405ce1cddd130b147c77cf6ba802e02">&#9670;&#160;</a></span>addPrerequisite()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ApplicationInterface::addSubcomponent </td>
+          <td class="memname">bool ApplicationInterface::addPrerequisite </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classWorkNode.html">WorkNode</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00816">816</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="acd21c5023586ac4ee563435dd181b112" name="acd21c5023586ac4ee563435dd181b112"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd21c5023586ac4ee563435dd181b112">&#9670;&#160;</a></span>addSubcomponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classWorkUnit.html">WorkUnit</a> * ApplicationInterface::addSubcomponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classProject.html">Project</a> *&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>profession</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00706">706</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a4f2ca416183214e97fb189b3923dab00" name="a4f2ca416183214e97fb189b3923dab00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f2ca416183214e97fb189b3923dab00">&#9670;&#160;</a></span>addTeam()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTeam.html">Team</a> * ApplicationInterface::addTeam </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCompanyNode.html">CompanyNode</a> *&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>profession</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00557">557</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad0bbbd059ae56ac7fa5fb4f465475251" name="ad0bbbd059ae56ac7fa5fb4f465475251"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0bbbd059ae56ac7fa5fb4f465475251">&#9670;&#160;</a></span>assignOnly()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ApplicationInterface::assignOnly </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTeam.html">Team</a> *&#160;</td>
+          <td class="paramname"><em>team</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00917">917</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a9c21e4d07fe1dec0973d8f3b8857a109" name="a9c21e4d07fe1dec0973d8f3b8857a109"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c21e4d07fe1dec0973d8f3b8857a109">&#9670;&#160;</a></span>assignWork()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ApplicationInterface::assignWork </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTeam.html">Team</a> *&#160;</td>
+          <td class="paramname"><em>team</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00905">905</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ab0cd55dffb687225e0e9b8ddcd39d8ad" name="ab0cd55dffb687225e0e9b8ddcd39d8ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0cd55dffb687225e0e9b8ddcd39d8ad">&#9670;&#160;</a></span>cancelWork()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ApplicationInterface::cancelWork </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Not implemented yet: always throws. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">const</td><td>char* The text "Not yet implemented". </td></tr>
-  </table>
-  </dd>
-</dl>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l01012">1012</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00022">22</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+</div>
+</div>
+<a id="a0e2d622cc00ab2f4be34f8d327b5284f" name="a0e2d622cc00ab2f4be34f8d327b5284f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e2d622cc00ab2f4be34f8d327b5284f">&#9670;&#160;</a></span>checkAssignable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ApplicationInterface::checkAssignable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTeam.html">Team</a> *&#160;</td>
+          <td class="paramname"><em>team</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00860">860</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="adcdfc71c248ac70e9657afc9d84cbf9a" name="adcdfc71c248ac70e9657afc9d84cbf9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcdfc71c248ac70e9657afc9d84cbf9a">&#9670;&#160;</a></span>checkSteppable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ApplicationInterface::checkSteppable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTeam.html">Team</a> *&amp;&#160;</td>
+          <td class="paramname"><em>team</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00928">928</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -315,44 +640,46 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Captures a snapshot of the company or the workflow. </p>
-<p>The memento holds a copy made with clone() of the selected tree. A copy of the workflow keeps the names, retry limits, required professions and structure, but not the states or the prerequisites (see <a class="el" href="classWorkNode.html#a3b6150b2fd01c2905f4ee7aa2b4f1ffa" title="Makes a copy of this node.">WorkNode::clone()</a>).</p>
+<p>Takes a deep-copy snapshot of the company or workflow, or nullptr if there is none. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">type</td><td>Selects whether the company or the workflow is saved. </td></tr>
+    <tr><td class="paramname">type</td><td>Company or workflow. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A newly allocated <a class="el" href="classMemento.html" title="A snapshot of the company tree or the work tree.">Memento</a> (the caller owns it), or nullptr if that tree has not been set or the type is not recognised. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A new memento (caller owns it), or nullptr. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00421">421</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00438">438</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a754b13c5efca9d1a58496921088ff198" name="a754b13c5efca9d1a58496921088ff198"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a754b13c5efca9d1a58496921088ff198">&#9670;&#160;</a></span>createProject()</h2>
+<a id="a746ab9bcdf78d90d39c7c6854d017e0f" name="a746ab9bcdf78d90d39c7c6854d017e0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a746ab9bcdf78d90d39c7c6854d017e0f">&#9670;&#160;</a></span>createProject()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ApplicationInterface::createProject </td>
+          <td class="memname"><a class="el" href="classProject.html">Project</a> * ApplicationInterface::createProject </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classProject.html">Project</a> *&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Not implemented yet: always throws. </p>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">const</td><td>char* The text "Not yet implemented". </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00017">17</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00691">691</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -371,11 +698,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Builds the first demo scenario (game studio) and makes it the current workflow and company. </p>
-<p>The workflow is a project called "Fortnite" with the phases Preparation, Creation, Marketing, QATesting, Servers and Launch, linked by prerequisites. The company has development, business and operations departments and a management team, with an intern, a junior and a senior for each of the professions Coder, Artist, Marketing, HR, QA, IT and <a class="el" href="classManager.html" title="An employee with two extra operations: handling escalations and cancelling projects.">Manager</a>. The professions are registered.</p>
-<p>The new trees replace the current ones without deleting them, so call this on a new interface. All work nodes are left in <a class="el" href="classWaitingForPrerequisites.html" title="Concrete state: the work node waits for other work to be completed first.">WaitingForPrerequisites</a> and no work mediator is attached to them. </p>
+<p>Loads the game studio demo (the Fortnite project and its company). </p>
 
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00255">255</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00266">266</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -394,11 +719,534 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Builds the second demo scenario (house construction) and makes it the current workflow and company. </p>
-<p>The workflow is a project called "House" with the phases Design, Structure, Services, Inspection and Handover, linked by prerequisites. The company has design and construction departments, a <a class="el" href="classManager.html" title="An employee with two extra operations: handling escalations and cancelling projects.">Manager</a> team with one senior site manager, and an Inspector team (the municipal inspection). Every other team has an intern, a junior and a senior. The professions are Architect, Engineer, Bricklayer, Plumber, Electrician, <a class="el" href="classManager.html" title="An employee with two extra operations: handling escalations and cancelling projects.">Manager</a> and Inspector, registered if needed.</p>
-<p>The new trees replace the current ones without deleting them, so call this on a new interface. All work nodes are left in <a class="el" href="classWaitingForPrerequisites.html" title="Concrete state: the work node waits for other work to be completed first.">WaitingForPrerequisites</a> and no work mediator is attached to them. </p>
+<p>Loads the house building demo (the House project and its company). </p>
 
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00399">399</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00426">426</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ae6d4f0e42686c5ac8b49de5a870d7d7c" name="ae6d4f0e42686c5ac8b49de5a870d7d7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6d4f0e42686c5ac8b49de5a870d7d7c">&#9670;&#160;</a></span>dependsOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ApplicationInterface::dependsOn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkNode.html">WorkNode</a> *&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>depth</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00800">800</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a0a2f4cffe9f8a1a4063f78f5fae9e749" name="a0a2f4cffe9f8a1a4063f78f5fae9e749"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a2f4cffe9f8a1a4063f78f5fae9e749">&#9670;&#160;</a></span>failWork()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ApplicationInterface::failWork </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00974">974</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ab8d28fa4689307d7a1eb8ff0a24b79e6" name="ab8d28fa4689307d7a1eb8ff0a24b79e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8d28fa4689307d7a1eb8ff0a24b79e6">&#9670;&#160;</a></span>findWorkNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classWorkNode.html">WorkNode</a> * ApplicationInterface::findWorkNode </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00790">790</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a2d0214a8414d1e135c47b412b0dd6b13" name="a2d0214a8414d1e135c47b412b0dd6b13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d0214a8414d1e135c47b412b0dd6b13">&#9670;&#160;</a></span>forceState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ApplicationInterface::forceState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>stateName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00984">984</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8ef96a23bfc685d09139076288d54393" name="a8ef96a23bfc685d09139076288d54393"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ef96a23bfc685d09139076288d54393">&#9670;&#160;</a></span>getAssignments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::map&lt; std::string, std::string &gt; &amp; ApplicationInterface::getAssignments </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l01030">1030</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ae577a70b3595b8d3135e95519375e466" name="ae577a70b3595b8d3135e95519375e466"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae577a70b3595b8d3135e95519375e466">&#9670;&#160;</a></span>getCompany()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCompanyNode.html">CompanyNode</a> * ApplicationInterface::getCompany </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00534">534</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a6917ee0000385ef3a78051d7cac44c1a" name="a6917ee0000385ef3a78051d7cac44c1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6917ee0000385ef3a78051d7cac44c1a">&#9670;&#160;</a></span>getProfessions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; ApplicationInterface::getProfessions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00638">638</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a26b870a83cc1efe1efbcad8c79d91e8d" name="a26b870a83cc1efe1efbcad8c79d91e8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26b870a83cc1efe1efbcad8c79d91e8d">&#9670;&#160;</a></span>getTeams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classTeam.html">Team</a> * &gt; ApplicationInterface::getTeams </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>profession</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00628">628</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ace50c9c660f26695b353b280a091a428" name="ace50c9c660f26695b353b280a091a428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace50c9c660f26695b353b280a091a428">&#9670;&#160;</a></span>getWorkflow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classWorkNode.html">WorkNode</a> * ApplicationInterface::getWorkflow </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00650">650</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a9b83269fe3d712e30fec351286b18fe3" name="a9b83269fe3d712e30fec351286b18fe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b83269fe3d712e30fec351286b18fe3">&#9670;&#160;</a></span>getWorkNodes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classWorkNode.html">WorkNode</a> * &gt; ApplicationInterface::getWorkNodes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00659">659</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aab7d08306d65d15a02a2eba5eef61cc3" name="aab7d08306d65d15a02a2eba5eef61cc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab7d08306d65d15a02a2eba5eef61cc3">&#9670;&#160;</a></span>getWorkUnits()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classWorkUnit.html">WorkUnit</a> * &gt; ApplicationInterface::getWorkUnits </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00669">669</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a33457e3bc8f17e0a7be3607b9d96593c" name="a33457e3bc8f17e0a7be3607b9d96593c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33457e3bc8f17e0a7be3607b9d96593c">&#9670;&#160;</a></span>isLoaded()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ApplicationInterface::isLoaded </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049">MementoType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00523">523</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a373ed01315724c04c996df96d30368ba" name="a373ed01315724c04c996df96d30368ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a373ed01315724c04c996df96d30368ba">&#9670;&#160;</a></span>loadFromFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ApplicationInterface::loadFromFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049">MementoType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00503">503</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a63f52cbc969036c4ee82cd04b52ab396" name="a63f52cbc969036c4ee82cd04b52ab396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63f52cbc969036c4ee82cd04b52ab396">&#9670;&#160;</a></span>recordAssignment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ApplicationInterface::recordAssignment </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTeam.html">Team</a> *&#160;</td>
+          <td class="paramname"><em>team</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00885">885</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a2b6e7e78a0d12790ce27e55cae4f7916" name="a2b6e7e78a0d12790ce27e55cae4f7916"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b6e7e78a0d12790ce27e55cae4f7916">&#9670;&#160;</a></span>refreshWorkflow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ApplicationInterface::refreshWorkflow </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00681">681</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad3d516fb0f8bb9167734ecb2f7cc70cd" name="ad3d516fb0f8bb9167734ecb2f7cc70cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3d516fb0f8bb9167734ecb2f7cc70cd">&#9670;&#160;</a></span>removePrerequisite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ApplicationInterface::removePrerequisite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkNode.html">WorkNode</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00844">844</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8ff4aa4a811fddc30a35dbf2b0dce9f3" name="a8ff4aa4a811fddc30a35dbf2b0dce9f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ff4aa4a811fddc30a35dbf2b0dce9f3">&#9670;&#160;</a></span>removeWorkNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ApplicationInterface::removeWorkNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkNode.html">WorkNode</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00754">754</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aa51662c39ba24f668d1935a842a1db26" name="aa51662c39ba24f668d1935a842a1db26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa51662c39ba24f668d1935a842a1db26">&#9670;&#160;</a></span>renameWorkNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ApplicationInterface::renameWorkNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkNode.html">WorkNode</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00721">721</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a652c3f11414bede8aab0317ec2ce6369" name="a652c3f11414bede8aab0317ec2ce6369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a652c3f11414bede8aab0317ec2ce6369">&#9670;&#160;</a></span>retryOrFailText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ApplicationInterface::retryOrFailText </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classTeam.html">Team</a> *&#160;</td>
+          <td class="paramname"><em>team</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>cause</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00948">948</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a89378d020dd020bdbcdc86ca3f030b70" name="a89378d020dd020bdbcdc86ca3f030b70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89378d020dd020bdbcdc86ca3f030b70">&#9670;&#160;</a></span>saveToFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ApplicationInterface::saveToFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="MementoType_8h.html#a9e9e8f3dc9199e1b5035dd0337756049">MementoType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00492">492</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,16 +1266,51 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Replaces the current company. </p>
-<p>The old company is deleted first, unless it is the same pointer.</p>
+<p>Makes root the current company. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>New root of the company tree. Ownership passes to this object. </td></tr>
+    <tr><td class="paramname">root</td><td>Root of the new company. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00414">414</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00024">24</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a950aa4c158859348fedde221c5f8b5f9" name="a950aa4c158859348fedde221c5f8b5f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a950aa4c158859348fedde221c5f8b5f9">&#9670;&#160;</a></span>setCompetency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ApplicationInterface::setCompetency </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classTeam.html">Team</a> *&#160;</td>
+          <td class="paramname"><em>team</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>memberIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>competency</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00595">595</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -447,16 +1330,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Restores the company or the workflow from a snapshot. </p>
-<p>The current tree of the same kind is deleted and replaced by a copy (clone()) of the memento's tree, so the memento is not changed and can be used again. The type of the memento decides which tree is replaced.</p>
+<p>Restores the company or workflow from a memento; null mementos are ignored. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">memento</td><td>The snapshot to restore. It must not be null (this is not checked). </td></tr>
+    <tr><td class="paramname">memento</td><td>The snapshot to restore. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00434">434</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00455">455</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
@@ -476,20 +1358,159 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Replaces the current workflow. </p>
-<p>The old workflow is deleted first, unless it is the same pointer.</p>
+<p>Makes root the current workflow and clears any assignments. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>New root of the work tree. Ownership passes to this object. </td></tr>
+    <tr><td class="paramname">root</td><td>Root of the new workflow. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00408">408</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00017">17</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a86f9da7d62217dc79f17155fa2b42aef" name="a86f9da7d62217dc79f17155fa2b42aef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86f9da7d62217dc79f17155fa2b42aef">&#9670;&#160;</a></span>stepWork()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ApplicationInterface::stepWork </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classWorkUnit.html">WorkUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00960">960</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="abcdc4d786befca7192910655462c3ed3" name="abcdc4d786befca7192910655462c3ed3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcdc4d786befca7192910655462c3ed3">&#9670;&#160;</a></span>teamFor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTeam.html">Team</a> * ApplicationInterface::teamFor </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>unitName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l00891">891</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ab68443b6a96960e161fa15d4a3169c75" name="ab68443b6a96960e161fa15d4a3169c75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab68443b6a96960e161fa15d4a3169c75">&#9670;&#160;</a></span>unassign()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ApplicationInterface::unassign </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>unitName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8cpp_source.html#l01025">1025</a> of file <a class="el" href="ApplicationInterface_8cpp_source.html">ApplicationInterface.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae82a951e276ef7089d738dd88f515970" name="ae82a951e276ef7089d738dd88f515970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae82a951e276ef7089d738dd88f515970">&#9670;&#160;</a></span>assignedTeams</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, <a class="el" href="classTeam.html">Team</a>*&gt; ApplicationInterface::assignedTeams</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00029">29</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
+
+</div>
+</div>
+<a id="a513559f8303f831a20dd3ed9418516d8" name="a513559f8303f831a20dd3ed9418516d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a513559f8303f831a20dd3ed9418516d8">&#9670;&#160;</a></span>assignments</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, std::string&gt; ApplicationInterface::assignments</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00028">28</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
+
+</div>
+</div>
+<a id="a5fea79e2f1e09a3abdb0937a979eeac5" name="a5fea79e2f1e09a3abdb0937a979eeac5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fea79e2f1e09a3abdb0937a979eeac5">&#9670;&#160;</a></span>companyLoaded</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ApplicationInterface::companyLoaded</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00030">30</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
+
+</div>
+</div>
 <a id="a5bd192edf4c720420323ead39b3a6610" name="a5bd192edf4c720420323ead39b3a6610"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5bd192edf4c720420323ead39b3a6610">&#9670;&#160;</a></span>companyRoot</h2>
 
@@ -510,9 +1531,79 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Root of the company tree, or nullptr if none. Owned. </p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00023">23</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00035">35</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
+</div>
+</div>
+<a id="acb64961c1539f964c0c684cea8bb3daf" name="acb64961c1539f964c0c684cea8bb3daf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb64961c1539f964c0c684cea8bb3daf">&#9670;&#160;</a></span>fileSystem</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classFileSystem.html">FileSystem</a> ApplicationInterface::fileSystem</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00026">26</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
+
+</div>
+</div>
+<a id="a54442d76c6d7d334c9bc3521322a56b3" name="a54442d76c6d7d334c9bc3521322a56b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54442d76c6d7d334c9bc3521322a56b3">&#9670;&#160;</a></span>mediator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConcreteWorkMediator.html">ConcreteWorkMediator</a> ApplicationInterface::mediator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00027">27</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
+
+</div>
+</div>
+<a id="af544a97cf8c599a14e65a0003a46b045" name="af544a97cf8c599a14e65a0003a46b045"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af544a97cf8c599a14e65a0003a46b045">&#9670;&#160;</a></span>workflowLoaded</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ApplicationInterface::workflowLoaded</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00031">31</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
 
 </div>
 </div>
@@ -536,9 +1627,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Root of the work tree (project), or nullptr if none. Owned. </p>
-
-<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00034">34</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ApplicationInterface_8h_source.html#l00022">22</a> of file <a class="el" href="ApplicationInterface_8h_source.html">ApplicationInterface.h</a>.</p>
 
 </div>
 </div>

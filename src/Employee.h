@@ -25,59 +25,61 @@ private:
 
 public:
 	/**
-	 * @brief Creates an employee.
-	 * @param name The employee's name.
+	 * @brief Creates an employee with the given name.
+	 * @param name Employee name.
 	 */
 	Employee(std::string name);
 
 	/**
-	 * @brief Copy constructor.
-	 * @param other The employee to copy.
+	 * @brief Copies another employee.
+	 * @param other The one to copy.
 	 */
 	Employee(const Employee& other);
 
 	/** @brief Virtual destructor. */
 	virtual ~Employee();
 
-	/** @brief Gets the employee's name. */
+	/**
+	 * @brief Gets the employee's name.
+	 * @return The name.
+	 */
 	std::string getName();
 
-	/** @brief Gets the kind of component ("Employee"). */
-	std::string getKind();
-	virtual bool compareCompetency(int requiredCompetency);
 	/**
-	 * @brief Does the work on a unit.
-	 *
-	 * Runs the template steps of EmployeeComponent::doWork(): prepare, perform and
-	 * finish, and then tells the mediator. For a decorated employee this is the
-	 * innermost step of the decorators' doWork().
-	 *
+	 * @brief Returns "Employee".
+	 * @return The kind of component.
+	 */
+	std::string getKind();
+
+	/**
+	 * @brief Always false, competency comes from the decorators.
+	 * @param requiredCompetency The level required.
+	 * @return Always false.
+	 */
+	virtual bool compareCompetency(int requiredCompetency);
+
+	/**
+	 * @brief Does the prepare, perform and finish steps, then tells the mediator.
 	 * @param workUnit The unit being worked on.
 	 */
 	void doWork(WorkUnit* workUnit);
 
 	/**
-	 * @brief Not supported: an Employee is always the innermost component and cannot wrap another.
-	 *
-	 * The component that is passed in is deleted.
-	 *
-	 * @param component The component that would be wrapped. It is deleted.
+	 * @brief Not supported, so it just deletes the component it was given.
+	 * @param component The component to wrap (it gets deleted).
 	 */
 	void wrap(EmployeeComponent* component);
 
 	/**
-	 * @brief Makes a copy of this employee with the same name.
-	 *
-	 * The copy has no mediator and no successor.
-	 *
-	 * @return A newly allocated copy. The caller owns it.
+	 * @brief Copies the employee (same name, no mediator or successor).
+	 * @return A new copy; the caller owns it.
 	 */
 	virtual EmployeeComponent* clone();
 
 	/**
-	 * @brief Checks whether this employee has a given profession.
-	 * @param professionName Name of the profession to check.
-	 * @return Always false for the core, since only decorators carry professions.
+	 * @brief Always false, professions come from the decorators.
+	 * @param professionName Profession to check.
+	 * @return Always false.
 	 */
 	bool compareProfession(std::string professionName);
 };

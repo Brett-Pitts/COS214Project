@@ -1,7 +1,7 @@
 <map id="Project" name="Project">
-<area shape="rect" id="Node000001" title="A project or phase: a work node that contains other work nodes." alt="" coords="5,612,185,817"/>
-<area shape="rect" id="Node000002" href="$classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries." alt="" coords="5,139,185,564"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,577,98,612,93,612,93,577"/>
+<area shape="rect" id="Node000001" title="A project or phase: a work node that contains other work nodes." alt="" coords="5,612,185,877"/>
+<area shape="rect" id="Node000002" href="$classWorkNode.html" title=" " alt="" coords="5,139,185,564"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,578,98,612,93,612,93,578"/>
 <area shape="rect" id="Node000003" href="$classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="31,5,159,91"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="98,105,98,138,93,138,93,105"/>
 </map>

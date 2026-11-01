@@ -1,9 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" href="$classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="5,31,95,56"/>
-<area shape="rect" id="Node000001" href="$classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries." alt="" coords="143,31,232,56"/>
+<area shape="rect" id="Node000001" href="$classWorkNode.html" title=" " alt="" coords="143,31,232,56"/>
 <area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="108,41,142,41,142,46,108,46"/>
 <area shape="rect" id="Node000002" href="$classProject.html" title="A project or phase: a work node that contains other work nodes." alt="" coords="288,5,355,31"/>
 <area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="245,30,287,22,288,27,246,35"/>
-<area shape="rect" id="Node000003" href="$classWorkUnit.html" title="A single piece of work that one profession can do; the leaf of the work tree." alt="" coords="280,55,363,80"/>
+<area shape="rect" id="Node000003" href="$classWorkUnit.html" title=" " alt="" coords="280,55,363,80"/>
 <area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="246,51,280,57,279,63,245,56"/>
 </map>

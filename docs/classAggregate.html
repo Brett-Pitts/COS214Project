@@ -87,12 +87,12 @@ Inheritance diagram for Aggregate:</div>
 <div class="center"><img src="classAggregate__inherit__graph.png" border="0" usemap="#aAggregate_inherit__map" alt="Inheritance graph"/></div>
 <map name="aAggregate_inherit__map" id="aAggregate_inherit__map">
 <area shape="rect" title="Abstract collection that can hand out an Iterator over its contents." alt="" coords="134,5,262,91"/>
-<area shape="rect" href="classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries." alt="" coords="108,139,288,564"/>
+<area shape="rect" href="classWorkNode.html" title=" " alt="" coords="108,139,288,564"/>
 <area shape="poly" title=" " alt="" coords="201,105,201,138,195,138,195,105"/>
-<area shape="rect" href="classProject.html" title="A project or phase: a work node that contains other work nodes." alt="" coords="5,612,185,817"/>
-<area shape="poly" title=" " alt="" coords="137,578,127,612,122,611,132,576"/>
-<area shape="rect" href="classWorkUnit.html" title="A single piece of work that one profession can do; the leaf of the work tree." alt="" coords="209,632,395,797"/>
-<area shape="poly" title=" " alt="" coords="265,576,281,631,276,633,260,578"/>
+<area shape="rect" href="classProject.html" title="A project or phase: a work node that contains other work nodes." alt="" coords="5,612,185,877"/>
+<area shape="poly" title=" " alt="" coords="142,578,133,612,127,611,136,577"/>
+<area shape="rect" href="classWorkUnit.html" title=" " alt="" coords="209,652,395,837"/>
+<area shape="poly" title=" " alt="" coords="260,576,280,651,275,652,255,578"/>
 </map>
 </div>
 <div class="dynheader">
@@ -107,15 +107,15 @@ Collaboration diagram for Aggregate:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abb1a5795372eb1118c1cc82ac47a2783" id="r_abb1a5795372eb1118c1cc82ac47a2783"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAggregate.html#abb1a5795372eb1118c1cc82ac47a2783">~Aggregate</a> ()</td></tr>
-<tr class="memdesc:abb1a5795372eb1118c1cc82ac47a2783"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor so derived aggregates are destroyed correctly.  <br /></td></tr>
+<tr class="memdesc:abb1a5795372eb1118c1cc82ac47a2783"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor so derived aggregates clean up properly.  <br /></td></tr>
 <tr class="separator:abb1a5795372eb1118c1cc82ac47a2783"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaadee9854ec8e561fc09d907bdf2090f" id="r_aaadee9854ec8e561fc09d907bdf2090f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classIterator.html">Iterator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAggregate.html#aaadee9854ec8e561fc09d907bdf2090f">createIterator</a> ()=0</td></tr>
-<tr class="memdesc:aaadee9854ec8e561fc09d907bdf2090f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an iterator over this aggregate.  <br /></td></tr>
+<tr class="memdesc:aaadee9854ec8e561fc09d907bdf2090f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hands back a new iterator over this aggregate; the caller deletes it.  <br /></td></tr>
 <tr class="separator:aaadee9854ec8e561fc09d907bdf2090f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract collection that can hand out an <a class="el" href="classIterator.html" title="Abstract iterator over work nodes.">Iterator</a> over its contents. </p>
-<dl class="section user"><dt>Design pattern</dt><dd><a class="el" href="classIterator.html" title="Abstract iterator over work nodes.">Iterator</a> (<a class="el" href="classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents.">Aggregate</a>). <a class="el" href="classWorkNode.html" title="Common base of projects and work units; holds state, prerequisites and retries.">WorkNode</a> and its subclasses implement this interface so that clients can find ready work units without knowing how the work tree is stored.</dd></dl>
+<dl class="section user"><dt>Design pattern</dt><dd><a class="el" href="classIterator.html" title="Abstract iterator over work nodes.">Iterator</a> (<a class="el" href="classAggregate.html" title="Abstract collection that can hand out an Iterator over its contents.">Aggregate</a>). <a class="el" href="classWorkNode.html">WorkNode</a> and its subclasses implement this interface so that clients can find ready work units without knowing how the work tree is stored.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classIterator.html" title="Abstract iterator over work nodes.">Iterator</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="Aggregate_8h_source.html#l00022">22</a> of file <a class="el" href="Aggregate_8h_source.html">Aggregate.h</a>.</p>
@@ -143,7 +143,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Virtual destructor so derived aggregates are destroyed correctly. </p>
+<p>Virtual destructor so derived aggregates clean up properly. </p>
 
 <p class="definition">Definition at line <a class="el" href="Aggregate_8cpp_source.html#l00003">3</a> of file <a class="el" href="Aggregate_8cpp_source.html">Aggregate.cpp</a>.</p>
 
@@ -173,8 +173,8 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Creates an iterator over this aggregate. </p>
-<dl class="section return"><dt>Returns</dt><dd>A newly allocated <a class="el" href="classIterator.html" title="Abstract iterator over work nodes.">Iterator</a>. The caller owns it and must delete it. </dd></dl>
+<p>Hands back a new iterator over this aggregate; the caller deletes it. </p>
+<dl class="section return"><dt>Returns</dt><dd>A new iterator; the caller owns it. </dd></dl>
 
 <p>Implemented in <a class="el" href="classWorkNode.html#a2fa4878090ded4b6209cb4e85bc24eb6">WorkNode</a>.</p>
 

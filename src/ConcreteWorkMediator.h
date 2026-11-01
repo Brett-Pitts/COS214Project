@@ -24,19 +24,13 @@ class WorkNode;
 class ConcreteWorkMediator : public WorkMediator {
 
 public:
-	/**
-	 * @brief The work nodes registered with this mediator. They are not owned, and are added by the caller directly.
-	 */
+	/** @brief The registered work nodes, not owned. */
 	std::vector<WorkNode*> colleagues;
 
 	/**
-	 * @brief Calls WorkNode::update() with the message on every registered colleague except the sender.
-	 *
-	 * WorkNode::update() treats the message as the name of a completed node and
-	 * removes it from the node's prerequisites, which can move a waiting node to Ready.
-	 *
-	 * @param node The node that changed. It is not updated.
-	 * @param msg The name of the node that completed.
+	 * @brief Tells every registered node except the sender that msg has completed.
+	 * @param node The node that changed.
+	 * @param msg Name of the completed node.
 	 */
 	void notifyColleagues(WorkNode* node, std::string msg);
 };

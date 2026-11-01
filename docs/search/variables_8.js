@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['state_0',['state',['../classWorkNode.html#a7643438b79330744433d915d16877215',1,'WorkNode']]],
-  ['storage_1',['storage',['../classFileSystem.html#a3d476a7f9c6f206009178a3202d3cd16',1,'FileSystem']]],
-  ['successor_2',['successor',['../classEmployeeComponent.html#a267ee85ab77e983fccf810d0f46eaf84',1,'EmployeeComponent']]]
+  ['readyonly_0',['readyOnly',['../classWorkIterator.html#a4293efa7ecc4b1e38a4564306bda7d60',1,'WorkIterator']]],
+  ['requiredprofession_1',['requiredProfession',['../classWorkUnit.html#a7e5fe3757678de29d80e39b3d6c7f3fb',1,'WorkUnit']]],
+  ['retrycount_2',['retryCount',['../classWorkNode.html#a64b3d3092d112b494f200e3a21ed2f48',1,'WorkNode']]],
+  ['root_3',['root',['../classMemento.html#a5272c9598d42964fd0316fba0c5ad438',1,'Memento']]]
 ];

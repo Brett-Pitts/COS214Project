@@ -1,20 +1,23 @@
 <map id="src/WorkIterator.cpp" name="src/WorkIterator.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="100,5,252,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="117,5,269,31"/>
 <area shape="rect" id="Node000002" href="$WorkIterator_8h.html" title=" " alt="" coords="5,225,120,251"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,32,77,214,73,212,168,30"/>
-<area shape="rect" id="Node000004" href="$WorkNode_8h.html" title="Declares the component of the work tree." alt="" coords="156,152,257,177"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="181,31,204,138,199,139,176,32"/>
-<area shape="rect" id="Node000008" href="$WorkUnit_8h.html" title=" " alt="" coords="214,79,309,104"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="191,29,239,68,235,72,188,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,32,79,215,74,212,184,30"/>
+<area shape="rect" id="Node000004" href="$WorkNode_8h.html" title=" " alt="" coords="195,152,296,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="199,30,221,103,236,138,231,141,216,105,194,32"/>
+<area shape="rect" id="Node000009" href="$WorkUnit_8h.html" title=" " alt="" coords="231,79,326,104"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="209,29,256,68,253,72,205,33"/>
 <area shape="rect" id="Node000003" href="$Iterator_8h.html" title=" " alt="" coords="22,299,103,324"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="65,251,65,285,60,285,60,251"/>
-<area shape="poly" id="edge7_Node000004_Node000002" title=" " alt="" coords="185,180,100,221,97,217,182,175"/>
+<area shape="poly" id="edge7_Node000004_Node000002" title=" " alt="" coords="217,180,106,223,104,218,215,175"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="145,225,207,251"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="204,179,189,214,184,212,199,177"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="357,225,416,251"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="237,175,346,218,344,223,235,180"/>
-<area shape="rect" id="Node000007" href="$Aggregate_8h.html" title="Declares the Aggregate interface of the Iterator pattern." alt="" coords="232,225,333,251"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="221,175,262,214,258,218,217,179"/>
-<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="254,106,226,143,222,140,250,103"/>
-<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="274,103,370,213,366,217,270,106"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="236,180,199,217,195,214,232,176"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="441,299,500,324"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="248,177,253,213,261,232,273,249,308,275,349,291,390,301,428,306,427,311,389,307,347,297,305,279,269,253,256,235,248,214,243,178"/>
+<area shape="rect" id="Node000007" href="$Aggregate_8h.html" title="Declares the Aggregate interface of the Iterator pattern." alt="" coords="283,225,384,251"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="261,175,310,214,307,219,258,179"/>
+<area shape="rect" id="Node000008" href="$WorkMediator_8h.html" title=" " alt="" coords="409,225,533,251"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="282,175,422,219,420,224,281,180"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="473,251,473,285,468,285,468,251"/>
+<area shape="poly" id="edge12_Node000009_Node000004" title=" " alt="" coords="276,105,259,141,254,139,271,103"/>
+<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="327,98,381,113,443,137,473,153,501,173,527,197,548,224,552,244,544,263,527,280,508,294,504,289,524,276,539,260,547,244,543,226,523,200,498,177,470,158,440,142,380,118,326,103"/>
 </map>

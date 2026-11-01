@@ -31,41 +31,35 @@ private:
 	int current;              ///< Index of the current team.
 
 	/**
-	 * @brief Walks the tree below a node and stores the teams that match.
-	 *
-	 * A Team node is compared with the profession and added if it matches; it is
-	 * never searched further. Any other node is searched through getChild().
-	 *
-	 * @param node The node to search from.
-	 * @param profession Required profession. An empty string matches every team.
+	 * @brief Gathers the matching teams below the node.
+	 * @param node Node to search from.
+	 * @param profession Required profession ("" matches all).
 	 */
 	void collect(CompanyNode* node, const std::string& profession);
 
 public:
 	/**
-	 * @brief Creates an iterator, collects the matching teams and moves to the first one.
-	 * @param root Root of the company tree to search.
-	 * @param professionName Profession to match. An empty string matches every team.
+	 * @brief Collects the matching teams and moves to the first one.
+	 * @param root Root of the company tree.
+	 * @param professionName Profession to match ("" matches all).
 	 */
 	TeamIterator(CompanyNode* root, std::string professionName = "");
 
-	/** @brief Goes back to the first matching team. */
+	/** @brief Goes back to the first team. */
 	void first();
 
-	/**
-	 * @brief Moves to the next matching team. It does not check the end; call it only while isDone() is false.
-	 */
+	/** @brief Moves to the next team (check isDone() first). */
 	void next();
 
 	/**
-	 * @brief Checks whether the iteration has finished.
-	 * @return true if there are no more teams.
+	 * @brief True when no teams are left.
+	 * @return True when finished.
 	 */
 	bool isDone();
 
 	/**
-	 * @brief Gets the team the iterator is on.
-	 * @return The current team, or nullptr if the iterator is done.
+	 * @brief Gets the current team, or nullptr when done.
+	 * @return The current item, or nullptr when done.
 	 */
 	Team* currentItem();
 };

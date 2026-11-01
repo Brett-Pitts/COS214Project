@@ -20,21 +20,21 @@ class WorkNode;
 class Iterator {
 
 public:
-	/** @brief Virtual destructor so derived iterators are destroyed correctly. */
+	/** @brief Virtual destructor. */
 	virtual ~Iterator();
 
 	/**
-	 * @brief Gets the node the iterator is currently on.
-	 * @return The current node, or nullptr if the iterator is done.
+	 * @brief Gets the current node, or nullptr when done.
+	 * @return The current item, or nullptr when done.
 	 */
 	virtual WorkNode* currentItem() = 0;
 
-	/** @brief Moves to the first matching item. */
+	/** @brief Jumps to the first matching item. */
 	virtual void first() = 0;
 
 	/**
-	 * @brief Checks whether the iteration has finished.
-	 * @return true if there are no more items.
+	 * @brief True when there is nothing left.
+	 * @return True when finished.
 	 */
 	virtual bool isDone() = 0;
 

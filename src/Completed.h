@@ -19,12 +19,12 @@
  */
 class Completed : public WorkState {
 public:
-	/** @brief Creates the state with the name "Completed". */
+	/** @brief Creates the state named "Completed". */
 	Completed() :WorkState("Completed") {};
 
 	/**
-	 * @brief Does nothing: a completed node stays completed.
-	 * @param workNode The node whose state is being advanced (ignored).
+	 * @brief Does nothing, a completed node stays completed.
+	 * @param workNode The node being advanced.
 	 */
 	void handle(WorkNode* workNode) override;
 };

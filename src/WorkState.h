@@ -22,24 +22,23 @@ private:
 	std::string name; ///< Name of the state.
 public:
 	/**
-	 * @brief Creates a state.
-	 * @param name Name of the state.
+	 * @brief Creates a state with the given name.
+	 * @param name State name.
 	 */
 	WorkState(std::string name) :name(name) {};
 
-	/** @brief Virtual destructor so concrete states are destroyed correctly. */
+	/** @brief Virtual destructor. */
 	virtual ~WorkState();
 
-	/** @brief Gets the name of the state. */
+	/**
+	 * @brief Gets the name of the state.
+	 * @return The name.
+	 */
 	virtual std::string getName();
 
 	/**
-	 * @brief Handles an advance request.
-	 *
-	 * A concrete state may move the node to another state with WorkNode::setState(),
-	 * or leave it as it is. Called by WorkNode::advanceState().
-	 *
-	 * @param workNode The node whose state is being advanced.
+	 * @brief Handles an advance request, maybe moving the node to another state.
+	 * @param workNode The node being advanced.
 	 */
 	virtual void handle(WorkNode* workNode) = 0;
 };

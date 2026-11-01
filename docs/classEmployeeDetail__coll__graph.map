@@ -1,9 +1,9 @@
 <map id="EmployeeDetail" name="EmployeeDetail">
-<area shape="rect" id="Node000001" title="Abstract decorator that adds a detail (profession or competency) to an employee." alt="" coords="11,641,189,967"/>
-<area shape="rect" id="Node000002" href="$classEmployeeComponent.html" title="Abstract base of every employee and every employee decorator." alt="" coords="5,153,195,579"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,592,100,617,100,641,95,641,95,617,95,592"/>
-<area shape="poly" id="edge4_Node000001_Node000002" title=" " alt="" coords="103,579,103,625,97,625,97,579"/>
-<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="197,323,214,338,221,366,218,385,211,399,206,396,213,383,216,366,210,341,193,327"/>
+<area shape="rect" id="Node000001" title="Abstract decorator that adds a detail (profession or competency) to an employee." alt="" coords="11,561,189,927"/>
+<area shape="rect" id="Node000002" href="$classEmployeeComponent.html" title=" " alt="" coords="5,153,195,499"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,512,100,523,100,561,95,561,95,523,95,512"/>
+<area shape="poly" id="edge4_Node000001_Node000002" title=" " alt="" coords="103,499,103,545,97,545,97,499"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="197,289,214,303,221,326,218,342,211,353,206,350,214,340,216,326,210,306,193,294"/>
 <area shape="rect" id="Node000003" href="$classMediator.html" title="Abstract mediator that lets the members of a team communicate." alt="" coords="26,5,174,91"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="103,91,103,137,97,137,97,91"/>
 </map>
