@@ -74,7 +74,7 @@ void WorkNode::advanceState() {
 	if (this->state == NULL) {
 		return;
 	}
-	bool wasEscalated = isEscalated();
+	
 	std::cout << "Old state: " << this->getStateName() << '\n';
 	this->state->handle(this);
 	std::cout << "ADVANCE!!!!!!!!!\n";
@@ -93,7 +93,7 @@ WorkIterator* WorkNode::createIterator() {
 	return new WorkIterator(this);
 }
 
-WorkNode* WorkNode::getChild(int index) {
+WorkNode* WorkNode::getChild(int ) {
 	return nullptr;
 }
 
@@ -143,7 +143,7 @@ void WorkNode::reassign(EmployeeComponent* employeeComponent) {
 	this->assignee = employeeComponent;
 }
 
-void WorkNode::remove(WorkNode* workNode) {
+void WorkNode::remove(WorkNode* ) {
 	return;
 }
 
@@ -202,7 +202,7 @@ void WorkNode::setState(std::string stateName) {
 void WorkNode::update(std::string completedName) {
 	int before = prerequisites.size();
 	prerequisites.erase(std::remove(prerequisites.begin(), prerequisites.end(), completedName), prerequisites.end());
-	if (prerequisites.size() == before) {
+	if ((int)prerequisites.size() == before) {
 		return;
 	}
 	if (!isWaitingForPrerequisites() && getStateName() == "WaitingForPrerequisites") {
