@@ -1,5 +1,0 @@
-<map id="EmployeeBuilder" name="EmployeeBuilder">
-<area shape="rect" id="Node000001" title="Abstract builder that assembles an employee from optional parts." alt="" coords="22,5,171,151"/>
-<area shape="rect" id="Node000002" href="$classConcreteEmployeeBuilder.html" title="Builds an employee by wrapping it in profession and competency decorators." alt="" coords="5,199,188,324"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,164,99,198,94,198,94,164"/>
-</map>

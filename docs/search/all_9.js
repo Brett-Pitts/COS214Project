@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['junior_0',['JUNIOR',['../classEmployeeCompetency.html#ae0117efb5ac8503cae124d17a4b05787a77c2258cee99556d3fe078004ff045c4',1,'EmployeeCompetency']]]
+  ['readme_0',['README',['../md_README.html',1,'']]],
+  ['rules_1',['Contribution rules',['../md_README.html#autotoc_md8',1,'']]]
 ];
