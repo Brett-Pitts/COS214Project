@@ -226,7 +226,6 @@ public:
 	 * @return True if the name is found.
 	 */
 	virtual bool hasName(std::string name) = 0;
-	virtual void refresh();
 };
 
 #endif
