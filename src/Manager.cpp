@@ -11,7 +11,7 @@ Manager::Manager(const Manager& other) : Employee(other) {}
 
 Manager::~Manager() {}
 
-bool Manager::compareCompetency(int requiredCompetency) {
+bool Manager::compareCompetency(int ) {
 	return false;
 }
 
