@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "ApplicationInterface.h"
+#include "MementoType.h"
 #include <iostream>
 
 MainWindow::MainWindow(int argc, char* argv[], QWidget* parent)
@@ -18,6 +19,10 @@ MainWindow::MainWindow(int argc, char* argv[], QWidget* parent)
 			std::cout << "Loading scenario B\n";
 			app->createScenarioB();
 		}
+	}else{
+
+		app->loadFromFile(MementoType::company, "autosave_company");
+		app->loadFromFile(MementoType::workflow, "autosave_workflow");
 	}
 
 	ui->setupUi(this);
@@ -59,6 +64,8 @@ MainWindow::MainWindow(int argc, char* argv[], QWidget* parent)
 }
 
 MainWindow::~MainWindow() {
+	app->saveToFile(MementoType::company, "autosave_company");
+	app->saveToFile(MementoType::workflow, "autosave_workflow");
 	delete ui;
 	delete app;
 }
