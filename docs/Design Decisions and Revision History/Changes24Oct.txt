@@ -1,2 +1,0 @@
-Added prototype functionality to company composite and project composite to allow easier creation of mementos.
-+clone() in relevant classes
