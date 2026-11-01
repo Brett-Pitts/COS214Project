@@ -16,22 +16,24 @@ Children
 Unit
 Market Research
 Marketing
-Completed
+Ready
 Prerequisites
 EndPrerequisites
 EndUnit
 Unit
 Idea Generation
 Marketing
-Completed
+WaitingForPrerequisites
 Prerequisites
+Market Research
 EndPrerequisites
 EndUnit
 Unit
 Budget
 Manager
-Ready
+WaitingForPrerequisites
 Prerequisites
+Idea Generation
 EndPrerequisites
 EndUnit
 Unit
