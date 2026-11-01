@@ -38,11 +38,11 @@ public:
 
 	void notifyColleagues(EmployeeComponent* employeeComponent, std::string message) override;
 
-	void add(CompanyNode* companyNode) {};
+	void add(CompanyNode* ) {};
 
-	void remove(CompanyNode* companyNode) {};
+	void remove(CompanyNode* ) {};
 
-	CompanyNode* getChild(int n) { return nullptr; };
+	CompanyNode* getChild(int ) { return nullptr; };
 
 	virtual CompanyNode* clone();
 
