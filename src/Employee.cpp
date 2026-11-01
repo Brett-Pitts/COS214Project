@@ -14,7 +14,7 @@ std::string Employee::getKind() {
 	return "Employee";
 }
 
-bool Employee::compareCompetency(int requiredCompetency) {
+bool Employee::compareCompetency(int ) {
 	return false;
 }
 
@@ -32,6 +32,6 @@ EmployeeComponent* Employee::clone() {
 	return ret;
 }
 
-bool Employee::compareProfession(std::string professionName) {
+bool Employee::compareProfession(std::string ) {
 	return false;
 }

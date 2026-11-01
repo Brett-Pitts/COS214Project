@@ -2,6 +2,6 @@
 #include "Escalated.h"
 #include "WorkNode.h"
 
-void Failed::handle(WorkNode* workNode){
+void Failed::handle(WorkNode* ){
 
 }

@@ -18,7 +18,7 @@ void Department::remove(CompanyNode* companyNode) {
 }
 
 CompanyNode* Department::getChild(int n) {
-	if (n < 0 || n >= children.size()) {
+	if (n < 0 || n >= (int)children.size()) {
 		return nullptr;
 	}
 	return children.at(n);

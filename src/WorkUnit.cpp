@@ -27,6 +27,6 @@ WorkNode* WorkUnit::getNode(std::string name) {
 
 
 
-void WorkUnit::add(WorkNode* workNode) {
+void WorkUnit::add(WorkNode* ) {
 	return;
 }

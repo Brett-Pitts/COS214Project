@@ -33,10 +33,10 @@ void EmployeeComponent::finish(WorkUnit* workUnit) {
 EmployeeComponent* EmployeeComponent::getCore() {
 	return this;
 }
-bool EmployeeComponent::compareProfession(string professionName) {
+bool EmployeeComponent::compareProfession(string ) {
 	return false;
 }
-bool EmployeeComponent::compareCompetency(CompetencyLevel requiredCompetency) {
+bool EmployeeComponent::compareCompetency(CompetencyLevel ) {
 	return false;
 }
 std::string EmployeeComponent::getProfession() {
