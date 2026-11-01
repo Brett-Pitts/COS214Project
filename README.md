@@ -44,7 +44,7 @@ Teams: architects, engineers, bricklayers, plumbers, electricians, a site manage
 
 ![TIVIDY class diagram](diagrams/UML%20Diagrams/Class%20Diagram/Class%20Diagram.png)
 
-## Patterns (12)
+## Patterns (13)
 
 | Pattern | Used for |
 | --- | --- |
@@ -57,7 +57,7 @@ Teams: architects, engineers, bricklayers, plumbers, electricians, a site manage
 | State | WorkNode delegates its lifecycle to WorkState and its concrete states (Ready, Ongoing, Escalated and so on) |
 | Mediator (x2) | WorkMediator announces completion between work nodes; Team mediates broadcasts between its employees |
 | Template Method | doWork() runs prepare, perform and finish, and each decorator adds its own part |
-| Iterator | WorkIterator walks the work tree to find the next Ready WorkUnit; TeamIterator walks the company tree for Teams |
+| Iterator (x2) | WorkIterator walks the work tree to find the next Ready WorkUnit; TeamIterator walks the company tree for Teams |
 | Memento | Memento stores a copy of the company or workflow, which FileSystem saves to and loads from the saves folder |
 
 
