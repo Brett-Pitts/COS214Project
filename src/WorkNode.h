@@ -30,7 +30,7 @@ protected:
 	 */
 	WorkNode(int maxRetries, std::string name);
 	std::string name;
-	virtual void refresh();
+	
 	
 public:
 
@@ -40,7 +40,12 @@ public:
 	 * @return The node, or nullptr.
 	 */
 	virtual WorkNode* getNode(std::string name) = 0;
-
+	/**
+	 * @brief Creates a node with a retry limit and a name.
+	 * @param maxRetries Retry limit.
+	 * @param name Node name.
+	 */
+	virtual void refresh();
 	/**
 	 * @brief Gets the root of the tree this node is in.
 	 * @return The root node.
@@ -183,7 +188,7 @@ public:
 	 * @brief Drops a completed prerequisite and moves to Ready if none are left.
 	 * @param completedName Name of the node that completed.
 	 */
-	void update(std::string completedName);
+	virtual void update(std::string completedName);
 
 	/**
 	 * @brief Makes a copy of the node (and its children).
