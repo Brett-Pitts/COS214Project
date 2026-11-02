@@ -18,7 +18,7 @@ MainWindow::MainWindow(int argc, char* argv[], QWidget* parent)
 		else if (std::string(argv[1]) == "ScenarioB") {
 			std::cout << "Loading scenario B\n";
 			app->createScenarioB();
-		}else if (std::string(argv[1] == "New")){
+		}else if (std::string(argv[1]) == "New"){
 			//load nothing
 		}
 	}else{
