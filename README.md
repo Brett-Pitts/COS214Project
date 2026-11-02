@@ -152,6 +152,11 @@ Run ScenarioB
 ```bash
 ./GUI/TIVIDY ScenarioB
 ```
+Create blank workflow
+
+```bash
+./GUI/TIVIDY New
+```
 
 
 Run Tests
